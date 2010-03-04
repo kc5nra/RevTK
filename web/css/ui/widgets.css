@@ -1,0 +1,342 @@
+/**
+ * widgets.css - styles for Widgets helpers
+ * 
+ * This stylesheet is a reference and contains base styles for all ui widgets and helpers.
+ * It is a quick way to include ui components in a new application.
+ * 
+ * When the application design is made, the styles should be copied into a new
+ * stylesheet and adapted to fit the design of the application.
+ * 
+ * Strucure
+ *   /css/ui/widgets.css
+ *   /images/ui/widgets/widgets-selecttable.gif
+ * 
+ * Example app structure
+ *   /css/app/widgets.css
+ *   /images/app/widgets/widgets-selecttable.gif
+ * 
+ * 
+ * @see     /lib/helper/WidgetsHelper
+ * 
+ * @package Ui
+ * @author  Fabrice Denis
+ */
+
+/**
+ * uiIBtn - Inline Block Buttons
+ * 
+ * Template:
+ * 
+ *  Either line-height or height + padding can set the height.
+ * 
+ *   .uiIBtnGS, .uiIBtnGS span { color:#000; font:12px/30px Arial, sans-serif; height:30px; }
+ *   .uiIBtnGS { background:url(buttons.gif) no-repeat 0 -200px; padding-left:16px; }
+ *   .uiIBtnGS span { background:url(buttons.gif) no-repeat 100% -250px; padding-right:16px; }
+ *   .uiIBtnGS:hover { background-position:0 -300px; }
+ *   .uiIBtnGS:hover span { background-position:100% -350px; }
+ *   
+ * 
+ * Notes on inline-block compatiblity:
+ * 
+ * - IE 6 only supports changing inline objects to inline-block.  The outermost object
+ *   on a BUTTON is a DIV, which is a block by default.  Changing this to a SPAN allowed
+ *   IE to render things perfectly (not a problem with A, SPAN, EM, etc)
+ *   
+ * - FireFox 2 doesn't support inline-block at all.  There is an alternative
+ *   -moz-inline-box that works in almost the same way as inline-block.  It's a little
+ *   buggy in Firefox 2 but generally works.
+ *   
+ * Example:
+ * 
+ *  <code>
+ *    <a href="#" class="uiIBtn uiIBtnGS"><span><em>Button text</em></span></a>
+ *  </code>
+ *  
+ * Example adding an icon on the EM element:
+ * 
+ *  <code>
+ *   <a href="#" class="uiIBtn uiIBtnGS"><span><em class="ico ico-cross">Delete</em></span></a>
+ *  </code>
+ *  
+ */
+.uiIBtn { display:-moz-inline-box; display:inline-block; /*border-left:2px solid blue;*/  }
+ /**
+  * inline-block doesnt work on SPAN and EM inside, in Firefox2, se we use block, but then we'll have to force inline-block for IE6
+  * who does not like BLOCK  .... X_X
+  * 
+  * EM in block mode also gives us full height for background icon, plus fixes icon padding in IE6 disappearing in small TD.
+  */
+.uiIBtn span { display:block; white-space:nowrap; }
+.uiIBtn em { display:block; }
+ /* NOT THIS IS ALSO INLINE STYLE COND COMMENT IE6 BECAUSE YUI ADDS STUFF OUTSIDE OF OUR #IE DIV !!! */
+#ie .uiIBtn span, #ie .uiIBtn em { display:inline-block; }
+ /* hover : underline just the text */
+.uiIBtn, .uiIBtn:hover, .uiIBtn:hover span { text-decoration:none; } 
+.uiIBtn em { font-style:normal; } /* used for icons (optional) */
+.uiIBtn:hover em { text-decoration:underline; }
+ /* Fix FireFox2 display:block in SPAN and EM, IE6 doesn't like it (it expands to block width) */
+#ie .uiIBtn { cursor:pointer; }
+
+
+/* uiIBtn :: default beige (31px) */
+.uiIBtnDefault, .uiIBtnDefault span { color:#595A3C; font:bold 16px/30px Arial, sans-serif; height:30px; }
+.uiIBtnDefault { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 0 0; padding-left:19px; }
+.uiIBtnDefault span { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -40px; padding-right:19px; }
+.uiIBtnDefault:hover { background-position:0 -80px; }
+.uiIBtnDefault:hover span { background-position:100% -120px; }
+
+/* uiIBtn :: disabled (31px) */
+.uiIBtnDisabled, .uiIBtnDisabled span { color:#595A3C; font:bold 16px/1em Arial, sans-serif; }
+.uiIBtnDisabled { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 0 -160px; }
+.uiIBtnDisabled span { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -200px; }
+.uiIBtnDisabled:hover { }
+.uiIBtnDisabled:hover span { color:#9C9C9C; }
+
+
+/**
+ * uiBoxRounded
+ * 
+ * Examples:
+ * <code>
+ *   ui_box_rounded('uiBoxCustom')
+ *     ...content...
+ *   end_ui_box()
+ * </code>
+ * 
+ * => Outputs components/uiBoxRounded partial with class "uiBoxRounded uiBoxCustom" on table
+ * 
+ * Rounded corner box using TABLE for flexible width and B tag to lock corner dimensions
+ */
+table.uiBoxRounded { width:100%; }
+table.uiBoxRounded td { padding:0; height:auto; }
+table.uiBoxRounded td b { background-repeat:no-repeat; display:block; width:6px; height:6px; }
+table.uiBoxRounded .t td,
+table.uiBoxRounded .b td { font-size:1px; line-height:1px; }
+table.uiBoxRounded .t .r b { background-position:-10px 0; }
+table.uiBoxRounded .b .l b { background-position:0 -10px; }
+table.uiBoxRounded .b .r b { background-position:-10px -10px; }
+table.uiBoxRounded .m td.c { width:100%; }
+
+/* RevTK default beige */
+table.uiBoxRDefault td { background-color:#F1EFD6; }
+table.uiBoxRDefault td b { background-color:#FFFDE7; background-image:url(/images/2.0/widgets/widgets-boxes.gif); }
+table.uiBoxRDefault .t .l b { background-position:0 0; }
+table.uiBoxRDefault .t .r b { background-position:-18px 0; }
+table.uiBoxRDefault .b .l b { background-position:0 -18px; }
+table.uiBoxRDefault .b .r b { background-position:-18px -18px; }
+table.uiBoxRDefault .m td.c { /* content padding */ padding:8px;  }
+
+/* uiWindow default underlay (dark rounded borders) */
+table.uiWindowUnderlay td { background-color:#000000; }
+table.uiWindowUnderlay td.l, table.uiWindowUnderlay td.r { background:none; }
+table.uiWindowUnderlay td b { background-image:url(/images/2.0/widgets/widgets-windows.gif); width:8px; height:8px; }
+table.uiWindowUnderlay .t .l b { background-position:0 0; }
+table.uiWindowUnderlay .t .r b { background-position:-24px 0; }
+table.uiWindowUnderlay .b .l b { background-position:0 -24px; }
+table.uiWindowUnderlay .b .r b { background-position:-24px -24px; }
+table.uiWindowUnderlay .m td.c { height:100%; }
+
+/* uiWindow default underlay, selected (jQuery Draggable)
+.ui-draggable-dragging table.uiWindowUnderlay .t .l b { background-position:-32px 0; }
+.ui-draggable-dragging table.uiWindowUnderlay .t .r b { background-position:-52px 0; }
+.ui-draggable-dragging table.uiWindowUnderlay .b .l b { background-position:-32px -20px; }
+.ui-draggable-dragging table.uiWindowUnderlay .b .r b { background-position:-52px -20px; }
+*/
+
+
+/**
+ * uiWindow
+ * 
+ * Ie6:
+ *   In ie6 we use a conditional expression to grab the dimensions of the parent .uiWindow div.
+ *   See http://www.alistapart.com/articles/conflictingabsolutepositions
+ */
+.uiWindow { position:absolute; z-index:2; display:none; }
+.uiWindow .window-container { padding:8px; position:relative; left:0; top:0; z-index:1; }
+.uiWindow .window-top { height:20px; position:relative; width:100%; }
+.uiWindow .window-handle { width:100%; height:32px; background;blue; position:absolute; left:0; top:-8px; }
+.uiWindow .window-handle:hover { cursor:move; }
+.uiWindow .window-top .close { display:block; position:absolute; right:0px; top:-6px; width:24px; height:24px; 
+	background:url(/images/2.0/widgets/widgets-windows.gif) no-repeat 0 -32px; }
+.uiWindow .window-top .close:hover { background-color:#aaa; }
+.uiWindow .window-body {}
+.uiWindow .underlay { position:absolute; bottom:0px; right:0px; left:0px; top:0px; }
+.uiWindow .underlay table { height:100%; }
+#ie .uiWindow { width:1px; }
+#ie .underlay {
+	_width:expression(this.parentNode.offsetWidth);
+	_height:expression(this.parentNode.offsetHeight-24);
+}
+
+
+/**
+ * uiDataFilter
+ * 
+ * 
+ */
+.uiDataFilter,
+.uiDataFilter .corner-left, .uiDataFilter .corner-right,
+.uiDataFilter h4, .uiDataFilter a, .uiDataFilter a span { background:url(/images/2.0/widgets/widgets-datafilter.gif) repeat-x 0 0; }
+.uiDataFilter, .uiDataFilter h4, .uiDataFilter span, .uiDataFilter a { font:14px/28px Arial, sans-serif; }
+.uiDataFilter { width:100%; margin:0 0 5px; }
+.uiDataFilter .corner-left  { float:left; width:16px; height:29px; background-position:0 -40px; }
+.uiDataFilter .corner-right { float:right; width:16px; height:29px; background-position:100% -40px; }
+.uiDataFilter h4 { color:#7D7D7D; float:left; padding:0 16px 0 0; margin:0; background-position:100% -120px; }
+.uiDataFilter ul { float:left; list-style:none; padding:0; margin:0; }
+.uiDataFilter li { float:left; list-style:none; margin:0; padding:0; }
+.uiDataFilter li a { float:left; padding:0 0 0 10px; height:29px; color:#5C5C5C; text-decoration:none; background-position:0 -120px; }
+.uiDataFilter li a span { float:left; padding-right:10px; background-position:100% -120px; }
+
+.uiDataFilter li a:hover { color:#000; }
+.uiDataFilter li.active a { background-position:0 -80px;; color:#000; }
+.uiDataFilter li.active a span { background-position:100% -80px; }
+
+
+/**
+ * uiTabs - base styles to use with ui_tabs() helper.
+ * 
+ * Simple tabs with enough markup to style image corners, and a hover state
+ * also in IE6 (a:hover span {...}).
+ *
+ */
+.uiTabs {}
+.uiTabs ul {
+	float:left; width:100%;
+	background:url("../img/tabs/groups/bg.gif") repeat-x 0 100%;
+	margin:0; padding:0 0;
+	font-size:12px; line-height:1em;
+}
+.uiTabs li {
+	float:left; display:inline; margin:0 7px 0 0;
+	border:1px solid #ccc; border-bottom:none;
+}
+.uiTabs li a {
+	float:left; padding:0 0 0 12px; background:#ccc;
+	color:#444; font:bold 14px/1.1em Arial, sans-serif; text-decoration:none;
+	outline: none;
+}
+.uiTabs li span {
+	float:left; padding:7px 12px 6px 0;
+}
+.uiTabs a:hover,
+.uiTabs a:hover span { background:#fff; color:#000; text-decoration:underline; }
+.uiTabs .active a { background:#fff; color:#000; }
+
+
+/**
+ * uiTabbedView - base styles.
+ * 
+ */
+.uiTabbedBody { border:1px solid #ccc; padding:10px; border-top:none; background:#fff; }
+
+
+/**
+ * uiChartVs
+ * 
+ * Set the class to a container without padding (create a nested div if needed).
+ * 
+ */
+.uiChartVs { width:100%; height:85px; overflow:visible; position:relative; }
+.uiChartVs .shadow { position:absolute; width:100%; left:5px; bottom:0; height:56px; background:#C1BEA3; }
+.uiChartVs p { width:50%; margin:0; padding:0; }
+.uiChartVs p .ttl  { display:block; font:bold italic 14px/1em Georgia, serif; color:#4B4B4B; }
+.uiChartVs p .zero { color:#979797; } /* gray out title */
+.uiChartVs em { font-weight:normal; font-style:normal; }
+.uiChartVs p.left { float:left; }
+.uiChartVs p.right{ float:right; text-align:right; }
+.uiChartVs .pct { position:absolute; bottom:5px; height:50px; border-bottom:8px solid #fff; }
+.uiChartVs a.pct { text-decoration:none; }
+.uiChartVs .left  .pct { left:0; background:#b1fe66; border-bottom-color:#82ba4b; }
+.uiChartVs .right .pct { right:0; background:#dd5d3a; border-bottom-color:#a2442b; }
+.uiChartVs .pct span { position:absolute; top:10px; font:27px/1em Georgia, serif; color:#000; }
+.uiChartVs .left  .pct span { left:10px; }
+.uiChartVs .right .pct span { right:10px; }
+.uiChartVs .pct span em { font-size:17px; }
+
+
+/**
+ * uiPager
+ */
+div.uiPagerDiv { margin:0 0 5px; }
+
+/* uiPager */
+ul.uiPager  { margin:0; padding:0; float:right; padding-left:14px; background:url(/images/ui/forms/ico-pager.gif) no-repeat 0 55%; }
+ul.uiPager li { float:left; list-style:none; background:none; border-right:1px solid #E3E0C9; font:11px/1.1em Arial; padding:0; margin:0; }
+ul.uiPager li.active { background:none; font-weight:bold; padding:4px 8px; color:#000; }
+ul.uiPager li.disabled { background:none; font-weight:bold; padding:4px 8px; color:#888888; }
+ul.uiPager li.etc { background:none; padding:4px 8px; color:#888888; }
+ul.uiPager li a { padding:4px 8px; float:left; }
+ul.uiPager li a:hover { background:#E3E0C9; color:#005CB1; text-decoration:underline; }
+ul.uiPager li.next { border:0; }
+ul.uiPager li.prev a,
+ul.uiPager li.next a { font-weight:bold; }
+
+/**
+ * uiFilterStd
+ * GoogleAnalytics style "switch"
+ * 
+ */
+.uiFilterStd .lbl, .uiFilterStd a { padding:4px 8px 5px; font:10px/1em Verdana, sans-serif; text-decoration:none; }
+.uiFilterStd .lbl { float:left; font-size:12px; color:#666; }
+.uiFilterStd .tb { float:left; background:#444; padding:1px 0; margin:0 1px; }
+.uiFilterStd .lr { float:left; position:relative; border-left:1px solid #444; margin:0 -1px; }
+.uiFilterStd a { float:left; border-right:1px solid #444; background:url(/images/2.0/review/sprites-ga-filter.gif) repeat-x 0 0; color:#000; outline:none; }
+.uiFilterStd a:hover { text-decoration:underline; background-position:0 -64px; }
+.uiFilterStd a.active, .uiFilterStd a.active:hover { color:#fff; background-position:0 -32px; }
+
+
+/**
+ * ui_select_pager - Rows per page filter + Paging links
+ * 
+ */
+div.uiPagerDiv { margin:0 0 5px; }
+div.uiPagerDiv div.uiFilterStd { float:left; }
+div.uiPagerDiv ul.uiPager { float:right; }
+ /* smaller */
+div.uiPagerDiv div.uiFilterStd .lbl { font:11px/1.1em Arial, sans-serif; }
+div.uiPagerDiv div.uiFilterStd a { padding:4px 5px 4px; }
+
+
+/**
+ * uiTable
+ */
+.uiTable   { margin:0 0 0.5em; }
+
+/* table */
+.uiTabular { border:1px solid #36352C; border-top:none; border-bottom:1px solid #9D9D9D; width:100%; }
+/* thead */
+.uiTabular th { padding:0; font:13px Arial, sans-serif; color:#9A9A9A; border-bottom:1px solid #A1A1A1; text-align:center;
+	background:#36352C url(/images/ui/widgets/widgets-selecttable.gif) repeat-x 0 0;
+}
+.uiTabular th a { display:block; float:left; padding:6px 10px; text-align:left; text-decoration:none; color:#ccc; }
+.uiTabular th a:hover { text-decoration:underline; color:#fff; padding-right:12px; background-color:#fff; }
+.uiTabular th a.active { color:#fff; font-weight:bold }
+ /* sort icon */
+.uiTabular th a.sort:hover { padding-right:12px; background:url(/images/ui/widgets/widgets-selecttable.gif) no-repeat 100% 50%; }
+.uiTabular th a.sortasc { padding-right:12px; background:url(/images/ui/widgets/widgets-selecttable.gif) no-repeat 100% -37px; }
+.uiTabular th a.sortdesc { padding-right:12px; background:url(/images/ui/widgets/widgets-selecttable.gif) no-repeat 100% -72px; }
+/* tbody */
+.uiTabular td { padding:8px 10px; color:#666; font:12px Arial, sans-serif; border-bottom:1px solid #E8E5CA; }
+.uiTabular tbody td { background-color:#FCFAEB; }
+/* uiTable hover */
+.uiTabular tbody tr.hover { background-color:#fff; }
+/* default alignments and colors */
+.uiTabular tbody td { color:#5C5B52; text-align:left; font-size:14px; }
+.uiTabular tbody var { color:#000; font-size:14px; }
+/* errors */
+.uiTabular tbody td.error { background-color:#FBCFCF; }
+
+
+/* CELL STYLES */
+.uiTabular td.dark { color:#000; }
+.uiTabular td.bold { font-weight:bold; }
+.uiTabular td.center { text-align:center; }
+.uiTabular td.right { text-align:right; }
+.uiTabular td.editlink { text-align:center; }
+.uiTabular td.editlink a { color:#21C635; }
+.uiTabular td.red { color:#C82222; } /* failed reviews */
+.uiTabular td.compound { color:#000; padding-top:0; padding-bottom:0; }
+.uiTabular td.nowrap { white-space:nowrap; }
+/* RevTK */
+.uiTabular td.kanji   { text-align:center; font:24px/1em 'Hiragino Mincho Pro',"Ms Mincho",serif; color:#000; }
+.uiTabular td.keyword { text-align:left; font:15px/1.1em Georgia, serif; }

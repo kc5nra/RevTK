@@ -1,0 +1,93 @@
+/**
+ * Base styles for possible Panel class, base for Window.
+ * 
+ * Skinning the YUI 3 Overlay and Module structure...
+ *
+ * TODO: separate this into "Panel" (should be into YUI3 someday), and "Window"
+ *       then skin Window with RevTK specific theme.
+ * 
+ * @author  Fabrice Denis
+ */
+
+.yui-widget-hd {}
+.yui-overlay { }
+.yui-overlay-content { }
+.yui-widget-hd,
+.yui-widget-bd,
+.yui-widget-ft {}
+
+.yui-widget-hd {}
+.yui-widget-bd {}
+.yui-widget-ft {}
+
+/**
+ * Window
+ *
+ */
+/* =provide "assets" */
+
+/* draggable title bar */
+.yui-dd-draggable .yui-widget-hd { cursor:move; }
+
+/* common */
+.window .left, .window .middle, .window .right { background-image:url(assets/window2.png); }
+.window .left, .window .right { background-repeat:none; position:absolute; top:0; width:28px; }
+.window .left  { left:-16px; }
+.window .right { right:-16px; }
+.window .yui-widget-hd, .window .yui-widget-bd, .window .yui-widget-ft { position:relative; }
+/* head */
+.yui-widget-hd .left,
+.yui-widget-hd .right,
+.yui-widget-hd .middle { height:33px; padding:16px 0 0; }
+.yui-widget-hd .middle { margin:0 12px; background-position:0 -96px; background-repeat:repeat-x; }
+/* body */
+.yui-widget-bd .left,
+.yui-widget-bd .right  { top:0; height:100%; background-image:url(assets/window-sides.png); background-repeat:repeat-y; }
+.yui-widget-bd .middle { margin:0 12px; }
+/* foot */
+.yui-widget-ft .left,
+.yui-widget-ft .right,
+.yui-widget-ft .middle { height:16px; padding:0 0 16px; }
+.yui-widget-ft .middle { margin:0 12px; background-position:0 -128px; background-repeat:repeat-x; } }
+/* background sprites */
+.yui-widget-hd .left  { background-position:0 0; }
+.yui-widget-hd .right { background-position:-68px 0; }
+.yui-widget-bd .left  { background-position:0 0; }
+.yui-widget-bd .right { background-position:-68px 0; }
+.yui-widget-ft .left  { background-position:0 -64px; }
+.yui-widget-ft .right { background-position:-68px -64px; }
+
+/* window title bar */
+.window .window-title { width:100%; color:#e1dada; font:bold 16px/33px Arial, sans-serif; }
+.window .window-body  { background-image:none; }
+.yui-dd-draggable .window-title { cursor:move; }
+
+
+/**
+ * Window underlay
+ * 
+ * @requires core/widgets/boxrounded.css
+.window .uiWindowUnderlay { width:100%; height:100%; }
+.uiWindowUnderlay td { background-color:#000000; }
+.uiWindowUnderlay td.l, .uiWindowUnderlay td.r { background:none; }
+.uiWindowUnderlay td b { background-image:url(assets/window.gif); width:8px; height:8px; }
+.uiWindowUnderlay .t .l b { background-position:0 0; }
+.uiWindowUnderlay .t .r b { background-position:-24px 0; }
+.uiWindowUnderlay .b .l b { background-position:0 -24px; }
+.uiWindowUnderlay .b .r b { background-position:-24px -24px; }
+.uiWindowUnderlay .m td.c { height:100%; }
+*/
+
+/**
+ * IE6 fixes inspired by YUI2 Panel.
+ * 
+ *   In ie6 we use a conditional expression to grab the dimensions of the parent .window div.
+ *   See http://www.alistapart.com/articles/conflictingabsolutepositions
+ */
+/*
+#ie .yui-overlay-content { width:1px; }
+#ie .underlay {
+  _width:expression(this.parentNode.offsetWidth);
+  _height:expression(this.parentNode.offsetHeight-24);
+}
+*/

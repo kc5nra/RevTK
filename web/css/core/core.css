@@ -1,0 +1,123 @@
+/**
+ * Stylesheet for the Core framework "live" documentation.
+ * 
+ * @author  Fabrice Denis
+ * @package Core
+ */
+
+body { font:12px/1.4em Arial, sans-serif; margin:0; padding:0; color:#444; background:#778090; }
+#head { background:#eee; padding:4px 10px; }
+h1, h2, h3, h4, h5 { font:bold Arial, sans-serif; margin:0 0 1em; }
+h1 { font-size:30px; color:#DEE1E4; margin:16px 10px 16px; }
+h2 { font:bold 18px Arial; color:#0E203B; background:#fff; margin:10px -40px; padding:14px 0 14px 40px; }
+h1 a { color:#fff; text-decoration:none; }
+h1 a:hover { color:#fff; text-decoration:none; }
+
+/* type */
+p, ul, li, blockquote, th, td { font:14px/20px Arial; color:#425065; }
+p, li, table { margin:0 0 1em; }
+a { color:#C02C67; text-decoration:underline; }
+
+/* example value */
+samp { font-family:Consolas; font-weight:normal; font-style:normal; background-color:#F7F7F8; color:#C45F73; padding:3px 5px; }
+
+/* placeholder value / variable */
+var { font-family:Consolas; font-weight:bold; font-style:italic; color:#C45F73; }
+
+/* lists */
+ul { margin:0 0 1em; }
+ul li { margin:0 0 5px; padding:0; color:#757F8E; }
+
+ol { margin:0 0 1em; padding-left:2.5em; }
+ol li { margin:0 0 5px; padding:0; color:#757F8E; }
+
+/* layout */
+.clear { clear:both; width:100%; overflow:hidden; }
+
+#body { float:left; width:100%; }
+#body .padding { margin-left:250px; margin-right:30px; padding:35px 40px; background:#DEE1E4; }
+
+#leftcolumn { float:left; width:250px; margin-left:-100%; }
+
+/* side bar (class documentation) */
+#sidebar { background:#A5425A; width:220px; margin:0 0 19px 10px; }
+#sidebar .padding { padding:20px 20px 11px; width:180px; }
+#sidebar, #sidebar p { font:14px/20px Arial; color:#BFBDA8; }
+#sidebar h3 { font:bold 18px Arial; color:#A895A6; margin:0 0 0.5em; }
+#sidebar a { color:#332943; text-decoration:underline; }
+#sidebar a:hover { text-decoration:underline; }
+ /* bullets */
+#sidebar ul { color:#A895A6; margin:0 0 1em; padding:0 0 0 1.5em; }
+#sidebar ul li { color:#BFBDA8; margin:0 0 0 5px; }
+
+/* side bar 2 (main menu) */
+#sidebar2 { background:#9DA5B4; width:220px; margin:0 0 19px 10px; }
+#sidebar2 .padding { padding:20px 20px 21px; width:180px; }
+#sidebar2, #sidebar2 p { font:14px/20px Arial; color:#BFBDA8; }
+#sidebar2 h3 { font:bold 18px Arial; color:#AD4A62; margin:0 0 0.5em; }
+#sidebar2 a { color:#324259; text-decoration:underline; }
+#sidebar2 a:hover { text-decoration:underline; }
+#sidebar2 ul { color:#E6E9EC; margin:0 0 1em; padding:0 0 0 1.5em; }
+#sidebar2 ul li { color:#E6E9EC; margin:0 0 0 5px; }
+#sidebar2 li ul { margin:0; padding:0; }
+#sidebar2 li ul li { margin:0; padding:0 0 0 1em; list-style:none; font-size:12px; }
+
+#footer { clear:both; text-align:right; padding:8px 20px 1em; margin:0 30px 0 0; }
+#footer p { font:bold 14px/1em Arial; color:#9DA5B4; }
+
+/* DOCUMENTATION Styles */
+
+/* code blocks */
+pre { background-color:#222; color:#FFF; font-family:"Bitstream Vera Sans Mono", monospace; font-size:13px; line-height:17px; overflow:auto; padding:0.5em 0 0.5em 1em; margin:1em 0 1.5em; }
+pre.info, pre.printr { background-color:#404E65; xborder:2px solid #C5C5C5; color:#E4E5EB; }
+pre em { font-style:italic; color:#C02C67; }
+pre u { color:#888; text-decoration:none; }
+pre a { text-decoration:underline; }
+pre a:hover { color:#DD4883; }
+
+/* styles output by DocHelper asset */
+pre span.comment { color:#888; }
+pre span.var { color:#C047CB; }
+pre span.php { color:red; }
+pre span.static { color:#4FF; font-weight:bold; }
+pre span.const { font-weight:bold; }
+pre span.string { color:#4DF45B; }
+pre span.keyword { color:#ccc; }
+ /* PhpDoc */
+pre span.phpdoc { color:#49987C; }
+pre span.type   { color:#49987C; font-weight:bold; }
+
+pre.printr span.key { color:#4DF45B; font-weight:bold; }
+pre.printr span.arrow { color:#888; }
+
+/* layout */
+.clear { clear:both; }
+
+/* form errors / FormHelper example page */
+div.form-errors { background:#A44159; padding:10px; margin:0 0 1em; }
+div.form-errors, div.form-errors p { color:#fff; }
+
+/* example form styles */
+input.textfield, textarea.textfield { 
+	font-size:14px; line-height:15px; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; 
+	padding:10px; background:#fff; border:none; width:400px;
+}
+
+table.form {  margin:0 0 1em; }
+table.form th, table.form td { text-align:left; vertical-align:top; padding:2px 1em 2px 0; }
+table.form th { font-weight:normal; color:#404E65; text-align:left; vertical-align:top; }
+table.form td { }
+table.form th label { font-weight:bold; line-height:1em; color:#0E203B; display:block; padding-top:10px; }
+table.form th label span { display:block; font-size:10px; font-weight:normal; color:#888; }
+table.form select { display:block; margin:8px 0; }
+
+/* partial demo */
+div.partial { background-color:#283850; border:5px solid #7C8595; padding:20px 20px 0; margin:1em 0 1.5em; }
+div.partial, div.partial p { color:#D4BDC7;  }
+div.partial p { margin:0 0 20px; }
+
+/* component demo */
+div.component { background-color:#425B3F; border:5px solid #8B9B89; padding:20px 20px 0; margin:1em 0 1.5em; }
+div.component, div.component p { color:#BDD4C0;  }
+div.component p { margin:0 0 20px; }
+

@@ -1,0 +1,72 @@
+/**
+ * uiIBtn - Inline Block Buttons
+ * 
+ * Template:
+ * 
+ *  Either line-height or height + padding can set the height.
+ * 
+ *   .uiIBtnGS, .uiIBtnGS span { color:#000; font:12px/30px Arial, sans-serif; height:30px; }
+ *   .uiIBtnGS { background:url(buttons.gif) no-repeat 0 -200px; padding-left:16px; }
+ *   .uiIBtnGS span { background:url(buttons.gif) no-repeat 100% -250px; padding-right:16px; }
+ *   .uiIBtnGS:hover { background-position:0 -300px; }
+ *   .uiIBtnGS:hover span { background-position:100% -350px; }
+ *   
+ * 
+ * Notes on inline-block compatiblity:
+ * 
+ * - IE 6 only supports changing inline objects to inline-block.  The outermost object
+ *   on a BUTTON is a DIV, which is a block by default.  Changing this to a SPAN allowed
+ *   IE to render things perfectly (not a problem with A, SPAN, EM, etc)
+ *   
+ * - FireFox 2 doesn't support inline-block at all.  There is an alternative
+ *   -moz-inline-box that works in almost the same way as inline-block.  It's a little
+ *   buggy in Firefox 2 but generally works.
+ *   
+ * Example:
+ * 
+ *  <code>
+ *    <a href="#" class="uiIBtn uiIBtnGS"><span><em>Button text</em></span></a>
+ *  </code>
+ *  
+ * Example adding an icon on the EM element:
+ * 
+ *  <code>
+ *   <a href="#" class="uiIBtn uiIBtnGS"><span><em class="ico ico-cross">Delete</em></span></a>
+ *  </code>
+ *  
+ */
+
+/* =provide "assets" */
+
+.uiIBtn { display:-moz-inline-box; display:inline-block; /*border-left:2px solid blue;*/  }
+/**
+ * inline-block doesnt work on SPAN and EM inside, in Firefox2, se we use block, but then we'll have to force inline-block for IE6
+ * who does not like BLOCK  .... X_X
+ * 
+ * EM in block mode also gives us full height for background icon, plus fixes icon padding in IE6 disappearing in small TD.
+ */
+.uiIBtn span { display:block; white-space:nowrap; }
+.uiIBtn em { display:block; }
+ /* NOT THIS IS ALSO INLINE STYLE COND COMMENT IE6 BECAUSE YUI ADDS STUFF OUTSIDE OF OUR #IE DIV !!! */
+#ie .uiIBtn span, #ie .uiIBtn em { display:inline-block; }
+ /* hover : underline just the text */
+.uiIBtn, .uiIBtn:hover, .uiIBtn:hover span { text-decoration:none; } 
+.uiIBtn em { font-style:normal; } /* used for icons (optional) */
+.uiIBtn:hover em { text-decoration:underline; }
+ /* Fix FireFox2 display:block in SPAN and EM, IE6 doesn't like it (it expands to block width) */
+#ie .uiIBtn { cursor:pointer; }
+
+
+/* uiIBtn :: default beige (30px) */
+.uiIBtnDefault, .uiIBtnDefault span { color:#595A3C; font:bold 16px/30px Arial, sans-serif; height:30px; }
+.uiIBtnDefault { background:url(assets/ibutton-sprites.gif) no-repeat 0 0; padding-left:13px; }
+.uiIBtnDefault span { background:url(assets/ibutton-sprites.gif) no-repeat 100% -40px; padding-right:13px; }
+.uiIBtnDefault:hover { background-position:0 -80px; }
+.uiIBtnDefault:hover span { background-position:100% -120px; }
+
+/* uiIBtn :: default disabled (30px) */
+.uiIBtnDisabled, .uiIBtnDisabled span { color:#7c7c7c; font:bold 16px/30px Arial, sans-serif; height:30px; }
+.uiIBtnDisabled { background:url(assets/ibutton-sprites.gif) no-repeat 0 -160px; padding-left:13px; }
+.uiIBtnDisabled span { background:url(assets/ibutton-sprites.gif) no-repeat 100% -200px; padding-right:13px; }
+.uiIBtnDisabled:hover { }
+.uiIBtnDisabled:hover span { }

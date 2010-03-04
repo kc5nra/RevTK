@@ -1,0 +1,20 @@
+/**
+ * Main include for Core.Ui demos in Core Documentation
+ * 
+ * Juicer build (manual):
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/core/config/juicer.config.php --infile web/js/core/core-ui.juicy.css
+ */
+
+/* =require from "%CORE%" */
+/* =require "/core/core-yui2.css" */
+
+/* =require from "%CORE%" */
+/* =require "/widgets/boxrounded/boxrounded.css"  */
+/* =require "/widgets/datafilter/datafilter.css" */
+/* =require "/widgets/filterstd/filterstd.css" */
+/* =require "/widgets/ibutton/ibutton.css"  */
+/* =require "/widgets/pager/pager.css" */
+/* =require "/widgets/progressbar/progressbar.css" */
+/* =require "/widgets/tabbedview/tabbedview.css" */
+/* =require "/widgets/tabular/tabular.css" */
+/* =require "/widgets/window/window.css" */

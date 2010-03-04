@@ -1,0 +1,52 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# NOTE! Please try something like 'git add -n .' to test
+# that your changes to a .gitignore file have the desired
+# effect (-n will not really add files, just test).
+#
+
+# don't automatically add these
+.*
+!.gitignore
+
+# generated files
+/cache
+/config/_*
+/config/versioning*
+
+# php error logs
+*.log
+error_log*
+
+# assets copied to web root (Juicer)
+/web/corejs
+
+# only include zip archives for data
+/data/table_kanjis.utf8
+
+# admin/misc
+/web/index_*.php
+!/web/.htaccess.example
+!/web/index_dev.php
+!/web/index_test.php
+
+# local assets (proprietary content)
+__*.php
+
+# local settings, other
+/apps/*/config/juicer.config.php
+/apps/*/config/settings.php
+/apps/backend
+/apps/grow
+/web/grow_dev.php
+/web/css/grow
+/web/js/grow
+
+# production site misc
+/web/images/1.0/omoshiroi
+/web/images/1.0/vocab
+/web/images/2.0/friends
+

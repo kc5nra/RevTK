@@ -1,0 +1,25 @@
+/**
+ * DataFilter (Apple.com style "ribbon")
+ * 
+ * @author   Fabrice Denis
+ * @version  2009/11/30 (yui3)
+ */
+
+/* =provide "assets"
+
+.uiDataFilter,
+.uiDataFilter .corner-left, .uiDataFilter .corner-right,
+.uiDataFilter h4, .uiDataFilter a, .uiDataFilter a span { background:url(assets/datafilter.gif) repeat-x 0 0; }
+.uiDataFilter, .uiDataFilter h4, .uiDataFilter span, .uiDataFilter a { font:14px/28px Arial, sans-serif; }
+.uiDataFilter { width:100%; margin:0 0 5px; }
+.uiDataFilter .corner-left  { float:left; width:16px; height:29px; background-position:0 -40px; }
+.uiDataFilter .corner-right { float:right; width:16px; height:29px; background-position:100% -40px; }
+.uiDataFilter h4 { color:#7D7D7D; float:left; padding:0 16px 0 0; margin:0; background-position:100% -120px; }
+.uiDataFilter ul { float:left; list-style:none; padding:0; margin:0; }
+.uiDataFilter li { float:left; list-style:none; margin:0; padding:0; }
+.uiDataFilter li a { float:left; padding:0 0 0 10px; height:29px; color:#5C5C5C; text-decoration:none; background-position:0 -120px; }
+.uiDataFilter li a span { float:left; padding-right:10px; background-position:100% -120px; }
+
+.uiDataFilter li a:hover { color:#000; }
+.uiDataFilter li.active a { background-position:0 -80px;; color:#000; }
+.uiDataFilter li.active a span { background-position:100% -80px; }

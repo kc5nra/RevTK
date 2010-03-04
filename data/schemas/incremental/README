@@ -1,0 +1,14 @@
+# About this folder #
+
+This folder should contain sql files describing changes to the schema.
+
+Eg:
+  incremental/v1.1/0022_profile_options.sql
+
+Containing SQL commands, plus document the changes:
+
+  --
+  -- Document the changes here.
+  --
+  ALTER TABLE foobar ADD foobar_id varchar(255) NOT NULL;
+

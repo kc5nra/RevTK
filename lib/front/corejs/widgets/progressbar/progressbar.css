@@ -1,0 +1,27 @@
+/**
+ * uiProgressBar
+ * 
+ * Reference markup:
+ * 
+ *  <code>
+ *   <div class="uiProgressBar">
+ *    <div>
+ *      <span class="g" title="30 of 50" style="width:60%">30 of 50</span>
+ *      <span class="r" title="5 of 50" style="width:10%">5 of 50</span>
+ *    </div>
+ *   </div>
+ *  </code>
+ *
+ * @see     dev/index (internal uri)
+ * @see     GadgetsHelper
+ * @author  Fabrice Denis
+ */
+
+/* =provide "assets" */
+
+.uiProgressBar { margin:0 1px; padding:1px 0; background:#888; }
+.uiProgressBar div { position:relative; height:19px; margin:0 -1px; border-left:1px solid #888; border-right:1px solid #888; }
+.uiProgressBar span { position:absolute; left:0; top:0; text-indent:-5000px; font-size:1px; line-height:1px; display:block; width:100%; height:100%; }
+.uiProgressBar div, .uiProgressBar span { background:#5A5A5A url(assets/progressbar-sprites.gif) repeat-x 0 0; }
+.uiProgressBar span.g /*green*/ { background-color:#72A311; background-position:0 -32px; }
+.uiProgressBar span.r /*red*/   { background-color:#A32011; background-position:0 -64px; }

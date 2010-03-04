@@ -1,0 +1,36 @@
+/**
+ * uiBoxRounded
+ * 
+ * Examples:
+ * <code>
+ *   ui_box_rounded('uiBoxCustom')
+ *     ...content...
+ *   end_ui_box()
+ * </code>
+ * 
+ * => Outputs components/uiBoxRounded partial with class "uiBoxRounded uiBoxCustom" on table
+ * 
+ * Rounded corner box using TABLE for flexible width and B tag to lock corner dimensions
+ */
+
+/* =provide "assets" */
+
+.uiBoxRounded { width:100%; }
+.uiBoxRounded td { padding:0; height:auto; }
+.uiBoxRounded td b { background-repeat:no-repeat; display:block; width:6px; height:6px; }
+.uiBoxRounded .t td,
+.uiBoxRounded .b td { font-size:1px; line-height:1px; }
+.uiBoxRounded .t .r b { background-position:-10px 0; }
+.uiBoxRounded .b .l b { background-position:0 -10px; }
+.uiBoxRounded .b .r b { background-position:-10px -10px; }
+.uiBoxRounded .m td.c { width:100%; }
+
+/* RevTK default beige */
+.uiBoxRDefault td { background-color:#F1EFD6; }
+.uiBoxRDefault td b { background-color:#FFFDE7; background-image:url(assets/boxrounded-sprites.gif); }
+.uiBoxRDefault .t .l b { background-position:0 0; }
+.uiBoxRDefault .t .r b { background-position:-18px 0; }
+.uiBoxRDefault .b .l b { background-position:0 -18px; }
+.uiBoxRDefault .b .r b { background-position:-18px -18px; }
+.uiBoxRDefault .m td.c { /* content padding */ padding:8px;  }
+

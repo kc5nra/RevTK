@@ -1,0 +1,14 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# NOTE! Please try something like 'git add -n .' to test
+# that your changes to a .gitignore file have the desired
+# effect (-n will not really add files, just test).
+#
+
+# don't automatically add these
+.*
+!.gitignore
+

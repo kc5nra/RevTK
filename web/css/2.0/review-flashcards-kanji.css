@@ -1,0 +1,140 @@
+/**
+ * Kanji Flashcard Review - "in page" and fullscreen styles
+ *
+ * @author  Fabrice Denis
+ */
+
+/* Ajax loading indicator */
+#uiFcAjaxLoading { height:32px; position:absolute; right:22px; top:3px; z-index:1000; }
+#uiFcAjaxLoading span { float:left; height:32px; background:url(/images/2.0/review/sprites-icons.gif) repeat-x 0 -339px; color:#fff; font:bold 14px/32px Arial, sans-serif; }
+#uiFcAjaxLoading span.l { background-position:0 -306px; padding-left:10px; }
+#uiFcAjaxLoading span.r { background-position:100% -306px; padding-right:10px; }
+#uiFcAjaxLoading span span { display:inline; float:none; padding:2px 20px 2px 0; background:url(/images/2.0/review/ajax-loader.gif) no-repeat 100% 50%; }
+
+
+/* Error message */
+#uiFcAjaxError { height:32px; position:absolute; right:22px; top:3px; z-index:1000; }
+#uiFcAjaxError div { float:left; height:32px; background:url(/images/2.0/review/sprites-icons.gif) repeat-x 0 -405px; color:#861F1F; font:bold 14px/32px Arial, sans-serif; }
+#uiFcAjaxError div.l { background-position:0 -372px; padding-left:10px; }
+#uiFcAjaxError div.r { background-position:100% -372px; padding-right:10px; }
+#uiFcAjaxError a { font-weight:bold; }
+
+/* fullscreen layout mods */
+body#uiFcFullscreen { background:none; }
+body#uiFcFullscreen table.uiFcReview { width:100%; height:100%; }
+
+/* Use fixed dimensions if appearing within website layout */
+#uiFcReview-container { position:relative; border-top:1px solid #99BED8; }
+#uiFcReview-container table.uiFcReview { width:100%; height:525px; }
+#uiFcReview-container tr.top    td.layout { height:38px; }
+#uiFcReview-container tr.middle td.layout { height:378px; }
+#uiFcReview-container tr.bottom td.layout { height:122px; }
+
+/* table layout to center things */
+.uiFcLayout { background:#92C3E4 url(/images/2.0/review/gradient.jpg) repeat-x 0 0; }
+.uiFcLayout td { padding:0; text-align:left; vertical-align:top; }
+.uiFcLayout tr.top    td.layout { height:17%; }
+.uiFcLayout tr.middle td.layout { height:45%; }
+.uiFcLayout tr.bottom td.layout { height:38%; /*background:#876;*/ }
+
+.uiFcCard {
+	display:block; position:relative;
+	margin:0 auto; /* center within TD */
+	width:260px; height:378px; background:#fff url(/images/2.0/review/flashcard-bg.gif) no-repeat 50% 50%;
+}
+
+/* base */
+.uiFcReview h3 { font:bold 14px/1em Arial, sans-serif; color:#408FC6; text-align:center; margin:0; padding:0; }
+
+/* loading indicator */
+.uiFcCard .uiFcLoading   { position:absolute; left:0; top:0; display:none; width:100%; height:366px; }
+.uiFcCard .uiFcLoading p { text-align:center; margin-top:156px; font:16px Georgia, Times New Roman; color:#a0a0a0; }
+
+/* animation */
+#uiFcAnimation { position:absolute; left:5px; top:5px; width:250px; height:366px; background:#fff; z-index:1000; }
+
+/* option buttons area */
+.uiFcOptions { float:left; padding-left:20px; height:31px; }
+
+.uiFcOptBtn       { float:left; height:31px; font:bold 14px/31px Arial, sans-serif; color:#3680B4; margin:0 5px 0 0; }
+.uiFcOptBtn, .uiFcOptBtn:hover { text-decoration:none; }
+.uiFcOptBtn span  { float:left; padding-right:10px; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 100% -90px; /*iepos*/ cursor:hand; }
+ /* undo */
+.uiFcOptBtnUndo   { padding-left:30px; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -58px; }
+ /* story view/edit */
+.uiFcOptBtnStory  { padding-left:30px; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -438px; }
+
+/* flashcard answer area */
+.uiFcButtons { width:260px; height:122px; padding:6px 0 0; text-align:center; margin:0 auto; }
+.uiFcButtons h3 { line-height:33px; font-size:17px; font-weight:normal; }
+.uiFcButtons a img { margin:0 10px; }
+
+/* adapt button sizes */
+#uiFcButtons span { width:88px; }
+#uiFcButtons1 a { padding-left:16px;  }
+#uiFcButtons1 span { width:50px; padding-right:16px; }
+#uiFcButtons1 .uiFcAction-yes { margin:0 4px; }
+
+
+/* stats panel */
+.uiFcStats { width:185px; margin:0 0 0 10%; color:#408FC6; }
+.uiFcStats h3 { line-height:22px; padding:0 0 4px; }
+.uiFcStats em { font-style:normal; color:#0A3E62; }
+.uiFcStats p.progress { width:172px; height:21px; margin:0 auto; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -254px; }
+.uiFcStats p.progress span { display:block; width:0%; height:21px; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -280px; text-indent:-8000px; }
+
+.uiFcStats .stacks { width:137px; float:left; clear:left; margin:10px 0 0; }
+.uiFcStats .stacks .m td { height:29px; }
+.uiFcStats .stacks p { padding-left:31px; height:29px; font:bold 14px/29px Arial, sans-serif; color:#0A3E62; }
+.uiFcStats .pass { float:left; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -157px; margin:0 0 0 3px; display:inline; }
+.uiFcStats .fail { float:right; background:url(/images/2.0/review/sprites-icons.gif) no-repeat 0 -126px; padding-right:6px; margin:0; }
+
+.uiFcStats .finish { width:43px; float:right; clear:right; margin:10px 0 0; }
+.uiFcStats .finish .m td { height:29px; }
+.uiFcStats .finish a { display:block; text-align:center; font:bold 14px/29px Arial, sans-serif; color:#0097FF; text-decoration:underline; }
+
+
+/**
+ * uiBoxRounded, blue
+ */
+table.uiFcBoxBlueR td { background-color:#94d3ff; }
+table.uiFcBoxBlueR td b { background-color:#C4E7FF; background-image:url(/images/2.0/review/sprites-icons.gif); width:6px; height:6px; }
+table.uiFcBoxBlueR .t .l b { background-position:0 0; }
+table.uiFcBoxBlueR .t .r b { background-position:-10px 0; }
+table.uiFcBoxBlueR .b .l b { background-position:0 -10px; }
+table.uiFcBoxBlueR .b .r b { background-position:-10px -10px; }
+
+
+/*---------------------------*/
+/* Kanji Flashcards */
+/*---------------------------*/
+
+#keyword { font:16px Georgia, Times New Roman; position:absolute; left:15px; top:10px; }
+#keyword a { text-decoration:none; }
+#keyword a:hover { text-decoration:underline; }
+
+#kanjibig { position:absolute; top:97px; left:0px; width:100%; text-align:center;  }
+#kanjibig p { margin:0; padding:0; font:100pt 'Hiragino Mincho Pro','ヒラギノ明朝 Pro W3','ＭＳ 明朝','ＭＳ Ｐ明朝', serif; }
+#kanjibig p img { display:none; }
+
+/* drawing grid feature */
+#kanjibig.drawinggrid { top:61px; height:227px; overflow:visible; background:url(/images/review/kanji-drawing-grid.gif) no-repeat 50% 50%; 
+                        /* for relative font-size child <p> */ font-size:10px; }
+#kanjibig.drawinggrid p { margin:0; padding:0; font-size:21em; line-height:1em; margin-top:-35px;/*move up kanji baseline*/ }
+#kanjibig.drawinggrid p img { /* img trick to find the kanji baseline */ display:inline; vertical-align:baseline; width:1px; height:227px; }
+
+#strokecount { position:absolute; left:14px; bottom:13px; font:12px Georgia, Times New Roman; color:#a0a0a0; }
+#strokecount .kanji { /*font:20pt "MS Gothic";*/ font-size:20pt; }
+
+#framenum { font:12px Georgia, Times New Roman; position:absolute; bottom:14px; right:15px; color:#a0a0a0; }
+
+/* states */
+.uiFcState-0 #keyword     { color:#000; }
+.uiFcState-0 #kanjibig    { visibility:hidden; color:#fff; }
+.uiFcState-0 #strokecount { visibility:hidden; }
+.uiFcState-0 #framenum    { visibility:hidden; }
+
+.uiFcState-1 #keyword     { color:#a0a0a0 }
+.uiFcState-1 #kanjibig    { visibility:visible; color:#000; }
+.uiFcState-1 #strokecount { visibility:visible; }
+.uiFcState-1 #framenum    { visibility:visible; }

@@ -1,0 +1,54 @@
+/**
+ * Tabular - data table styles
+ * 
+ * @author  Fabrice Denis
+ */
+
+/* =provide "assets" */
+
+.tabular { border:1px solid #BDBCAA; border-top:1px solid #D9D8CE; width:100%; }
+
+/* thead */
+.tabular th { padding:0; font:13px Arial, sans-serif; color:#5C5B52; border-bottom:1px solid #A1A1A1; text-align:left;
+  background:#D9D6B7 url(assets/selecttable-sprites.gif) repeat-x 0 0; }
+.tabular th a,
+.tabular th span.hd { display:block; float:left; padding:6px 10px; text-align:left; text-decoration:none; }
+.tabular th a { color:#005CB1; }
+.tabular th a:hover { text-decoration:underline; color:#005CB1; padding-right:12px; background-color:#fff; }
+.tabular th a.active { color:#000; }
+
+ /* sort icon */
+.tabular th a.sort { padding-right:12px; }
+.tabular th a.sort:hover { background:url(assets/selecttable-sprites.gif) no-repeat 100% 50%;   }
+.tabular th a.sortasc { padding-right:12px; background:url(assets/selecttable-sprites.gif) no-repeat 100% -37px; }
+.tabular th a.sortdesc { padding-right:12px; background:url(assets/selecttable-sprites.gif) no-repeat 100% -72px; }
+
+/* tbody */
+.tabular td { padding:8px 10px; color:#666; font:13px/1.1em Arial, sans-serif; border-bottom:1px solid #E8E5CA; }
+.tabular tbody td { background-color:#FCFAEB; }
+.tabular tr.odd td { background-color:#fff; }
+
+/* uiTable hover */
+.tabular tbody tr.hover { background-color:#fff; }
+
+/* default alignments and colors */
+.tabular tbody td { color:#5C5B52; text-align:left; }
+.tabular tbody var { color:#000; font-size:13px; }
+
+/* errors */
+.tabular tbody td.error { background-color:#FBCFCF; }
+
+/**
+ * TODO move to RevTK 
+ */
+.tabular td.dark { color:#000; }
+.tabular td.bold { font-weight:bold; }
+.tabular td.center { text-align:center; }
+.tabular td.right { text-align:right; }
+.tabular td.editlink { text-align:center; }
+.tabular td.editlink a { color:#21C635; }
+.tabular td.red { color:#C82222; } /* failed reviews */
+.tabular td.compound { color:#000; padding-top:0; padding-bottom:0; }
+.tabular td.nowrap { white-space:nowrap; }
+.tabular td.kanji   { text-align:center; font:24px/1em 'Hiragino Mincho Pro',"Ms Mincho",serif; color:#000; padding-top:4px; padding-bottom:4px; }
+.tabular td.keyword { text-align:left; font:15px/1em Georgia, serif; white-space:nowrap; }

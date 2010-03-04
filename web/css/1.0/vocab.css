@@ -1,0 +1,528 @@
+/* vocab area css */
+
+/* fonts */
+.j-serif { font-family:'Hiragino Mincho Pro','ヒラギノ明朝 Pro W3','ＭＳ 明朝','ＭＳ Ｐ明朝', serif; }
+
+/* app logic */
+.default-hidden { display:none; }
+
+/* page layout */
+#mainleft {	display:none; }
+#mainright { margin-left:20px; float:none; width:885px; }
+.topsection { width:843px; padding-bottom:16px; }
+.mainsection { width:843px; }
+
+/* reset a few things (todo:cleanup main.css) */
+
+/* -------------------------- */
+/* common */
+/* -------------------------- */
+
+div.col-clear { clear:both; width:100%; height:1em; }
+
+h3 { font-weight:normal; color:#101C8F; text-transform:uppercase; letter-spacing:4px; padding-bottom:0.5em; margin:0; }
+
+/* icons */
+a.ico { padding:2px 0; padding-left:20px; }
+a.ico-add { background:url(/img/vocab/ico-add.gif) no-repeat 0 50%; }
+a.ico-help-system { background:url(/img/vocab/ico-help-system.gif) no-repeat 0 50%; }
+
+
+/* -------------------------- */
+/* app-wide elements */
+/* -------------------------- */
+
+.buttons { margin:1em 0 0; width:100%; }
+.buttons a {
+	float:left;
+	background:#ccc; padding:9px 0 10px 20px;
+	color:#000; line-height:1em; font-size:14px; text-decoration:none;
+}
+.buttons a span { padding:0 20px 0 0; white-space:nowrap; }
+.buttons a:hover span { color:#000; text-decoration:underline; }
+.buttons a.primary { background:#ddd; }
+.buttons a.secondary { background:#bbb; }
+
+#ie .buttons a { }
+#ie .buttons a span { padding-top:0; padding-bottom:0; }
+
+
+/* inline buttons */
+
+.app a.button {	background:url('/img/vocab/button-left.gif') no-repeat center left;	padding:6px 0 5px 10px;	color:#000;	line-height:24px; }
+.app a.button span { background:url('/img/vocab/button-right.gif') no-repeat center right; padding:6px 10px 5px 0; white-space:nowrap; }
+.app a.button:hover { color:#000; }
+
+
+/* app form styles */
+
+.app label { font-size:1.1em; line-height:1em; margin:0 0 4px; display:block; }
+.app label.inline { display:inline; }
+.app label.pad { padding-right:1em; }
+
+
+/* tables */
+table.basic{ border:1px solid #CCCCCC; width:100%; }
+table.basic th { background:#E8E5C9; padding:5px 10px; font-size:14px; font-weight:normal; text-align:left; }
+table.basic th { background:#E8E5C9; padding:5px 10px; }
+table.basic td { background:#fff; padding:5px 10px; font-size:16px; line-height:1em; vertical-align:top; }
+
+/* paging */
+p.paging { text-align:right; }
+
+/* datagrid tables */
+table.datagrid tr.col-headings th.hover { background:red; }
+table.datagrid tr.hover td { background:#FDF9CA; cursor:pointer; }
+table.datagrid td { vertical-align:top; }
+
+/* application */
+.app-header { width:100%; border-bottom:1px solid #CCCCCC; overflow:hidden; position:relative; padding-bottom:8px; margin-bottom:16px; }
+.app-header h2 { float:left; /*width:50%;*/ font-family:Georgia,serif; font-size:19px; color:#101C8F; text-transform:none; letter-spacing:normal; }
+.app-header h2 a { text-decoration:none; }
+.app-header h2 a:hover {text-decoration:underline; }
+.app-header h2 span { color:#898989; }
+.app-header .links { float:left; width:50%; clear:left; font-size:12px; }
+.app-header .links a { text-decoration:none; }
+.app-header .links a:hover { text-decoration:underline; }
+.app-header .links a.ico-help-system { margin-left:1em; }
+ /* buttons */
+.app-header .buttons { float:none; width:auto; margin:0; }
+.app-header .buttons a { float:right; margin:0 0 0 6px; display:inline; outline:none; }
+ /* help button */
+.app-header .buttons a.help { background:#AFDA6F url(/img/vocab/help-button-bg.gif) repeat-x 0 0; margin-right:1em; }
+.app-header .buttons a.help span { color:#516B2A; }
+ /* global buttons */
+.app-header .buttons a.btnHelp {}
+.app-header .buttons a.btnNew span { background:url(/img/vocab/ico-add.gif) no-repeat 0 50%; padding-left:20px; }
+
+
+/* HELP SYSTEM */
+
+.help-bubble { position:absolute; z-index:100; width:240px; left:608px; top:312px; padding:19px;/*padding for arrow on sides*/ }
+.help-bubble .bubble-tip { position:absolute; width:19px; height:19px; background:url(/img/vocab/help-bubble-tip.gif) no-repeat 0 0; left:0px; top:39px; }
+.help-bubble table { width:100%; margin:0; }
+.help-bubble td, .help-bubble th { color:#fff; font-size:12px; font-family:Arial, sans-serif; background-image:url(/img/vocab/help-bubble.gif); padding:4px 10px; }
+.help-bubble a { color:#87D6FB; text-decoration:none; }
+.help-bubble a:hover { text-decoration:underline; color:#fff; }
+.help-bubble tbody a { text-decoration:underline; font-weight:normal; }
+.help-bubble thead th { font-weight:bold; vertical-align:middle; text-align:left; }
+.help-bubble thead td { background-position:100% 0; text-align:right; }
+.help-bubble thead td span { padding:0 6px 0 0; font-weight:bold; font-family:Arial, sans-serif; }
+.help-bubble thead td img { vertical-align:middle; cursor:pointer; }
+.help-bubble tbody td { text-align:left; line-height:1.3em; background-position:0 -10px; padding-bottom:12px; }
+.help-bubble tbody td img { vertical-align:middle; }
+.help-bubble tfoot td { line-height:1em; white-space:no-wrap; padding-top:7px; padding-bottom:8px; }
+.help-bubble tfoot td.back { background-position:0 100%; }
+.help-bubble tfoot td.next { background-position:100% 100%; text-align:right; padding-right:16px; }
+.help-bubble a.hs-end { display:none; } /* will show when user is at the last step */
+
+
+/******************************/
+/* Vocab Word Lists */
+/******************************/
+
+/* VOCAB LIST */
+
+.wordlist { border:1px solid #CCCCCC; width:100%; }
+.wordlist th { background:#E8E5C9; padding:5px 10px; font-size:14px; font-weight:normal; text-align:left; }
+.wordlist td { background:#fff; padding:6px 10px 5px; border-bottom:1px solid #eee; xvertical-align:top; }
+.wordlist tr.hover td { background-color:#FDF9CA; }
+.wordlist td.k { width:15%; font-size:2.2em; line-height:1em; white-space:nowrap; font-family:"MS Gothic",serif; }
+.wordlist span.r { display:block; margin:2px 0 0; font-size:12px; line-height:1em; color:#888; font-family:"MS Gothic",sans-serif; }
+
+.wordlist tr.row-active td { background-color:#dDF9eA; }
+
+/* vocab status */
+.wordlist td.s { width:60px; padding:0; background-position:50% 50%; background-repeat:no-repeat; vertical-align:top; text-align:right; }
+.wordlist td.pri1 { background-image:url(/img/vocab/wordlist-active.gif); }
+/*.wordlist td.pri2 { background-image:url(/img/vocab/wordlist-passive.gif); }*/
+
+.wordlist td.s a { font-size:10px; padding:0; width:14px; height:14px; float:right; background-image:url(/img/vocab/wordlist-actions.gif); background-repeat:none; }
+.wordlist td.s a.JsUnlink { background-position:0 0; zoom:1; }
+.wordlist td.s a.JsUnlink:hover { background-position:0 -16px; }
+.wordlist td.s a.JsFollow { background-position:-16px 0; }
+.wordlist td.s a.JsFollow:hover { background-position:-16px -16px; }
+
+
+/* ADD VOCAB LIST */
+
+table.dictmatch { clear:both; margin:0; width:555px; }
+table.dictmatch td { border-top:1px solid #ccc; background:#effedb; padding:2px 10px; cursor:pointer; }
+table.dictmatch tr:hover td,
+table.dictmatch tr.vuiFocus td { background-color:#fff; }
+
+table.dictmatch td.k { width:15%; font-size:2em; line-height:1em; white-space:nowrap; }
+table.dictmatch td.k em { color:#101C8F; font-style:normal; } /*highlighted kanji*/
+table.dictmatch span.r { display:block; margin:4px 0 0; font-size:12px; line-height:1em; font-family:"MS Gothic",sans-serif; color:#888; }
+ /* status */
+table.dictmatch td.s { width:60px; padding:0; background-position:50% 50%; background-repeat:no-repeat; }
+table.dictmatch td.pri1 { background-image:url(/img/vocab/wordlist-active.gif); }
+table.dictmatch td.pri2 { background-image:url(/img/vocab/wordlist-passive.gif); }
+ /* item already in wordlist, foo! */
+table.dictmatch tr.foo td { background-color:#ECECEC; cursor:default; color:#777; }
+
+
+/******************************/
+/* Trinity Main */
+/******************************/
+
+ /* landing page header */
+#trinity-main .app-header { border-bottom:none; padding-bottom:0; }
+.app-header .buttons a.helpmargin { margin-right:0; }
+
+
+ul#trinity, ul#trinity li { margin:0; padding:0; list-style:none; }
+ul#trinity { float:left; width:100%; background:url(/img/vocab/bigtabs-ulmain-bg.gif) repeat-x 0 100%; }
+ul#trinity li {
+	float:left; 
+	width:273px;
+	min-height:98px; height:auto !important; /*ie6*/height:98px;
+	border:1px solid #CCCCCC; border-bottom:none; background:#e6e6e6;
+	margin-right:9px;
+	padding-bottom:0;
+}
+
+ul#trinity li p { font-size:12px; line-height:1.3em; margin:0 13px 0px; color:#444; }
+ul#trinity li span.expired { color:#de790b; display:block; }
+ul#trinity li span.failed { color:#DF1500; display:block; }
+
+ul#trinity h2 { 
+	font-family:Arial; font-size:16px; color:#868686; font-weight:bold; line-height:1em;
+	margin:0; padding:0; padding:13px;
+	text-transform:none; letter-spacing:0;
+}
+ul#trinity .active h2 { color:#28B208; }
+
+ul#trinity a { display:block; text-decoration:none; outline:none; }
+ul#trinity a:hover { display:block; text-decoration:none; }
+
+ul#trinity li.active { border-color:#CCCCCC; background:#fff; padding-bottom:1px; }
+
+ul#trinity li#main-li3 { margin-right:0; float:right; }
+
+#main-container {
+	clear:both;
+	width:841px;
+	border:1px solid #CCCCCC;
+	border-top:none;
+	border-bottom-color:#AEAEAE;
+	background:#fff;
+}
+
+.content-padding { padding:13px; }
+.content-page { display:none; }
+.default-page { display:block; }
+
+#main-container .message { background:#eee; padding:0px 10px; }
+#main-container .message p { font-size:12px; padding:1em 0; }
+
+#main-container .buttons a { float:left; margin:0 6px 0 0; display:inline; }
+#main-container .buttons a.secondary { float:right; margin:0 0 0 6px; display:inline; }
+
+
+/* leiner view */
+
+#trinity-main .leitnerboxes {
+	background:#f8f8f8;/*#FFFDE7;*/
+	padding:16px 25px 16px 25px;
+	width:765px;
+	margin:0 0 1em;
+	border:1px solid #ddd;border-top-color:#ccc;
+	font-size:1.1em;
+}
+#trinity-main .leitnerboxes .cardbox { background:none; }
+#trinity-main .leitnerboxes .cardboxhead { background:none; }
+#trinity-main .leitnerboxes .cardboxspacer { width:63px; background-position:20px 10px; }
+
+
+/* KANJI Tab */
+
+#trinity-main .kanji-col { float:left; width:263px; height:297px; padding:10px 0 0; position:relative; text-align:center; }
+#trinity-main .kanji-col h3 { color:#222; font:18px Verdana,sans-serif; margin:0 0 5px; padding:0; letter-spacing:0; text-transform:none; }
+#trinity-main .kanji-col span { font-family:Arial,sans-serif; }
+#trinity-main .kanji-col span.pct{ font-size:24px; /*font-family:Georgia;*/ display:block; color:#000; padding:0 0 5px; }
+#trinity-main .kanji-col span.sub { font-size:14px; display:block; color:#666; padding:0 0 10px; }
+#trinity-main .kanji-col img.chart { border:none; margin:0 0 20px; }
+#trinity-main .kanji-col .buttons a { float:none; margin:0; text-align:center; line-height:36px; }
+#trinity-main .kanji-col .buttons a span { padding-top:10px; padding-bottom:10px; }
+
+#trinity-main .kanji-on { }
+#trinity-main .kanji-kun { float:left; margin-left:13px;display:inline; }
+#trinity-main .kanji-misc { float:right; }
+
+
+/******************************/
+/* EDITOR */
+/******************************/
+
+#editor div.col-70 { float:left; width:557px; }
+#editor div.col-30 { float:right; width:263px; }
+#editor div.col-clear { height:35px; }
+
+#txtQuestion, #txtAnswer { width:547px; }
+#txtAnswer { height:200px; }
+
+#editor .dropbox { padding:10px; background:#FDF9CA; border:1px solid #C0C0C0; }
+#editor .dropbox .title { font-size:14px; line-height:1em; display:block; padding:0; }
+#editor .dropbox .titlebar { margin:0 0 1em; text-align:right; }
+#editor .dropbox .titlebar .title { float:left; }
+
+#editor #smeta { background:#E0DFBE; }
+#editor #smeta #spak { width:230px; }
+#actb-spak { width:240px; }
+
+ /* vocab search results */
+#editor .matches { background:#EEFFB2; border-left:1px solid #ccc; border-right:1px solid #ccc; border-bottom:1px solid #ccc; }
+#editor .matches div.head { color:#577542; text-align:right; padding:0.5em 8px; }
+#editor .matches div.head span { float:left; }
+#editor .matches div.head a { color:#437831; }
+
+#addvocab { background:#DFFDCA; padding:10px; border:1px solid #ccc; }
+
+
+
+/******************************/
+/* MANAGE */
+/******************************/
+
+/* Manage Vocab */
+
+.vocab-top { float:left; width:35%; }
+.vocab-top h2 { font-family:Georgia,serif; font-size:19px; color:#101C8F; text-transform:none; letter-spacing:normal; }
+.vocab-top h2 span { color:#898989; }
+.vocab-top p { }
+
+
+/* Manage Sentences */
+
+table#usersentences td { border-top:1px solid #ccc; }
+table#usersentences td a { text-decoration:none; }
+table#usersentences td a:hover { text-decoration:underline; }
+
+.page-tabs { background:#BFE1F7; padding:10px 10px 0; margin:-16px 0 2em; }
+.page-tabs ul { margin:0; padding:0; width:100%; }
+.page-tabs ul li { float:left; list-style:none; background:none; padding:0; margin:0 8px 0 0; }
+.page-tabs ul li a { display:block; padding:5px 16px 4px; background:#E8E5C9; border:1px solid #98B7D1; border-bottom:none; text-decoration:none; }
+.page-tabs ul li.active a { background-color:#FFFDE7; padding-bottom:5px; }
+.page-tabs ul li a:hover { text-decoration:underline; }
+
+.sentence-stats { font-size:12px; margin:0 0 1em; }
+
+
+/******************************/
+/* SENTENCE REVIEW */
+/******************************/
+
+/* flashcard */
+div.flashcard {
+	font-size:10px;
+	background:#fff;
+	border-left:1px solid #e9e9e9;
+	border-right:1px solid #e9e9e9;
+	border-bottom:1px solid #a8a8a8;
+}
+
+.sentence-review h2 { margin:0 0 12px; margin-left:85px; }
+.sentence-review #reviewarea { height:auto; }
+.sentence-review #flashcard {
+	position:relative;
+	width:543px; /*height:269px; */
+	padding:12px 18px;
+	margin:0; margin-left:64px; margin-bottom:16px;
+}
+#flashcard #loading {
+	position:absolute; left:-1px; top:0;
+	width:581px; height:306px;
+	background:#FFFDE7;
+}
+#flashcard #loading p {
+	text-align:center;
+	margin-top:126px;
+	font:16px/1.4em Georgia, Times New Roman;
+	color:#888;
+}
+
+
+.sentence-review #buttons { margin-left:85px; padding-bottom:12px;  }
+.sentence-review #buttons img { vertical-align:middle; }
+.sentence-review #buttons #buttons1 span { color:#A3A18F; }
+
+.sentence-review #flashcard #question { font:2.9em/1.2em "MS Gothic", sans-serif; color:#000; min-height:69px; margin-bottom:10px; }
+.sentence-review #flashcard #question a { text-decoration:none; color:#000; }
+.sentence-review #flashcard #question a:hover { color:blue; }
+ /* vocab compound note (uk) */
+.sentence-review #flashcard #question span.note { font-size:14px; color:#444; }
+.sentence-review #flashcard #question span.note span { font-size:12px; font-family:Arial,sans-serif; color:#888; }
+.sentence-review #flashcard #question span a { color:blue; text-decoration:underline; }
+
+.sentence-review #flashcard #answer {
+	width:538px; height:180px;
+	background:#f8f8f8; padding:10px;	
+/*	position:absolute; bottom:12px; left:11px;*/
+	margin-left:-7px;
+}
+.sentence-review #flashcard #answer-text {
+	font:1.2em/1.5em Arial, sans-serif;
+	color:#444; width:100%; height:100%;
+	overflow-y:scroll;
+}
+
+.sentence-review #flashcard.hidden #question { color:#000; }
+.sentence-review #flashcard.hidden #answer-text { visibility:hidden; color:#fff; }
+.sentence-review #flashcard.shown #question {  }
+.sentence-review #flashcard.shown #answer { background:#eee; }
+.sentence-review #flashcard.shown #answer-text { visibility:visible; }
+
+#answer table.vocab { margin:1em 0 0; }
+#answer table.vocab td { border-top:1px solid #C0C0C0; background:#fdfdfd; padding:5px 5px 5px; vertical-align:top; }
+#answer table.vocab td.k { white-space:nowrap; width:10%; font-size:20px; line-height:1em; }
+#answer table.vocab td.k span { display:block; font-size:12px; margin:0.2em 0 0; color:#888; }
+
+/* -------------------------- */
+/* Writing Quizz */
+/* -------------------------- */
+
+#flashcard #answer-text .compound { color:#888; }
+#flashcard #answer-text .compound .kanji { font-size:2em; line-height:1.2em; color:#000; }
+#flashcard #answer-text .compound .kana  { }
+
+.writing-test #flashcard.hidden #answer-text { visibility:visible; }
+.writing-test #flashcard.hidden #answer-text .hint { visibility:visible; color:#666; }
+.writing-test #flashcard.hidden #answer-text .compound { visibility:hidden; }
+ /* swap */
+.writing-test #flashcard.shown #answer-text .hint { visibility:visible; color:#000; }
+.writing-test #flashcard.shown #answer-text .compound { visiblity:visible; }
+
+
+/* -------------------------- */
+/* Kanji > OnYomi */
+/* -------------------------- */
+
+#onyomi .col-pri { width:610px; float:left; }
+#onyomi .col-sec { width:214px; float:right; }
+
+#onyomi ul.on { margin:0; padding:0; }
+#onyomi ul.on li { margin:0; padding:0; list-style:none; float:left; width:60px; height:57px; font-family:Arial, sans-serif; background:#E0DED0; border-bottom:1px solid #FFFDE7; border-right:1px solid #FFFDE7; }
+#onyomi ul.on li a { font-size:14px; text-decoration:none; display:block; width:60px; height:47px;padding-top:10px; text-align:center; outline:none; }
+#onyomi ul.on li a span { font-size:12px; color:#888678; display:block; }
+#onyomi ul.on li.empty { background:transparent; border:none; }
+ /* group in progress */
+#onyomi ul.on li.working { background:#B9DCFF; }
+#onyomi ul.on li.working a span { color:#6D869F; }
+ /* group completed */
+#onyomi ul.on li.complete { background:#CDE495; }
+#onyomi ul.on li a span { color:#525B3C; }
+
+ /*hover*/
+#onyomi ul.on li a:hover { background:#C6C4B8; }
+#onyomi ul.on li a:hover span { color:#59574E; }
+ /*active*/
+#onyomi ul.on li.active a, #onyomi ul.on li.active a:hover { background:#00087F; color:#727CFF; }
+#onyomi ul.on li.active a span, #onyomi ul.on li.active a:hover span { color:#fff; }
+
+ /* Summary */
+#onyomi .summary { background:#E8E5C9; padding:18px 0 21px; text-align:center; margin:0 0 15px; font:bold 14px/18px Verdana; color:#686857; }
+
+ /* Help Messages */
+#onyomi div.help-msg { width:229px; margin-left:-15px; position:relative; }
+#onyomi div.help-msg p { background:url(/img/vocab/ongroups-helpmsg-bg.gif) no-repeat 0 0; padding:16px 0 0 15px;  margin:0 0; text-align:center; }
+#onyomi div.help-msg .bottom { height:16px; overflow:hidden; width:100%; background:url(/img/vocab/ongroups-helpmsg-bg.gif) no-repeat 0 100%; }
+
+
+ /* On Group */
+#onyomi .box { border:1px solid #CCCCCC; }
+#onyomi .tbar { background:#DFFDCA; padding:0 8px; border-bottom:1px solid #AAC09A; font-size:10px; text-align:right; }
+#onyomi .tbar h3 { color:#252D20; font-size:2.4em; line-height:1em; margin:0; padding:10px 0 10px; float:left; }
+#onyomi .tbar a { color:#437831; font-size:1.2em; line-height:40px }
+#onyomi .main { background:#fff; clear:both; }
+#onyomi .main table { width:100%; margin:8px 0 10px; }
+#onyomi .main table th { padding:4px 8px; width:28px; font-size:2.2em; line-height:1em; text-align:center; color:#888; }
+#onyomi .main table td { padding:4px 8px; font-family:Georgia, serif; font-size:14px; }
+ /*kanji covered*/
+#onyomi .main tr.y th { color:#000; }
+ /*ajax*/
+#onyomi .loading { background:#fff; text-align:center; padding:20px 0; }
+
+
+/* -------------------------- */
+/* Kanji > Study */
+/* -------------------------- */
+
+#kstudy #bigkanji { float:left; background:#fff; border:1px solid #ccc; width:120px; padding:15px 0; text-align:center; vertical-align:middle; font:89px/1em "MS Mincho",serif; color:#000; margin:0 0 30px; }
+
+#kstudy .info { float:left; width:400px; margin:0 0 0 30px; display:inline; padding:4px 0 0; }
+
+#kstudy #compounds { width:557px; border-bottom:1px solid #ccc; }
+#kstudy #compounds table { margin:0; border-bottom:none; }
+
+ /* onkun section title */
+#kstudy .tbar { background:#E8E5C9; padding:0 8px; border:1px solid #ccc; border-bottom:none; font-size:10px; text-align:right; }
+#kstudy .tbar h3 {
+	color:#2F2F2F; font-size:2.4em; font-family:"MS Gothic",sans-serif; margin:0; padding:10px 0 10px; float:left;
+	letter-spacing:0; text-transform:none; line-height:1em;
+}
+#kstudy .tbar a { color:#0D6F16; font-size:1.2em; line-height:40px; text-decoration:underline; }
+#kstudy .tbar a:hover { text-decoration:underline; }
+
+#kstudy .type-other .tbar h3 { font-family:Arial,sans-serif; font-size:2em; text-transform:none; }
+
+ /* highlighted kanji */
+#kstudy .wordlist td.k em { font-style:normal; }
+ /* furigana is hidden */
+#compounds .wordlist td.k span.r { color:#fff; }
+#compounds .wordlist td.k span.r:hover { color:#888; }
+ /* ... also in the exmplary compound list */
+#compounds .dictmatch td.k span.r { color:#effedb; }
+#compounds .dictmatch td.k span.r:hover { color:#888; }
+
+ /* onkun add compound */
+#compounds .matches { background:#EEFFB2; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc; }
+#compounds .matches div.head { color:#577542; text-align:right; padding:0.5em 8px; }
+#compounds .matches div.head span { float:left; }
+#compounds .matches div.head a { color:#437831; }
+
+
+/* -------------------------- */
+/* Kanji Chain */
+/* -------------------------- */
+
+#mp-top { width:100%; position:relative; margin:0 0 13px; }
+ /* map title */
+#mp-title { float:left; height:44px; padding:0 12px; overflow:hidden; background:#DFFDCA; border:1px solid #AAC09A; }
+#mp-title h2 { color:#252D20; font-size:24px; font-family:"MS Gothic",sans-serif; margin:0; padding:10px 20px 12px 0; float:left;  }
+#mp-title input#mp-mnemonic { width:176px; border:1px solid #D3D3D3; padding:2px 4px; font:18px/1em Georgia, serif; color:#989898; background:#fff; margin:9px 0 0; float:left; }
+ /* map commands */
+#mp-mode { float:left; height:44px; padding:0; background:#DFFDCA; border:1px solid #AAC09A; margin-left:18px; display:inline;/*IE*/ }
+#mp-mode a { float:left; width:54px; height:44px; background:#E3E3E3; color:#8F8F8F; font:14px Verdana,sans-serif; text-decoration:none; }
+#mp-mode a span { display:block; width:100%; padding:13px 0 0; text-align:center; }
+#mp-mode a.active { background:#FDF9CA; color:#535353; }
+#mp-mode a:hover { color:#000; text-decoration:underline; }
+#mp-mode-move  { border-right:1px solid #AAC09A; }
+#mp-mode-build { }
+ /* On Group */
+#mp-items { border:1px solid #CCCCCC; width:212px; position:absolute; top:0; right:0; }
+#mp-items .tbar { background:#DFFDCA; padding:0 8px; border-bottom:1px solid #AAC09A; font-size:10px; text-align:right; }
+#mp-items .tbar span { color:#437831; font-size:1.2em; line-height:40px }
+#mp-items .main { background:#fff; clear:both; }
+#mp-items .main table { width:100%; margin:8px 0 10px; }
+#mp-items .main table th { padding:4px 8px; width:28px; font:24px "MS Mincho", serif; text-align:center; color:#888; }
+#mp-items .main table td { font-family:Georgia, serif; font-size:14px; padding:4px 8px; color:#000; }
+#mp-items .main table td a { }
+#mp-items .main table tr.hover { background:#eee; }
+#mp-items .main table tr.selected { background:#4788C7; }
+#mp-items .main table tr.selected td,
+#mp-items .main table tr.selected th { color:#fff; }
+
+
+ /* map grid */
+#mp-grid { border:1px solid #AFAFAF; width:840px; }
+#mp-grid table { width:100%; background:#DBDBDB; margin:0; border:0; }
+#mp-grid td { border-right:1px solid #C1C1C1; border-bottom:1px solid #C1C1C1; width:60px; height:57px; text-align:center; vertical-align:middle; color:#000; }
+ /* kanji */
+#mp-grid td span { font:30px "MS Mincho", serif; }
+ /* room */
+#mp-grid td.room { background:#fff; }
+ /* hover */
+#mp-grid td.hover { background:#FDF9CA; }
+ /* selection */
+#mp-grid td.selected { background:#4788C7; color:#fff; } 
