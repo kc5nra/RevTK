@@ -8,10 +8,9 @@ The MVC structure and API is essentially the same as Symfony 1.2, so most exampl
 
 ## Project Discussion ##
 
-We are currently using a dedicated topic on the [Reviewing the Kanji forums](http://forum.koohii.com).
+We are currently using [a dedicated topic](http://forum.koohii.com/viewtopic.php?id=4998&action=new) on the community forums.
 
-If you are already registered on the forum, [click here to subscribe to the topic](http://forum.koohii.com/misc.php?subscribe=4998). Check that your email address is correct in your forum profile, and you will get an email everytime someone posts there.
-
+You can subscribe to that topic ([subscribe link](http://forum.koohii.com/misc.php?subscribe=4998)) and you will receive an email whenever there is a new post there (make sure that your email is correct in your forum profile).
 
 ## Project Roadmap ##
 
