@@ -15,3 +15,9 @@ After you signed in, you may want to go to your profile page
 to something that you like.
 
 -Reviewing the Kanji Mailer.
+
+F.A.Q.
+
+=> Did you use the same email address for multiple accounts?
+
+   Please contact the webmaster through the Contact page.

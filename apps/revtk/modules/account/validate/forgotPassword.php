@@ -19,12 +19,19 @@ return array
 (
 	'fields' => array
 	(
-		'username' => array
+		'email_address' => array
 		(
-			'required' 			=> array
+			'required' 			  => array
 			(
-				'msg' 			=> 'Please enter username.'
+				'msg' 			    => 'Email address is required.'
 			),
+      'EmailValidator'  => array
+      (
+        'strict'        => true,
+        'email_error'   => 'Email is not valid.'
+      )
+			
+			/*
 			'StringValidator' 	=> array
 			(
 				'min' 			=> 5,
@@ -33,7 +40,7 @@ return array
 				'max' 			=> 25,
 				'max_error' 	=> 'Username is too long (max 25 characters).'
 			)
-			// No need to validate username further as we just check its existence
+			*/
 		)
 	)
 );

@@ -12,7 +12,6 @@
  * Note: if using another charset than the default, setCharset() must be called
  *       before setBodyText().
  *
- * @package Project
  * @author  Fabrice Denis
  */
  

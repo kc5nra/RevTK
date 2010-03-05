@@ -148,11 +148,14 @@ class accountActions extends coreActions
 	/**
 	 * Forgot Password page.
 	 * 
-	 * Request the username, send an email tot the corresponding
-	 * email address, with a new password.
-	 *
+	 * Request the email address, because the form is less easily abused this way
+	 * (restting another person's password, or spamming another person's emails)
+	 * 
+	 * Still too simplistic, ideally should add another step so that the password
+	 * is not automatically reset.
+	 * 
 	 */
-	public function executeRequestPassword($request)
+	public function executeForgotPassword($request)
 	{
 		if ($request->getMethod() != coreRequest::POST)
 		{
@@ -164,8 +167,8 @@ class accountActions extends coreActions
 		
 		if ($validator->validate($request->getParameterHolder()->getAll()))
 		{
-			$username = trim($request->getParameter('username'));
-			$user = UsersPeer::getUser($username);
+			$email_address = trim($request->getParameter('email_address'));
+			$user = UsersPeer::getUserByEmail($email_address);
 
 			if ($user)
 			{
@@ -178,13 +181,13 @@ class accountActions extends coreActions
 				// send email with new password, user username from db here to email user with the
 				// username in the exact CaSe they registered with
 				$mailer = new rtkMail();
-				$mailer->sendRequestPasswordConfirmation($user['email'], $user['username'], $raw_password);
+				$mailer->sendForgotPasswordConfirmation($user['email'], $user['username'], $raw_password);
 
 				return 'MailSent';
 			}
 			else
 			{
-				$request->setError('username_invalid', 'This username could not be found. Did you spell your username correctly?');
+				$request->setError('email_invalid', 'Sorry, no user found with that email address.');
  				return coreView::SUCCESS;
 			}
 		}

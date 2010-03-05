@@ -207,9 +207,9 @@ return array
           'param' => array( 'module' => 'home', 'action' => 'logout' )
         ),
   
-        'request_password' => array(
-          'url'   => '/request_password',
-          'param' => array( 'module' => 'account', 'action' => 'requestPassword' )
+        'forgot_password' => array(
+          'url'   => '/forgot_password',
+          'param' => array( 'module' => 'account', 'action' => 'forgotPassword' )
         ),
   
         'members_list' => array(

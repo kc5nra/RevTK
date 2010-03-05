@@ -34,7 +34,7 @@
 		</ul>
 		</form>
 
-		<p><?php echo link_to('Forgot your password ?','@request_password') ?></p>
+		<p><?php echo link_to('Forgot your password ?','@forgot_password') ?></p>
 
 	</div>
   </div>

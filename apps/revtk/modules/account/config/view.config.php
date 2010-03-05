@@ -21,9 +21,9 @@ return array
 	    )
 	),
 	
-	'requestPassword' => array
+	'forgotPassword' => array
 	(
-		'title'	      	   => 'Request a New Password',
+		'title'	      	   => 'Forgot your password?',
 		'metas'            => array(
 			'robots' => 'noindex,nofollow'
 		),

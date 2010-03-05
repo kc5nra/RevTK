@@ -11,10 +11,15 @@
 /**
  * Send RevTK mails.
  * 
- * Uses Configuration Settings:
+ * Requires configuration in settings.php:
  * 
- *   app_email_robot
- *   app_email_feedback_to
+ *   Each configuration value is an associative array with 'email' and 'name' properties.
+ * 
+ *  // from address for automatic mailings (registration, password change, ...)
+ *  'app_email_robot'        => array('email' => 'admin@kanji.koohii.com', 'name' => 'Reviewing the Kanji'),
+ *  
+ *  // to address for contact form
+ *  'app_email_feedback_to'  => array('email' => 'beta@kanji.koohii.com', 'name' => 'Fabrice')
  *    
  */
 
@@ -24,7 +29,7 @@ class rtkMail extends MailAbstract
 	 * Sends Forgot Password email with new password.
 	 * 
 	 */
-	public function sendRequestPasswordConfirmation($userAddress, $userName, $rawPassword)
+	public function sendForgotPasswordConfirmation($userAddress, $userName, $rawPassword)
 	{
 		$from = coreConfig::get('app_email_robot');
 		$this->setFrom($from['email'], isset($from['name']) ? $from['name'] : '');
@@ -32,7 +37,7 @@ class rtkMail extends MailAbstract
 		$this->addTo($userAddress, $userName);
 		$this->setSubject('Your new password at Reviewing the Kanji');
 		$this->setPriority(1);
-		$body = $this->renderTemplate('requestPasswordConfirmation', array('username' => $userName, 'password' => $rawPassword));
+		$body = $this->renderTemplate('forgotPasswordConfirmation', array('username' => $userName, 'password' => $rawPassword));
 		$this->setBodyText($body);
 		$this->send();
 	}
