@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect everyone but the admin's IP to the maintenance page: the admin can test the live site
+  #RewriteCond %{REMOTE_ADDR} !xxx.xxx.xxx.xxx [NC]
+  #RewriteRule ^/*(.*)$ http://www.koohii.com/maintenance.html [R=301,L]
+
+  # Permanent redirection (delete after search engine updated,today is 10 Nov 2009) 
+  RewriteRule ^/*(.*)viewmembers\.php$ /members [R=301,L]
+  RewriteRule ^/*(.*)learnmore\.php$ /learnmore [R=301,L]
+
+  # Redirects old study URLs
+  #  1) remove the index.php (preserve query string if present)
+  RewriteRule ^study/(index\.php)?$ /study [R=301,L]
+  #  2) translate the old style query string (index.php is removed in step 1!) 
+  RewriteCond %{QUERY_STRING} ^(search|framenum)=(.*)$
+  RewriteRule ^study$ /study/kanji/%2? [L,R=301]
+
+  # redirect versioned css and js resources to php handler
+  RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cached-resource.php?path=$1.$2 [L]
+  
+  # refactoring with Juicer support
+  #RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cache.php?env=dev&app=core&path=$1.$2 [L]
+
+  # we skip all files with .something
+  RewriteCond %{REQUEST_URI} \..+$
+  RewriteCond %{REQUEST_URI} !\.html$
+  RewriteRule .* - [L]
+
+  # we check if the .html version is here (caching)
+  RewriteRule ^$ index.html [QSA]
+  RewriteRule ^([^.]+)$ $1.html [QSA]
+  RewriteCond %{REQUEST_FILENAME} !-f
+
+  # no, so we redirect to our front web controller
+  RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
