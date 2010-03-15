@@ -1,4 +1,4 @@
-/* 	AutoComplete
+/*   AutoComplete
  Based on "Auto-complete" script by 'zichun' (http://codeproject.com/jscript/jsactb.asp)
  Changes:
  - use stylesheet instead of setting the style property by code
@@ -293,7 +293,7 @@ function actb(obj, ca)
   {
     var containerdiv = document.createElement('div');
     containerdiv.style.position = 'absolute';
-    //		containerdiv.style.width = actb_elem.offsetWidth + 'px';
+    //    containerdiv.style.width = actb_elem.offsetWidth + 'px';
     containerdiv.style.top = top + 'px';
     containerdiv.style.left = left + 'px';
     containerdiv.id = AUTOSUGGEST_CONTAINER_ID;
@@ -422,7 +422,7 @@ function actb(obj, ca)
     a = document.createElement('table');
     a.cellSpacing = '0';
     a.style.position = 'absolute';
-    //		a.style.width = '100%'; //actb_elem.offsetWidth + 'px';
+    //    a.style.width = '100%'; //actb_elem.offsetWidth + 'px';
     a.id = AUTOSUGGEST_TABLE_ID;
     if (actb_self.actb_mouse) 
     {
@@ -701,7 +701,7 @@ function actb(obj, ca)
     
     //++ callback for updating other stuff on the page based on selected entry
     //if (actb_self.onchangeEvent != null)
-    //	actb_self.onchangeEvent();
+    //  actb_self.onchangeEvent();
   }
   function actb_penter()
   {
@@ -936,7 +936,7 @@ function actb(obj, ca)
         actb_total++;
         actb_bool[i] = true;
         
-        //++ (pick shortest if possible)	
+        //++ (pick shortest if possible)  
         if (actb_self.actb_keywords[i] == ot) 
         {
           actb_pre = i;

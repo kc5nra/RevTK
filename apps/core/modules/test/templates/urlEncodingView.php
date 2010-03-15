@@ -7,10 +7,10 @@
 </form>
 
 <p> <?php $vars = array('variable' => '&amp;'); 
-	echo link_to('test', 'test/urlEncoding', array('query_string' => http_build_query($vars))) ?>
+  echo link_to('test', 'test/urlEncoding', array('query_string' => http_build_query($vars))) ?>
 
 <p> <?php echo coreContext::getInstance()->getController()->genUrl(array(
-	'module' => 'test', 'action'=>'urlEncoding', 'item'=>'"""')) ?>
+  'module' => 'test', 'action'=>'urlEncoding', 'item'=>'"""')) ?>
 
 <h2>$_GET</h2>
 

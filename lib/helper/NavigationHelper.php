@@ -16,8 +16,8 @@
  */
 function set_nav($primaryNavId, $secondaryNavId = '')
 {
-	set_primary_nav($primaryNavId);
-	set_secondary_nav($secondaryNavId);
+  set_primary_nav($primaryNavId);
+  set_secondary_nav($secondaryNavId);
 }
 
 /**
@@ -26,12 +26,12 @@ function set_nav($primaryNavId, $secondaryNavId = '')
  */
 function set_primary_nav($nav_id)
 {
-	coreConfig::set('layout.primarynav.current', $nav_id);
+  coreConfig::set('layout.primarynav.current', $nav_id);
 }
 
 function get_primary_nav()
 {
-	return coreConfig::get('layout.primarynav.current', '');
+  return coreConfig::get('layout.primarynav.current', '');
 }
 
 /**
@@ -40,7 +40,7 @@ function get_primary_nav()
  */
 function set_secondary_nav($nav_id)
 {
-	coreConfig::set('layout.secondarynav.current', $nav_id);
+  coreConfig::set('layout.secondarynav.current', $nav_id);
 }
 
 /**
@@ -70,7 +70,7 @@ function set_secondary_nav($nav_id)
  */
 function nav_pri($nav_id)
 {
-	return strcasecmp($nav_id, coreConfig::get('layout.primarynav.current'))==0 ? array('class' => 'active') : array();
+  return strcasecmp($nav_id, coreConfig::get('layout.primarynav.current'))==0 ? array('class' => 'active') : array();
 }
 
 /**
@@ -82,5 +82,5 @@ function nav_pri($nav_id)
  */
 function nav_sec($nav_id)
 {
-	return strcasecmp($nav_id, coreConfig::get('layout.secondarynav.current'))==0 ? array('class' => 'active') : array();
+  return strcasecmp($nav_id, coreConfig::get('layout.secondarynav.current'))==0 ? array('class' => 'active') : array();
 }

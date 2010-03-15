@@ -10,12 +10,12 @@
 return array
 (
   'CORE'     => '/Path/To/RevTK/lib/front/corejs',
-								
-	'YUI3'     => '/Path/To/Frameworks/yui_3.0.0/build',
+                
+  'YUI3'     => '/Path/To/Frameworks/yui_3.0.0/build',
 
   'MAPPINGS' => array
   (
-		// Map the YUI3 build path to web/yui3
+    // Map the YUI3 build path to web/yui3
     '/Path/To/Frameworks/yui_3.0.0/build'  => 'yui3',
     
     // Map the coreJs path to web/corejs

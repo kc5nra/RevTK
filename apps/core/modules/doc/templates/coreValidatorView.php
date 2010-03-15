@@ -2,7 +2,7 @@
 
 <p> The coreValidator class provides methods to facilitate validation of data (typically forms)
     through configuration and builtin validators. Validators are provided for the most
-	common needs and it is very easy to add custom validators.
+  common needs and it is very easy to add custom validators.
 
 <p> The coreValidator methods:
 
@@ -29,24 +29,24 @@ protected function CallbackValidator($value, $params)
 <p> The standard Validators are:
 
 <ul>
-	<li>StringValidator
-	<li>NumberValidator
-	<li>EmailValidator
-	<li>RegexValidator
-	<li>UrlValidator
-	<li>CompareValidator
-	<li>CallbackValidator
+  <li>StringValidator
+  <li>NumberValidator
+  <li>EmailValidator
+  <li>RegexValidator
+  <li>UrlValidator
+  <li>CompareValidator
+  <li>CallbackValidator
 </ul>
 
 
 <h2>StringValidator</h2>
 
 <ul>
-	<li><b>min</b> : <samp>OPTIONAL</samp>
-	<li><b>min_error</b> : 
-	<li><b>max</b> : <samp>OPTIONAL</samp>
-	<li><b>max_error</b> : 
-</ul>	
+  <li><b>min</b> : <samp>OPTIONAL</samp>
+  <li><b>min_error</b> : 
+  <li><b>max</b> : <samp>OPTIONAL</samp>
+  <li><b>max_error</b> : 
+</ul>  
 
 <?php pre_start('info') ?>
       'StringValidator' => array
@@ -61,14 +61,14 @@ protected function CallbackValidator($value, $params)
 <h2>NumberValidator</h2>
 
 <ul>
-	<li><b>nan_error</b> : <samp>REQUIRED</samp>
-	<li><b>min</b> : <samp>OPTIONAL</samp>
-	<li><b>min_error</b> : 
-	<li><b>max</b> : <samp>OPTIONAL</samp>
-	<li><b>max_error</b> : 
-	<li><b>type</b> : Type of number ("int", "integer", "decimal", "float"). <samp>OPTIONAL</samp>
-	<li><b>type_error</b> : 
-</ul>	
+  <li><b>nan_error</b> : <samp>REQUIRED</samp>
+  <li><b>min</b> : <samp>OPTIONAL</samp>
+  <li><b>min_error</b> : 
+  <li><b>max</b> : <samp>OPTIONAL</samp>
+  <li><b>max_error</b> : 
+  <li><b>type</b> : Type of number ("int", "integer", "decimal", "float"). <samp>OPTIONAL</samp>
+  <li><b>type_error</b> : 
+</ul>  
 
 <?php pre_start('info') ?>
       'NumberValidator' => array
@@ -87,11 +87,11 @@ protected function CallbackValidator($value, $params)
 <h2>EmailValidator</h2>
 
 <ul>
-	<li><b>email_error</b> : <samp>REQUIRED</samp>
-	<li><b>strict</b> : <samp>OPTIONAL</samp><br/>
-			true  to match only emails in the form name@domain.extension (default)<br/>
-			false to match emails against RFC822 (this will accept emails such as me@localhost)
-</ul>	
+  <li><b>email_error</b> : <samp>REQUIRED</samp>
+  <li><b>strict</b> : <samp>OPTIONAL</samp><br/>
+      true  to match only emails in the form name@domain.extension (default)<br/>
+      false to match emails against RFC822 (this will accept emails such as me@localhost)
+</ul>  
 
 <?php pre_start('info') ?>
       'EmailValidator'  => array
@@ -104,10 +104,10 @@ protected function CallbackValidator($value, $params)
 <h2>RegexValidator</h2>
 
 <ul>
-	<li><b>match</b> : Whether to validate if it matches (true) or doesn't match (false) <samp>REQUIRED</samp>
-	<li><b>pattern</b> : The regular expression <samp>REQUIRED</samp>
-	<li><b>match_error</b> : Error message <samp>REQUIRED</samp>
-</ul>	
+  <li><b>match</b> : Whether to validate if it matches (true) or doesn't match (false) <samp>REQUIRED</samp>
+  <li><b>pattern</b> : The regular expression <samp>REQUIRED</samp>
+  <li><b>match_error</b> : Error message <samp>REQUIRED</samp>
+</ul>  
 
 <?php pre_start('info') ?>
       'RegexValidator'  => array
@@ -121,8 +121,8 @@ protected function CallbackValidator($value, $params)
 <h2>UrlValidator</h2>
 
 <ul>
-	<li><b>url_error</b> : <samp>REQUIRED</samp>
-</ul>	
+  <li><b>url_error</b> : <samp>REQUIRED</samp>
+</ul>  
 
 <?php pre_start('info') ?>
       'UrlValidator'    => array
@@ -136,9 +136,9 @@ protected function CallbackValidator($value, $params)
 <p> The CompareValidator compares two different request parameters. It is very useful for password checks.</p>
 
 <ul>
-	<li><b>check</b> : Required. Name of field to compare value to.
-	<li><b>compare_error</b> : Required
-</ul>	
+  <li><b>check</b> : Required. Name of field to compare value to.
+  <li><b>compare_error</b> : Required
+</ul>  
 
 <?php pre_start('info') ?>
       'CompareValidator' => array
@@ -154,9 +154,9 @@ protected function CallbackValidator($value, $params)
     do the validation. The callable method or function must return true or false.
 
 <ul>
-	<li><b>callback</b> : a function name or array($classname, $methodname) for a static method<br/>
-	    (this is the same as for call_user_func())
-	<li><b>invalid_error</b> : the error message
+  <li><b>callback</b> : a function name or array($classname, $methodname) for a static method<br/>
+      (this is the same as for call_user_func())
+  <li><b>invalid_error</b> : the error message
 </ul>
 
 <?php pre_start('info') ?>
@@ -276,8 +276,8 @@ class <var>myapp</var>Validators
 <h2>Displaying Error Messages in the Form</h2>
 
 <p> Here is an example of a simple helper function to output all errors that have been
-	set on the Request object (errors can be set by validation, but also directly from
-	the action):
+  set on the Request object (errors can be set by validation, but also directly from
+  the action):
 
 <?php pre_start() ?>
 // In a custom Helper file

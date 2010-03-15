@@ -145,7 +145,7 @@ return array
 <p> Additional settings can be added to the settings file and will be available through the coreConfig class.
 
 <p> The convention is to add these at the end of the settings file, and use a <b>app_</b> prefix
-	for each setting, for example:
+  for each setting, for example:
 
 <?php pre_start() ?>
   /**
@@ -165,11 +165,11 @@ return array
 
 <p> An application can run in various environments.
     The different environments share the same PHP code (apart from the front controller),
-	but can have completely different configurations.
+  but can have completely different configurations.
 
 <p> For example, the dev and test environments may need test data, stored in a database distinct from 
     the one used in the production environment. So the database configuration will be different between 
-	the two environments.
+  the two environments.
 
 <p> To change the environment in which you're browsing your application, just change the front controller:
 
@@ -194,7 +194,7 @@ http://localhost/mymodule/index
 
 <p> The constant <samp>CORE_ENVIRONMENT</samp> in the front controller will determine what
     settings are available to the application.
-	
+  
 <?php pre_start('info') ?>
 return array
 (
@@ -230,17 +230,17 @@ return array
 <h2>Factories</h2>
 
 <p> A factory is the definition of a class for a certain task. The default Core framework
-	factories are defined in <b>coreContext</b>. You can override the default factories
-	with the <b>core_factories</b> setting. For each configurable factory, you can provide
-	a custom class that will be used by the framework instead of the Core class.
+  factories are defined in <b>coreContext</b>. You can override the default factories
+  with the <b>core_factories</b> setting. For each configurable factory, you can provide
+  a custom class that will be used by the framework instead of the Core class.
 
 <p> These are the configurable factories, the setting name, and the class that you need
     to extend if replacing the Core class:
 
 <ul>
-	<li><b>user</b> : extend <em>coreUserBasicSecurity</em></li>
-	<li><b>request</b> : extend <em>coreWebRequest</em></li>
-	<li><b>response</b> : extend <em>coreWebResponse</em></li>
+  <li><b>user</b> : extend <em>coreUserBasicSecurity</em></li>
+  <li><b>request</b> : extend <em>coreWebRequest</em></li>
+  <li><b>response</b> : extend <em>coreWebResponse</em></li>
 </ul>
 
 <p> Here we replace the user factory (coreUserBasicSecurity) with myUser:
@@ -252,7 +252,7 @@ class myUser extends coreUserBasicSecurity
   public function initialize(coreSessionStorage $storage, $options = array())
   {
     parent::initialize($storage, $options);
-	
+  
     // Add our initialization code...
   }
 

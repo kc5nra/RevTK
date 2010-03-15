@@ -17,5 +17,5 @@
  */
 function use_helper()
 {
-	coreToolkit::loadHelpers(func_get_args());
+  coreToolkit::loadHelpers(func_get_args());
 }

@@ -3,10 +3,10 @@
 <p> The view configuration settings can be configured at three different levels, each level of customization
     overwrites the corresponding settings at the previous level:
 <ul>
-	<li>Application level settings : <samp>default_view_configuration</samp> in <b>settings.php</b>
-	<li>Module level settings : <samp>all</samp> in <b>modules/[module]/config/view.config.php</b>
-	<li>View level settings : <samp>[viewName]</samp> in <b>modules/[module]/config/view.config.php</b>
-	<li>Dynamic settings : configuration at run time from the action and view template code
+  <li>Application level settings : <samp>default_view_configuration</samp> in <b>settings.php</b>
+  <li>Module level settings : <samp>all</samp> in <b>modules/[module]/config/view.config.php</b>
+  <li>View level settings : <samp>[viewName]</samp> in <b>modules/[module]/config/view.config.php</b>
+  <li>Dynamic settings : configuration at run time from the action and view template code
 </ul>
 
 
@@ -17,11 +17,11 @@
 <p> View configuration settings and corresponding Response methods (from the action):
 
 <ul>
-	<li><b>title</b> : $this->getResponse()->setTitle(...)
-	<li><b>http_metas</b> [array] : $this->getResponse()->addHttpMeta()
-	<li><b>metas</b> [array] : $this->getResponse()->addMeta()
-	<li><b>stylesheets</b> [array] : $this->getResponse()->addStylesheet()
-	<li><b>javascripts</b> [array] : $this->getResponse()->addJavascript()
+  <li><b>title</b> : $this->getResponse()->setTitle(...)
+  <li><b>http_metas</b> [array] : $this->getResponse()->addHttpMeta()
+  <li><b>metas</b> [array] : $this->getResponse()->addMeta()
+  <li><b>stylesheets</b> [array] : $this->getResponse()->addStylesheet()
+  <li><b>javascripts</b> [array] : $this->getResponse()->addJavascript()
 </ul>
 
 <p> An example view configuration in settings.php :
@@ -78,7 +78,7 @@
   'javascripts' => array
   (
     '/js/lib/yui/2.7.0/yahoo-dom-event.js',
-		
+    
     // Similar to stylesheets, control order with position 'first' or 'last'
     '/js/include_me_first.js' => array('position' => 'first')
   )
@@ -89,10 +89,10 @@
 
 <p> View settings can be further specified at the module level, if <var>/config/view.config.php</var> under
     the module directory.
-	
+  
 <p> View settings are grouped under a unique key which is the name of the view.
     A view name is composed of an action name and an action termination, for example if the <em>index</em>
-	action returns coreView::ERROR, the view name will be <em>indexError</em>.
+  action returns coreView::ERROR, the view name will be <em>indexError</em>.
 
 <p> Default view settings can be set at the module level under the <b>all</b> key.
 

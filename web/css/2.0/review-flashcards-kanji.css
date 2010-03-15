@@ -38,9 +38,9 @@ body#uiFcFullscreen table.uiFcReview { width:100%; height:100%; }
 .uiFcLayout tr.bottom td.layout { height:38%; /*background:#876;*/ }
 
 .uiFcCard {
-	display:block; position:relative;
-	margin:0 auto; /* center within TD */
-	width:260px; height:378px; background:#fff url(/images/2.0/review/flashcard-bg.gif) no-repeat 50% 50%;
+  display:block; position:relative;
+  margin:0 auto; /* center within TD */
+  width:260px; height:378px; background:#fff url(/images/2.0/review/flashcard-bg.gif) no-repeat 50% 50%;
 }
 
 /* base */

@@ -11,23 +11,23 @@
 
 class StoryScoresPeer extends coreDatabaseTable
 {
-	const TABLE    = 'storiesscores';
+  const TABLE    = 'storiesscores';
 
-	protected
-		$tableName = 'storiesscores',
+  protected
+    $tableName = 'storiesscores',
         $columns = array
-		(
-			'framenum',
-			'authorid',
-			'stars',
-			'kicks'
-		);
+    (
+      'framenum',
+      'authorid',
+      'stars',
+      'kicks'
+    );
 
-	/**
-	 * This function must be copied in each peer class.
-	 */
-	public static function getInstance()
-	{
-		return coreDatabaseTable::_getInstance(__CLASS__);
-	}
+  /**
+   * This function must be copied in each peer class.
+   */
+  public static function getInstance()
+  {
+    return coreDatabaseTable::_getInstance(__CLASS__);
+  }
 }

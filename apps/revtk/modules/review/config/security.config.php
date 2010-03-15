@@ -9,8 +9,8 @@
 
 return array
 (
-	'all' => array
-	(
-		'is_secure'    => true
-	)
+  'all' => array
+  (
+    'is_secure'    => true
+  )
 );

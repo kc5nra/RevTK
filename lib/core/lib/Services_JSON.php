@@ -772,8 +772,8 @@ if (class_exists('PEAR_Error', false)) {
         function Services_JSON_Error($message = 'unknown error', $code = null,
                                      $mode = null, $options = null, $userinfo = null)
         {
-			// Untested ... yet
-			throw new Exception($message);
+      // Untested ... yet
+      throw new Exception($message);
         }
     }
 

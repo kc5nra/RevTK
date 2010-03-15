@@ -17,7 +17,7 @@
  */
 function escape_once($html)
 {
-	return htmlspecialchars($html, ENT_QUOTES, coreConfig::get('sf_charset'));
+  return htmlspecialchars($html, ENT_QUOTES, coreConfig::get('sf_charset'));
 }
 
 /**
@@ -98,15 +98,15 @@ function _convert_options($options)
  */
 function _tag_options($options = array())
 {
-	$options = _parse_attributes($options);
-	
-	$html = '';
-	foreach ($options as $key => $value)
-	{
-		$html .= ' '.$key.'="'.escape_once($value).'"';
-	}
-	
-	return $html;
+  $options = _parse_attributes($options);
+  
+  $html = '';
+  foreach ($options as $key => $value)
+  {
+    $html .= ' '.$key.'="'.escape_once($value).'"';
+  }
+  
+  return $html;
 }
 
 /**

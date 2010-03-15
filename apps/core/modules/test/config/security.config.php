@@ -8,19 +8,19 @@
 
 return array
 (
-	/**
-	 * Settings for the test/security action
-	 * 
-	 */
-	'securitydemo' => array
-	(
-		'is_secure'    => false
-	),
-	
-	'securityadmin' => array
-	(
-		'is_secure'    => true,
-		'credentials'  => array('admin')
-	),
-	
+  /**
+   * Settings for the test/security action
+   * 
+   */
+  'securitydemo' => array
+  (
+    'is_secure'    => false
+  ),
+  
+  'securityadmin' => array
+  (
+    'is_secure'    => true,
+    'credentials'  => array('admin')
+  ),
+  
 );

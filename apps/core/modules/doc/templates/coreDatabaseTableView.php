@@ -4,7 +4,7 @@
     There is no need to write querries for the most common operations: <b>insert</b>, <b>update</b> and <b>delete</b>.
 
 <p> The Table Data Gateway encapsulates the <b>data logic</b>, for example a method to return the
-	user rating on a forum. Its main benefit is <b>reusability</b>: methods of the data object can be called
+  user rating on a forum. Its main benefit is <b>reusability</b>: methods of the data object can be called
     from various places in the application, or even in the project.
 
 <?php pre_start() ?>
@@ -57,7 +57,7 @@ function  delete($where = null, $bindParams = null)
     and the include file <samp><var>Something</var>Peer.php</samp>.
 
 <p> The classname uses CamelCase, while the actual table name should be lowercase.
-	
+  
 <p> Note that actual name of the table in the database, which can be set in the coreDatabaseTable class,
     does not need to be the same as the class name:
 
@@ -110,7 +110,7 @@ class <var>Users</var>Peer extends coreDatabaseTable
 
 <p> All the base coreDatabaseTable methods need to be accessed through an instance of the peer class.
     However if custom methods in the peer class use <b>getInstance()</b>, then the peer method
-	can be called statically, for conciseness:
+  can be called statically, for conciseness:
 
 <?php pre_start() ?>
 // Base methods MUST be accessed with an instance
@@ -130,7 +130,7 @@ $countNewUsers = UsersPeer::<em>getInstance()-></em>countNewUsers();
 
 <p> If application-specific logic needs to be initialized when a Table class is constructed,
     declare the initialize() function, it will be called when the peer class is loaded:
-	
+  
 <?php pre_start() ?>
 /**
  * Run some application-specific logic after the table is instanced.
@@ -169,7 +169,7 @@ public static function doSomething()
 
 <p> The <b>insert()</b> and <b>update()</b> methods will automatically set values for
     columns named <samp>created_on</samp> and <samp>updated_on</samp>. The columns
-	will be set to <b>NOW()</b> unless you explicitly set them in the array of data.
+  will be set to <b>NOW()</b> unless you explicitly set them in the array of data.
 
 <p> The timestamp columns should be declared like this in the database:
 
@@ -182,7 +182,7 @@ updated_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMEST
 
 <p> The <b>count()</b> method provides an easy way to get a number of rows from a table.
     If no argument is given, the query corresponds to a COUNT(*) on the current table,
-	otherwise a criteria and optional bound parameters may be specified:
+  otherwise a criteria and optional bound parameters may be specified:
 
 <?php pre_start() ?>
 // => SELECT COUNT(*) FROM users
@@ -212,9 +212,9 @@ self::getInstance()->select()->from('foods');
 
 <p> The Table <b>insert()</b> method takes an assiociative array of column names and data,
     just like the equivalent coreDatabase method, without the need to specify the table.
-	It will also set the <samp>created_on</samp> and <samp>updated_on</samp> columns
-	to NOW() if present, and you do not explicitly set them:
-	
+  It will also set the <samp>created_on</samp> and <samp>updated_on</samp> columns
+  to NOW() if present, and you do not explicitly set them:
+  
 <?php pre_start() ?>
 $data = array(
   'created_on' => new coreDbExpr('NOW()'),
@@ -228,7 +228,7 @@ UsersPeer::getInstance()->insert($data);
 
 <p> The <b>update()</b> method takes an associative array of columns and values to assign
     to these columns; and an SQL expression that is used in a WHERE clause, plus optional
-	bound parameters.
+  bound parameters.
 
 <p> This method also sets the <samp>updated_on</samp> column to NOW() unless another value
     is given for that column.
@@ -245,9 +245,9 @@ UsersPeer::getInstance()->update($data, 'id = ?', $user_id);
 
 <p> The <b>delete()</b> method takes two optional arguments: a where clause and optional
     bound parameters.
-	
+  
 <p> Be careful that calling the method without arguments will delete <b>all</b> rows:
-	
+  
 <?php pre_start() ?>
 // => DELETE FROM users
 UsersPeer::getInstance()->delete();

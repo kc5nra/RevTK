@@ -58,5 +58,5 @@ Public site content: <strong>${assetName}</strong>
 EOD;
   }
 
-	return ob_get_clean();
+  return ob_get_clean();
 }

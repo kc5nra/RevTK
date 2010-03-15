@@ -17,44 +17,44 @@
 
 class aboutActions extends coreActions
 {
-	/**
-	 * The About page.
-	 * 
-	 * @return 
-	 */
-	public function executeIndex()
-	{
-		$this->forward('about', 'about');
-	}
+  /**
+   * The About page.
+   * 
+   * @return 
+   */
+  public function executeIndex()
+  {
+    $this->forward('about', 'about');
+  }
 
-	public function executeAbout()
-	{
-	}
+  public function executeAbout()
+  {
+  }
 
-	/**
-	 * The Learn More page.
-	 * 
-	 * @return 
-	 */
-	public function executeLearnmore()
-	{
-	}
-	
-	/**
-	 * The Acknowledgments page.
-	 * 
-	 * @return 
-	 */
-	public function executeAcknowledgments()
-	{
-	}
+  /**
+   * The Learn More page.
+   * 
+   * @return 
+   */
+  public function executeLearnmore()
+  {
+  }
+  
+  /**
+   * The Acknowledgments page.
+   * 
+   * @return 
+   */
+  public function executeAcknowledgments()
+  {
+  }
 
-	/**
-	 * The Donation page.
-	 * 
-	 * @return 
-	 */
-	public function executeSupport()
-	{
-	}
+  /**
+   * The Donation page.
+   * 
+   * @return 
+   */
+  public function executeSupport()
+  {
+  }
 }

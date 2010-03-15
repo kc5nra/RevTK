@@ -13,17 +13,17 @@
 </head>
 <body>
 
-	<h1><?php echo link_to('Core', '@homepage', array('title'=>'Go to homepage')) ?> framework</h1>
+  <h1><?php echo link_to('Core', '@homepage', array('title'=>'Go to homepage')) ?> framework</h1>
 
-	<div id="body">
-	  <div class="padding" style="margin-left:10px">
+  <div id="body">
+    <div class="padding" style="margin-left:10px">
 <?php echo $core_content ?>
-	  </div>
-	</div>
-	
-	<div id="footer">
-		<p>Page generated in <?php echo demoToolkit::timeEnd() ?> secs</p>
-	</div>
+    </div>
+  </div>
+  
+  <div id="footer">
+    <p>Page generated in <?php echo demoToolkit::timeEnd() ?> secs</p>
+  </div>
 
 </body>
 </html>

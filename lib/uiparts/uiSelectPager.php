@@ -41,281 +41,281 @@
 
 class uiSelectPager
 {
-	const
-		QUERY_PAGENUM     = 'page',
-		QUERY_ROWSPERPAGE = 'rows';
+  const
+    QUERY_PAGENUM     = 'page',
+    QUERY_ROWSPERPAGE = 'rows';
 
-	protected
-		$page            = 1,
-		$maxPerPage      = 10,
-		$maxPerPageLinks = array(10, 20, 50),
-		$nbResults       = 0,
-		$select          = null,
-		$db              = null,
-		$internal_uri    = '',
-		$query_params    = array();
+  protected
+    $page            = 1,
+    $maxPerPage      = 10,
+    $maxPerPageLinks = array(10, 20, 50),
+    $nbResults       = 0,
+    $select          = null,
+    $db              = null,
+    $internal_uri    = '',
+    $query_params    = array();
 
-	public function __construct(array $options)
-	{
-		$this->db = coreContext::getInstance()->getDatabase();
+  public function __construct(array $options)
+  {
+    $this->db = coreContext::getInstance()->getDatabase();
 
-		if (!isset($options['internal_uri']))
-		{
-			throw new coreException("Must set 'internal_uri' in uiSelectPager options.");
-		}
-		$this->setUrl($options['internal_uri']);
+    if (!isset($options['internal_uri']))
+    {
+      throw new coreException("Must set 'internal_uri' in uiSelectPager options.");
+    }
+    $this->setUrl($options['internal_uri']);
 
-		if (isset($options['select']))
-		{
-		  $this->setSelect($options['select']);
-		}
-		
-	  if (isset($options['query_params']))
-		{
-		  $this->setQueryParams($options['query_params']);
-		}
+    if (isset($options['select']))
+    {
+      $this->setSelect($options['select']);
+    }
+    
+    if (isset($options['query_params']))
+    {
+      $this->setQueryParams($options['query_params']);
+    }
 
-	  if (isset($options['max_per_page']))
-		{
-		  $this->setMaxPerPage((int)$options['max_per_page']);
-		}
-		
-	  if (isset($options['page']))
-		{
-			$this->setPage($options['page']);
-		}
-	}
+    if (isset($options['max_per_page']))
+    {
+      $this->setMaxPerPage((int)$options['max_per_page']);
+    }
+    
+    if (isset($options['page']))
+    {
+      $this->setPage($options['page']);
+    }
+  }
 
-	/**
-	 * Set the url for the paging links.
-	 * 
-	 * @param  string  $internal_uri   Internal uri or absolute url
-	 */
-	public function setUrl($internal_uri)
-	{
-		$this->internal_uri = $internal_uri;
-	}
-	
-	/**
-	 * Set any number of extra query parameters to append to the paging links.
-	 * For example, to maintain sort column and sort order when paging through a data table.
-	 * 
-	 * @param array  $query_params   Associative array of query variable name and values
-	 */
-	public function setQueryParams(array $query_params)
-	{
-		$this->query_params = $query_params;
-	}
+  /**
+   * Set the url for the paging links.
+   * 
+   * @param  string  $internal_uri   Internal uri or absolute url
+   */
+  public function setUrl($internal_uri)
+  {
+    $this->internal_uri = $internal_uri;
+  }
+  
+  /**
+   * Set any number of extra query parameters to append to the paging links.
+   * For example, to maintain sort column and sort order when paging through a data table.
+   * 
+   * @param array  $query_params   Associative array of query variable name and values
+   */
+  public function setQueryParams(array $query_params)
+  {
+    $this->query_params = $query_params;
+  }
 
-	public function setSelect(coreDatabaseSelect $select)
-	{
-		$this->select = $select;
-	}
+  public function setSelect(coreDatabaseSelect $select)
+  {
+    $this->select = $select;
+  }
 
-	public function setPage($page)
-	{
-		$this->page = intval($page);
-		if ($this->page <= 0)
-		{
-			//set first page, which depends on a maximum set
-			$this->page = $this->getMaxPerPage() ? 1 : 0;
-		}
-	}
-	
-	public function setMaxPerPage($max)
-	{
-		$this->maxPerPage = $max;
-	}
+  public function setPage($page)
+  {
+    $this->page = intval($page);
+    if ($this->page <= 0)
+    {
+      //set first page, which depends on a maximum set
+      $this->page = $this->getMaxPerPage() ? 1 : 0;
+    }
+  }
+  
+  public function setMaxPerPage($max)
+  {
+    $this->maxPerPage = $max;
+  }
 
-	public function init()
-	{
-		// count the select results
-		$this->getCountSelect()->query();
-		$result = $this->db->fetchObject();
-		$this->setNbResults($result->count);
-	}
+  public function init()
+  {
+    // count the select results
+    $this->getCountSelect()->query();
+    $result = $this->db->fetchObject();
+    $this->setNbResults($result->count);
+  }
 
-	protected function getCountSelect()
-	{
-		$s = clone $this->select;
-		$s->reset(coreDatabaseSelect::COLUMNS);
-		$s->reset(coreDatabaseSelect::LIMIT_COUNT);
-		$s->reset(coreDatabaseSelect::LIMIT_OFFSET);
-		$s->columns(array('count' => 'COUNT(*)'));
-		return $s;
-	}
+  protected function getCountSelect()
+  {
+    $s = clone $this->select;
+    $s->reset(coreDatabaseSelect::COLUMNS);
+    $s->reset(coreDatabaseSelect::LIMIT_COUNT);
+    $s->reset(coreDatabaseSelect::LIMIT_OFFSET);
+    $s->columns(array('count' => 'COUNT(*)'));
+    return $s;
+  }
 
-	public function getNbResults()
-	{
-		return $this->nbResults;
-	}
-	
-	protected function setNbResults($nb)
-	{
-		$this->nbResults = $nb;
-	}
+  public function getNbResults()
+  {
+    return $this->nbResults;
+  }
+  
+  protected function setNbResults($nb)
+  {
+    $this->nbResults = $nb;
+  }
 
-	public function getMaxPerPage()
-	{
-		return $this->maxPerPage;
-	}
+  public function getMaxPerPage()
+  {
+    return $this->maxPerPage;
+  }
 
-	public function getNumPages()
-	{
-		return ceil($this->getNbResults() / $this->getMaxPerPage());
-	}
+  public function getNumPages()
+  {
+    return ceil($this->getNbResults() / $this->getMaxPerPage());
+  }
 
-	public function getPage()
-	{
-		return $this->page;
-	}
+  public function getPage()
+  {
+    return $this->page;
+  }
 
-	public function getPreviousPage()
-	{
-		return $this->getPage() > 1 ? $this->page - 1 : false;
-	}
+  public function getPreviousPage()
+  {
+    return $this->getPage() > 1 ? $this->page - 1 : false;
+  }
 
-	public function getNextPage()
-	{
-		return $this->getPage() < $this->getNumPages() ? $this->page + 1 : false;
-	}
+  public function getNextPage()
+  {
+    return $this->getPage() < $this->getNumPages() ? $this->page + 1 : false;
+  }
 
-	/**
-	 * Returns Select object with paging applied (if pagenum is >= 1).
-	 * 
-	 * If page number is 0, no paging is applied.
-	 * 
-	 * @return 
-	 */
-	public function getSelect()
-	{
-		if ($this->page > 0)
-		{
-			return $this->select->limitPage($this->page-1, $this->maxPerPage);
-		}
-		return $this->select;
-	}
+  /**
+   * Returns Select object with paging applied (if pagenum is >= 1).
+   * 
+   * If page number is 0, no paging is applied.
+   * 
+   * @return 
+   */
+  public function getSelect()
+  {
+    if ($this->page > 0)
+    {
+      return $this->select->limitPage($this->page-1, $this->maxPerPage);
+    }
+    return $this->select;
+  }
 
-	/**
-	 * Query the Select object, return results according to $fetchMode
-	 * 
-	 * @return 
-	 * @param object $fetchMode
-	 */
-	public function getResults($fetchMode)
-	{
-		// apply paging
-		$pagedSelect = $this->getSelect();
+  /**
+   * Query the Select object, return results according to $fetchMode
+   * 
+   * @return 
+   * @param object $fetchMode
+   */
+  public function getResults($fetchMode)
+  {
+    // apply paging
+    $pagedSelect = $this->getSelect();
 
-		$prevmode = $this->db->setFetchMode($fetchMode);
-		$pagedSelect->query();
-		$rows = $this->db->fetchAll();
-		$this->db->setFetchMode($prevmode);
-		return $rows;
-	}
+    $prevmode = $this->db->setFetchMode($fetchMode);
+    $pagedSelect->query();
+    $rows = $this->db->fetchAll();
+    $this->db->setFetchMode($prevmode);
+    return $rows;
+  }
 
-	/**
-	 * Return an array of page numbers to display in the pager.
-	 * A false value also means to insert a "..." element in the pager display.
-	 * 
-	 * Logic from PunBB paginate() function.
-	 * 
-	 * @return array  Array of page indices as appearing in the query string
-	 */
-	public function getLinks()
-	{
-		$num_pages = $this->getNumPages();
-		$cur_page  = $this->getPage();
+  /**
+   * Return an array of page numbers to display in the pager.
+   * A false value also means to insert a "..." element in the pager display.
+   * 
+   * Logic from PunBB paginate() function.
+   * 
+   * @return array  Array of page indices as appearing in the query string
+   */
+  public function getLinks()
+  {
+    $num_pages = $this->getNumPages();
+    $cur_page  = $this->getPage();
 
-		$pages = array();
-	
-		if ($num_pages <= 1)
-		{
-			$pages[] = 1;
-		}
-		else
-		{
-			if ($cur_page > 3)
-			{
-				$pages[] = 1;
-	
-				if ($cur_page != 4)
-				{
-					// "..."
-					$pages[] = false;  
-				}
-			}
-	
-			// Don't ask me how the following works. It just does, OK? :-)
-			for ($current = $cur_page - 2, $stop = $cur_page + 3; $current < $stop; ++$current)
-			{
-				if ($current < 1 || $current > $num_pages)
-					continue;
+    $pages = array();
+  
+    if ($num_pages <= 1)
+    {
+      $pages[] = 1;
+    }
+    else
+    {
+      if ($cur_page > 3)
+      {
+        $pages[] = 1;
+  
+        if ($cur_page != 4)
+        {
+          // "..."
+          $pages[] = false;  
+        }
+      }
+  
+      // Don't ask me how the following works. It just does, OK? :-)
+      for ($current = $cur_page - 2, $stop = $cur_page + 3; $current < $stop; ++$current)
+      {
+        if ($current < 1 || $current > $num_pages)
+          continue;
 
-				$pages[] = $current;
-			}
-	
-			if ($cur_page <= ($num_pages-3))
-			{
-				if ($cur_page != ($num_pages-3))
-				{
-					// "..."
-					$pages[] = false;
-				}
-	
-				$pages[] = $num_pages;
-			}
-		}
-		
-		return $pages;
-	}
+        $pages[] = $current;
+      }
+  
+      if ($cur_page <= ($num_pages-3))
+      {
+        if ($cur_page != ($num_pages-3))
+        {
+          // "..."
+          $pages[] = false;
+        }
+  
+        $pages[] = $num_pages;
+      }
+    }
+    
+    return $pages;
+  }
 
-	/**
-	 * Return a html link for the given page number.
-	 * 
-	 * @param  integer $page   Page number
-	 * @param  string  $label  Label (eg. "Previous page"), defaults to the page number
-	 * 
-	 * @return string  HTML link
-	 */	
-	public function getPageLink($page, $label = null)
-	{
-		if (is_null($label))
-		{
-			$label = $page;
-		}
+  /**
+   * Return a html link for the given page number.
+   * 
+   * @param  integer $page   Page number
+   * @param  string  $label  Label (eg. "Previous page"), defaults to the page number
+   * 
+   * @return string  HTML link
+   */  
+  public function getPageLink($page, $label = null)
+  {
+    if (is_null($label))
+    {
+      $label = $page;
+    }
 
-		$options = array();
-		$options['query_string'] = http_build_query(array_merge(
-			$this->query_params,
-			array(self::QUERY_PAGENUM => $page, self::QUERY_ROWSPERPAGE => $this->getMaxPerPage())));
-		
-		return link_to($label, $this->internal_uri, $options);
-	}
+    $options = array();
+    $options['query_string'] = http_build_query(array_merge(
+      $this->query_params,
+      array(self::QUERY_PAGENUM => $page, self::QUERY_ROWSPERPAGE => $this->getMaxPerPage())));
+    
+    return link_to($label, $this->internal_uri, $options);
+  }
 
-	/**
-	 * Returns values to display in the rows per page selection.
-	 * 
-	 * @return  array
-	 */
-	public function getMaxPerPageLinks()
-	{
-		return $this->maxPerPageLinks;
-	}
+  /**
+   * Returns values to display in the rows per page selection.
+   * 
+   * @return  array
+   */
+  public function getMaxPerPageLinks()
+  {
+    return $this->maxPerPageLinks;
+  }
 
-	/**
-	 * Returns information to build a rows per page link.
-	 * 
-	 * @param  int   $n   Max per page value for this link
-	 * 
-	 * @return array  Array of values as used by link_to() helper (name, internal_uri, options)
-	 */
-	public function getMaxPerPageUrl($n)
-	{
-		return array(
-			(string)$n,
-			$this->internal_uri,
-			array('query_string' => http_build_query(array_merge($this->query_params, array(self::QUERY_ROWSPERPAGE => $n))))
-		);
-	}
+  /**
+   * Returns information to build a rows per page link.
+   * 
+   * @param  int   $n   Max per page value for this link
+   * 
+   * @return array  Array of values as used by link_to() helper (name, internal_uri, options)
+   */
+  public function getMaxPerPageUrl($n)
+  {
+    return array(
+      (string)$n,
+      $this->internal_uri,
+      array('query_string' => http_build_query(array_merge($this->query_params, array(self::QUERY_ROWSPERPAGE => $n))))
+    );
+  }
 }

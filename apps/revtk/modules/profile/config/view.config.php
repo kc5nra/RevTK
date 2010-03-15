@@ -8,12 +8,12 @@
 
 return array
 (
-	'index' => array
-	(
-		'title'	      	   => 'Profile',
-	),
-	'indexError' => array
-	(
-		'title'	      	   => 'Oops! Profile not found',
-	)
+  'index' => array
+  (
+    'title'             => 'Profile',
+  ),
+  'indexError' => array
+  (
+    'title'             => 'Oops! Profile not found',
+  )
 );

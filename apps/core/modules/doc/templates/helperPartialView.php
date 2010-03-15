@@ -33,7 +33,7 @@ function has_slot($name)
 // @return True if slot exists and was included
 function include_slot($name)
 
-// Returns content of a	slot, or an empty string.
+// Returns content of a  slot, or an empty string.
 function get_slot($name)
 // Evaluates partial and returns result as a string
 function get_partial($templateName, $vars = array())
@@ -112,11 +112,11 @@ function get_component($moduleName, $componentName, $vars = array())
 <?php pre_end() ?>
 
 <p> Slots can also be used to add some custom tags in the &lt;head&gt; section of the layout, depending
-	on the content of the action (for example, a RSS feed or inline styles). 
+  on the content of the action (for example, a RSS feed or inline styles). 
 
-<p>	If the content of the slot is very short, as this is the case when defining a title slot for example,
+<p>  If the content of the slot is very short, as this is the case when defining a title slot for example,
     you can simply pass the content as a second argument of the slot() method:
-	</p>
+  </p>
 
 <?php pre_start() ?>
 &lt;?php slot('title', 'The title value') ?&gt;
@@ -124,25 +124,25 @@ function get_component($moduleName, $componentName, $vars = array())
 
 
 <!--php
-	// Partial include tests
-	use_helper('Partial');
+  // Partial include tests
+  use_helper('Partial');
 
-	// Include a <b>partial</b> from the same module, module name does not need to be specified:
-	include_partial('partialDemo1', array('partialvar' => 'Success'));
+  // Include a <b>partial</b> from the same module, module name does not need to be specified:
+  include_partial('partialDemo1', array('partialvar' => 'Success'));
 
-	// Include a <b>partial</b> from another module, module must be specified:
-	// The module name is compulsory in that case.
-	include_partial('includes/partialDemo2', array('partialvar' => 'Success'));
+  // Include a <b>partial</b> from another module, module must be specified:
+  // The module name is compulsory in that case.
+  include_partial('includes/partialDemo2', array('partialvar' => 'Success'));
  
-	// Include a <b>global partial</b>, by using the "global" module name:
-	include_partial('global/partialDemo3', array('partialvar' => 'Success'));
+  // Include a <b>global partial</b>, by using the "global" module name:
+  include_partial('global/partialDemo3', array('partialvar' => 'Success'));
 
-	// Component include tests
+  // Component include tests
 
-	// Include a component with one action per file (componentDemo1Component.php):
-	include_component('includes', 'componentDemo1', array('include_component_var' => 'Parameter'));
+  // Include a component with one action per file (componentDemo1Component.php):
+  include_component('includes', 'componentDemo1', array('include_component_var' => 'Parameter'));
 
-	// Include components with multiple actions in one file (components.php):
-	include_component('includes', 'componentDemo2', array('include_component_var' => 'Parameter'));
-	include_component('includes', 'componentDemo3', array('include_component_var' => 'Parameter'));
+  // Include components with multiple actions in one file (components.php):
+  include_component('includes', 'componentDemo2', array('include_component_var' => 'Parameter'));
+  include_component('includes', 'componentDemo3', array('include_component_var' => 'Parameter'));
 -->

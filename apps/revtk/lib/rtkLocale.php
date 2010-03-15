@@ -20,8 +20,8 @@
 
 class rtkLocale
 {
-	/**
-	 * Date formats for format_date() in DateHelper
-	 */
-	const	DATE_SHORT  = 'j M Y';
+  /**
+   * Date formats for format_date() in DateHelper
+   */
+  const  DATE_SHORT  = 'j M Y';
 }

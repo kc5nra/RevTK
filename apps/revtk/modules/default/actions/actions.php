@@ -23,37 +23,37 @@
 
 class defaultActions extends coreActions
 {
-	/**
-	 * Congratulations page for creating an application
-	 *
-	 */
-	public function executeIndex()
-	{
-	}
-	
-	/**
-	 * Error page for page not found (404) error
-	 *
-	 */
-	public function executeError404()
-	{
-	}
-	
-	/**
-	 * Warning page for restricted area - requires login
-	 *
-	 */
-	public function executeSecure()
-	{
-	}
+  /**
+   * Congratulations page for creating an application
+   *
+   */
+  public function executeIndex()
+  {
+  }
+  
+  /**
+   * Error page for page not found (404) error
+   *
+   */
+  public function executeError404()
+  {
+  }
+  
+  /**
+   * Warning page for restricted area - requires login
+   *
+   */
+  public function executeSecure()
+  {
+  }
 
-	/**
-	 * Redirects <website url>/admin to the backend app.
-	 * 
-	 * @see  Url routing @go_to_backend
-	 */	
-	public function executeGoToBackend()
-	{
-		$this->redirect(coreConfig::get('app_backend_url'));
-	}
+  /**
+   * Redirects <website url>/admin to the backend app.
+   * 
+   * @see  Url routing @go_to_backend
+   */  
+  public function executeGoToBackend()
+  {
+    $this->redirect(coreConfig::get('app_backend_url'));
+  }
 }

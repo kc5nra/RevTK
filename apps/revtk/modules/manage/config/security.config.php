@@ -8,9 +8,9 @@
 
 return array
 (
-	'all' => array
-	(
-		'is_secure'    => true,
-		'credentials'  => array('member')
-	)
+  'all' => array
+  (
+    'is_secure'    => true,
+    'credentials'  => array('member')
+  )
 );

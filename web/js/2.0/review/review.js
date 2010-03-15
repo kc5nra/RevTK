@@ -12,7 +12,7 @@
 
 var rkKanjiReview = 
 {
-	initialize:function(options)
+  initialize:function(options)
   {
     // set options
     this.options = options;

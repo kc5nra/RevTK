@@ -4,7 +4,7 @@
 
 <p> Currently output english dates. Always use this helper in view templates instead of using the
     php function directly, as it will help upgrading the code when internationalization is added
-	to the framework.
+  to the framework.
 
 <?php pre_start() ?>
 // Formats a date, the input date can be a string or a timestamp, uses php date() format

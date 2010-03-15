@@ -8,12 +8,12 @@
 
 return array
 (
-	'error404' => array
-	(
-		'title'	      	   => 'Oops! Page Not Found',
-	),
-	'secure' => array
-	(
-		'title'	      	   => 'Credentials Required',
-	)
+  'error404' => array
+  (
+    'title'             => 'Oops! Page Not Found',
+  ),
+  'secure' => array
+  (
+    'title'             => 'Credentials Required',
+  )
 );

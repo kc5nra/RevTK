@@ -8,11 +8,11 @@
 
 return array
 (
-	'fontpicker' => array
-	(
-		'title'	   => 'Font Picker',
-		'metas'    => array(
-			'robots' => 'none'
-	  )
-	)
+  'fontpicker' => array
+  (
+    'title'     => 'Font Picker',
+    'metas'    => array(
+      'robots' => 'none'
+    )
+  )
 );

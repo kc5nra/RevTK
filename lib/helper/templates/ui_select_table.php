@@ -1,12 +1,12 @@
 <div class="uiTable">
-	<table cellspacing="0" class="uiTabular">
-	<thead>
-		<tr>
+  <table cellspacing="0" class="uiTabular">
+  <thead>
+    <tr>
 <?php echo $table->getTableHead() ?>
-		</tr>
-	</thead>
-	<tbody>
+    </tr>
+  </thead>
+  <tbody>
 <?php echo $table->getTableBody() ?>
-	</tbody>
-	</table>
+  </tbody>
+  </table>
 </div>

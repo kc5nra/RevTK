@@ -51,7 +51,7 @@ function addJavascript($js, $position = '', $options = array())
 
 <p> To get a cookie, you inspect the request that was sent to the server, thus using the <?php echo link_to('coreWebRequest', 'doc/core?include_name=request') ?> object.
     On the other hand, to set a cookie, you modify the response that will be sent to the user, thus using the <b>coreWebResponse</b> object.
-	
+  
 <p> To manipulate cookies from within an action, use the following shorcuts:
 
 <?php pre_start() ?>
@@ -67,8 +67,8 @@ $this->getResponse()->setCookie('mycookie', $value, $expire, $path, $domain, $se
 
 <p> Hint: you can see cookies with the FireBug extension in two ways:
 <ul>
-	<li>Type <samp>document.cookie</samp> in the Console.
-	<li>In the <b>Net</b> tab, click the document link, under <b>Response Headers</b> look for the "Set-Cookie" property.
+  <li>Type <samp>document.cookie</samp> in the Console.
+  <li>In the <b>Net</b> tab, click the document link, under <b>Response Headers</b> look for the "Set-Cookie" property.
 </ul>
 
 <h2>Setting the HTML Head Tags</h2>

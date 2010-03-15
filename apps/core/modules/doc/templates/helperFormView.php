@@ -42,7 +42,7 @@ function submit_tag($value = 'Save changes', $options = array())
 <?php pre_end() ?>
 
 
-	
+  
 <h2>Repopulating Form Fields</h2>
 
 <p>The <b>input</b>, <b>checkbox</b>, <b>radio</b> and <b>textarea</b> are repopulated automatically

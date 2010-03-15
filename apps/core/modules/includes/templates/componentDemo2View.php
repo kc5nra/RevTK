@@ -7,7 +7,7 @@
 ?>
 <!-- component output begins here -->
 <div class="component">
-	<pre><?php print_r($component_variables) ?></pre>
-	<p>File included: <b><?php echo __FILE__ ?></b></p>
+  <pre><?php print_r($component_variables) ?></pre>
+  <p>File included: <b><?php echo __FILE__ ?></b></p>
 </div>
 <!-- component output ends here -->

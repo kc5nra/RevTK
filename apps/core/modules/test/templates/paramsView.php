@@ -8,8 +8,8 @@
 
 <?php
 /*
-	$_response->addHttpMeta('accept-language', 'en');
-	$_response->addHttpMeta('accept-language', 'fr', false);
-	DBG::out( $_response->getHttpHeader('accept-language') );
+  $_response->addHttpMeta('accept-language', 'en');
+  $_response->addHttpMeta('accept-language', 'fr', false);
+  DBG::out( $_response->getHttpHeader('accept-language') );
 */
 ?>

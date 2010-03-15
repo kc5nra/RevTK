@@ -23,46 +23,46 @@
 
 class rtkAjaxException extends coreException
 {
-	public function printStackTrace()
-	{
-		$exception = is_null($this->wrappedException) ? $this : $this->wrappedException;
-		$message   = $exception->getMessage();
+  public function printStackTrace()
+  {
+    $exception = is_null($this->wrappedException) ? $this : $this->wrappedException;
+    $message   = $exception->getMessage();
 
-		$response = coreContext::getInstance()->getResponse();
-		$response->setStatusCode(500);
+    $response = coreContext::getInstance()->getResponse();
+    $response->setStatusCode(500);
 
-		// clean current output buffer
-		while (@ob_end_clean());
-		
-		ob_start(coreConfig::get('sf_compressed') ? 'ob_gzhandler' : '');
-		
-		header('HTTP/1.1 500 Internal Server Error');
-		header('Content-Type: text/plain');
+    // clean current output buffer
+    while (@ob_end_clean());
+    
+    ob_start(coreConfig::get('sf_compressed') ? 'ob_gzhandler' : '');
+    
+    header('HTTP/1.1 500 Internal Server Error');
+    header('Content-Type: text/plain');
 
-		if ($message!=='') {
-			header('RTK-Error: ' . $message);
-		}
+    if ($message!=='') {
+      header('RTK-Error: ' . $message);
+    }
 
-		// during development, send back ajax request for debugging
-		if (coreConfig::get('sf_debug'))
-		{
-			try
-			{
-				$request = coreContext::getInstance()->getRequest();
-				$sJson = $request->getParameter('json');
-				$oJson = null;
-				if ($sJson !== null) {
-					$oJson = coreJson::decode($sJson);
-				}
-				
-				echo 'Json data = '."\n". ($oJson!==null ? print_r($oJson, true) : $sJson );
-			}
-			catch (Exception $e)
-			{
-				echo 'rtkAjaxException - no Json found, $_POST = '."\n".print_r($_POST, true);
-			}
-		}
+    // during development, send back ajax request for debugging
+    if (coreConfig::get('sf_debug'))
+    {
+      try
+      {
+        $request = coreContext::getInstance()->getRequest();
+        $sJson = $request->getParameter('json');
+        $oJson = null;
+        if ($sJson !== null) {
+          $oJson = coreJson::decode($sJson);
+        }
+        
+        echo 'Json data = '."\n". ($oJson!==null ? print_r($oJson, true) : $sJson );
+      }
+      catch (Exception $e)
+      {
+        echo 'rtkAjaxException - no Json found, $_POST = '."\n".print_r($_POST, true);
+      }
+    }
 
-		exit(1);
-	}
+    exit(1);
+  }
 }

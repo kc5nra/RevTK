@@ -26,80 +26,80 @@
 
 class EditStoryComponent extends coreComponent
 {
-	/**
-	 * Return EditStory component based on GET or POST request.
-	 * 
-	 * PARAMS
-	 *   framenum       Valid kanji id (frame number)
-	 *   kanjiData      Kanji data for kanji id
-	 *   reviewMode     True if called from the Review page
-	 *   
-	 * POST  requests to update the story for current user.
-	 * 
-	 *   character      Current kanji (utf8)
-	 *   chkPublic      Public story
-	 *   txtStory       Story
-	 * 
-	 * 
-	 * @return 
-	 * @param object $request
-	 */
-	public function execute($request)
-	{
-		if ($request->getMethod() !== coreRequest::POST)
-		{
-			// get user's story
-			$story = StoriesPeer::getStory($this->getUser()->getUserId(), $this->framenum);
-			if ($story)
-			{
-				$request->getParameterHolder()->add(array(
-					'txtStory'  => $story->text,
-					'chkPublic' => $story->public
-				));
-			}
-		}
-		else
-		{
-			$validator = new coreValidator($this->getActionName());
+  /**
+   * Return EditStory component based on GET or POST request.
+   * 
+   * PARAMS
+   *   framenum       Valid kanji id (frame number)
+   *   kanjiData      Kanji data for kanji id
+   *   reviewMode     True if called from the Review page
+   *   
+   * POST  requests to update the story for current user.
+   * 
+   *   character      Current kanji (utf8)
+   *   chkPublic      Public story
+   *   txtStory       Story
+   * 
+   * 
+   * @return 
+   * @param object $request
+   */
+  public function execute($request)
+  {
+    if ($request->getMethod() !== coreRequest::POST)
+    {
+      // get user's story
+      $story = StoriesPeer::getStory($this->getUser()->getUserId(), $this->framenum);
+      if ($story)
+      {
+        $request->getParameterHolder()->add(array(
+          'txtStory'  => $story->text,
+          'chkPublic' => $story->public
+        ));
+      }
+    }
+    else
+    {
+      $validator = new coreValidator($this->getActionName());
 
-			if ($validator->validate($request->getParameterHolder()->getAll()))
-			{
-				if ($request->hasParameter('doUpdate'))
-				{
-					$txtStory = trim($request->getParameter('txtStory', ''));
-					$txtStory = strip_tags($txtStory);
-					
-					// delete empty story
-					if (empty($txtStory))
-					{
-						StoriesPeer::deleteStory($this->getUser()->getUserId(), $this->framenum);
-					}
-					else
-					{
-						StoriesPeer::updateStory($this->getUser()->getUserId(), $this->framenum, array
-						(
-							'text'     => $txtStory,
-							'public'   => $request->hasParameter('chkPublic') ? 1 : 0
-						));
-					}
-					
-					$request->setParameter('txtStory', $txtStory);
-				}
-			}
-		}
+      if ($validator->validate($request->getParameterHolder()->getAll()))
+      {
+        if ($request->hasParameter('doUpdate'))
+        {
+          $txtStory = trim($request->getParameter('txtStory', ''));
+          $txtStory = strip_tags($txtStory);
+          
+          // delete empty story
+          if (empty($txtStory))
+          {
+            StoriesPeer::deleteStory($this->getUser()->getUserId(), $this->framenum);
+          }
+          else
+          {
+            StoriesPeer::updateStory($this->getUser()->getUserId(), $this->framenum, array
+            (
+              'text'     => $txtStory,
+              'public'   => $request->hasParameter('chkPublic') ? 1 : 0
+            ));
+          }
+          
+          $request->setParameter('txtStory', $txtStory);
+        }
+      }
+    }
 
-		// set state
-		$request->setParameter('framenum', $this->framenum);
+    // set state
+    $request->setParameter('framenum', $this->framenum);
 
-		if (!$request->hasParameter('reviewMode'))
-		{
-			$this->isRestudyKanji = ReviewsPeer::isRestudyKanji($this->getUser()->getUserId(), $this->framenum);
-			$this->isRelearnedKanji = LearnedKanjiPeer::hasKanji($this->getUser()->getUserId(), $this->framenum);
-		}
+    if (!$request->hasParameter('reviewMode'))
+    {
+      $this->isRestudyKanji = ReviewsPeer::isRestudyKanji($this->getUser()->getUserId(), $this->framenum);
+      $this->isRelearnedKanji = LearnedKanjiPeer::hasKanji($this->getUser()->getUserId(), $this->framenum);
+    }
 
-		$this->formatted_story = StoriesPeer::getFormattedStory($request->getParameter('txtStory', ''), $this->kanjiData->keyword, true);
+    $this->formatted_story = StoriesPeer::getFormattedStory($request->getParameter('txtStory', ''), $this->kanjiData->keyword, true);
 
-		return coreView::SUCCESS;
-	}
+    return coreView::SUCCESS;
+  }
 }
 

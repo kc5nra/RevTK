@@ -2,8 +2,8 @@
 
 <p> This exception will display a "500 Internal Server Error" page (in production environment).
 <ul>
-	<li>The default error page is at: <b>lib/core/exception/errors/error500.php</b>
-	<li>If present, the custom error page will be displayed: <b>web/errors/error500.php</b>
+  <li>The default error page is at: <b>lib/core/exception/errors/error500.php</b>
+  <li>If present, the custom error page will be displayed: <b>web/errors/error500.php</b>
 </ul>
 
 <?php pre_start() ?>
@@ -23,7 +23,7 @@ throw new coreError404Exception();
 
 <p> You can customize the error 404 action and template in their default location: <samp>apps/<var>frontend</var>/modules/default/</samp>.
     Alternatively, you can set the <b>error_404_module</b> and <b>error_404_action</b> constants in the <?php echo link_to('settings.php', 'doc/misc?page_id=settings') ?>
-	file to use an existing action.
+  file to use an existing action.
 
 <?php pre_start() ?>
 // In settings.php

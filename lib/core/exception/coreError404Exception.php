@@ -11,24 +11,24 @@
 
 class coreError404Exception extends coreException
 {
-	public function printStackTrace()
-	{
-		$exception = is_null($this->wrappedException) ? $this : $this->wrappedException;
+  public function printStackTrace()
+  {
+    $exception = is_null($this->wrappedException) ? $this : $this->wrappedException;
 
-		if (coreConfig::get('sf_debug'))
-		{
-			$response = coreContext::getInstance()->getResponse();
-			$response->setStatusCode(404);
+    if (coreConfig::get('sf_debug'))
+    {
+      $response = coreContext::getInstance()->getResponse();
+      $response->setStatusCode(404);
 
-			return parent::printStackTrace();
-		}
-		else
-		{
-		// debug message
-		//echo $exception->getMessage();
-			coreContext::getInstance()->getController()->forward(coreConfig::get('error_404_module'), coreConfig::get('error_404_action'));
-		}
-	}
+      return parent::printStackTrace();
+    }
+    else
+    {
+    // debug message
+    //echo $exception->getMessage();
+      coreContext::getInstance()->getController()->forward(coreConfig::get('error_404_module'), coreConfig::get('error_404_action'));
+    }
+  }
 }
 
 /**

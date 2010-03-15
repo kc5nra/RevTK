@@ -8,11 +8,11 @@
 <p> The <samp>ui_tabs()</samp> helper, specifying the "uiTabs" class for default styles:
 
 <?php echo ui_tabs(array(
-			array( 'Dummy' ),
-			array( 'Clicky', 'index/home', array('onclick' => 'alert("clicked!");return false;') ),
-			array( 'Homepage', '@homepage', array('class' => 'monkeys', 'id' => 'Chimp') )
-		), 0, array('class' => 'uiTabs'));
-	?>
+      array( 'Dummy' ),
+      array( 'Clicky', 'index/home', array('onclick' => 'alert("clicked!");return false;') ),
+      array( 'Homepage', '@homepage', array('class' => 'monkeys', 'id' => 'Chimp') )
+    ), 0, array('class' => 'uiTabs'));
+  ?>
 
 <h2>uiTabbedView</h2>
 
@@ -23,20 +23,20 @@
     javascript initializations only when the tab is activated.
 
 <?php echo ui_tabs(array(
-			array( 'Simple', '#uiTabbedView-simple'),
-			array( 'Alert',  '#uiTabbedView-alert', array('class' => 'custom_class') ),
-			array( 'Ajax',   '#uiTabbedView-ajax', array('id' => 'custom_id') )
-		), 0, array('id' => 'demo', 'class' => 'uiTabs')) ?>
+      array( 'Simple', '#uiTabbedView-simple'),
+      array( 'Alert',  '#uiTabbedView-alert', array('class' => 'custom_class') ),
+      array( 'Ajax',   '#uiTabbedView-ajax', array('id' => 'custom_id') )
+    ), 0, array('id' => 'demo', 'class' => 'uiTabs')) ?>
 <div class="uiTabbedBody">
-	<div id="uiTabbedView-simple">
-		View one.
-	</div>
-	<div id="uiTabbedView-alert" style="display:none">
-		View two.
-	</div>
-	<div id="uiTabbedView-ajax" style="display:none">
-		View three.
-	</div>
+  <div id="uiTabbedView-simple">
+    View one.
+  </div>
+  <div id="uiTabbedView-alert" style="display:none">
+    View two.
+  </div>
+  <div id="uiTabbedView-ajax" style="display:none">
+    View three.
+  </div>
 </div>
 
 <h2>Vertical uiTabbedView</h2>
@@ -56,23 +56,23 @@
 </style>
 
 <div id="vtabs">
-	<?php echo ui_tabs(array(
-				array('Lorem',   '#uiTabbedView-vtabs1'),
-				array('Ipsum',   '#uiTabbedView-vtabs2'),
-				array('Opossum', '#uiTabbedView-vtabs3')
-			), 0, array('class' => 'uiTabs')) ?>
-	<div class="uiTabbedBody">
-		<div id="uiTabbedView-vtabs1">
-			View one.
-		</div>
-		<div id="uiTabbedView-vtabs2" style="display:none">
-			View two.
-		</div>
-		<div id="uiTabbedView-vtabs3" style="display:none">
-			View three.
-		</div>
-	</div>
-	<div style="clear:both;"></div>
+  <?php echo ui_tabs(array(
+        array('Lorem',   '#uiTabbedView-vtabs1'),
+        array('Ipsum',   '#uiTabbedView-vtabs2'),
+        array('Opossum', '#uiTabbedView-vtabs3')
+      ), 0, array('class' => 'uiTabs')) ?>
+  <div class="uiTabbedBody">
+    <div id="uiTabbedView-vtabs1">
+      View one.
+    </div>
+    <div id="uiTabbedView-vtabs2" style="display:none">
+      View two.
+    </div>
+    <div id="uiTabbedView-vtabs3" style="display:none">
+      View three.
+    </div>
+  </div>
+  <div style="clear:both;"></div>
 </div>
 
 
@@ -82,75 +82,75 @@
   var Y = Core.YUI,
       Ui = Core.Ui,
       tabs_demo;
-	
-	Core.ready(function() {
-	  tabs_demo.initialize();
-	});
+  
+  Core.ready(function() {
+    tabs_demo.initialize();
+  });
 
-	tabs_demo = {
+  tabs_demo = {
 
-		initialize:function()
-		{
+    initialize:function()
+    {
       var tabbedView = new Core.Widgets.TabbedView(Ui.get('demo'), {
-				'onTabClick': Y.bind(this.onTabFocus, this, 'dingo')
-			});
-			
-			var tabbedView2 = new Core.Widgets.TabbedView(Ui.get('vtabs'), {
-				'onTabClick': Y.bind(this.onTabClick, this),
-				'onTabFocus': Y.bind(this.onTabFocus, this),
-				'onTabBlur':  Y.bind(this.onTabBlur, this)
-			});
-		},
-		
-		onTabClick:function(sViewId)
-		{
-			App.log('onTabClick %s', sViewId);
-		},
-	
-		onTabBlur:function(sViewId)
-		{
-			App.log('onTabBlur %s', sViewId);
-		},
-	
-		onTabFocus:function(sViewId)
-		{
-			App.log('onTabFocus %s', sViewId);
-			
-			switch(sViewId)
-			{
-				case 'simple':
-					break;
-				case 'alert':
-					alert('Tab activated!');
-					break;
-				case 'ajax':
-					if (!this.ajaxPanel)
-					{
-						// from uiAjaxPanel Core doc page
-						this.ajaxPanel = new Core.Ui.AjaxPanel('uiTabbedView-ajax',
-						{
-							bUseShading: true,
-							post_url: "<?php echo url_for('ui/uiajaxpaneldemo1') ?>"
-						});
-						this.ajaxPanel.get();
-					}
-					break;
-				
-				case 'vtabs2':
-					if (!this.ajaxPanel)
-					{
-						// from uiAjaxPanel Core doc page
-						this.ajaxPanel = new Core.Ui.AjaxPanel('uiTabbedView-vtabs2',
-						{
-							bUseShading: true,
-							post_url: "<?php echo url_for('ui/uiajaxpaneldemo1') ?>"
-						});
-						this.ajaxPanel.get();
-					}
-					break;
-			}
-		}
-	};
+        'onTabClick': Y.bind(this.onTabFocus, this, 'dingo')
+      });
+      
+      var tabbedView2 = new Core.Widgets.TabbedView(Ui.get('vtabs'), {
+        'onTabClick': Y.bind(this.onTabClick, this),
+        'onTabFocus': Y.bind(this.onTabFocus, this),
+        'onTabBlur':  Y.bind(this.onTabBlur, this)
+      });
+    },
+    
+    onTabClick:function(sViewId)
+    {
+      App.log('onTabClick %s', sViewId);
+    },
+  
+    onTabBlur:function(sViewId)
+    {
+      App.log('onTabBlur %s', sViewId);
+    },
+  
+    onTabFocus:function(sViewId)
+    {
+      App.log('onTabFocus %s', sViewId);
+      
+      switch(sViewId)
+      {
+        case 'simple':
+          break;
+        case 'alert':
+          alert('Tab activated!');
+          break;
+        case 'ajax':
+          if (!this.ajaxPanel)
+          {
+            // from uiAjaxPanel Core doc page
+            this.ajaxPanel = new Core.Ui.AjaxPanel('uiTabbedView-ajax',
+            {
+              bUseShading: true,
+              post_url: "<?php echo url_for('ui/uiajaxpaneldemo1') ?>"
+            });
+            this.ajaxPanel.get();
+          }
+          break;
+        
+        case 'vtabs2':
+          if (!this.ajaxPanel)
+          {
+            // from uiAjaxPanel Core doc page
+            this.ajaxPanel = new Core.Ui.AjaxPanel('uiTabbedView-vtabs2',
+            {
+              bUseShading: true,
+              post_url: "<?php echo url_for('ui/uiajaxpaneldemo1') ?>"
+            });
+            this.ajaxPanel.get();
+          }
+          break;
+      }
+    }
+  };
 
 })();
 </script>

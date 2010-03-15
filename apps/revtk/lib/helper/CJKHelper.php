@@ -23,6 +23,6 @@
  */
 function cjk_lang_ja($html)
 {
-	$html = '<span lang="ja" xml:lang="ja">'.$html.'</span>';
-	return $html;
+  $html = '<span lang="ja" xml:lang="ja">'.$html.'</span>';
+  return $html;
 }

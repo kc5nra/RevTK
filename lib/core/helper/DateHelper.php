@@ -19,23 +19,23 @@
  */
 function format_date($date, $format = 'd-m-Y', $culture = null, $charset = null)
 {
-	if (is_null($date))
-	{
-		return '';
-	}
-	
-	if (is_string($date))
-	{
-		$date = strtotime($date);
-		if ($date===false || $date===-1)
-		{
-			return 'x';
-		}
-	}
+  if (is_null($date))
+  {
+    return '';
+  }
+  
+  if (is_string($date))
+  {
+    $date = strtotime($date);
+    if ($date===false || $date===-1)
+    {
+      return 'x';
+    }
+  }
 
-	$s_date = date($format, $date);
-	
-	return is_string($s_date) ? $s_date : '';
+  $s_date = date($format, $date);
+  
+  return is_string($s_date) ? $s_date : '';
 }
  
 

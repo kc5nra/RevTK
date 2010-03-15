@@ -5,8 +5,8 @@
 </p>
 
 <?php echo form_tag('corejs/uiajaxpaneldemo2') ?>
-	<input type="hidden" name="dummy" value="foo" />
-	<?php echo submit_tag('Submit') ?>
+  <input type="hidden" name="dummy" value="foo" />
+  <?php echo submit_tag('Submit') ?>
 </form>
 
 <p><strong><?php echo $_request->getMethodName() ?></strong> request:

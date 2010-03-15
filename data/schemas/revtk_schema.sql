@@ -129,15 +129,15 @@ CREATE TABLE `learnedkanji` (
 -- ----------------------------------------------------------------------------
 -- reviews
 -- ----------------------------------------------------------------------------
---  userid		    : from users table
---  framenum	    : Heisig frame number
---  			          could later store a 3-byte UTF8 character (kanji) ?
---  lastreview	  : timestamp of last review date for this kanji
---  expiredate	  : scheduled date for review of this kanji
---  totalreviews	: total number of reviews for the kanji
---  leitnerbox 	  : Leitner (flashcard system) box slot number 1-8
---  failurecount	: total number of times answered 'no'
---  successcount	: total number of times answered 'yes'
+--  userid        : from users table
+--  framenum      : Heisig frame number
+--                  could later store a 3-byte UTF8 character (kanji) ?
+--  lastreview    : timestamp of last review date for this kanji
+--  expiredate    : scheduled date for review of this kanji
+--  totalreviews  : total number of reviews for the kanji
+--  leitnerbox     : Leitner (flashcard system) box slot number 1-8
+--  failurecount  : total number of times answered 'no'
+--  successcount  : total number of times answered 'yes'
 --  leitnerbox = 1 && totalreviews = 0 : untested cards
 --  leitnerbox = 1 && totalreviews > 0 : failed cards
 -- ----------------------------------------------------------------------------
@@ -161,7 +161,7 @@ CREATE TABLE `reviews` (
 -- ----------------------------------------------------------------------------
 -- sitenews
 -- ----------------------------------------------------------------------------
--- Simplistic news posts displayed on the site's home page.	Should really
+-- Simplistic news posts displayed on the site's home page.  Should really
 -- replace this with a lightweight blog so people can post comments...
 -- Note: news posts can be edited in the administration area (nothing fancy),
 -- this admin area (the "backend" app) is not included.
@@ -182,8 +182,8 @@ CREATE TABLE `sitenews` (
 -- ----------------------------------------------------------------------------
 -- stories
 -- ----------------------------------------------------------------------------
---	userid		: from users table
---	framenum	: Heisig frame number
+--  userid    : from users table
+--  framenum  : Heisig frame number
 -- ----------------------------------------------------------------------------
 
 DROP TABLE IF EXISTS stories;

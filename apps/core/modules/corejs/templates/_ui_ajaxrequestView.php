@@ -16,7 +16,7 @@
   <form id="form1">
     <input type="hidden" value="hidden_value" name="hidden1" />
     <input type="text" name="txtName[]" value="Hocus" />
-		<input type="text" name="txtName[]" value="Pocus" />
+    <input type="text" name="txtName[]" value="Pocus" />
   </form>
 
 <script type="text/javascript">
@@ -24,7 +24,7 @@
 
   var Y = Core.YUI,
       AJAXTEST = "<?php echo $_context->getController()->genUrl('corejs/ajaxtest') ?>",
-			JSONTEST = "<?php echo $_context->getController()->genUrl('corejs/jsontest') ?>";
+      JSONTEST = "<?php echo $_context->getController()->genUrl('corejs/jsontest') ?>";
 
   var demo = {
 
@@ -74,28 +74,28 @@
     // test the handlers, options.arguments, options.context, JSON response
     test7:function() {
       var connection = new Core.Ui.AjaxRequest(JSONTEST,
-			{
+      {
         method: 'post',
         success: demo.test7Success,
         failure: function(o){
-						Core.log('Failure handler! Response: %o Arguments: %o', o, arguments);
-				},
-				scope: demo,
+            Core.log('Failure handler! Response: %o Arguments: %o', o, arguments);
+        },
+        scope: demo,
         parameters: { name: "John", score: 500 },
         argument: [1, 2, 3]
       });
-			console.log('AjaxRequest transaction id = %o', connection.id);
-			
+      console.log('AjaxRequest transaction id = %o', connection.id);
+      
     },
 
     test7Success:function(o)
-		{
+    {
       // check that we are in the correct scope
       var scope = typeof(this.test7)==='function' ? 'Correct' : 'Wrong';
       
       Core.log('Success handler!');
-			Core.log('responseJSON = %o', o.responseJSON || 'none! (check the content-type)');
-			Core.log('Response: %o Arguments: %o Scope: %s', o, o.argument, scope);
+      Core.log('responseJSON = %o', o.responseJSON || 'none! (check the content-type)');
+      Core.log('Response: %o Arguments: %o Scope: %s', o, o.argument, scope);
     }
     
   };

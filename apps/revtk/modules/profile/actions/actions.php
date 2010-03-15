@@ -18,37 +18,37 @@
 
 class profileActions extends coreActions
 {
-	public function executeIndex($request)
-	{
-		$username = $request->getParameter('username');
+  public function executeIndex($request)
+  {
+    $username = $request->getParameter('username');
 
-		if (!$username)
-		{
-			if ($this->getUser()->isAuthenticated())
-			{
-				$username = $this->getUser()->getUserName();
-			}
-			else
-			{
-				// if unauthenticated user checks his (bookmarked?) profile, go to login and back
-				$url = $this->getController()->genUrl('profile/index', true);
-				$this->getUser()->redirectToLogin(array('referer' => $url));
-			}
-		}
+    if (!$username)
+    {
+      if ($this->getUser()->isAuthenticated())
+      {
+        $username = $this->getUser()->getUserName();
+      }
+      else
+      {
+        // if unauthenticated user checks his (bookmarked?) profile, go to login and back
+        $url = $this->getController()->genUrl('profile/index', true);
+        $this->getUser()->redirectToLogin(array('referer' => $url));
+      }
+    }
 
-		if ($user = UsersPeer::getUser($username))
-		{
-			$this->user = $user;
-			$this->self_account = $user['username'] == $this->getUser()->getUserName();
+    if ($user = UsersPeer::getUser($username))
+    {
+      $this->user = $user;
+      $this->self_account = $user['username'] == $this->getUser()->getUserName();
 
       $this->kanji_count = ReviewsPeer::getReviewedFlashcardCount($user['userid']);
       $this->total_reviews = ReviewsPeer::getTotalReviews($user['userid']);
       
       $this->forum_uid = (coreConfig::get('app_path_to_punbb') !== null) ? PunBBUsersPeer::getInstance()->getForumUID($username) : false;
-			
-			return coreView::SUCCESS;
-		}
+      
+      return coreView::SUCCESS;
+    }
 
-		return coreView::ERROR;
-	}
+    return coreView::ERROR;
+  }
 }

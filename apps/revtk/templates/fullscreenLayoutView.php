@@ -6,15 +6,15 @@
 <?php include_title() ?>
 <?php include_stylesheets() ?>
 <?php include_javascripts() ?>
-	<link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />
 <?php if(has_slot('inline_styles')): ?>
   <style type="text/css">
 <?php include_slot('inline_styles') ?>
   </style>
 <?php endif ?>
-	<style type="text/css">
+  <style type="text/css">
 html, body { width:100%; height:100%; overflow:hidden; }
-	</style>
+  </style>
 </head>
 <body id="uiFcFullscreen">
 

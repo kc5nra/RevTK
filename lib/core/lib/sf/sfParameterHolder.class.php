@@ -88,18 +88,18 @@ class sfParameterHolder implements Serializable
    */
   public function has($name)
   {
-		if (array_key_exists($name, $this->parameters))
-		{
-		  return true;
-		}
-		/* Symfony 1.2 accepts 'token names' (eg. ->has('lions[2]') )
-		else
-		{
-		  return sfToolkit::hasArrayValueForPath($this->parameters, $name);
-		}
-		*/
-		
-		return false;
+    if (array_key_exists($name, $this->parameters))
+    {
+      return true;
+    }
+    /* Symfony 1.2 accepts 'token names' (eg. ->has('lions[2]') )
+    else
+    {
+      return sfToolkit::hasArrayValueForPath($this->parameters, $name);
+    }
+    */
+    
+    return false;
   }
 
   /**

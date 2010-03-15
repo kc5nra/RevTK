@@ -8,19 +8,19 @@
  
 class defaultActions extends coreActions
 {
-	public function executeIndex()
-	{
-		//$this->getContext()->getResponse()->setTitle('kramerzzz');
+  public function executeIndex()
+  {
+    //$this->getContext()->getResponse()->setTitle('kramerzzz');
 
-		return coreView::SUCCESS;
-	}
-	
-	/**
-	 * Default 404 Page, as configured in settings.php
-	 * 
-	 * @return 
-	 */
-	public function executeError404()
-	{
-	}
+    return coreView::SUCCESS;
+  }
+  
+  /**
+   * Default 404 Page, as configured in settings.php
+   * 
+   * @return 
+   */
+  public function executeError404()
+  {
+  }
 }

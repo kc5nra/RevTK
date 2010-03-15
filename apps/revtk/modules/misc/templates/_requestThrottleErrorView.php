@@ -8,7 +8,7 @@
 <?php #DBG::user(); echo 'NOW='.time(); ?>
 <html>
 <head>
-	<title>Oops, please retry in a short moment</title>
+  <title>Oops, please retry in a short moment</title>
 </head>
 <body>
 <pre>
@@ -17,14 +17,14 @@
  | thanks, your mate Kirby.                                                                                      |
  \-------v-------------------------------------------------------------------------------------------------------/
 
-<?php	if (time() & 1): ?>
+<?php  if (time() & 1): ?>
       <(^_^<)
 <?php else: ?>
        (>^_^)>
 <?php endif; ?>
 </pre>
-		<ul>
-			<li><a href="javascript:history.go(-1)">Back to previous page</a></li>
-		</ul>
+    <ul>
+      <li><a href="javascript:history.go(-1)">Back to previous page</a></li>
+    </ul>
 </body>
 </html>

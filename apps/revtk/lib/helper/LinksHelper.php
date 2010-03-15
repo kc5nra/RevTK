@@ -23,8 +23,8 @@
  */
 function link_to_member($username, $options = array())
 {
-	$internal_uri = '@profile?username='.$username;
-	return link_to($username, $internal_uri, $options);
+  $internal_uri = '@profile?username='.$username;
+  return link_to($username, $internal_uri, $options);
 }
 
 /**
@@ -35,9 +35,9 @@ function link_to_member($username, $options = array())
  */
 function link_to_keyword($sKeyword, $sKanjiId = '', $options = array())
 {
-	if ($sKanjiId === '') {
-		$sKanjiId = $sKeyword;
-	}
-	
-	return link_to($sKeyword, '@study_edit?id='.$sKanjiId, $options);
+  if ($sKanjiId === '') {
+    $sKanjiId = $sKeyword;
+  }
+  
+  return link_to($sKeyword, '@study_edit?id='.$sKanjiId, $options);
 }

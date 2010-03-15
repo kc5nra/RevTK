@@ -8,14 +8,14 @@
 
 return array
 (
-	'fontpicker' => array
-	(
-		'is_secure'    => false
-	),
-	
-	'all' => array
-	(
-		'is_secure'    => true,
-		'credentials'  => array('member')
-	)
+  'fontpicker' => array
+  (
+    'is_secure'    => false
+  ),
+  
+  'all' => array
+  (
+    'is_secure'    => true,
+    'credentials'  => array('member')
+  )
 );

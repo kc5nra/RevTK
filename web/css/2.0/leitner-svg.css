@@ -13,8 +13,8 @@
  * appear on top of it, instead of after it.
  * 
  * <div class="svg-outer-div">
- *	<div class="svg-inner-div"> ...Raphael/SVG holder instanced in this div ... </div>
- *	... here elements appear on top of the SVG ...
+ *  <div class="svg-inner-div"> ...Raphael/SVG holder instanced in this div ... </div>
+ *  ... here elements appear on top of the SVG ...
  * </div>
  * 
  */

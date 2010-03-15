@@ -8,8 +8,8 @@
 
 return array
 (
-	'all' => array
-	(
-		'is_secure'    => false
-	)
+  'all' => array
+  (
+    'is_secure'    => false
+  )
 );

@@ -8,20 +8,20 @@
 
 return array
 (
-	// index Action
-	'index' => array
-	(
-		'title' 		   => 'Home | Core framework',
-		'metas'            => array(
-			'description'  => 'Description set through view config file for action "index"'
-		)
-	),
-	
-	'archives' => array
-	(
-		'title'	      	   => 'Archives',
-		'metas'            => array(
-			'robots'       => 'nofollow'
-		)
-	)
+  // index Action
+  'index' => array
+  (
+    'title'        => 'Home | Core framework',
+    'metas'            => array(
+      'description'  => 'Description set through view config file for action "index"'
+    )
+  ),
+  
+  'archives' => array
+  (
+    'title'             => 'Archives',
+    'metas'            => array(
+      'robots'       => 'nofollow'
+    )
+  )
 );

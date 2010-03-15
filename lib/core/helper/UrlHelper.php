@@ -22,14 +22,14 @@
  */
 function url_for($internal_uri, $absolute = false)
 {
-	static $controller;
-	
-	if (!isset($controller))
-	{
-		$controller = coreContext::getInstance()->getController();
-	}
-	
-	return $controller->genUrl($internal_uri, $absolute);
+  static $controller;
+  
+  if (!isset($controller))
+  {
+    $controller = coreContext::getInstance()->getController();
+  }
+  
+  return $controller->genUrl($internal_uri, $absolute);
 }
 
 /**
@@ -73,12 +73,12 @@ function link_to($name = '', $internal_uri = '', $options = array())
 {
   $html_options = _parse_attributes($options);
 
-	$absolute = false;
-	if (isset($html_options['absolute']))
-	{
-		$absolute = (boolean) $html_options['absolute'];
-		unset($html_options['absolute']);
-	}
+  $absolute = false;
+  if (isset($html_options['absolute']))
+  {
+    $absolute = (boolean) $html_options['absolute'];
+    unset($html_options['absolute']);
+  }
 
   // Fabrice: FIXME (genUrl() doesnt like '#anchor' ?) => ignore empty string
   $html_options['href'] = ($internal_uri !== '') ? url_for($internal_uri, $absolute) : '';
@@ -90,28 +90,28 @@ function link_to($name = '', $internal_uri = '', $options = array())
     unset($html_options['anchor']);
   }
 
-	if (isset($html_options['query_string']))
-	{
-		$html_options['href'] .= '?'.$html_options['query_string'];
-		unset($html_options['query_string']);
-	}
+  if (isset($html_options['query_string']))
+  {
+    $html_options['href'] .= '?'.$html_options['query_string'];
+    unset($html_options['query_string']);
+  }
 
-	if (is_object($name))
-	{
-		if (method_exists($name, '__toString'))
-		{
-	  	$name = $name->__toString();
-		}
-		else
-		{
-	  	DBG::error(sprintf('Object of class "%s" cannot be converted to string (Please create a __toString() method).', get_class($name)));
-		}
-	}
+  if (is_object($name))
+  {
+    if (method_exists($name, '__toString'))
+    {
+      $name = $name->__toString();
+    }
+    else
+    {
+      DBG::error(sprintf('Object of class "%s" cannot be converted to string (Please create a __toString() method).', get_class($name)));
+    }
+  }
 
-	if (!strlen($name))
-	{
-		$name = $html_options['href'];
-	}
-	
-	return content_tag('a', $name, $html_options);
+  if (!strlen($name))
+  {
+    $name = $html_options['href'];
+  }
+  
+  return content_tag('a', $name, $html_options);
 }

@@ -8,8 +8,8 @@
 
 return array
 (
-	'plaintext'     => array
-	(
-		'layout'    => false
-	)
+  'plaintext'     => array
+  (
+    'layout'    => false
+  )
 );

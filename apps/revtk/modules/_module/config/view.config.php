@@ -9,8 +9,8 @@
 
 return array
 (
-	'index' => array
-	(
-		'title'	      	   => 'Index'
-	)
+  'index' => array
+  (
+    'title'             => 'Index'
+  )
 );

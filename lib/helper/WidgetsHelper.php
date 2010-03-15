@@ -31,26 +31,26 @@
  */
 function ui_filter_std($label, $links, $options = array())
 {
-	// always set the widget class name in the main div tag
-	$options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiFilterStd'));
+  // always set the widget class name in the main div tag
+  $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiFilterStd'));
 
-	if (isset($options['active']))
-	{
-		$active = (int)$options['active'];
-		if ($active < count($links))
-		{
-			// add the active class
-			$linkOptions = isset($links[$active][2]) ? $links[$active][2] : array();
-			$linkOptions['class'] = (isset($linkOptions['class']) ? $linkOptions['class'] : '') . ' active';
-			$links[$active][2] = $linkOptions;
-		}
-		unset($options['active']);
-	}
+  if (isset($options['active']))
+  {
+    $active = (int)$options['active'];
+    if ($active < count($links))
+    {
+      // add the active class
+      $linkOptions = isset($links[$active][2]) ? $links[$active][2] : array();
+      $linkOptions['class'] = (isset($linkOptions['class']) ? $linkOptions['class'] : '') . ' active';
+      $links[$active][2] = $linkOptions;
+    }
+    unset($options['active']);
+  }
 
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add(array('links' => $links, 'label' => $label, 'options' => $options));
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_filter_std.php');
-	return $view->render();
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add(array('links' => $links, 'label' => $label, 'options' => $options));
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_filter_std.php');
+  return $view->render();
 }
 
 
@@ -79,19 +79,19 @@ function ui_filter_std($label, $links, $options = array())
  */
 function ui_select_pager($pager = false, $slot = 'widgets.ui.pager')
 {
-	if ($pager !== false)
-	{
-		slot($slot);
-	
-		$view = new coreView(coreContext::getInstance());
-		$view->getParameterHolder()->add(array('pager' => $pager));
-		$view->setTemplate(dirname(__FILE__).'/templates/ui_select_pager.php');
-		echo $view->render();
-	
-		end_slot();
-	}
+  if ($pager !== false)
+  {
+    slot($slot);
+  
+    $view = new coreView(coreContext::getInstance());
+    $view->getParameterHolder()->add(array('pager' => $pager));
+    $view->setTemplate(dirname(__FILE__).'/templates/ui_select_pager.php');
+    echo $view->render();
+  
+    end_slot();
+  }
 
-	return get_slot($slot);
+  return get_slot($slot);
 }
 
 
@@ -107,24 +107,24 @@ function ui_select_pager($pager = false, $slot = 'widgets.ui.pager')
  */
 function ui_select_table(uiSelectTable $table, uiSelectPager $pager = null)
 {
-	ob_start();
+  ob_start();
 
-	if (!is_null($pager))
-	{
-		echo ui_select_pager($pager);
-	}
+  if (!is_null($pager))
+  {
+    echo ui_select_pager($pager);
+  }
 
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add(array('table' => $table));
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_select_table.php');
-	echo $view->render();
-	
-	if (!is_null($pager))
-	{
-		echo ui_select_pager();
-	}
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add(array('table' => $table));
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_select_table.php');
+  echo $view->render();
+  
+  if (!is_null($pager))
+  {
+    echo ui_select_pager();
+  }
 
-	return ob_get_clean();
+  return ob_get_clean();
 }
 
 
@@ -160,40 +160,40 @@ function ui_select_table(uiSelectTable $table, uiSelectPager $pager = null)
  */
 function ui_data_filter($caption, $links, $active_link = '')
 {
-	// set first link active by default
-	if ($active_link === '')
-	{
-		$keys = array_keys($links);
-		$active_link = $keys[0];
-	}
+  // set first link active by default
+  if ($active_link === '')
+  {
+    $keys = array_keys($links);
+    $active_link = $keys[0];
+  }
 
-	// set defaults and active link class
-	foreach ($links as $key => &$link)
-	{
-		if (!isset($link['internal_uri'])) {
-			$link['internal_uri'] = '#';
-		}
-		if (!isset($link['options'])) {
-			$link['options'] = array();
-		}
+  // set defaults and active link class
+  foreach ($links as $key => &$link)
+  {
+    if (!isset($link['internal_uri'])) {
+      $link['internal_uri'] = '#';
+    }
+    if (!isset($link['options'])) {
+      $link['options'] = array();
+    }
 
-		// set the active class on the active link
-		$link['active'] = $key===$active_link;
-		
-		/*
-		if ($key===$active_link)
-		{
-			$options = $link['options'];
-			$options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), 'active');
-			$link['options'] = $options;
-		}
-		*/
-	}
+    // set the active class on the active link
+    $link['active'] = $key===$active_link;
+    
+    /*
+    if ($key===$active_link)
+    {
+      $options = $link['options'];
+      $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), 'active');
+      $link['options'] = $options;
+    }
+    */
+  }
 
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add(array('caption' => $caption, 'links' => $links, 'active_link' => $active_link));
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_data_filter.php');
-	return $view->render();
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add(array('caption' => $caption, 'links' => $links, 'active_link' => $active_link));
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_data_filter.php');
+  return $view->render();
 }
 
 
@@ -243,28 +243,28 @@ function ui_data_filter($caption, $links, $active_link = '')
  */
 function ui_tabs($tabs, $active = 0, $options = array())
 {
-	ob_start();
+  ob_start();
 
-	// add the "ui-tabs" class name
-	$options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('ui-tabs'));
+  // add the "ui-tabs" class name
+  $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('ui-tabs'));
   echo tag('div', $options, true) . "\n<ul>\n";
 
-	$tab_index = 0;
-	foreach ($tabs as $tab)
-	{
-		$name = '<span>'.$tab[0].'</span>';
-		$internal_uri = isset($tab[1]) ? $tab[1] : '#';
-		$options = isset($tab[2]) ? $tab[2] : array();
+  $tab_index = 0;
+  foreach ($tabs as $tab)
+  {
+    $name = '<span>'.$tab[0].'</span>';
+    $internal_uri = isset($tab[1]) ? $tab[1] : '#';
+    $options = isset($tab[2]) ? $tab[2] : array();
 
-		$class_active = (is_int($active) && $active===$tab_index) ? ' class="active"' : '';
-		echo '<li'.$class_active.'>'.link_to($name, $internal_uri, $options).'</li>'."\n";
-		
-		$tab_index++;
-	}
-	
-	echo "</ul>\n<div class=\"clear\"></div>\n</div>\n";
-	
-	return ob_get_clean();
+    $class_active = (is_int($active) && $active===$tab_index) ? ' class="active"' : '';
+    echo '<li'.$class_active.'>'.link_to($name, $internal_uri, $options).'</li>'."\n";
+    
+    $tab_index++;
+  }
+  
+  echo "</ul>\n<div class=\"clear\"></div>\n</div>\n";
+  
+  return ob_get_clean();
 }
 
 
@@ -278,7 +278,7 @@ function ui_tabs($tabs, $active = 0, $options = array())
  */
 function ui_display($bDisplay)
 {
-	echo $bDisplay ? 'display:block;' : 'display:none;';
+  echo $bDisplay ? 'display:block;' : 'display:none;';
 }
 
 /**
@@ -288,9 +288,9 @@ function ui_display($bDisplay)
  */
 function ui_box_rounded($box_class = 'uiBoxRDefault')
 {
-	coreConfig::set('helpers.ui.box', $box_class);
-	ob_start();
-	ob_implicit_flush(0);
+  coreConfig::set('helpers.ui.box', $box_class);
+  ob_start();
+  ob_implicit_flush(0);
 }
 
 /**
@@ -301,13 +301,13 @@ function ui_box_rounded($box_class = 'uiBoxRDefault')
  */
 function end_ui_box()
 {
-	$content = ob_get_clean();
-	$classname = coreConfig::get('helpers.ui.box', '');
+  $content = ob_get_clean();
+  $classname = coreConfig::get('helpers.ui.box', '');
 
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add(array('contents' => $content, 'class' => $classname));
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_box_rounded.php');
-	return $view->render();
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add(array('contents' => $content, 'class' => $classname));
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_box_rounded.php');
+  return $view->render();
 }
 
 
@@ -345,33 +345,33 @@ function end_ui_box()
  */
 function ui_ibtn($name, $internal_uri = '', $options = array())
 {
-	$button_type = 'uiIBtnDefault';
-	
-	if (isset($options['type']))
-	{
-		$button_type = $options['type'];
-		unset($options['type']);
-	}
+  $button_type = 'uiIBtnDefault';
+  
+  if (isset($options['type']))
+  {
+    $button_type = $options['type'];
+    unset($options['type']);
+  }
 
-	$options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiIBtn', $button_type));
+  $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiIBtn', $button_type));
 
   if (isset($options['icon']))
   {
-  	$name = '<em class="icon icon-'.$options['icon'].'">'.$name.'</em>';
+    $name = '<em class="icon icon-'.$options['icon'].'">'.$name.'</em>';
     unset($options['icon']);
   }
 
-  $name = '<span>'.$name.'</span>';  	
+  $name = '<span>'.$name.'</span>';    
 
-	if ($internal_uri == '') {
-		$internal_uri = '#';
-	}
+  if ($internal_uri == '') {
+    $internal_uri = '#';
+  }
 
-	if ($internal_uri == '#') {
-		$options['absolute'] = true;
-	}
+  if ($internal_uri == '#') {
+    $options['absolute'] = true;
+  }
 
-	return link_to($name, $internal_uri, $options);
+  return link_to($name, $internal_uri, $options);
 }
 
 
@@ -389,13 +389,13 @@ function ui_ibtn($name, $internal_uri = '', $options = array())
  */
 function ui_window($content = '', $options = array())
 {
-	// add uiWindow class
-	$options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiWindow'));
-	
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add(array('content' => $content, 'options' => $options));
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_window.php');
-	return $view->render();
+  // add uiWindow class
+  $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiWindow'));
+  
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add(array('content' => $content, 'options' => $options));
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_window.php');
+  return $view->render();
 }
 
 
@@ -408,18 +408,18 @@ function ui_window($content = '', $options = array())
  */
 function _merge_class_names($classnames, $add_classnames)
 {
-	if (is_string($classnames)) {
-		$classnames = preg_split('/\s+/', $classnames);
-	}
-	
-	if (is_string($add_classnames)) {
-		$add_classnames = preg_split('/\s+/', $add_classnames);
-	}
-	
-	if (count($add_classnames)) {
-		$classnames = array_merge($classnames, $add_classnames);
-	}
+  if (is_string($classnames)) {
+    $classnames = preg_split('/\s+/', $classnames);
+  }
+  
+  if (is_string($add_classnames)) {
+    $add_classnames = preg_split('/\s+/', $add_classnames);
+  }
+  
+  if (count($add_classnames)) {
+    $classnames = array_merge($classnames, $add_classnames);
+  }
 
-	return implode(' ', $classnames);
+  return implode(' ', $classnames);
 }
 

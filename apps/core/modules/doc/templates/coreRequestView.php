@@ -73,8 +73,8 @@ class mymoduleActions extends coreActions
   {
     // Shortcut for $this->getRequest()->hasParameter('foo');
     $hasFoo = $this->hasRequestParameter('foo');
-	
-	// Shortcut for $this->getRequest()->getParameter('foo');
+  
+  // Shortcut for $this->getRequest()->getParameter('foo');
     $foo    = $this->getRequestParameter('foo');
   }
 }
@@ -106,12 +106,12 @@ $remote_addr = $pathArray['REMOTE_ADDR'];
 <h2>Examples</h2>
 
 <ul>
-	<li><b>getUriPrefix()</b>: <samp><?php echo $_request->getUriPrefix() ?></samp>
-	<li><b>isSecure()</b>: <samp><?php echo $_request->isSecure() ? 'true':'false' ?></samp>
-	<li><b>getReferer()</b>: <samp><?php echo $_request->getReferer() ?></samp>
-	<li><b>getHost()</b>: <samp><?php echo $_request->getHost() ?></samp>
-	<li><b>getScriptName()</b>: <samp><?php echo $_request->getScriptName() ?></samp>
-	<li><b>getPathInfo()</b>: <samp><?php echo $_request->getPathInfo() ?></samp>
+  <li><b>getUriPrefix()</b>: <samp><?php echo $_request->getUriPrefix() ?></samp>
+  <li><b>isSecure()</b>: <samp><?php echo $_request->isSecure() ? 'true':'false' ?></samp>
+  <li><b>getReferer()</b>: <samp><?php echo $_request->getReferer() ?></samp>
+  <li><b>getHost()</b>: <samp><?php echo $_request->getHost() ?></samp>
+  <li><b>getScriptName()</b>: <samp><?php echo $_request->getScriptName() ?></samp>
+  <li><b>getPathInfo()</b>: <samp><?php echo $_request->getPathInfo() ?></samp>
 </ul>
 
 <p><b>getPathInfoArray()</b>:

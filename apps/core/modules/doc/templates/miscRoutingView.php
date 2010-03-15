@@ -4,13 +4,13 @@
 
 <p> The routing system does two things:
 <ul>
-	<li>It interprets the external URL of incoming requests and transforms it into an internal URI, to determine the module/action and the request parameters.</li>
-	<li>It formats the internal URIs used in links into external URLs (provided that you use the link helpers).</li>
+  <li>It interprets the external URL of incoming requests and transforms it into an internal URI, to determine the module/action and the request parameters.</li>
+  <li>It formats the internal URIs used in links into external URLs (provided that you use the link helpers).</li>
 </ul>
 
 <p>Notes:
 <ul>
-	<li>The routing system parses the routing rules <b>from top to bottom</b> and stops at the first match. This is why you must add your own rules on top of the default ones.</li>
+  <li>The routing system parses the routing rules <b>from top to bottom</b> and stops at the first match. This is why you must add your own rules on top of the default ones.</li>
 </ul>
 
 

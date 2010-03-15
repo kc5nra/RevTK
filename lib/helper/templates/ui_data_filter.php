@@ -6,7 +6,7 @@
 <?php endif ?>
   <ul>
 <?php foreach($links as $link): ?>
-	<li<?php echo $link['active'] ? ' class="active"' : '' ?>><?php echo link_to('<span>'.$link['name'].'</span>', $link['internal_uri'], $link['options']) ?></li>
+  <li<?php echo $link['active'] ? ' class="active"' : '' ?>><?php echo link_to('<span>'.$link['name'].'</span>', $link['internal_uri'], $link['options']) ?></li>
 <?php endforeach ?>
   </ul>
   <div class="clear"></div>

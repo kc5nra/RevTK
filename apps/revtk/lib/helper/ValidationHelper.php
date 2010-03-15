@@ -23,16 +23,16 @@
  */
 function form_errors()
 {
-	$request = coreContext::getInstance()->getRequest();
+  $request = coreContext::getInstance()->getRequest();
 
-	$s = '';
-	if($request->hasErrors())
-	{
-		foreach($request->getErrors() as $key => $message)
-		{
-			$s .= "<strong>$message</strong><br />\n";
-		}
-		$s = content_tag('div', $s, array('class' => 'formerrormessage'));
-	}
-	return $s;
+  $s = '';
+  if($request->hasErrors())
+  {
+    foreach($request->getErrors() as $key => $message)
+    {
+      $s .= "<strong>$message</strong><br />\n";
+    }
+    $s = content_tag('div', $s, array('class' => 'formerrormessage'));
+  }
+  return $s;
 }

@@ -67,7 +67,7 @@ class <var>news</var>Components extends coreComponents
   {
     // Access a variable that was passed to the component
     echo $this->foo;   // => "bar"
-	
+  
     $this->message = "Hello World!";
   }
 

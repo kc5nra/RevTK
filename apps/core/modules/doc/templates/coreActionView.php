@@ -49,13 +49,13 @@ function setLayout($name)
 <h2>Actions Class</h2>
 
 <p> Actions are methods named <samp>execute<var>ActionName</var></samp> of a class named <samp><var>moduleName</var>Actions</samp>
-	inheriting from the <b>coreActions</b> class (note the "s").
+  inheriting from the <b>coreActions</b> class (note the "s").
     Actions are stored in an <samp>actions.php</samp> file, in the module's <b>actions/</b> directory.
 
 <p> <b>Actions should often be kept short (not more than a few lines), and all the business logic should usually be in the model.</b>
 
 <p> Sample Action class, with a couple actions named <var>index</var> and <var>list</var> for the <var>mymodule</var> module:
-	
+  
 <?php pre_start() ?>
 // actions.php
 class <var>mymodule</var>Actions extends coreActions
@@ -114,7 +114,7 @@ class <var>mymodule</var>Actions extends coreActions
     $response    = $this->getResponse();
     $controller  = $this->getController();
     $context     = $this->getContext();
-	
+  
     // Note even more is available through the context singleton
     $this->getContext()->getDatabase();
  
@@ -170,7 +170,7 @@ public function executeIndex()
 
 <p> An easier way to do this is to use the <b>renderText()</b> method.
     This method <b>adds to</b> the content, so it can be called multiple times.
-	It can be used directly as the return value, as in this example:
+  It can be used directly as the return value, as in this example:
 
 <?php pre_start() ?>
 public function executeIndex()
@@ -184,7 +184,7 @@ public function executeIndex()
 
 <p> We can return an object converted to JSON with <?php echo link_to('coreJson', 'doc/core?include_name=json') ?> and
     <b>renderText</b>. Optionally the "Content-Type" header can be set to "application/json" if the front end library
-		relies on it.</p>
+    relies on it.</p>
 
 <?php pre_start() ?>
 public function executeJson()
@@ -218,7 +218,7 @@ public function executeHeadersonly()
     Use the <b>renderPartial()</b> and <b>renderComponent()</b> methods of the action class.
 
 <p> The variables defined in the action will be automatically passed to the partial/component,
-	unless you define an associative array of variables as a second parameter of the method.
+  unless you define an associative array of variables as a second parameter of the method.
    
 <?php pre_start() ?>
 public function executeFoo()
@@ -233,13 +233,13 @@ public function executeFoo()
 public function executeFoo2()
 {
     $this->foo = 1234;
-	
+  
     // the view template of the component will have access to $foo, as well
     // as any other variables set by the component
     return $this->renderComponent('mymodule', 'mycomponent');
 }
 <?php pre_end() ?>
-	
+  
 
 <h2>Skipping to Another Action</h2>
 
@@ -257,7 +257,7 @@ $this->redirect('http://www.google.com/');
 <?php pre_end() ?>
 
 <p> The <b>forward404()</b> method forwards to a "page not found" action. This method is often 
-	called when a parameter necessary to the action execution is not present in the request:
+  called when a parameter necessary to the action execution is not present in the request:
 
 <?php pre_start() ?>
 public function executeShow($request)
@@ -273,8 +273,8 @@ public function executeShow($request)
 
 <p> Most of the time, an action makes a redirect or a forward after testing something.
     For this purpose, the coreActions class has a few more methods, named 
-	<b>forwardIf()</b>, <b>forwardUnless()</b>, <b>forward404If()</b>, <b>forward404Unless()</b>, <b>redirectIf()</b>,
-	and <b>redirectUnless()</b>.
+  <b>forwardIf()</b>, <b>forwardUnless()</b>, <b>forward404If()</b>, <b>forward404Unless()</b>, <b>redirectIf()</b>,
+  and <b>redirectUnless()</b>.
 
 <p> These help keep the code short and more readable:
 
