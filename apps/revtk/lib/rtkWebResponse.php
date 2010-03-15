@@ -72,7 +72,7 @@ class rtkWebResponse extends coreWebResponse
    * will strip the version number to get the actual file, and return the file
    * gzipped if possible to minimized download size.
    * 
-   * @param  string  $resource  Css or Javascript url
+   * @param  string  $url   Css or Javascript url
    * @return string  Resource url with version number in it
    */
   protected function getVersionUrl($url)
@@ -82,20 +82,27 @@ class rtkWebResponse extends coreWebResponse
     {
       return $url;
     }
-    
-    // do not use minified javascripts in debug environment
-    if (coreConfig::get('sf_debug'))
-    {
-      $url = preg_replace('/\\.min\\.js/', '.js', $url);
-    }
 
     if (coreConfig::get('sf_debug'))
     {
-      // in development environment, show the url called by mod_rewrite
-      $url = '/version/cached-resource.php?path='.urlencode($url);
+      // do not use minified javascript/css in debug environment
+      $url = str_replace('.min.', '.', $url);
+
+      // show the url that would be run by mod_rewrite
+      $url = '/version/cache.php?env=dev&app='.CORE_APP.'&path='.urlencode($url);
     }
     else
     {
+      // in production, "juicy" files should be precompiled and minified with a script
+      if (($pos = strpos($url, '.juicy.')) !== false)
+      {
+        // replace the '.juicy' part with '.min' (eg: /css/main.juicy.css => /css/main.min.css)
+        //$len = strlen($url);
+        //$url = substr($url, 0, $pos) . substr($url, $pos + 6);
+        $url = str_replace('.juicy.', '.min.', $url);
+      }
+
+      // add version string
       $versions = $this->getResourceVersion();    
       $path = pathinfo($url);
       $ver = isset($versions[$url]) ? '_v'.$versions[$url] : '';

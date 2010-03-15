@@ -17,10 +17,9 @@
   RewriteRule ^study$ /study/kanji/%2? [L,R=301]
 
   # redirect versioned css and js resources to php handler
-  RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cached-resource.php?path=$1.$2 [L]
-  
-  # refactoring with Juicer support
-  #RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cache.php?env=dev&app=core&path=$1.$2 [L]
+  #RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cached-resource.php?path=$1.$2 [L]
+  # php handler for versioning of front end assets and css/js concatenation
+  RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cache.php?env=dev&app=revtk&path=$1.$2 [L]
 
   # we skip all files with .something
   RewriteCond %{REQUEST_URI} \..+$
