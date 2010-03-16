@@ -16,6 +16,14 @@ class coreError
   public static function initialize($devmode)
   {
     self::$devmode = $devmode;
+    
+    // handle php5.3.0 compatibility: pretend E_DEPRECATED exists
+    if (!defined('E_DEPRECATED'))
+    {
+      // use the PHP 5.3.0 value so it doesn't mix with existing bits 
+      define('E_DEPRECATED', 8192);
+    }
+
     self::setupAssertions();
     self::setupErrorHandler();
 
@@ -85,7 +93,7 @@ EOD;
       error_reporting(self::$errMask);
     }
     else {
-      self::$errMask = E_ALL ^ E_NOTICE ^ E_USER_WARNING ^ E_USER_NOTICE;
+      self::$errMask = E_ALL & ~E_NOTICE & ~E_USER_WARNING & ~E_USER_NOTICE;
       error_reporting(self::$errMask);
     }
     
