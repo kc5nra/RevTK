@@ -100,9 +100,10 @@
     
   };
 
-  App.ready = function()
+  Core.ready(function()
   {
-    this.evtDel.on("test", function(e, el)
+    var evtDel = new Core.Ui.EventDelegator(document.body, "click");
+    evtDel.on("test", function(e, el)
     {
       var fnName;
       if (/(test\d+)/.test(el.className)) {
@@ -110,7 +111,7 @@
         demo[fnName].apply(demo);
       }
     });
-  };
+  });
 
 })();
 </script>

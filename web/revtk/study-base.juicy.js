@@ -1,9 +1,23 @@
 /**
- * Study page
+ * Study page - common includes (Still using old prototype-based javascript)
  * 
+ * Juicer build (manual):
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/core/config/juicer.config.php --infile web/core/corejs.juicy.js
+
+ * Minify:
+ *  java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/xyz.js -o web/xyz.min.js
+ *   
  * @package RevTK
  * @author  Fabrice Denis
  */
+
+/* =require from "%WEB%" */
+/* =require "/js/lib/prototype.min.js" */
+/* =require "/js/ui/uibase.js" */
+/* =require "/js/1.0/autocomplete.min.js" */
+/* =require "/js/2.0/study/keywords.js" */
+
+/* !require "/js/2.0/study/study.js" */
 
 var StudyPage =
 {

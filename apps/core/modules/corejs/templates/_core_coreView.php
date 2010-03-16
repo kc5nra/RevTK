@@ -1,4 +1,3 @@
-
 <p>The Core object</p>
 
 <?php pre_start('js') ?>
@@ -13,10 +12,12 @@ Core.extend()
 // Helper to bootstrap page code with onDOMReady
 Core.ready(fn);
 
-// Throws an exception
-Core.error(msg);
-// Log message to console with optional printf style arguments
-Core.log(msg [, args])
+// Log message to console (maps to Firebug console.log() if present)
+Core.log(msg[, args])
+// Log a warning message (maps to Firebug console.warn() if present)
+Core.warn(msg[, args]);
+// Throws an exception (maps to Firebug console.error() if present).
+Core.halt(msg[, args]);
 <?php pre_end() ?>
 
 
@@ -26,7 +27,7 @@ Core.log(msg [, args])
 
 <?php pre_start('js') ?>
 // Turns an object into its URL-encoded query string representation.
-YAHOO.Toolkit.toQueryString(o)
+Core.Toolkit.toQueryString(o)
 <?php pre_end() ?>
 
 <h2>DOM ready event</h2>

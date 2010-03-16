@@ -59,7 +59,7 @@ Core.ready(function() {
     Core.log("onWindowClose() called");
   }
 
-  Y.one("#demo1").on("click", onClick);
+  Dom.get("demo1").on("click", onClick);
   
 });
 </script>

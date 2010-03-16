@@ -50,11 +50,14 @@ return array
   (
     'javascripts' => array
     (
+      '/revtk/study-base.juicy.js'
+      /*
       '/js/lib/prototype.min.js',
       '/js/ui/uibase.min.js',
       '/js/1.0/autocomplete.min.js',
       '/js/2.0/study/keywords.js',
       '/js/2.0/study/study.js'
+      */
     )
   )
 );
