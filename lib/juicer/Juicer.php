@@ -18,7 +18,7 @@
  *   For command line usage, see JuicerCLI.php documentation. 
  * 
  * Todos:
- *   For a list of todos, and further development ideas, please see the README file.  
+ *   For a list of todos, and further development ideas, please see the TODOS file.
  * 
  * @author   Fabrice Denis
  * @version  1.0
@@ -163,6 +163,9 @@ class Juicer
       // 
       $lineNr = 1;
       $this->curFile = $srcFile;
+
+      // skip the BOM mark, if any
+      $this->skipUTF8BomMark($handle);
       
       // start buffering content of this file
       ob_start();
@@ -170,7 +173,7 @@ class Juicer
       while (!feof($handle))
       {
         $buffer = fgets($handle, 4096);
-        
+
         // parse commands
         if (strncmp($buffer, '/* =', 4)===0)
         {
@@ -202,6 +205,30 @@ class Juicer
     }
 
     return $buffer . "\n";
+  }
+
+  /**
+   * Move the file pointer past the UTF-8 Byte Order Mark (BOM) if it exists.
+   *
+   * @see http://en.wikipedia.org/wiki/Byte_order_mark
+   * 
+   * @param string $handle  File handle (assumed to be at the start of the file)
+   */
+  protected function skipUTF8BomMark($handle)
+  {
+    if (!feof($handle))
+    {
+      $s = fgets($handle, 4);
+
+      //$this->verbose("bom found %s l=%d", $s, strlen($s));
+
+      if ($s === pack("CCC", 0xef, 0xbb, 0xbf))
+      {
+        $this->verbose("  BOM mark skipped!\n");
+        return;
+      }
+      rewind($handle);
+    } 
   }
   
   protected function parseCommand($buffer, &$from, $srcFile, $lineNr)
@@ -645,7 +672,7 @@ class Juicer
     $pattern = '/' . $methodName . '\(\\s*("[^"\\\]*(\\\.[^"\\\]*)*"|[^\)]*)\)[^\\r\\n;]*;' . '/';
 
     /* The regular expression itself */
-    return preg_replace($pattern, '%%%', $buffer, -1, $count); 
+    return preg_replace($pattern, '', $buffer, -1, $count); 
   }
   
   /**
@@ -720,18 +747,6 @@ class Juicer
     return isset($path_parts['extension']) ? $path_parts['extension'] : '';
   }
 
-  /**
-   * Escape all regular expression metacharacters within the string
-   * to be used as part of another regular expression.
-   * 
-   * @param string $s
-   * @return string
-   */  
-  protected function anesthetize($s)
-  {
-    return preg_replace('|[\[\]\$\\\\.\+\-\^\|\(\)\?\{\}\,]|', '\\\$0', $s);
-  }
-  
   /**
    * Returns an option value, or the default value if not set.
    * 
@@ -829,8 +844,6 @@ Core.log(false);
   Core.log('lolcats');
   Core.log('lolcats')
   //Core.log('commented');
-  Core.log('El\'Mucho' );
-\tCore.log("Man Core.log() sucks");
 return;
 EOD;
 echo "\nBUFFER ----------------------------\n".$s;

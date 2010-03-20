@@ -1,5 +1,4 @@
 <?php use_helper('CJK', 'Form', 'Validation') ?>
-<?php use_javascript('/js/2.0/study/EditStoryComponent.js') ?>
 
 <?php echo form_tag('study/edit?id='.$framenum, array('name' => 'EditStory')) ?>
 

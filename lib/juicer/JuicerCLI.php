@@ -24,9 +24,9 @@
  *   );
  * 
  * Example (js):
- *  php batch/tools/Juicer/JuicerShell.php -v --webroot web --config apps/core/config/juicer.config.php --infile web/js/_archive/juicetest.js
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config config/juicer.config.php --infile web/js/demo.juicy.js
  * Example (css):
- *  php batch/tools/Juicer/JuicerShell.php -v --webroot web --config apps/core/config/juicer.config.php --infile web/js/_archive/juicetest.css
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config config/juicer.config.php --infile web/css/demo.juicy.css
  *  
  * @author   Fabrice Denis
  * @date     20 Nov 2009
@@ -126,7 +126,7 @@ class Juicer_CLI
     echo <<<EOL
 Preprocesses and concatenates javascript and stylesheets.
 
-php JuicerShell.php --webroot <path> --config <file> --infile <file> [--strip <method>] [--v] [--list]
+php JuicerCLI.php --webroot <path> --config <file> --infile <file> [--strip <method>] [--v] [--list]
 
   --config <file>     Configuration file in php as an array of key => values
   --webroot <path>    Path to the document root of the web server (can be realative)

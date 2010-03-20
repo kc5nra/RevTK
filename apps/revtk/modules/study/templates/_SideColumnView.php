@@ -1,5 +1,4 @@
 <?php use_helper('Form') ?>
-<?php use_javascript('/js/2.0/study/study.js') ?>
 
 <?php # Constants for the javascripts ?>
 <script type="text/javascript">
