@@ -32,8 +32,9 @@
 class CacheResource
 {
   const
-    RELATIVE_PATH_TO_WEB = '../.',
-    USE_GZIP_ENCODING    = true;
+    RELATIVE_PATH_TO_WEB  = '../.',
+    RELATIVE_PATH_TO_ROOT = '../..',
+    USE_GZIP_ENCODING     = true;
   
   function __construct()
   {
@@ -122,8 +123,8 @@ class CacheResource
   private function getJuicerConfig()
   {
     // include Juicer from here only as needed to speedup things
-    $CORE_ROOT_DIR = realpath(dirname(__FILE__) . '/../..');
-    require_once($CORE_ROOT_DIR.'/lib/Juicer/Juicer.php');
+    $CORE_ROOT_DIR = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_TO_ROOT);
+    require_once($CORE_ROOT_DIR.'/lib/juicer/Juicer.php');
 
     $appName = $this->getParameter('app');
     $configFile = $CORE_ROOT_DIR . '/apps/' . $appName . '/config/juicer.config.php';

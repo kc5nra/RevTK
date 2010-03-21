@@ -83,9 +83,9 @@ class rtkWebResponse extends coreWebResponse
       return $url;
     }
 
-    if (coreConfig::get('sf_debug'))
+    if (coreContext::getInstance()->getConfiguration()->getEnvironment() === 'dev')
     {
-      // do not use minified javascript/css in debug environment
+      // do not use minified javascript/css in development environment
       $url = str_replace('.min.', '.', $url);
 
       // show the url that would be run by mod_rewrite
