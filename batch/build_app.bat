@@ -12,11 +12,8 @@ REM   which ensures clients always load the latest version.
 REM 
 REM ************************************************************
 REM
-REM Example using YUICompressor
-REM java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/js/1.0/autocomplete.js -o web/js/1.0/autocomplete.min.js
-REM
-REM Example using Juicer
-REM php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/js/foo.juicy.js
+REM NOTE!! The windows .bat file is no longer maintained, use the
+REM 'build' script for reference.
 REM
 
 SETLOCAL EnableDelayedExpansion

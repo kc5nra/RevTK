@@ -1,9 +1,25 @@
 #! /bin/bash
 #
-# Build frontend files to nodebug environment.
+# Build frontend files for nodebug environment.
+#
+# When CORE_DEBUG is false in the web/index_* controller, the web response
+# class will generate urls for ".min.js" instead of ".juicy.js", and similarly
+# for css files. So in production and staging Juicer runtime is bypassed,
+# the minified files are used directly.
+#
+# Usage:
+#   Run from the root folder!
+#   $ batch/build
+#
+# @see /apps/revtk/lib/rtkWebResponse.php
+#
+# @author:  Fabrice Denis
 #
 
-cd ~/Sites/Production/public_html/revtk
+
+# OBSOLETE - WILL BE REMOVED WHEN JUICER ENABLED EVERYWHERE
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/js/ui/uibase.js -o web/js/ui/uibase.min.js
+
 
 # labs-alpha-flashcardreview.js
 php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/labs-alpha-flashcardreview.juicy.js
@@ -34,4 +50,6 @@ java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/kanji-flas
 php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/kanji-flashcardreview.juicy.css
 java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/kanji-flashcardreview.juiced.css -o web/revtk/kanji-flashcardreview.min.css
 
+# build version file for revisioning css & js assets
+php batch/build_app.php --webroot web --out config/versioning.inc.php
 
