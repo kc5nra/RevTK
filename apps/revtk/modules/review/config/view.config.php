@@ -40,10 +40,11 @@ return array
     'title'        => 'Flashcard Review',
     'stylesheets' => array
     (
+      '/revtk/kanji-flashcardreview.juicy.css'
     ),
     'javascripts' => array
     (
-      '/js/lib/prototype.min.js'
+      '/revtk/kanji-flashcardreview.juicy.js'
     )
   ),
 

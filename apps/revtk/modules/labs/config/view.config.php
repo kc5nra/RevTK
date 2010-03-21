@@ -11,18 +11,24 @@ return array
 (
   'index' => array
   (
-    'title'             => 'Index'
+    'title' => 'Index',
+    'stylesheets' => array
+    (
+      '/css/2.0/widgets.min.css'
+    ),
+
   ),
   
   'review' => array
   (
-    'title'        => 'Labs Review',
-    'stylesheets' => array
+    'title'         => 'Labs Review',
+    'stylesheets'   => array
     (
+      '/revtk/labs-alpha-flashcardreview.juicy.css'
     ),
-    'javascripts' => array
+    'javascripts'   => array
     (
-      '/js/lib/prototype.min.js'
+      '/revtk/labs-alpha-flashcardreview.juicy.js'
     )
   ),
 

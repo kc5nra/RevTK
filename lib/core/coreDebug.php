@@ -4,9 +4,10 @@
  * 
  * The first 3 functions correspond to php USER level errors:
  * 
- * ::error()   User error, and ends running script.
- * ::warn()    User warning
- * ::out()     User notice
+ * ::error()     User error, and ends running script.
+ * ::warn()      User warning
+ * ::out()       User notice
+ * ::printr()    Debug the contents of a variable, prints output of print_r inside a PRE tag.
  * 
  * The next 3 are handy for debugging http requests:
  * 

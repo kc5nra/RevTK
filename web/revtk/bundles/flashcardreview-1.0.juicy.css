@@ -1,0 +1,139 @@
+/**
+ * FlashcardReview Common Bundle
+ *
+ * This is version 1.0: the "deprecated" prototypejs based implementation, for compatiblity
+ * with the old codebase.
+ *
+ * Juicer build:
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/review-flashcards-kanji.juicy.css
+ * 
+ * Minification:
+ *  java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/review-flashcards-kanji.juiced.css -o web/revtk/review-flashcards-kanji.min.css
+ *
+ * @package RevTK
+ * @author  Fabrice Denis
+ * @date    March 2010
+ */
+
+/* =require from "%WEB%" */
+/* =require "/css/2.0/widgets.css" */
+
+/**
+ * Common styles
+ *
+ */
+
+/* kanji font selection */
+.fcKanjiFont {
+  font-family: 'Hiragino Mincho Pro', 'ヒラギノ明朝 Pro W3', 'ＭＳ 明朝', 'ＭＳ Ｐ明朝', serif;
+  line-height: 1em;
+}
+
+
+/**
+ * Layout styles
+ *
+ */
+
+/* Ajax loading indicator */
+#uiFcAjaxLoading { height:32px; position:absolute; right:22px; top:3px; z-index:1000; }
+#uiFcAjaxLoading span { float:left; height:32px; background:url(../../images/2.0/review/sprites-icons.gif) repeat-x 0 -339px; color:#fff; font:bold 14px/32px Arial, sans-serif; }
+#uiFcAjaxLoading span.l { background-position:0 -306px; padding-left:10px; }
+#uiFcAjaxLoading span.r { background-position:100% -306px; padding-right:10px; }
+#uiFcAjaxLoading span span { display:inline; float:none; padding:2px 20px 2px 0; background:url(../../images/2.0/review/ajax-loader.gif) no-repeat 100% 50%; }
+
+
+/* Error message */
+#uiFcAjaxError { height:32px; position:absolute; right:22px; top:3px; z-index:1000; }
+#uiFcAjaxError div { float:left; height:32px; background:url(../../images/2.0/review/sprites-icons.gif) repeat-x 0 -405px; color:#861F1F; font:bold 14px/32px Arial, sans-serif; }
+#uiFcAjaxError div.l { background-position:0 -372px; padding-left:10px; }
+#uiFcAjaxError div.r { background-position:100% -372px; padding-right:10px; }
+#uiFcAjaxError a { font-weight:bold; }
+
+/* fullscreen layout mods */
+body#uiFcFullscreen { background:none; }
+body#uiFcFullscreen table.uiFcReview { width:100%; height:100%; }
+
+/* Use fixed dimensions if appearing within website layout */
+#uiFcReview-container { position:relative; border-top:1px solid #99BED8; }
+#uiFcReview-container table.uiFcReview { width:100%; height:525px; }
+#uiFcReview-container tr.top    td.layout { height:38px; }
+#uiFcReview-container tr.middle td.layout { height:378px; }
+#uiFcReview-container tr.bottom td.layout { height:122px; }
+
+/* table layout to center things */
+.uiFcLayout { background:#92C3E4 url(../../images/2.0/review/gradient.jpg) repeat-x 0 0; }
+.uiFcLayout td { padding:0; text-align:left; vertical-align:top; }
+.uiFcLayout tr.top    td.layout { height:17%; }
+.uiFcLayout tr.middle td.layout { height:45%; }
+.uiFcLayout tr.bottom td.layout { height:38%; /*background:#876;*/ }
+
+/**
+ * To be defined:
+ *   width
+ *   height
+ *   background-image
+ */
+.uiFcCard {
+  display:block; position:relative;
+  margin:0 auto; /* center within TD */
+  background:#fff;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* base */
+.uiFcReview h3 { font:bold 14px/1em Arial, sans-serif; color:#408FC6; text-align:center; margin:0; padding:0; }
+
+/* loading indicator */
+.uiFcCard .uiFcLoading   { position:absolute; left:0; top:0; display:none; width:100%; height:366px; }
+.uiFcCard .uiFcLoading p { text-align:center; margin-top:156px; font:16px Georgia, Times New Roman; color:#a0a0a0; }
+
+/* animation */
+#uiFcAnimation { position:absolute; left:5px; top:5px; width:250px; height:366px; background:#fff; z-index:1000; }
+
+/* option buttons area */
+.uiFcOptions { position:absolute; left:20px; top:0; height:31px; }
+
+.uiFcOptBtn       { float:left; height:31px; font:bold 14px/31px Arial, sans-serif; color:#3680B4; margin:0 5px 0 0; }
+.uiFcOptBtn, .uiFcOptBtn:hover { text-decoration:none; }
+.uiFcOptBtn span  { float:left; padding-right:10px; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 100% -90px; /*iepos*/ cursor:hand; }
+ /* undo */
+.uiFcOptBtnUndo   { padding-left:30px; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -58px; }
+ /* story view/edit */
+.uiFcOptBtnStory  { padding-left:30px; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -438px; }
+
+/* flashcard answer area */
+.uiFcButtons { width:260px; height:122px; padding:6px 0 0; text-align:center; margin:0 auto; }
+.uiFcButtons h3 { line-height:33px; font-size:17px; font-weight:normal; }
+.uiFcButtons a img { margin:0 10px; }
+
+/* stats panel */
+.uiFcStats { width:185px; margin:0 0 0 10%; color:#408FC6; }
+.uiFcStats h3 { line-height:22px; padding:0 0 4px; }
+.uiFcStats em { font-style:normal; color:#0A3E62; }
+.uiFcStats p.progress { width:172px; height:21px; margin:0 auto; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -254px; }
+.uiFcStats p.progress span { display:block; width:0%; height:21px; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -280px; text-indent:-8000px; }
+
+.uiFcStats .stacks { width:137px; float:left; clear:left; margin:10px 0 0; }
+.uiFcStats .stacks .m td { height:29px; }
+.uiFcStats .stacks p { padding-left:31px; height:29px; font:bold 14px/29px Arial, sans-serif; color:#0A3E62; }
+.uiFcStats .pass { float:left; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -157px; margin:0 0 0 3px; display:inline; }
+.uiFcStats .fail { float:right; background:url(../../images/2.0/review/sprites-icons.gif) no-repeat 0 -126px; padding-right:6px; margin:0; }
+
+/* finish review button ("End") */
+.uiFcStats .finish { width:43px; float:right; clear:right; margin:10px 0 0; }
+.uiFcStats .finish .m td { height:29px; }
+.uiFcStats .finish a { display:block; text-align:center; font:bold 14px/29px Arial, sans-serif; color:#0097FF; text-decoration:underline; }
+
+
+/**
+ * uiBoxRounded, blue
+ */
+table.uiFcBoxBlueR td { background-color:#94d3ff; }
+table.uiFcBoxBlueR td b { background-color:#C4E7FF; background-image:url(../../images/2.0/review/sprites-icons.gif); width:6px; height:6px; }
+table.uiFcBoxBlueR .t .l b { background-position:0 0; }
+table.uiFcBoxBlueR .t .r b { background-position:-10px 0; }
+table.uiFcBoxBlueR .b .l b { background-position:0 -10px; }
+table.uiFcBoxBlueR .b .r b { background-position:-10px -10px; }
+
+

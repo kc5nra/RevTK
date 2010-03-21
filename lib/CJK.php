@@ -14,6 +14,19 @@ class CJK
   const
     PREG_KANJI = '\x{4e00}-\x{9fa5}';
 
+  
+  /**
+   * Splits unicode string into an array of characters.
+   * 
+   * @param string $s   Unicode string
+   *
+   * @return array
+   */
+  static public function splitU($s)
+  {
+    return preg_split('//u', $s, -1, PREG_SPLIT_NO_EMPTY);
+  }
+
   /**
    * Returns true if the string contains any kanji character
    * 

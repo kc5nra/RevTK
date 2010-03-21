@@ -179,10 +179,10 @@ uiFlashcardReview.prototype =
     this.configureAjaxIndicator();
 
     this.configureDialogs();
-    
-    // event dispatcher for buttons and other custom actions
-    this.initializeActionEvents();
 
+    // event dispatcher for buttons and other custom actions
+    this.initializeActionEvents('uiFcReview-container');
+    
     // initialize shortcuts and keyboard handler
     this.oKeyboard = new uiKeyboard();
 
@@ -236,15 +236,15 @@ uiFlashcardReview.prototype =
    * 
    * @note   This sucks... needs to rewrite with YUI and uiEventDispatcher
    */
-  initializeActionEvents:function()
+  initializeActionEvents:function(sRootId)
   {
-    var elFcReview = $$('.uiFcReview')[0];
-    var aLinks = elFcReview.select('a');
+    var elParent = $(sRootId);
+    var aLinks = elParent.select('a');
     var i;
     for (i = 0; i < aLinks.length; i++)
     {
       var el = aLinks[i];
-      if (/uiFcAction-(\w+)/.test(el.className))
+      if (/uiFcAction-([\w-]+)/.test(el.className))
       {
         el.observe('click', this.onActionEvent.bindAsEventListener(this, RegExp.$1));
       }

@@ -71,6 +71,18 @@ class rtkBook
   }
 
   /**
+   * Returns true of the kanji is part of the Remembering the Kanji set.
+   * 
+   * @param  string  $c  A single unicode character
+   * 
+   * @return bool  True if is a kanji and appears in RTK Vol.1 or RTK Vol.3
+   */
+  public static function isValidRtkKanji($c)
+  {
+    return (false !== mb_strpos(self::$kanjis, $c, 0, 'utf8'));
+  }
+
+  /**
    * Returns framenumber (from 1 to 3007, cf. rtkBook) for a kanji character.
    * 
    * @param  string  $cjk   A single utf8 character
@@ -78,7 +90,8 @@ class rtkBook
    */
   public static function getIndexForKanji($cjk)
   {
-    return mb_strpos(self::$kanjis, $cjk, 0, 'utf8') + 1;
+    $pos = mb_strpos(self::$kanjis, $cjk, 0, 'utf8');
+    return (false !== $pos) ? $pos + 1 : false;
   }
   
   /**

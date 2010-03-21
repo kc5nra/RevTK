@@ -74,15 +74,15 @@
 
 /* uiIBtn :: default beige (30px) */
 .uiIBtnDefault, .uiIBtnDefault span { color:#595A3C; font:bold 16px/30px Arial, sans-serif; height:30px; }
-.uiIBtnDefault { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 0 0; padding-left:13px; }
-.uiIBtnDefault span { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -40px; padding-right:13px; }
+.uiIBtnDefault { background:url(../../images/2.0/widgets/widgets-buttons.gif) no-repeat 0 0; padding-left:13px; }
+.uiIBtnDefault span { background:url(../../images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -40px; padding-right:13px; }
 .uiIBtnDefault:hover { background-position:0 -80px; }
 .uiIBtnDefault:hover span { background-position:100% -120px; }
 
 /* uiIBtn :: default disabled (30px) */
 .uiIBtnDisabled, .uiIBtnDisabled span { color:#7c7c7c; font:bold 16px/30px Arial, sans-serif; height:30px; }
-.uiIBtnDisabled { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 0 -160px; padding-left:13px; }
-.uiIBtnDisabled span { background:url(/images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -200px; padding-right:13px; }
+.uiIBtnDisabled { background:url(../../images/2.0/widgets/widgets-buttons.gif) no-repeat 0 -160px; padding-left:13px; }
+.uiIBtnDisabled span { background:url(../../images/2.0/widgets/widgets-buttons.gif) no-repeat 100% -200px; padding-right:13px; }
 .uiIBtnDisabled:hover { }
 .uiIBtnDisabled:hover span { }
 
@@ -113,7 +113,7 @@ table.uiBoxRounded .m td.c { width:100%; }
 
 /* RevTK default beige */
 table.uiBoxRDefault td { background-color:#F1EFD6; }
-table.uiBoxRDefault td b { background-color:#FFFDE7; background-image:url(/images/2.0/widgets/widgets-boxes.gif); }
+table.uiBoxRDefault td b { background-color:#FFFDE7; background-image:url(../../images/2.0/widgets/widgets-boxes.gif); }
 table.uiBoxRDefault .t .l b { background-position:0 0; }
 table.uiBoxRDefault .t .r b { background-position:-18px 0; }
 table.uiBoxRDefault .b .l b { background-position:0 -18px; }
@@ -123,7 +123,7 @@ table.uiBoxRDefault .m td.c { /* content padding */ padding:8px;  }
 /* uiWindow default underlay (dark rounded borders) */
 table.uiWindowUnderlay td { background-color:#000000; }
 table.uiWindowUnderlay td.l, table.uiWindowUnderlay td.r { background:none; }
-table.uiWindowUnderlay td b { background-image:url(/images/2.0/widgets/widgets-windows.gif); width:8px; height:8px; }
+table.uiWindowUnderlay td b { background-image:url(../../images/2.0/widgets/widgets-windows.gif); width:8px; height:8px; }
 table.uiWindowUnderlay .t .l b { background-position:0 0; }
 table.uiWindowUnderlay .t .r b { background-position:-24px 0; }
 table.uiWindowUnderlay .b .l b { background-position:0 -24px; }
@@ -151,7 +151,7 @@ table.uiWindowUnderlay .m td.c { height:100%; }
 .uiWindow .window-handle { width:100%; height:32px; background;blue; position:absolute; left:0; top:-8px; }
 .uiWindow .window-handle:hover { cursor:move; }
 .uiWindow .window-top .close { display:block; position:absolute; right:0px; top:-6px; width:24px; height:24px; 
-  background:url(/images/2.0/widgets/widgets-windows.gif) no-repeat 0 -32px; }
+  background:url(../../images/2.0/widgets/widgets-windows.gif) no-repeat 0 -32px; }
 .uiWindow .window-top .close:hover { background-color:#aaa; }
 .uiWindow .window-body {}
 .uiWindow .underlay { position:absolute; bottom:0px; right:0px; left:0px; top:0px; }
@@ -170,7 +170,7 @@ table.uiWindowUnderlay .m td.c { height:100%; }
  */
 .uiDataFilter,
 .uiDataFilter .corner-left, .uiDataFilter .corner-right,
-.uiDataFilter h4, .uiDataFilter a, .uiDataFilter a span { background:url(/images/2.0/widgets/widgets-datafilter.gif) repeat-x 0 0; }
+.uiDataFilter h4, .uiDataFilter a, .uiDataFilter a span { background:url(../../images/2.0/widgets/widgets-datafilter.gif) repeat-x 0 0; }
 .uiDataFilter, .uiDataFilter h4, .uiDataFilter span, .uiDataFilter a { font:14px/28px Arial, sans-serif; }
 .uiDataFilter { width:100%; margin:0 0 5px; }
 .uiDataFilter .corner-left  { float:left; width:16px; height:29px; background-position:0 -40px; }
@@ -196,7 +196,7 @@ table.uiWindowUnderlay .m td.c { height:100%; }
 .uiTabs {}
 .uiTabs ul {
   float:left; width:100%;
-  background:url("../img/tabs/groups/bg.gif") repeat-x 0 100%;
+  background:url("../../images/1.0/tabs/bg.gif") repeat-x 0 100%;
   margin:0; padding:0 0;
   font-size:12px; line-height:1em;
 }
@@ -252,7 +252,7 @@ table.uiWindowUnderlay .m td.c { height:100%; }
  * uiPager
  * 
  */
-ul.uiPager  { margin:0; padding:0; float:right; padding-left:14px; background:url(/images/ui/forms/ico-pager.gif) no-repeat 0 55%; }
+ul.uiPager  { margin:0; padding:0; float:right; padding-left:14px; background:url(../../images/ui/forms/ico-pager.gif) no-repeat 0 55%; }
 ul.uiPager li { float:left; list-style:none; background:none; border-right:1px solid #E3E0C9; font:11px/1.1em Arial; padding:0; margin:0; }
 ul.uiPager li.active { background:none; font-weight:bold; padding:4px 8px; color:#000; }
 ul.uiPager li.disabled { background:none; font-weight:bold; padding:4px 8px; color:#888888; }
@@ -272,7 +272,7 @@ ul.uiPager li.next a { font-weight:bold; }
 .uiFilterStd .lbl { float:left; font-size:12px; color:#666; }
 .uiFilterStd .tb { float:left; background:#444; padding:1px 0; margin:0 1px; }
 .uiFilterStd .lr { float:left; position:relative; border-left:1px solid #444; margin:0 -1px; }
-.uiFilterStd a { float:left; border-right:1px solid #444; background:url(/images/2.0/review/sprites-ga-filter.gif) repeat-x 0 0; color:#000; outline:none; }
+.uiFilterStd a { float:left; border-right:1px solid #444; background:url(../../images/2.0/review/sprites-ga-filter.gif) repeat-x 0 0; color:#000; outline:none; }
 .uiFilterStd a:hover { text-decoration:none; background-position:0 -64px; }
 .uiFilterStd a.active, .uiFilterStd a.active:hover { color:#fff; background-position:0 -32px; }
 
@@ -284,7 +284,7 @@ ul.uiPager li.next a { font-weight:bold; }
 .uiTabular { border:1px solid #BDBCAA; border-top:1px solid #D9D8CE; width:100%; }
 /* thead */
 .uiTabular th { padding:0; font:13px Arial, sans-serif; color:#5C5B52; border-bottom:1px solid #A1A1A1; text-align:left;
-  background:#D9D6B7 url(/images/2.0/widgets/widgets-selecttable.gif) repeat-x 0 0; }
+  background:#D9D6B7 url(../../images/2.0/widgets/widgets-selecttable.gif) repeat-x 0 0; }
 .uiTabular th a,
 .uiTabular th span.hd { display:block; float:left; padding:6px 10px; text-align:left; text-decoration:none; }
 .uiTabular th a { color:#005CB1; }
@@ -292,9 +292,9 @@ ul.uiPager li.next a { font-weight:bold; }
 .uiTabular th a.active { color:#000; }
  /* sort icon */
 .uiTabular th a.sort { padding-right:12px; }
-.uiTabular th a.sort:hover { background:url(/images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% 50%;   }
-.uiTabular th a.sortasc { padding-right:12px; background:url(/images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% -37px; }
-.uiTabular th a.sortdesc { padding-right:12px; background:url(/images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% -72px; }
+.uiTabular th a.sort:hover { background:url(../../images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% 50%;   }
+.uiTabular th a.sortasc { padding-right:12px; background:url(../../images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% -37px; }
+.uiTabular th a.sortdesc { padding-right:12px; background:url(../../images/2.0/widgets/widgets-selecttable.gif) no-repeat 100% -72px; }
 /* tbody */
 .uiTabular td { padding:8px 10px; color:#666; font:13px/1.1em Arial, sans-serif; border-bottom:1px solid #E8E5CA; }
 .uiTabular tbody td { background-color:#FCFAEB; }
@@ -353,6 +353,6 @@ div.uiPagerDiv div.uiFilterStd a { padding:4px 5px 4px; }
 .uiProgressBar { margin:0 1px; padding:1px 0; background:#A1A1A1; }
 .uiProgressBar div { position:relative; height:19px; margin:0 -1px; border-left:1px solid #A1A1A1; border-right:1px solid #A1A1A1; }
 .uiProgressBar span { position:absolute; left:0; top:0; text-indent:-5000px; font-size:1px; line-height:1px; display:block; width:100%; height:100%; }
-.uiProgressBar div, .uiProgressBar span { background:#5A5A5A url(/images/2.0/widgets/gadgets-progressbar.gif) repeat-x 0 0; }
+.uiProgressBar div, .uiProgressBar span { background:#5A5A5A url(../../images/2.0/widgets/gadgets-progressbar.gif) repeat-x 0 0; }
 .uiProgressBar span.g /*green*/ { background-color:#72A311; background-position:0 -32px; }
 .uiProgressBar span.r /*red*/   { background-color:#A32011; background-position:0 -64px; }

@@ -1,19 +1,4 @@
 <?php use_helper('Form', 'Widgets', 'Gadgets') ?>
-<?php use_stylesheet('/css/2.0/widgets.css') ?>
-
-<?php use_javascript('/js/ui/uibase.min.js') ?>
-<?php use_javascript('/js/ui/uiFlashcardReview.min.js') ?>
-<?php use_javascript('/js/2.0/review/review.js') ?>
-<?php use_stylesheet('/css/2.0/review-flashcards-kanji.css') ?>
-
-<?php # EditStory Window ?>
-<?php use_javascript('/js/ui/widgets.js') ?>
-<?php use_javascript('/js/2.0/review/rkEditStoryWindow.js') ?>
-<?php use_javascript('/js/2.0/study/EditStoryComponent.js') ?>
-
-<!-- Dependencies -->  
-<?php use_javascript('/js/lib/yui/2.7.0/yahoo-dom-event.js') ?>
-<?php use_javascript('/js/lib/yui/2.7.0/dragdrop-min.js') ?>
 
 <?php 
   # Ajax EditStory window
@@ -26,14 +11,14 @@
 <?php # Connection timeout message ?>
 <div id="uiFcAjaxError" class="uiFcErrorMsg" style="display:none"><div class="l"></div><div><span class="msg">Oops!</span>&nbsp;&nbsp;&nbsp;<a href="#" class="uiFcAction-reconnect">Reconnect</a></div><div class="r"></div></div>
 
+<div class="uiFcOptions">
+  <a href="#" class="uiFcOptBtn uiFcOptBtnStory uiFcAction-story" title="View/Edit story for this flashcard"><span><u>S</u>tory</span></a>
+  <a href="#" style="display:none" class="uiFcOptBtn uiFcOptBtnUndo uiFcAction-undo" title="Go back one flashcard"><span><u>U</u>ndo</span></a>
+</div>
 
 <table class="uiFcLayout uiFcReview" cellspacing="0">
 <tr class="top">
   <td colspan="3" class="layout">
-    <div class="uiFcOptions">
-      <a href="#" class="uiFcOptBtn uiFcOptBtnStory uiFcAction-story" title="View/Edit story for this flashcard"><span><u>S</u>tory</span></a>
-      <a href="#" style="display:none" class="uiFcOptBtn uiFcOptBtnUndo uiFcAction-undo" title="Go back one flashcard"><span><u>U</u>ndo</span></a>
-    </div>
   </td>
 </tr>
 <tr class="middle">
@@ -44,7 +29,7 @@
     <div class="uiFcCard" style="display:none">
 
       <div id="keyword" class="fcData fcData-keyword">&nbsp;</div>
-      <div id="kanjibig" lang="ja" xml:lang="ja">
+      <div id="kanjibig" class="fcKanjiFont" lang="ja" xml:lang="ja">
         <p><img src="/images/1.0/spacer.gif" width="1" height="1" alt=""/><span class="fcData fcData-kanji">&nbsp;</span></p>
       </div>
       <div id="strokecount"><span class="kanji" title="Stroke count" lang="ja" xml:lang="ja">&#30011;&#25968;</span> <span class="fcData fcData-strokecount">&nbsp;</span></div>

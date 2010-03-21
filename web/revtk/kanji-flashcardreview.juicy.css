@@ -1,0 +1,55 @@
+/**
+ * Kanji Flashcard Review - "in page" and fullscreen styles
+ *
+ * Juicer build:
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/review-flashcards-kanji.juicy.css
+ * 
+ * Minification:
+ *  java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/review-flashcards-kanji.juiced.css -o web/revtk/review-flashcards-kanji.min.css
+ *
+ * @author  Fabrice Denis
+ */
+
+/* =require from "%WEB%" */
+/* =require "/revtk/bundles/flashcardreview-1.0.juicy.css" */
+
+
+.uiFcCard {
+  width:260px; height:378px;
+}
+
+/* adapt button sizes */
+#uiFcButtons span { width:88px; }
+#uiFcButtons1 a { padding-left:16px;  }
+#uiFcButtons1 span { width:50px; padding-right:16px; }
+#uiFcButtons1 .uiFcAction-yes { margin:0 4px; }
+
+
+/**
+ * Kanji flashcard layout
+ *
+ */
+
+#keyword { font:16px Georgia, Times New Roman; position:absolute; left:15px; top:10px; }
+#keyword a { text-decoration:none; }
+#keyword a:hover { text-decoration:underline; }
+
+#kanjibig { position:absolute; top:97px; left:0px; width:100%; text-align:center; font-size:100pt; line-height:1em;  }
+#kanjibig p { margin:0; padding:0; font-size:100pt; }
+#kanjibig p img { display:none; }
+
+#strokecount { position:absolute; left:14px; bottom:13px; font:12px Georgia, Times New Roman; color:#a0a0a0; }
+#strokecount .kanji { font-size:20pt; }
+
+#framenum { font:12px Georgia, Times New Roman; position:absolute; bottom:14px; right:15px; color:#a0a0a0; }
+
+/* states */
+.uiFcState-0 #keyword     { color:#000; }
+.uiFcState-0 #kanjibig    { visibility:hidden; color:#fff; }
+.uiFcState-0 #strokecount { visibility:hidden; }
+.uiFcState-0 #framenum    { visibility:hidden; }
+
+.uiFcState-1 #keyword     { color:#a0a0a0 }
+.uiFcState-1 #kanjibig    { visibility:visible; color:#000; }
+.uiFcState-1 #strokecount { visibility:visible; }
+.uiFcState-1 #framenum    { visibility:visible; }

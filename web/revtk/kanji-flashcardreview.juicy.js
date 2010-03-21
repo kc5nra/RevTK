@@ -1,11 +1,26 @@
 /**
- * Kanji Labs (experimental features)
+ * RtK Kanji flashcard review.
  * 
+ * Options:
+ * 
+ *   fcr_options   Options to setup uiFlashcardReview
+ *   end_url       Url to redirect to at the end of the review
+ *
  * @author   Fabrice Denis
  * @package  RevTK
  */
 
-var labsReview = 
+/* =require from "%WEB%" */
+/* =require "/revtk/bundles/flashcardreview-1.0.juicy.js" */
+
+/* Edit Story window */
+
+/* =require "/js/ui/widgets.js" */
+/* =require "/js/2.0/review/rkEditStoryWindow.js" */
+/* =require "/js/2.0/study/EditStoryComponent.js" */
+
+
+var rkKanjiReview = 
 {
   initialize:function(options)
   {
@@ -29,13 +44,15 @@ var labsReview =
     this.oReview.addShortcutKey(' ', 'flip');
     this.oReview.addShortcutKey('n', 'no');
     this.oReview.addShortcutKey('y', 'yes');
+    this.oReview.addShortcutKey('e', 'easy');
     this.oReview.addShortcutKey('u', 'undo');
+    this.oReview.addShortcutKey('s', 'story');  // EditStory window
 
     // flashcad container
     this.elFlashcard = $$('div.uiFcCard')[0];
 
     // undo action
-    this.elUndo = $$('.uiFcReview a.uiFcAction-undo')[0];
+    this.elUndo = $$('a.uiFcAction-undo')[0];
     // stats panel
     this.elStats = $$('.uiFcReview .uiFcStats')[0];
     this.elCount = this.elStats.select('.count'); // array
@@ -62,7 +79,7 @@ var labsReview =
   
   onBeginReview:function()
   {
-    //uiConsole.log('labsReview.onBeginReview()');
+    //uiConsole.log('rkKanjiReview.onBeginReview()');
   },
 
   /**
@@ -72,13 +89,14 @@ var labsReview =
    */
   onEndReview:function()
   {
-    //uiConsole.log('labsReview.onEndReview()');
+    //uiConsole.log('rkKanjiReview.onEndReview()');
     
     this.updateStatsPanel();
 
     // set form data and redirect to summary with POST
     var elFrm = $('uiFcRedirectForm');
     elFrm.method = 'post';
+    elFrm.action = this.getOption('end_url');
     elFrm.elements['fc_pass'].value = this.countYes;
     elFrm.elements['fc_fail'].value = this.countNo;
     elFrm.submit();
@@ -86,7 +104,7 @@ var labsReview =
 
   onFlashcardCreate:function()
   {
-    uiConsole.log('labsReview.onFlashcardCreate()');
+    //uiConsole.log('rkKanjiReview.onFlashcardCreate()');
 
     // Show panels when first card is loaded
     if (this.oReview.getPosition()==0)
@@ -121,7 +139,7 @@ var labsReview =
     
   onFlashcardState:function(iState)
   {
-  //  uiConsole.log('labsReview.onFlashcardState(%d)', iState);
+  //  uiConsole.log('rkKanjiReview.onFlashcardState(%d)', iState);
     
     if (iState===0)
     {
@@ -139,10 +157,40 @@ var labsReview =
   {
     var cardAnswer = false;
 
-    uiConsole.log('labsReview.onAction(%o)', arguments);
+    uiConsole.log('rkKanjiReview.onAction(%o)', arguments);
 
     // flashcard is loading or something..
     if (!this.oReview.getFlashcard()) {
+      return;
+    }
+
+    if (sActionId==='story')
+    {
+      if (this.storyWindow && this.storyWindow.isVisible())
+      {
+        this.storyWindow.hide();
+      }
+      else
+      {
+        var oCardData = this.oReview.getFlashcardData();
+        
+        if (!this.storyWindow)
+        {
+          // initialize Story Window and its position
+          var left = this.elFlashcard.offsetLeft + (this.elFlashcard.offsetWidth /2) - (520/2);
+          var top = this.elFlashcard.offsetTop + 61;
+          this.storyWindow = new rkEditStoryWindow(oCardData.id, {
+            left:          left,
+            top:           top,
+            editstory_url: this.getOption('editstory_url')
+          });
+        }
+        else
+        {
+          this.storyWindow.loadFramenum(oCardData.id);
+          this.storyWindow.show();
+        }
+      }
       return;
     }
 
@@ -176,19 +224,27 @@ var labsReview =
       case 'yes':
         cardAnswer = 2;
         break;
+      case 'easy':
+        cardAnswer = 3;
+        break;
     }
 
     // check if flashcard is flipped yet
-    if (cardAnswer && this.oReview.getFlashcardState())
+    if (!this.oReview.getFlashcardState())
     {
-      //var oCardData = this.oReview.getFlashcardData();
-      /* no state
-      var oAnswer = {
+      return;
+    }
+
+    var oCardData = this.oReview.getFlashcardData();
+
+    if (cardAnswer)
+    {
+      var oAnswer =
+      {
         id: oCardData.id,
         r:  cardAnswer
       };
       this.oReview.answerCard(oAnswer);
-      */
       
       this.updateAnswerStats(cardAnswer>1 ? 1 : 0, cardAnswer===1 ? 1 : 0);
       
@@ -201,7 +257,7 @@ var labsReview =
 
   updateStatsPanel:function()
   {
-  //  uiConsole.log('labsReview.updateStatsPanel()');
+  //  uiConsole.log('rkKanjiReview.updateStatsPanel()');
     var items = this.oReview.getItems(),
     num_items = items.length,
     position  = this.oReview.getPosition();
@@ -245,4 +301,5 @@ var labsReview =
       }
     });
   }
-}
+};
+
