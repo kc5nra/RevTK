@@ -1,0 +1,37 @@
+#! /bin/bash
+#
+# Build frontend files to nodebug environment.
+#
+
+cd ~/Sites/Production/public_html/revtk
+
+# labs-alpha-flashcardreview.js
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/labs-alpha-flashcardreview.juicy.js
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/labs-alpha-flashcardreview.juiced.js -o web/revtk/labs-alpha-flashcardreview.min.js
+
+# labs-alpha-flashcardreview.css
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/labs-alpha-flashcardreview.juicy.css
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/labs-alpha-flashcardreview.juiced.css -o web/revtk/labs-alpha-flashcardreview.min.css
+
+# bundles/flashcardreview-1.0.js
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/bundles/flashcardreview-1.0.juicy.js
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/bundles/flashcardreview-1.0.juiced.js -o web/revtk/bundles/flashcardreview-1.0.min.js
+
+# bundles/flashcardreview-1.0.css
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/bundles/flashcardreview-1.0.juicy.css
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/bundles/flashcardreview-1.0.juiced.css -o web/revtk/bundles/flashcardreview-1.0.min.css
+
+# study-base.js
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/study-base.juicy.js
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/study-base.juiced.js -o web/revtk/study-base.min.js
+
+
+# kanji-flashcardreview.js
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/kanji-flashcardreview.juicy.js
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/kanji-flashcardreview.juiced.js -o web/revtk/kanji-flashcardreview.min.js
+
+# kanji-flashcardreview.css
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/kanji-flashcardreview.juicy.css
+java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/kanji-flashcardreview.juiced.css -o web/revtk/kanji-flashcardreview.min.css
+
+
