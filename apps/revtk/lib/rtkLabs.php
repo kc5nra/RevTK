@@ -410,7 +410,8 @@ class rtkLabs
       if (false !== ($framenum = rtkBook::getIndexForKanji($c)))
       {
         $keyword = KanjisPeer::getKeyword($framenum);
-        $url = link_to($c, '@study_edit?id='.$c, array('title' => $keyword));
+        // FIXME - internal uri should be '@study_edit?id=' once it goes to production site..
+        $url = link_to($c, 'http://kanji.koohii.com/study/kanji/'.$c, array('title' => $keyword));
         $s = $s . $url;
       }
       else
