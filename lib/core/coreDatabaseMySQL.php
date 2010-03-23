@@ -437,14 +437,16 @@ class coreDatabaseStatementMySQL extends coreDatabaseStatement
     if ($params === null) {
         $params = array();
     }
+
     // send $params as input parameters to the statement
     if ($params)
     {
-        array_unshift($params, str_repeat('s', count($params)));
-        call_user_func_array(
-            array($this->_stmt, 'bind_param'),
-            $params
-        );
+      array_unshift($params, str_repeat('s', count($params)));
+      $stmtParams = array();
+      foreach ($params as $k => &$value) {
+        $stmtParams[$k] = &$value;
+      }
+      call_user_func_array(array($this->_stmt, 'bind_param'), $stmtParams);
     }
 
     // execute the statement
@@ -455,5 +457,22 @@ class coreDatabaseStatementMySQL extends coreDatabaseStatement
     }
     
     return $retval;
+  }
+
+  /**
+   * Returns the number of rows affected by the last INSERT, UPDATE,
+   * REPLACE or DELETE query.
+   *
+   * For SELECT statements mysqli_affected_rows() works like mysqli_num_rows()
+   *
+   * @return int     The number of rows affected.
+   */
+  public function rowCount()
+  {
+    if (!$this->_adapter) {
+        return false;
+    }
+    $mysqli = $this->_adapter->getConnection();
+    return $mysqli->affected_rows;
   }
 }

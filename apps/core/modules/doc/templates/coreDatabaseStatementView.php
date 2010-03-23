@@ -9,8 +9,10 @@ function __construct(coreDatabase $adapter, $sql)
 
 // Run a prepared statement, with optional parameters
 // @return TRUE on success or FALSE on failure. 
-function execute(array $params = null)
+boolean function execute(array $params = null)
 
+// Returns the number of rows affected by the last INSERT, UPDATE, REPLACE or DELETE query.
+int function rowCount()
 <?php pre_end() ?>
 
 <h2>Creating a executing a prepared Statement</h2>

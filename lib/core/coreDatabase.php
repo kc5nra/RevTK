@@ -652,4 +652,14 @@ abstract class coreDatabaseStatement
   {
     return $this->_execute($params);
   }
+
+  /**
+   * Returns the number of rows affected by the last INSERT, UPDATE,
+   * REPLACE or DELETE query.
+   *
+   * For SELECT statements mysqli_affected_rows() works like mysqli_num_rows()
+   *
+   * @return int     The number of rows affected.
+   */
+  abstract function rowCount();
 }
