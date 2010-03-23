@@ -17,6 +17,14 @@
       
       <p> Welcome to the Reviewing the Kanji <strong>Labs</strong>!</p>
 
+<?php if (CORE_ENVIRONMENT !== 'prod'): ?>
+  <div style="-moz-border-radius:10px;padding:10px;background:#0077d4;color:#fff;font-weight:bold;margin:0 0 1em;border-radius:10px;">
+    Please note this feature is currently on the TEST website! Sorry for the confusion,
+    make sure to go back to <a href="http://kanji.koohii.com" style="color:#fc4">http://kanji.koohii.com</a> to use
+    the <em>real</em> website. This is a development feature.
+  </div>
+<?php endif; ?>
+
       <p> This part of the website contains experimental features.</p>
 
       <p> Here I will "brainstorm" some ideas and with your feedback

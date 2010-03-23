@@ -12,6 +12,11 @@
 <?php include_slot('inline_styles') ?>
   </style>
 <?php endif ?>
+<?php if (CORE_ENVIRONMENT === 'staging'): ?>
+<style type="text/css">
+body { background:#FDF9CA url(/images/1.0/linedbg-staging.gif) repeat 0 0 }
+</style>
+<?php endif; ?>
 </head>
 <body class="<?php echo $_request->getParameter('module').'-'.$_request->getParameter('action'); ?>">
 
