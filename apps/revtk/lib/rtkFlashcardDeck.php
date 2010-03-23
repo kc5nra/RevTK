@@ -83,12 +83,12 @@ class rtkFlashcardDeck
    * @param object $userId
    * @param object $selection
    * 
-   * @return array  Array of successfully deleted flashcards (ids)
+   * @return array  Array of successfully deleted flashcards (ids) or false
    */
   static public function deleteSelection($userId, array $cardSelection)
   {
     $cards = ReviewsPeer::deleteFlashcards($userId, $cardSelection);
-    if (count($cards))
+    if (is_array($cards) && count($cards))
     {
       ActiveMembersPeer::updateFlashcardCount($userId);
     }

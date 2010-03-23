@@ -3,6 +3,12 @@
 
   <?php echo form_errors() ?>
 
+<?php if (is_array($cards) && !count($cards)): ?>
+
+  <p> No flashcards matched the selection, nothing deleted.</p>
+
+<?php elseif (is_array($cards)): ?>
+
   <p> The following <strong><?php echo $count ?></strong> kanji flashcard(s) have been removed:</p>
   
   <div style="background:#E7F5CD;color:#000;padding:5px;margin:0 0 1em;">
@@ -15,6 +21,8 @@
   echo implode(', ', $kanjis);
 ?>
   </div>
+
+<?php endif; ?>
 
   <p><a href="#" class="proceed" onclick="return ManageFlashcards.load(this,{'reset':true});">Remove more cards</a></p>
 

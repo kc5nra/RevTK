@@ -223,7 +223,8 @@ class manageActions extends coreActions
     $selectedCards = uiSelectionState::getSelection(self::REMOVE_FLASHCARDS)->getAll();
     
     $cards = rtkFlashcardDeck::deleteSelection($this->getUser()->getUserId(), $selectedCards);
-    if (count($cards) != count($selectedCards))
+
+    if ($cards === false)
     {
       $request->setError('x', 'Oops! An error occured while deleting flashcards, not all flashcards were deleted.');
     }
@@ -292,8 +293,8 @@ class manageActions extends coreActions
     $selectedCards = unserialize($selection);
 
     $cards = rtkFlashcardDeck::deleteSelection($this->getUser()->getUserId(), $selectedCards);
-    if (count($cards) != count($selectedCards))
-    {
+    if ($cards === false)
+    { 
       $request->setError('x', 'Oops! An error occured while deleting flashcards, not all flashcards were deleted.');
     }
 

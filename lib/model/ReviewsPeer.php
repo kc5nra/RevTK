@@ -124,7 +124,7 @@ class ReviewsPeer extends coreDatabaseTable
    * @param int   $userId
    * @param array $cardIds  Array of flashcard ids (kanji framenum or unicode value)
    * 
-   * @return array  Returns an array of succesfully created flashcards' ids
+   * @return array  Returns an array of succesfully deleted flashcard ids or false
    */
   public static function deleteFlashcards($userId, $cards)
   {
@@ -146,11 +146,14 @@ class ReviewsPeer extends coreDatabaseTable
         {
           break;
         }
-        $done[] = $id;
+        if ($stmt->rowCount() > 0) {
+          $done[] = $id;
+        }
       }
     }
     catch (coreException $e)
     {
+      $done = false;
     }
 
     // unlock table
