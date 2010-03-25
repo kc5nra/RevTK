@@ -7,7 +7,7 @@ Event.observe(window, 'load', function()
   StudyPage.initialize({
     URL_SEARCH:        "<?php echo url_for('study/kanji', true) ?>",
     URL_SHAREDSTORIES: "<?php echo url_for('study/ajax', true) ?>"
-  });  
+  });
 });
 </script>
 

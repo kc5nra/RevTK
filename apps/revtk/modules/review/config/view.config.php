@@ -13,16 +13,11 @@ return array
     'title'        => 'Review Status',
     'stylesheets' => array
     (
-      '/css/2.0/widgets.css',
-      '/css/2.0/leitner-svg.css'
+      '/revtk/review-home.juicy.css'
     ),
     'javascripts' => array
     (
-      '/js/lib/prototype.min.js',
-      '/js/ui/uibase.min.js',
-      '/js/ui/widgets.js',
-      '/js/lib/raphael.min.js',
-      '/js/2.0/review/rkLeitnerView.js'
+      '/revtk/review-home.juicy.js'
     )
   ),
 

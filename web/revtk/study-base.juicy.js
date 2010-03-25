@@ -12,14 +12,21 @@
  * @author  Fabrice Denis
  */
 
+/* =require from "%FRONT%" */
+/* =require "/lib/prototype.min.js" */
+/* =require "/scripts/autocomplete.js" */
+
 /* =require from "%WEB%" */
-/* =require "/js/lib/prototype.min.js" */
 /* =require "/js/ui/uibase.js" */
-/* =require "/js/1.0/autocomplete.min.js" */
 /* =require "/js/2.0/study/keywords.js" */
 /* =require "/js/2.0/study/EditStoryComponent.js" */
-/* !require "/js/2.0/study/study.js" */
 
+/**
+ *
+ * Options:
+ *   URL_SEARCH
+ *   URL_SHAREDSTORIES
+ */
 var StudyPage =
 {
   initialize:function(options)
@@ -29,7 +36,7 @@ var StudyPage =
     
     // references
     this.elSearch = $('txtSearch');
-
+    
     // quick search autocomplete
     var actb1 = this.actb1 = new actb(this.elSearch, kwlist);
     actb1.onChangeCallback = this.quicksearchOnChangeCallback.bind(this);
@@ -41,7 +48,8 @@ var StudyPage =
     // clicking in quick search box selects the text
     this.elSearch.onfocus = function()
     {
-      if (this.value!==''){
+      if (this.value!=='')
+      {
         this.select();
       }
     }
@@ -63,6 +71,14 @@ var StudyPage =
     }
   },
   
+  onSearchBtn: function(e)
+  {
+    var text = this.elSearch.value;
+    this.quicksearchOnChangeCallback(text);
+    Event.stop(e);
+    return false;
+  },
+
   /**
    * Auto-complete onchange callback, fires after user selects
    * something from the drop down list.
@@ -72,7 +88,7 @@ var StudyPage =
    * @see    autocomplete.js
    */
   quicksearchOnChangeCallback:function(text)
-  {  
+  {
     if (text.length > 0)
     {
       // Replace slash with underscore for URL routing

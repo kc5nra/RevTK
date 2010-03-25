@@ -1,9 +1,20 @@
 /**
- * Styles for SVG/VML Leitner Barchart
+ * Review Dashboard
  * 
- * @package RevTK
+ * Juicer build:
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/review-home.juicy.css
+ * 
+ * Minification:
+ *  java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/review-home.juiced.css -o web/revtk/review-home.min.css
+ *   
  * @author  Fabrice Denis
+ * @date    March 2010
  */
+
+/* =require from "%WEB%" */
+/* =require "/revtk/bundles/flashcardreview-1.0.juicy.css" */
+/* =require from "%WEB%" */
+/* =require "/css/2.0/widgets.css" */
 
 /**
  * Base SVG/VML styles
@@ -20,3 +31,4 @@
  */
 .svg-outer-div { position:relative;  }
 .svg-inner-div { position:absolute; width:100%; } /* move SVG outta the positioning way! */
+

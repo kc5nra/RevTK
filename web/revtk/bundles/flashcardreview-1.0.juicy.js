@@ -19,8 +19,10 @@
 /* =require "/yahoo-dom-event/yahoo-dom-event.js" */
 /* =require "/dragdrop/dragdrop-min.js" */
 
+/* =require from "%FRONT%" */
+/* =require "/lib/prototype.min.js" */
+
 /* =require from "%WEB%" */
-/* =require "/js/lib/prototype.min.js" */
 /* =require "/js/ui/uibase.js" */
 /* =require "/js/ui/uiFlashcardReview.js" */
 
