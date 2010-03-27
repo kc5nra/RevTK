@@ -17,10 +17,16 @@
 --  . find all compounds using a given character as a prefix, suffix,
 --    or at any given position
 -- 
--- The dictionary flags are stored as bits and require corresponding 
--- constants to be defined in the application:
+-- For the dictionary flags and corresponding constants to use in the
+-- code, see  apps/revtk/lib/rtkLabs.php
 --
---   (to document)
+-- Installation:
+--  Download the data from this DropBox public folder:
+--    http://dl.dropbox.com/u/1412587/RevTK/RevTK-Trinity-Data.zip
+--  Unzip and place the files into:
+--    data/generated/
+--  Then run this script with SOURCE statement.
+--    mysql> SOURCE data/schemas/trinity_schema.sql;
 -- 
 -- @author  Fabrice Denis 
 --
@@ -58,10 +64,10 @@ SET NAMES 'utf8';
 -- 
 --  dictid     Unique id derived from ent_seq (but not necessarily sequential)
 --  pri        Priority (news1, news2, ichi1, ... as a bitmask)
---  pos        Bitmask (see "dictpos" constant in the script)
---  verb       Bitmask (see "dictverb" constant in the script)
---  misc       Bitmask (see "dictmisc" constant in the script)
---  field      Bitmask (see "dictfield" constant in the script)
+--  pos        Bitmask (see "dictpos" constants in rtkLabs.php)
+--  verb       Bitmask (see "dictverb" constants in rtkLabs.php)
+--  misc       Bitmask (see "dictmisc" constants in rtkLabs.php)
+--  field      Bitmask (see "dictfield" constants in rtkLabs.php)
 --  compound   
 --  reading
 --  glossary   Contains all the glosses separated by ;
