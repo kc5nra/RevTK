@@ -28,7 +28,7 @@ html, body { width:100%; height:100%; overflow:hidden; }
 </div>
 <![endif]--> 
 
-<?php if (coreConfig::get('koohii_build') { use_helper('__Affiliate'); echo analytics_tracking_code(); } ?>
+<?php if (coreConfig::get('koohii_build')) { use_helper('__Affiliate'); echo analytics_tracking_code(); } ?>
 
 </body>
 </html>
