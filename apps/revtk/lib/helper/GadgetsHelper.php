@@ -28,7 +28,7 @@
  * 
  * Options:
  *   labelLeft, labelRight   Labels on each side
- * 	 valueLeft, valueRight   Values, will be summed up to calculate percentage
+ *    valueLeft, valueRight   Values, will be summed up to calculate percentage
  *   labelLeftMax            Label to use when value of the other side is 0 (OPTIONAL)
  *   labelRightMax
  * 
@@ -36,26 +36,26 @@
  */
 function ui_chart_vs(array $options)
 {
-	$valueTotal = $options['valueLeft'] + $options['valueRight'];
-	$pctLeft  = ceil($options['valueLeft'] * 100 / $valueTotal);
-	$pctRight = 100 - $pctLeft;
+  $valueTotal = $options['valueLeft'] + $options['valueRight'];
+  $pctLeft  = ceil($options['valueLeft'] * 100 / $valueTotal);
+  $pctRight = 100 - $pctLeft;
 
-	$captionLeft = isset($options['labelLeftMax']) && $options['valueRight']==0 ? $options['labelLeftMax'] : $options['labelLeft'];
-	$captionRight= isset($options['labelRightMax']) && $options['valueLeft']==0 ? $options['labelRightMax'] : $options['labelRight'];
+  $captionLeft = isset($options['labelLeftMax']) && $options['valueRight']==0 ? $options['labelLeftMax'] : $options['labelLeft'];
+  $captionRight= isset($options['labelRightMax']) && $options['valueLeft']==0 ? $options['labelRightMax'] : $options['labelRight'];
 
-	$options = array_merge($options, array(
-		'pctLeft'     => $pctLeft,
-		'pctRight'    => $pctRight,
-		'bZeroLeft'   => $pctLeft==0,
-		'bZeroRight'  => $pctRight==0,
-		'captionLeft' => $captionLeft,
-		'captionRight'=> $captionRight
-	));
+  $options = array_merge($options, array(
+    'pctLeft'     => $pctLeft,
+    'pctRight'    => $pctRight,
+    'bZeroLeft'   => $pctLeft==0,
+    'bZeroRight'  => $pctRight==0,
+    'captionLeft' => $captionLeft,
+    'captionRight'=> $captionRight
+  ));
 
-	$view = new coreView(coreContext::getInstance());
-	$view->getParameterHolder()->add($options);
-	$view->setTemplate(dirname(__FILE__).'/templates/ui_chart_vs.php');
-	return $view->render();
+  $view = new coreView(coreContext::getInstance());
+  $view->getParameterHolder()->add($options);
+  $view->setTemplate(dirname(__FILE__).'/templates/ui_chart_vs.php');
+  return $view->render();
 }
 
 /**
@@ -90,45 +90,45 @@ function ui_progress_bar(array $bars, $maxValue, $options = array())
   {
     throw new coreException('ui_progress_bar()  "maxValue" must be an integer');
   }
-	
+  
   // border color for the bar, override border-color from the stylesheet
   $innerDivOptions = array();
   if(isset($options['borderColor']))
   {
-  	// override background color on outer div
-  	$options['style'] = "background:${options['borderColor']};";
-  	// override border-color on inner div
-  	$innerDivOptions['style'] = "border-color:${options['borderColor']};";
-  	unset($options['borderColor']);
+    // override background color on outer div
+    $options['style'] = "background:${options['borderColor']};";
+    // override border-color on inner div
+    $innerDivOptions['style'] = "border-color:${options['borderColor']};";
+    unset($options['borderColor']);
   }
   
-	// merge widget class name
+  // merge widget class name
   $options['class'] = _merge_class_names(isset($options['class']) ? $options['class'] : array(), array('uiProgressBar'));
-	
-	// generate the bars as SPANs
-	$spans = array();
-	foreach($bars as $bar)
-	{
-		if (!ctype_digit((string)$bar['value']))
-		{
-			throw new coreException('ui_progress_bar()  "value" must be numeric');
-		}
-		
-		if ($bar['value'] >= 0)
-		{
-	    $percent = $bar['value'] > 0 ? ceil($bar['value'] / $maxValue * 100) : 0; 
-			$label = isset($bar['label']) ? $bar['label'] : "${bar['value']}/${maxValue}";
-		  $spanOptions = array(
-		    'class' => isset($bar['class']) ? $bar['class'] : "g",
-		    'title' => $label,
-		    'style' => "width:${percent}%;"
-		  );
-		  array_push($spans, content_tag('span', $label, $spanOptions));
-		}
-	}
-	
-	$content = content_tag('div', implode('', $spans), $innerDivOptions);
+  
+  // generate the bars as SPANs
+  $spans = array();
+  foreach($bars as $bar)
+  {
+    if (!ctype_digit((string)$bar['value']))
+    {
+      throw new coreException('ui_progress_bar()  "value" must be numeric');
+    }
+    
+    if ($bar['value'] >= 0)
+    {
+      $percent = $bar['value'] > 0 ? ceil($bar['value'] / $maxValue * 100) : 0; 
+      $label = isset($bar['label']) ? $bar['label'] : "${bar['value']}/${maxValue}";
+      $spanOptions = array(
+        'class' => isset($bar['class']) ? $bar['class'] : "g",
+        'title' => $label,
+        'style' => "width:${percent}%;"
+      );
+      array_push($spans, content_tag('span', $label, $spanOptions));
+    }
+  }
+  
+  $content = content_tag('div', implode('', $spans), $innerDivOptions);
 
-	// generate the outer div
-	return content_tag('div', $content, $options);
+  // generate the outer div
+  return content_tag('div', $content, $options);
 }

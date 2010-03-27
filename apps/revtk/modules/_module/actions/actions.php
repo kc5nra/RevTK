@@ -18,7 +18,7 @@
 
 class ___Actions extends coreActions
 {
-	public function executeIndex()
-	{
-	}
+  public function executeIndex()
+  {
+  }
 }

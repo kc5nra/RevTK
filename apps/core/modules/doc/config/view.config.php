@@ -8,8 +8,8 @@
 
 return array
 (
-	'helperasset' => array
-	(
-		'title'	      	   => 'HelperAsset | Documentation'
-	)
+  'helperasset' => array
+  (
+    'title'             => 'HelperAsset | Documentation'
+  )
 );

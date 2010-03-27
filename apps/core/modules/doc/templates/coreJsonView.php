@@ -24,7 +24,7 @@ const USE_NATIVE        // defaults to true
 
 <p> If <var>USE_NATIVE</var> is true (by default), coreJson uses the native php encoding and decoding
     functions. They are faster but have many drawbacks:
-	
+  
 <p> Native JSON support does not allow for any kind of comments in the data.
 
 <p> Native JSON requires ALL properties to be quoted.

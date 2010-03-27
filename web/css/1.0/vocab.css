@@ -7,7 +7,7 @@
 .default-hidden { display:none; }
 
 /* page layout */
-#mainleft {	display:none; }
+#mainleft {  display:none; }
 #mainright { margin-left:20px; float:none; width:885px; }
 .topsection { width:843px; padding-bottom:16px; }
 .mainsection { width:843px; }
@@ -34,9 +34,9 @@ a.ico-help-system { background:url(/img/vocab/ico-help-system.gif) no-repeat 0 5
 
 .buttons { margin:1em 0 0; width:100%; }
 .buttons a {
-	float:left;
-	background:#ccc; padding:9px 0 10px 20px;
-	color:#000; line-height:1em; font-size:14px; text-decoration:none;
+  float:left;
+  background:#ccc; padding:9px 0 10px 20px;
+  color:#000; line-height:1em; font-size:14px; text-decoration:none;
 }
 .buttons a span { padding:0 20px 0 0; white-space:nowrap; }
 .buttons a:hover span { color:#000; text-decoration:underline; }
@@ -49,7 +49,7 @@ a.ico-help-system { background:url(/img/vocab/ico-help-system.gif) no-repeat 0 5
 
 /* inline buttons */
 
-.app a.button {	background:url('/img/vocab/button-left.gif') no-repeat center left;	padding:6px 0 5px 10px;	color:#000;	line-height:24px; }
+.app a.button {  background:url('/img/vocab/button-left.gif') no-repeat center left;  padding:6px 0 5px 10px;  color:#000;  line-height:24px; }
 .app a.button span { background:url('/img/vocab/button-right.gif') no-repeat center right; padding:6px 10px 5px 0; white-space:nowrap; }
 .app a.button:hover { color:#000; }
 
@@ -174,12 +174,12 @@ table.dictmatch tr.foo td { background-color:#ECECEC; cursor:default; color:#777
 ul#trinity, ul#trinity li { margin:0; padding:0; list-style:none; }
 ul#trinity { float:left; width:100%; background:url(/img/vocab/bigtabs-ulmain-bg.gif) repeat-x 0 100%; }
 ul#trinity li {
-	float:left; 
-	width:273px;
-	min-height:98px; height:auto !important; /*ie6*/height:98px;
-	border:1px solid #CCCCCC; border-bottom:none; background:#e6e6e6;
-	margin-right:9px;
-	padding-bottom:0;
+  float:left; 
+  width:273px;
+  min-height:98px; height:auto !important; /*ie6*/height:98px;
+  border:1px solid #CCCCCC; border-bottom:none; background:#e6e6e6;
+  margin-right:9px;
+  padding-bottom:0;
 }
 
 ul#trinity li p { font-size:12px; line-height:1.3em; margin:0 13px 0px; color:#444; }
@@ -187,9 +187,9 @@ ul#trinity li span.expired { color:#de790b; display:block; }
 ul#trinity li span.failed { color:#DF1500; display:block; }
 
 ul#trinity h2 { 
-	font-family:Arial; font-size:16px; color:#868686; font-weight:bold; line-height:1em;
-	margin:0; padding:0; padding:13px;
-	text-transform:none; letter-spacing:0;
+  font-family:Arial; font-size:16px; color:#868686; font-weight:bold; line-height:1em;
+  margin:0; padding:0; padding:13px;
+  text-transform:none; letter-spacing:0;
 }
 ul#trinity .active h2 { color:#28B208; }
 
@@ -201,12 +201,12 @@ ul#trinity li.active { border-color:#CCCCCC; background:#fff; padding-bottom:1px
 ul#trinity li#main-li3 { margin-right:0; float:right; }
 
 #main-container {
-	clear:both;
-	width:841px;
-	border:1px solid #CCCCCC;
-	border-top:none;
-	border-bottom-color:#AEAEAE;
-	background:#fff;
+  clear:both;
+  width:841px;
+  border:1px solid #CCCCCC;
+  border-top:none;
+  border-bottom-color:#AEAEAE;
+  background:#fff;
 }
 
 .content-padding { padding:13px; }
@@ -223,12 +223,12 @@ ul#trinity li#main-li3 { margin-right:0; float:right; }
 /* leiner view */
 
 #trinity-main .leitnerboxes {
-	background:#f8f8f8;/*#FFFDE7;*/
-	padding:16px 25px 16px 25px;
-	width:765px;
-	margin:0 0 1em;
-	border:1px solid #ddd;border-top-color:#ccc;
-	font-size:1.1em;
+  background:#f8f8f8;/*#FFFDE7;*/
+  padding:16px 25px 16px 25px;
+  width:765px;
+  margin:0 0 1em;
+  border:1px solid #ddd;border-top-color:#ccc;
+  font-size:1.1em;
 }
 #trinity-main .leitnerboxes .cardbox { background:none; }
 #trinity-main .leitnerboxes .cardboxhead { background:none; }
@@ -315,31 +315,31 @@ table#usersentences td a:hover { text-decoration:underline; }
 
 /* flashcard */
 div.flashcard {
-	font-size:10px;
-	background:#fff;
-	border-left:1px solid #e9e9e9;
-	border-right:1px solid #e9e9e9;
-	border-bottom:1px solid #a8a8a8;
+  font-size:10px;
+  background:#fff;
+  border-left:1px solid #e9e9e9;
+  border-right:1px solid #e9e9e9;
+  border-bottom:1px solid #a8a8a8;
 }
 
 .sentence-review h2 { margin:0 0 12px; margin-left:85px; }
 .sentence-review #reviewarea { height:auto; }
 .sentence-review #flashcard {
-	position:relative;
-	width:543px; /*height:269px; */
-	padding:12px 18px;
-	margin:0; margin-left:64px; margin-bottom:16px;
+  position:relative;
+  width:543px; /*height:269px; */
+  padding:12px 18px;
+  margin:0; margin-left:64px; margin-bottom:16px;
 }
 #flashcard #loading {
-	position:absolute; left:-1px; top:0;
-	width:581px; height:306px;
-	background:#FFFDE7;
+  position:absolute; left:-1px; top:0;
+  width:581px; height:306px;
+  background:#FFFDE7;
 }
 #flashcard #loading p {
-	text-align:center;
-	margin-top:126px;
-	font:16px/1.4em Georgia, Times New Roman;
-	color:#888;
+  text-align:center;
+  margin-top:126px;
+  font:16px/1.4em Georgia, Times New Roman;
+  color:#888;
 }
 
 
@@ -356,15 +356,15 @@ div.flashcard {
 .sentence-review #flashcard #question span a { color:blue; text-decoration:underline; }
 
 .sentence-review #flashcard #answer {
-	width:538px; height:180px;
-	background:#f8f8f8; padding:10px;	
-/*	position:absolute; bottom:12px; left:11px;*/
-	margin-left:-7px;
+  width:538px; height:180px;
+  background:#f8f8f8; padding:10px;  
+/*  position:absolute; bottom:12px; left:11px;*/
+  margin-left:-7px;
 }
 .sentence-review #flashcard #answer-text {
-	font:1.2em/1.5em Arial, sans-serif;
-	color:#444; width:100%; height:100%;
-	overflow-y:scroll;
+  font:1.2em/1.5em Arial, sans-serif;
+  color:#444; width:100%; height:100%;
+  overflow-y:scroll;
 }
 
 .sentence-review #flashcard.hidden #question { color:#000; }
@@ -458,8 +458,8 @@ div.flashcard {
  /* onkun section title */
 #kstudy .tbar { background:#E8E5C9; padding:0 8px; border:1px solid #ccc; border-bottom:none; font-size:10px; text-align:right; }
 #kstudy .tbar h3 {
-	color:#2F2F2F; font-size:2.4em; font-family:"MS Gothic",sans-serif; margin:0; padding:10px 0 10px; float:left;
-	letter-spacing:0; text-transform:none; line-height:1em;
+  color:#2F2F2F; font-size:2.4em; font-family:"MS Gothic",sans-serif; margin:0; padding:10px 0 10px; float:left;
+  letter-spacing:0; text-transform:none; line-height:1em;
 }
 #kstudy .tbar a { color:#0D6F16; font-size:1.2em; line-height:40px; text-decoration:underline; }
 #kstudy .tbar a:hover { text-decoration:underline; }

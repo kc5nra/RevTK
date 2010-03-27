@@ -138,73 +138,73 @@ var uiWidgets = {};
     /**
      * 
      */
-	  selection: {},
-	  
-	  initialize:function(elContainer)
-	  {
-	    this.elContainer = elContainer;
-	    this.ajaxTable = new uiWidgets.AjaxTable(elContainer);
-	
-	    this.evtCache = new uiEventCache();
-	    this.evtCache.addEvent(elContainer, 'click', Y.bind(this.evClick, this));
-	  },
-	  
-	  destroy:function()
-	  {
-	    this.evtCache.destroy();
-	    this.ajaxTable.destroy();
-	  },
-	  
-	  evClick:function(e)
-	  {
-	    var row, inputs, element = Event.getTarget(e);
-	
-	    if (element.className==='checkbox')
-	    {
-	      row = element.up('tr');
-	      inputs = row.getElementsByTagName('input');
-	      this.setSelection(row, inputs, element.checked);
-	    }
-	    else if (element.className==='chkAll')
-	    {
-	      var elTable = this.elContainer.getElementsByTagName('table')[0];
-	      var i, rows = elTable.tBodies[0].rows;
-	      var check = element.checked;
-	      for (i = 0; i < rows.length; i++)
-	      {
-	        row = rows[i];
-	        inputs = row.getElementsByTagName('input');
-	        if (inputs[1].checked !== check)
-	        {
-	          inputs[1].checked = check;
-	          this.setSelection(row, inputs, check);
-	        }
-	      }
-	    }
-	    else
-	    {
-	      // if clicked in a row, select it
-	      row = oEvent.findElement('tr');
-	      if (row)
-	      {
-	        elChk = row.down('input.checkbox');
-	        if (elChk)
-	        {
-	          elChk.click();
-	          oEvent.stop();
-	        }
-	      }
-	    }
-	  },
-	  
-	  setSelection:function(row, inputs, check)
-	  {
-	    // set value
-	    inputs[0].value = check ? '1' : '0';
-	    // set highlight
-	    Dom[check ? 'addClass' : 'removeClass'](row, 'selected');
-	  }
-	};
+    selection: {},
+    
+    initialize:function(elContainer)
+    {
+      this.elContainer = elContainer;
+      this.ajaxTable = new uiWidgets.AjaxTable(elContainer);
+  
+      this.evtCache = new uiEventCache();
+      this.evtCache.addEvent(elContainer, 'click', Y.bind(this.evClick, this));
+    },
+    
+    destroy:function()
+    {
+      this.evtCache.destroy();
+      this.ajaxTable.destroy();
+    },
+    
+    evClick:function(e)
+    {
+      var row, inputs, element = Event.getTarget(e);
+  
+      if (element.className==='checkbox')
+      {
+        row = element.up('tr');
+        inputs = row.getElementsByTagName('input');
+        this.setSelection(row, inputs, element.checked);
+      }
+      else if (element.className==='chkAll')
+      {
+        var elTable = this.elContainer.getElementsByTagName('table')[0];
+        var i, rows = elTable.tBodies[0].rows;
+        var check = element.checked;
+        for (i = 0; i < rows.length; i++)
+        {
+          row = rows[i];
+          inputs = row.getElementsByTagName('input');
+          if (inputs[1].checked !== check)
+          {
+            inputs[1].checked = check;
+            this.setSelection(row, inputs, check);
+          }
+        }
+      }
+      else
+      {
+        // if clicked in a row, select it
+        row = oEvent.findElement('tr');
+        if (row)
+        {
+          elChk = row.down('input.checkbox');
+          if (elChk)
+          {
+            elChk.click();
+            oEvent.stop();
+          }
+        }
+      }
+    },
+    
+    setSelection:function(row, inputs, check)
+    {
+      // set value
+      inputs[0].value = check ? '1' : '0';
+      // set highlight
+      Dom[check ? 'addClass' : 'removeClass'](row, 'selected');
+    }
+  };
 
 })();
 
@@ -247,92 +247,92 @@ var uiWidgets = {};
 
   uiWindow.prototype = {
 
-	  initialize:function(elWindow, options)
-	  {
-	    this.elWindow   = Dom.get(elWindow);
-	    this.elBody     = Dom.getElementsByClassName('window-body', 'div', this.elWindow)[0];
-	    this.elUnderlay = Dom.getElementsByClassName('underlay', 'div', this.elWindow)[0];
+    initialize:function(elWindow, options)
+    {
+      this.elWindow   = Dom.get(elWindow);
+      this.elBody     = Dom.getElementsByClassName('window-body', 'div', this.elWindow)[0];
+      this.elUnderlay = Dom.getElementsByClassName('underlay', 'div', this.elWindow)[0];
 
-	    // set defaults
-	    this.options = options;
-	    this.options.opacity = options.opacity || 0.5; // false = 100% opaque
-	
-	    // set window borders opacity
-	    Dom.setStyles(this.elUnderlay, { opacity: this.options.opacity });
-	
-	    // register events
-	    this.eventDispatcher = new App.Ui.EventDispatcher();
-	    if (options.events)
-	    {
-	      for (var sEvent in options.events) {
-	        this.eventDispatcher.connect(sEvent, options.events[sEvent]);
-	      }
-	    }
-	
-	    // titlebar bar close button
-	    this.evtCache = new App.Ui.EventCache();
-	    this.elTitleBar = Dom.getElementsByClassName('window-top', 'div', this.elWindow)[0];
-	    var elCloseButton = Dom.getElementsByClassName('close', 'a', this.elTitleBar)[0];
+      // set defaults
+      this.options = options;
+      this.options.opacity = options.opacity || 0.5; // false = 100% opaque
+  
+      // set window borders opacity
+      Dom.setStyles(this.elUnderlay, { opacity: this.options.opacity });
+  
+      // register events
+      this.eventDispatcher = new App.Ui.EventDispatcher();
+      if (options.events)
+      {
+        for (var sEvent in options.events) {
+          this.eventDispatcher.connect(sEvent, options.events[sEvent]);
+        }
+      }
+  
+      // titlebar bar close button
+      this.evtCache = new App.Ui.EventCache();
+      this.elTitleBar = Dom.getElementsByClassName('window-top', 'div', this.elWindow)[0];
+      var elCloseButton = Dom.getElementsByClassName('close', 'a', this.elTitleBar)[0];
 
-	    if (elCloseButton)
-	    {
-	      var that = this;
-	      this.evtCache.addEvent(elCloseButton, 'click', function(e)
-	      {
-	        that.eventDispatcher.notify('onWindowClose');
-	        Event.stopEvent(e);
-	      });
-	    }
-	    
-	    // position window
-	    Dom.setStyles(this.elWindow, {
-	      left:     this.options.left+'px',
-	      top:      this.options.top+'px',
-	      width:    this.options.width ? this.options.width+'px' : 'auto',
-	      position: 'absolute',
-	      zIndex:   2
-	    });
-	    
-	    if (this.options.draggable && typeof(YAHOO)!=='undefined')
-	    {
-	      this.dragdrop = new Y.util.DD(this.elWindow);
-	      var elHandle = Dom.getElementsByClassName('window-handle', 'div', this.elWindow)[0];
-	      this.dragdrop.setHandleElId(elHandle);
-	    }
-	  },
-	  
-	  show:function()
-	  {
-	    // position window
-	    Dom.setStyles(this.elWindow, { display: 'block' });
-	  },
-	  
-	  hide:function()
-	  {
-	  	Dom.setStyles(this.elWindow, { display: 'none' });
-	  },
-	  
-	  destroy:function()
-	  {
-	    if (this.dragdrop)
-	    {
-	      this.dragdrop.unreg();
-	    }
-	
-	    this.evtCache.destroy();
-	  },
-	
-	  close:function()
-	  {
-	    this.hide();
-	    this.destroy();
-	  },
-	
-	  getBodyElement:function()
-	  {
-	    return this.elBody;
-	  }
-	};
+      if (elCloseButton)
+      {
+        var that = this;
+        this.evtCache.addEvent(elCloseButton, 'click', function(e)
+        {
+          that.eventDispatcher.notify('onWindowClose');
+          Event.stopEvent(e);
+        });
+      }
+      
+      // position window
+      Dom.setStyles(this.elWindow, {
+        left:     this.options.left+'px',
+        top:      this.options.top+'px',
+        width:    this.options.width ? this.options.width+'px' : 'auto',
+        position: 'absolute',
+        zIndex:   2
+      });
+      
+      if (this.options.draggable && typeof(YAHOO)!=='undefined')
+      {
+        this.dragdrop = new Y.util.DD(this.elWindow);
+        var elHandle = Dom.getElementsByClassName('window-handle', 'div', this.elWindow)[0];
+        this.dragdrop.setHandleElId(elHandle);
+      }
+    },
+    
+    show:function()
+    {
+      // position window
+      Dom.setStyles(this.elWindow, { display: 'block' });
+    },
+    
+    hide:function()
+    {
+      Dom.setStyles(this.elWindow, { display: 'none' });
+    },
+    
+    destroy:function()
+    {
+      if (this.dragdrop)
+      {
+        this.dragdrop.unreg();
+      }
+  
+      this.evtCache.destroy();
+    },
+  
+    close:function()
+    {
+      this.hide();
+      this.destroy();
+    },
+  
+    getBodyElement:function()
+    {
+      return this.elBody;
+    }
+  };
 
 })();
 
@@ -389,87 +389,87 @@ var uiWidgets = {};
   };
   
   var Y = YAHOO,
-	    Dom = Y.util.Dom,
-	    Event = Y.util.Event,
-	    TabbedView = uiWidgets.TabbedView;
+      Dom = Y.util.Dom,
+      Event = Y.util.Event,
+      TabbedView = uiWidgets.TabbedView;
 
-	TabbedView.prototype =
-	{
-	  init:function(elContainer, events)
-	  {
-	  	elContainer = Dom.get(elContainer);
-	  	
- 	    this.evtCache = new App.Ui.EventCache();
-	    
-	    // register events
-	    this.eventDispatcher = new App.Ui.EventDispatcher();
-	    if (events)
-	    {
-	      for (var sEvent in events) {
-	        this.eventDispatcher.connect(sEvent, events[sEvent]);
-	      }
-	    }
-	
-	    this.views = {};
-	    this.currentView = null;
-	
-	    var aLIs = elContainer.getElementsByTagName('li');
-	    var i;
-	    for (i=0; i < aLIs.length; i++)
-	    {
-	      var elLI = Dom.get(aLIs[i]);
-	      var elLink = elLI.getElementsByTagName('a')[0];
-	      var matches = /uiTabbedView-(\S+)/.exec(elLink.className);
-	      if (matches)
-	      {
-	        var elViewDiv = Dom.get(matches[0]) || alert('uiTabbedView: bad view id');
-	        var sViewId = matches[1];
-	        this.views[sViewId] = { li: elLI, div: elViewDiv };
-	        
-	        this.evtCache.addEvent(elLink, 'click', Y.bind(this.evTabClick, this, sViewId));
-	  
-	        if (Dom.hasClass(elLI, 'active'))
-	        {
-	          this.currentView = sViewId;
-	        }
-	      }
-	    }
-	
-	  },
-	  
-	  destroy:function()
-	  {
-	    this.evtCache.destroy();
-	  },
-	  
-	  // that: undefined value from addListener!
-	  evTabClick:function(oEvent, that, sViewId)
-	  {
-	    // blur last tab
-	    if (this.currentView!==null && this.currentView!==sViewId)
-	    {
-	    	Dom.removeClass(this.views[this.currentView].li, 'active');
-	      this.eventDispatcher.notify('onTabBlur', this.currentView);
-	    }
-	
-	    // focus new tab
-	    if (sViewId !== this.currentView)
-	    {
-	      this.currentView = sViewId;
-	      this.eventDispatcher.notify('onTabFocus', sViewId);
-	      Dom.addClass(this.views[sViewId].li, 'active');
-	
-	      for (viewid in this.views)
-	      {
-	        this.views[viewid].div.style.display = (viewid===sViewId) ? 'block' : 'none';
-	      }
-	    }
-	    
-	    this.eventDispatcher.notify('onTabClick', sViewId);
-	    
-	    Event.stopEvent(oEvent);
-	  }
-	};
+  TabbedView.prototype =
+  {
+    init:function(elContainer, events)
+    {
+      elContainer = Dom.get(elContainer);
+      
+       this.evtCache = new App.Ui.EventCache();
+      
+      // register events
+      this.eventDispatcher = new App.Ui.EventDispatcher();
+      if (events)
+      {
+        for (var sEvent in events) {
+          this.eventDispatcher.connect(sEvent, events[sEvent]);
+        }
+      }
+  
+      this.views = {};
+      this.currentView = null;
+  
+      var aLIs = elContainer.getElementsByTagName('li');
+      var i;
+      for (i=0; i < aLIs.length; i++)
+      {
+        var elLI = Dom.get(aLIs[i]);
+        var elLink = elLI.getElementsByTagName('a')[0];
+        var matches = /uiTabbedView-(\S+)/.exec(elLink.className);
+        if (matches)
+        {
+          var elViewDiv = Dom.get(matches[0]) || alert('uiTabbedView: bad view id');
+          var sViewId = matches[1];
+          this.views[sViewId] = { li: elLI, div: elViewDiv };
+          
+          this.evtCache.addEvent(elLink, 'click', Y.bind(this.evTabClick, this, sViewId));
+    
+          if (Dom.hasClass(elLI, 'active'))
+          {
+            this.currentView = sViewId;
+          }
+        }
+      }
+  
+    },
+    
+    destroy:function()
+    {
+      this.evtCache.destroy();
+    },
+    
+    // that: undefined value from addListener!
+    evTabClick:function(oEvent, that, sViewId)
+    {
+      // blur last tab
+      if (this.currentView!==null && this.currentView!==sViewId)
+      {
+        Dom.removeClass(this.views[this.currentView].li, 'active');
+        this.eventDispatcher.notify('onTabBlur', this.currentView);
+      }
+  
+      // focus new tab
+      if (sViewId !== this.currentView)
+      {
+        this.currentView = sViewId;
+        this.eventDispatcher.notify('onTabFocus', sViewId);
+        Dom.addClass(this.views[sViewId].li, 'active');
+  
+        for (viewid in this.views)
+        {
+          this.views[viewid].div.style.display = (viewid===sViewId) ? 'block' : 'none';
+        }
+      }
+      
+      this.eventDispatcher.notify('onTabClick', sViewId);
+      
+      Event.stopEvent(oEvent);
+    }
+  };
 })();
 
 

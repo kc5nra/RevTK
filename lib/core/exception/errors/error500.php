@@ -4,24 +4,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="title" content="Oops! An Error Occurred" />
-	<meta name="robots" content="index, follow" />
-	<meta name="language" content="en" />
-	<title>Oops! An Error Occurred</title>
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $path ?>/sf/sf_default/css/screen.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="title" content="Oops! An Error Occurred" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="en" />
+  <title>Oops! An Error Occurred</title>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $path ?>/sf/sf_default/css/screen.css" />
 </head>
 <body>
-	<h1>Oops! An Error Occurred</h1>
-	<h5>The server returned a "500 Internal Server Error".</h5>
+  <h1>Oops! An Error Occurred</h1>
+  <h5>The server returned a "500 Internal Server Error".</h5>
 
-	<p>What's next</p>
+  <p>What's next</p>
 
-	<ul>
-		<li><a href="javascript:history.go(-1)">Back to previous page</a></li>
-		<li><a href="/">Go to Homepage</a></li>
-	</ul>
+  <ul>
+    <li><a href="javascript:history.go(-1)">Back to previous page</a></li>
+    <li><a href="/">Go to Homepage</a></li>
+  </ul>
 
 </body>
 </html>

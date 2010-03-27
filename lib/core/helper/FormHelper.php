@@ -118,22 +118,22 @@ function options_for_select($options = array(), $selected = '', $html_options = 
  */
 function form_tag($url_for_options = '', $options = array())
 {
-	$options = _parse_attributes($options);
-	
-	$html_options = $options;
-	if (!isset($html_options['method']))
-	{
-		$html_options['method'] = 'post';
-	}
-	
-	if (_get_option($html_options, 'multipart'))
-	{
-		$html_options['enctype'] = 'multipart/form-data';
-	}
-	
-	$html_options['action'] = url_for($url_for_options);
-	
-	return tag('form', $html_options, true);
+  $options = _parse_attributes($options);
+  
+  $html_options = $options;
+  if (!isset($html_options['method']))
+  {
+    $html_options['method'] = 'post';
+  }
+  
+  if (_get_option($html_options, 'multipart'))
+  {
+    $html_options['enctype'] = 'multipart/form-data';
+  }
+  
+  $html_options['action'] = url_for($url_for_options);
+  
+  return tag('form', $html_options, true);
 }
 
 /**
@@ -189,20 +189,20 @@ function select_tag($name, $option_tags = null, $options = array())
  * 
  * @param string Name attribute
  * @param mixed  Default value
- * @param array	 Optional attributes
+ * @param array   Optional attributes
  */
 function input_tag($name, $value = null, $options = array())
 {
-	// repopulate with get/post data
-	$_request = coreContext::getInstance()->getRequest();
-	$value = $_request->getParameter($name, $value);
+  // repopulate with get/post data
+  $_request = coreContext::getInstance()->getRequest();
+  $value = $_request->getParameter($name, $value);
 
-	// add css class
-	$options = _parse_attributes($options);
+  // add css class
+  $options = _parse_attributes($options);
 
-	$options = array_merge(array('type' => 'text', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), $options);
-	_check_field_error($name, $options);
-	return tag('input', _convert_options($options));
+  $options = array_merge(array('type' => 'text', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), $options);
+  _check_field_error($name, $options);
+  return tag('input', _convert_options($options));
 }
 
 /**
@@ -210,16 +210,16 @@ function input_tag($name, $value = null, $options = array())
  * 
  * @param string Name attribute
  * @param mixed  Value attribute
- * @param array	 Optional attributes
+ * @param array   Optional attributes
  */
 function input_hidden_tag($name, $value = null, $options = array())
 {
-	// repopulate with get/post data
-	$_request = coreContext::getInstance()->getRequest();
-	$value = $_request->getParameter($name, $value);
+  // repopulate with get/post data
+  $_request = coreContext::getInstance()->getRequest();
+  $value = $_request->getParameter($name, $value);
 
-	$options = array_merge(array('type' => 'hidden', 'name' => $name, 'value' => $value), _parse_attributes($options));
-	return tag('input', _convert_options($options));
+  $options = array_merge(array('type' => 'hidden', 'name' => $name, 'value' => $value), _parse_attributes($options));
+  return tag('input', _convert_options($options));
 }
 
 /**
@@ -227,19 +227,19 @@ function input_hidden_tag($name, $value = null, $options = array())
  * 
  * @param string Name attribute
  * @param mixed  Value
- * @param array	 Optional attributes
+ * @param array   Optional attributes
  */
 function input_password_tag($name, $value = null, $options = array())
 {
-	$_request = coreContext::getInstance()->getRequest();
-	$value = $_request->getParameter($name, $value);
+  $_request = coreContext::getInstance()->getRequest();
+  $value = $_request->getParameter($name, $value);
 
-	// add css class
-	$options = _parse_attributes($options);
+  // add css class
+  $options = _parse_attributes($options);
 
-	$options = array_merge(array('type' => 'password', 'name' => $name, 'id' => get_id_from_name($name), 'value' => $value), $options);
-	_check_field_error($name, $options);
-	return tag('input', _convert_options($options));
+  $options = array_merge(array('type' => 'password', 'name' => $name, 'id' => get_id_from_name($name), 'value' => $value), $options);
+  _check_field_error($name, $options);
+  return tag('input', _convert_options($options));
 }
 
 /**
@@ -247,23 +247,23 @@ function input_password_tag($name, $value = null, $options = array())
  * 
  * @param string Name attribute
  * @param mixed  Default content
- * @param array	 Optional attributes
+ * @param array   Optional attributes
  */
 function textarea_tag($name, $content = null, $options = array())
 {
-	$_request = coreContext::getInstance()->getRequest();
+  $_request = coreContext::getInstance()->getRequest();
 
-	// repopulate with get/post data
-	$content = $_request->getParameter($name, $content);
+  // repopulate with get/post data
+  $content = $_request->getParameter($name, $content);
 
-	// add css class
-	$options = _parse_attributes($options);
+  // add css class
+  $options = _parse_attributes($options);
 
-	$options = array_merge(array('name' => $name, 'id' => get_id_from_name($name)), $options);
+  $options = array_merge(array('name' => $name, 'id' => get_id_from_name($name)), $options);
 
-	_check_field_error($name, $options);
-	
-	return content_tag('textarea', escape_once((is_object($content)) ? $content->__toString() : $content), _convert_options($options));
+  _check_field_error($name, $options);
+  
+  return content_tag('textarea', escape_once((is_object($content)) ? $content->__toString() : $content), _convert_options($options));
 }
 
 /**
@@ -277,19 +277,19 @@ function textarea_tag($name, $content = null, $options = array())
  * @param string  Name attribute
  * @param string  Value attribute
  * @param boolean Default checked state
- * @param array	  Optional attributes
+ * @param array    Optional attributes
  */
 function checkbox_tag($name, $value = '1', $checked = false, $options = array())
 {
-	$options = array_merge(array('type' => 'checkbox', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), _parse_attributes($options));
+  $options = array_merge(array('type' => 'checkbox', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), _parse_attributes($options));
 
-	// repopulate field
-	$checked = _repopulate_input_cb($name, $value, $checked);
-	
-	if ($checked) {
-		$options['checked'] = 'checked';
-	}
-	return tag('input', _convert_options($options));
+  // repopulate field
+  $checked = _repopulate_input_cb($name, $value, $checked);
+  
+  if ($checked) {
+    $options['checked'] = 'checked';
+  }
+  return tag('input', _convert_options($options));
 }
 
 /**
@@ -301,19 +301,19 @@ function checkbox_tag($name, $value = '1', $checked = false, $options = array())
  * @param string  Name attribute
  * @param string  Value attribute
  * @param boolean Default checked state
- * @param array	  Optional attributes
+ * @param array    Optional attributes
  */
 function radiobutton_tag($name, $value = '1', $checked = false, $options = array())
 {
-	$options = array_merge(array('type' => 'radio', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), _parse_attributes($options));
+  $options = array_merge(array('type' => 'radio', 'name' => $name, 'id' => get_id_from_name($name, $value), 'value' => $value), _parse_attributes($options));
 
-	// repopulate field
-	$checked = _repopulate_input_cb($name, $value, $checked);
+  // repopulate field
+  $checked = _repopulate_input_cb($name, $value, $checked);
 
-	if ($checked) {
-		$options['checked'] = 'checked';
-	}
-	return tag('input', _convert_options($options));
+  if ($checked) {
+    $options['checked'] = 'checked';
+  }
+  return tag('input', _convert_options($options));
 }
 
 /**
@@ -406,12 +406,12 @@ function get_id_from_name($name, $value = null)
  */
 function _check_field_error($name, &$options)
 {
-	if (coreContext::getInstance()->getRequest()->hasError($name))
-	{
-		$css_class = array_key_exists('class', $options) ? $options['class'].' ' : '';
-		$css_class = $css_class . 'error';
-		$options['class'] = $css_class;
-	}
+  if (coreContext::getInstance()->getRequest()->hasError($name))
+  {
+    $css_class = array_key_exists('class', $options) ? $options['class'].' ' : '';
+    $css_class = $css_class . 'error';
+    $options['class'] = $css_class;
+  }
 }
 
 /**
@@ -425,24 +425,24 @@ function _check_field_error($name, &$options)
  */
 function _repopulate_input_cb($name, $value, $checked)
 {
-	$_request = coreContext::getInstance()->getRequest();
-	if (strstr($name, '[]'))
-	{
-		if ( ($array_values = $_request->getParameter(rtrim($name,'[]')))!==null )
-		{
-			assert('is_array($array_values)');
-			if (in_array($value, $array_values)) {
-				$checked = true;
-			}
-			else {
-				$checked = false;
-			}
-		}
-	}
-	else {
-		// checkboxes with unique names (no []) repopulate but can not use default values
-		$value = $_request->getParameter($name);
-		$checked = $value!==null && !empty($value);
-	}
-	return $checked;	
+  $_request = coreContext::getInstance()->getRequest();
+  if (strstr($name, '[]'))
+  {
+    if ( ($array_values = $_request->getParameter(rtrim($name,'[]')))!==null )
+    {
+      assert('is_array($array_values)');
+      if (in_array($value, $array_values)) {
+        $checked = true;
+      }
+      else {
+        $checked = false;
+      }
+    }
+  }
+  else {
+    // checkboxes with unique names (no []) repopulate but can not use default values
+    $value = $_request->getParameter($name);
+    $checked = $value!==null && !empty($value);
+  }
+  return $checked;  
 }

@@ -38,74 +38,74 @@ var uiWidgets = {};
  */
 (function(){
 
-	uiWidgets.AjaxTable = function()
-	{
-		this.initialize.apply(this, arguments);
-	}
+  uiWidgets.AjaxTable = function()
+  {
+    this.initialize.apply(this, arguments);
+  }
 
-	uiWidgets.AjaxTable.prototype =
-	{
-		initialize:function(elAjaxPanel)
-		{
-			this.elAjaxPanel = elAjaxPanel;
-			this.oAjaxPanel = new uiAjaxPanel(elAjaxPanel,{
-				events: {
-					onSubmitForm: this.onSubmitForm.bind(this)
-				}
-			});
-	
-			this.evtCache = new uiEventCache();
-			this.evtCache.addEvent(elAjaxPanel, 'click', this.evPanelClick.bind(this));
-		},
-	
-		destroy:function()
-		{
-			this.evtCache.destroy();
-		},
-	
-		/**
-		 * Detect a click on a table head for column sorting (or a uiPager link),
-		 * and use the query string in the href attribute of the link as post variables.
-		 * 
-		 * @todo  Improve the column sorting link matching with a unique class instead
-		 *        of matching a string subset 'sort' (to match sort, sortasc, sortdesc).
-		 *        Requires updating uiSelectTable php component.
-		 * 
-		 * @param {Object} oEvent   Prototype event.
-		 */
-		evPanelClick:function(oEvent)
-		{
-			var el = oEvent.findElement('a');
-			if (!el) {
-				return;
-			}
-	
-			var isUiTableHead = el.className.indexOf('sort') >= 0 && el.parentNode.nodeName.toLowerCase()==='th';
-			var isUiPagerLink = !isUiTableHead && el.up('.uiPagerDiv');
-	
-			if (isUiTableHead || isUiPagerLink)
-			{
-				var sQuery = $(el).readAttribute('href');
-				var pos = sQuery.indexOf('?');
-				var oQueryParams = (pos >= 0) ? sQuery.substr(pos+1).toQueryParams() : {};
-	
-				var oForm = this.elAjaxPanel.down('form');
-				var oParams = oForm ? oForm.serialize(true) : {};
-				Object.extend(oParams, oQueryParams);
-				
-				this.oAjaxPanel.get(oParams);
-				oEvent.stop();
-			}
-		},
-	
-		/**
-		 * This is a placeholder to prevent default FORM submission of uiAjaxPanel.
-		 * 
-		 */
-		onSubmitForm:function(oEvent)
-		{
-		}
-	};
+  uiWidgets.AjaxTable.prototype =
+  {
+    initialize:function(elAjaxPanel)
+    {
+      this.elAjaxPanel = elAjaxPanel;
+      this.oAjaxPanel = new uiAjaxPanel(elAjaxPanel,{
+        events: {
+          onSubmitForm: this.onSubmitForm.bind(this)
+        }
+      });
+  
+      this.evtCache = new uiEventCache();
+      this.evtCache.addEvent(elAjaxPanel, 'click', this.evPanelClick.bind(this));
+    },
+  
+    destroy:function()
+    {
+      this.evtCache.destroy();
+    },
+  
+    /**
+     * Detect a click on a table head for column sorting (or a uiPager link),
+     * and use the query string in the href attribute of the link as post variables.
+     * 
+     * @todo  Improve the column sorting link matching with a unique class instead
+     *        of matching a string subset 'sort' (to match sort, sortasc, sortdesc).
+     *        Requires updating uiSelectTable php component.
+     * 
+     * @param {Object} oEvent   Prototype event.
+     */
+    evPanelClick:function(oEvent)
+    {
+      var el = oEvent.findElement('a');
+      if (!el) {
+        return;
+      }
+  
+      var isUiTableHead = el.className.indexOf('sort') >= 0 && el.parentNode.nodeName.toLowerCase()==='th';
+      var isUiPagerLink = !isUiTableHead && el.up('.uiPagerDiv');
+  
+      if (isUiTableHead || isUiPagerLink)
+      {
+        var sQuery = $(el).readAttribute('href');
+        var pos = sQuery.indexOf('?');
+        var oQueryParams = (pos >= 0) ? sQuery.substr(pos+1).toQueryParams() : {};
+  
+        var oForm = this.elAjaxPanel.down('form');
+        var oParams = oForm ? oForm.serialize(true) : {};
+        Object.extend(oParams, oQueryParams);
+        
+        this.oAjaxPanel.get(oParams);
+        oEvent.stop();
+      }
+    },
+  
+    /**
+     * This is a placeholder to prevent default FORM submission of uiAjaxPanel.
+     * 
+     */
+    onSubmitForm:function(oEvent)
+    {
+    }
+  };
 })();
 
 
@@ -119,72 +119,72 @@ var uiWidgets = {};
 var uiSelectionTable = Class.create();
 uiSelectionTable.prototype =
 {
-	selection: {},
-	
-	initialize:function(elContainer)
-	{
-		this.elContainer = elContainer;
-		this.ajaxTable = new uiWidgets.AjaxTable(elContainer);
+  selection: {},
+  
+  initialize:function(elContainer)
+  {
+    this.elContainer = elContainer;
+    this.ajaxTable = new uiWidgets.AjaxTable(elContainer);
 
-		this.evtCache = new uiEventCache();
-		this.evtCache.addEvent(elContainer, 'click', this.evClick.bindAsEventListener(this));
-	},
-	
-	destroy:function()
-	{
-		this.evtCache.destroy();
-		this.ajaxTable.destroy();
-	},
-	
-	evClick:function(oEvent)
-	{
-		var row, inputs, element = oEvent.element();
+    this.evtCache = new uiEventCache();
+    this.evtCache.addEvent(elContainer, 'click', this.evClick.bindAsEventListener(this));
+  },
+  
+  destroy:function()
+  {
+    this.evtCache.destroy();
+    this.ajaxTable.destroy();
+  },
+  
+  evClick:function(oEvent)
+  {
+    var row, inputs, element = oEvent.element();
 
-		if (element.className==='checkbox')
-		{
-			row = element.up('tr');
-			inputs = row.getElementsByTagName('input');
-			this.setSelection(row, inputs, element.checked);
-		}
-		else if (element.className==='chkAll')
-		{
-			var elTable = this.elContainer.getElementsByTagName('table')[0];
-			var i, rows = elTable.tBodies[0].rows;
-			var check = element.checked;
-			for (i = 0; i < rows.length; i++)
-			{
-				row = rows[i];
-				inputs = row.getElementsByTagName('input');
-				if (inputs[1].checked !== check)
-				{
-					inputs[1].checked = check;
-					this.setSelection(row, inputs, check);
-				}
-			}
-		}
-		else
-		{
-			// if clicked in a row, select it
-			row = oEvent.findElement('tr');
-			if (row)
-			{
-				elChk = row.down('input.checkbox');
-				if (elChk)
-				{
-					elChk.click();
-					oEvent.stop();
-				}
-			}
-		}
-	},
-	
-	setSelection:function(row, inputs, check)
-	{
-		// set value
-		inputs[0].value = check ? '1' : '0';
-		// set highlight
-		$(row)[check ? 'addClassName' : 'removeClassName']('selected');
-	}
+    if (element.className==='checkbox')
+    {
+      row = element.up('tr');
+      inputs = row.getElementsByTagName('input');
+      this.setSelection(row, inputs, element.checked);
+    }
+    else if (element.className==='chkAll')
+    {
+      var elTable = this.elContainer.getElementsByTagName('table')[0];
+      var i, rows = elTable.tBodies[0].rows;
+      var check = element.checked;
+      for (i = 0; i < rows.length; i++)
+      {
+        row = rows[i];
+        inputs = row.getElementsByTagName('input');
+        if (inputs[1].checked !== check)
+        {
+          inputs[1].checked = check;
+          this.setSelection(row, inputs, check);
+        }
+      }
+    }
+    else
+    {
+      // if clicked in a row, select it
+      row = oEvent.findElement('tr');
+      if (row)
+      {
+        elChk = row.down('input.checkbox');
+        if (elChk)
+        {
+          elChk.click();
+          oEvent.stop();
+        }
+      }
+    }
+  },
+  
+  setSelection:function(row, inputs, check)
+  {
+    // set value
+    inputs[0].value = check ? '1' : '0';
+    // set highlight
+    $(row)[check ? 'addClassName' : 'removeClassName']('selected');
+  }
 };
 
 
@@ -202,9 +202,9 @@ uiSelectionTable.prototype =
  * 
  *   show()           Display window
  *   hide()           Hide window
- * 	 close()          Close the window, remove event listeners
+ *    close()          Close the window, remove event listeners
  * 
- * 	 getBodyElement() Returns (Prototype extended) window content div (.window-body).
+ *    getBodyElement() Returns (Prototype extended) window content div (.window-body).
  *   
  * Notifications:
  * 
@@ -216,94 +216,94 @@ uiSelectionTable.prototype =
 var uiWindow = Class.create();
 uiWindow.prototype =
 {
-	initialize:function(elWindow, options)
-	{
-		this.elWindow   = $(elWindow);
-		this.elBody     = this.elWindow.down('.window-body');
-		this.elUnderlay = this.elWindow.down('.underlay');
+  initialize:function(elWindow, options)
+  {
+    this.elWindow   = $(elWindow);
+    this.elBody     = this.elWindow.down('.window-body');
+    this.elUnderlay = this.elWindow.down('.underlay');
 
-		// set defaults
-		this.options = options;
-		this.options.opacity = options.opacity || 0.5; // false = 100% opaque
+    // set defaults
+    this.options = options;
+    this.options.opacity = options.opacity || 0.5; // false = 100% opaque
 
-		// set window borders opacity
-		this.elUnderlay.setStyle({ opacity: this.options.opacity });
+    // set window borders opacity
+    this.elUnderlay.setStyle({ opacity: this.options.opacity });
 
-		// register events
-		this.eventDispatcher = new uiEventDispatcher();
-		if (options.events)
-		{
-			for (var sEvent in options.events) {
-				this.eventDispatcher.connect(sEvent, options.events[sEvent]);
-			}
-		}
+    // register events
+    this.eventDispatcher = new uiEventDispatcher();
+    if (options.events)
+    {
+      for (var sEvent in options.events) {
+        this.eventDispatcher.connect(sEvent, options.events[sEvent]);
+      }
+    }
 
-		// titlebar bar close button
-		this.evtCache = new uiEventCache();
-		this.elTitleBar = this.elWindow.down('.window-top');
-		var elCloseButton = this.elTitleBar.down('a.close');
-		if (elCloseButton)
-		{
-			var that = this;
-			this.evtCache.addEvent(elCloseButton, 'click', function(oEvent)
-			{
-				that.eventDispatcher.notify('onWindowClose');
-				oEvent.stop();
-			});
-		}
-		
-		// position window
-		this.elWindow.setStyle({
-			left:     this.options.left+'px',
-			top:      this.options.top+'px',
-			width:    this.options.width ? this.options.width+'px' : 'auto',
-			position: 'absolute',
-			zIndex:   2
-		});
-		
-		if (this.options.draggable && typeof(YAHOO)!=='undefined')
-		{
-			this.dragdrop = new YAHOO.util.DD(this.elWindow);
-			var elHandle = this.elWindow.down('.window-handle');
-			this.dragdrop.setHandleElId(elHandle);
-		}
-	},
-	
-	show:function()
-	{
-		// position window
-		this.elWindow.setStyle({
-			display:  'block'
-		});
-	},
-	
-	hide:function()
-	{
-		this.elWindow.setStyle({
-			display: 'none'
-		});
-	},
-	
-	destroy:function()
-	{
-		if (this.dragdrop)
-		{
-			this.dragdrop.unreg();
-		}
+    // titlebar bar close button
+    this.evtCache = new uiEventCache();
+    this.elTitleBar = this.elWindow.down('.window-top');
+    var elCloseButton = this.elTitleBar.down('a.close');
+    if (elCloseButton)
+    {
+      var that = this;
+      this.evtCache.addEvent(elCloseButton, 'click', function(oEvent)
+      {
+        that.eventDispatcher.notify('onWindowClose');
+        oEvent.stop();
+      });
+    }
+    
+    // position window
+    this.elWindow.setStyle({
+      left:     this.options.left+'px',
+      top:      this.options.top+'px',
+      width:    this.options.width ? this.options.width+'px' : 'auto',
+      position: 'absolute',
+      zIndex:   2
+    });
+    
+    if (this.options.draggable && typeof(YAHOO)!=='undefined')
+    {
+      this.dragdrop = new YAHOO.util.DD(this.elWindow);
+      var elHandle = this.elWindow.down('.window-handle');
+      this.dragdrop.setHandleElId(elHandle);
+    }
+  },
+  
+  show:function()
+  {
+    // position window
+    this.elWindow.setStyle({
+      display:  'block'
+    });
+  },
+  
+  hide:function()
+  {
+    this.elWindow.setStyle({
+      display: 'none'
+    });
+  },
+  
+  destroy:function()
+  {
+    if (this.dragdrop)
+    {
+      this.dragdrop.unreg();
+    }
 
-		this.evtCache.destroy();
-	},
+    this.evtCache.destroy();
+  },
 
-	close:function()
-	{
-		this.hide();
-		this.destroy();
-	},
+  close:function()
+  {
+    this.hide();
+    this.destroy();
+  },
 
-	getBodyElement:function()
-	{
-		return this.elBody;
-	}
+  getBodyElement:function()
+  {
+    return this.elBody;
+  }
 };
 
 
@@ -322,10 +322,10 @@ uiWindow.prototype =
  *     <? ui_tabs() output ?>
  *   </div>
  *   <div class="uiTabbedBody">
- *   	 <div id="uiTabbedView-viewid">
+ *      <div id="uiTabbedView-viewid">
  *        View one
  *     </div>
- *   	 <div id="uiTabbedView-viewid">
+ *      <div id="uiTabbedView-viewid">
  *        View two
  *     </div>
  *     ...
@@ -355,78 +355,78 @@ uiWindow.prototype =
 var uiTabbedView = Class.create();
 uiTabbedView.prototype =
 {
-	initialize:function(elContainer, events)
-	{
-		this.evtCache = new uiEventCache();
+  initialize:function(elContainer, events)
+  {
+    this.evtCache = new uiEventCache();
 
-		// register events
-		this.eventDispatcher = new uiEventDispatcher();
-		if (events)
-		{
-			for (var sEvent in events) {
-				this.eventDispatcher.connect(sEvent, events[sEvent]);
-			}
-		}
+    // register events
+    this.eventDispatcher = new uiEventDispatcher();
+    if (events)
+    {
+      for (var sEvent in events) {
+        this.eventDispatcher.connect(sEvent, events[sEvent]);
+      }
+    }
 
-		this.views = {};
-		this.currentView = null;
+    this.views = {};
+    this.currentView = null;
 
-		var aLIs = elContainer.getElementsByTagName('li');
-		var i;
-		for (i=0; i < aLIs.length; i++)
-		{
-			var elLI = $(aLIs[i]);
-			var elLink = elLI.getElementsByTagName('a')[0];
-			var matches = /uiTabbedView-(\S+)/.exec(elLink.className);
-			if (matches)
-			{
-				var elViewDiv = $(matches[0]) || alert('uiTabbedView: bad view id');
-				var sViewId = matches[1];
-				this.views[sViewId] = { li: elLI, div: elViewDiv };
-				
-				$(elLink).observe('click', this.evTabClick.bindAsEventListener(this, sViewId));
-	
-				if (elLI.hasClassName('active'))
-				{
-					this.currentView = sViewId;
-				}
-			}
-		}
+    var aLIs = elContainer.getElementsByTagName('li');
+    var i;
+    for (i=0; i < aLIs.length; i++)
+    {
+      var elLI = $(aLIs[i]);
+      var elLink = elLI.getElementsByTagName('a')[0];
+      var matches = /uiTabbedView-(\S+)/.exec(elLink.className);
+      if (matches)
+      {
+        var elViewDiv = $(matches[0]) || alert('uiTabbedView: bad view id');
+        var sViewId = matches[1];
+        this.views[sViewId] = { li: elLI, div: elViewDiv };
+        
+        $(elLink).observe('click', this.evTabClick.bindAsEventListener(this, sViewId));
+  
+        if (elLI.hasClassName('active'))
+        {
+          this.currentView = sViewId;
+        }
+      }
+    }
 
-	},
-	
-	destroy:function()
-	{
-		this.evtCache.destroy();
-	},
-	
-	evTabClick:function(oEvent, sViewId)
-	{
-		// blur last tab
-		if (this.currentView!==null && this.currentView!==sViewId)
-		{
-			this.views[this.currentView].li.removeClassName('active');
-			this.eventDispatcher.notify('onTabBlur', [this.currentView]);
-		}
+  },
+  
+  destroy:function()
+  {
+    this.evtCache.destroy();
+  },
+  
+  evTabClick:function(oEvent, sViewId)
+  {
+    // blur last tab
+    if (this.currentView!==null && this.currentView!==sViewId)
+    {
+      this.views[this.currentView].li.removeClassName('active');
+      this.eventDispatcher.notify('onTabBlur', [this.currentView]);
+    }
 
-		// focus new tab
-		if (sViewId !== this.currentView)
-		{
-			this.currentView = sViewId;
-			this.eventDispatcher.notify('onTabFocus', [sViewId]);
-			this.views[sViewId].li.addClassName('active');
+    // focus new tab
+    if (sViewId !== this.currentView)
+    {
+      this.currentView = sViewId;
+      this.eventDispatcher.notify('onTabFocus', [sViewId]);
+      this.views[sViewId].li.addClassName('active');
 
-			for (viewid in this.views)
-			{
-				this.views[viewid].div.style.display = (viewid===sViewId) ? 'block' : 'none';
-			}
-		}
-		
-		this.eventDispatcher.notify('onTabClick', [sViewId]);
-		
-		oEvent.stop();
-		return false;
-	}
+      for (viewid in this.views)
+      {
+        this.views[viewid].div.style.display = (viewid===sViewId) ? 'block' : 'none';
+      }
+    }
+    
+    this.eventDispatcher.notify('onTabClick', [sViewId]);
+    
+    oEvent.stop();
+    return false;
+  }
 };
 
 
@@ -443,81 +443,81 @@ uiTabbedView.prototype =
  */
 (function(){
 
-	uiWidgets.FilterStd = function()
-	{
-		this.initialize.apply(this, arguments);
-	};
+  uiWidgets.FilterStd = function()
+  {
+    this.initialize.apply(this, arguments);
+  };
 
-	var
-		FilterStd = uiWidgets.FilterStd,
-		ACTIVE = 'active';
+  var
+    FilterStd = uiWidgets.FilterStd,
+    ACTIVE = 'active';
 
-	/**
-	 * Notification when switch is clicked and activated.
-	 */
-	FilterStd.SWITCH_EVENT = 'onSwitch';
+  /**
+   * Notification when switch is clicked and activated.
+   */
+  FilterStd.SWITCH_EVENT = 'onSwitch';
 
-	FilterStd.prototype =
-	{
-		initialize:function(elContainer, events)
-		{
-			this.evtCache = new uiEventCache();
-	
-			this.eventDispatcher = new uiEventDispatcher();
-			if (events)
-			{
-				for (var sEvent in events) {
-					this.eventDispatcher.connect(sEvent, events[sEvent]);
-				}
-			}
-	
-			this.currentTab = null;
-			this.tabs = {};
-	
-			var i, tabs = elContainer.getElementsByTagName('a');
-			for (i=0; i < tabs.length; i++)
-			{
-				var elLink = $(tabs[i]);
-				var matches = /uiFilterStd-(\S+)/.exec(elLink.className);
-				if (matches)
-				{
-					var sTabId = matches[1];
-					this.tabs[sTabId] = { element: elLink };
-					$(elLink).observe('click', this.eventHandler.bindAsEventListener(this, sTabId));
-					if (elLink.hasClassName(ACTIVE))
-					{
-						this.currentTab = sTabId;
-					}
-				}
-			}
-		},
-		
-		destroy:function()
-		{
-			this.evtCache.destroy();
-		},
-		
-		eventHandler:function(oEvent, sTabId)
-		{
-			if (this.currentTab === sTabId)
-			{
-				// don't fire the notification twice
-				oEvent.stop();
-				return;
-			}
-			
-			if (this.currentTab) {
-				this.tabs[this.currentTab].element.removeClassName(ACTIVE);
-			}
-	
-			this.currentTab = sTabId;
-	
-			this.tabs[sTabId].element.addClassName(ACTIVE);
-			
-			this.eventDispatcher.notify(FilterStd.SWITCH_EVENT, [sTabId]);
-			
-			oEvent.stop();
-		}
-	};
-	
+  FilterStd.prototype =
+  {
+    initialize:function(elContainer, events)
+    {
+      this.evtCache = new uiEventCache();
+  
+      this.eventDispatcher = new uiEventDispatcher();
+      if (events)
+      {
+        for (var sEvent in events) {
+          this.eventDispatcher.connect(sEvent, events[sEvent]);
+        }
+      }
+  
+      this.currentTab = null;
+      this.tabs = {};
+  
+      var i, tabs = elContainer.getElementsByTagName('a');
+      for (i=0; i < tabs.length; i++)
+      {
+        var elLink = $(tabs[i]);
+        var matches = /uiFilterStd-(\S+)/.exec(elLink.className);
+        if (matches)
+        {
+          var sTabId = matches[1];
+          this.tabs[sTabId] = { element: elLink };
+          $(elLink).observe('click', this.eventHandler.bindAsEventListener(this, sTabId));
+          if (elLink.hasClassName(ACTIVE))
+          {
+            this.currentTab = sTabId;
+          }
+        }
+      }
+    },
+    
+    destroy:function()
+    {
+      this.evtCache.destroy();
+    },
+    
+    eventHandler:function(oEvent, sTabId)
+    {
+      if (this.currentTab === sTabId)
+      {
+        // don't fire the notification twice
+        oEvent.stop();
+        return;
+      }
+      
+      if (this.currentTab) {
+        this.tabs[this.currentTab].element.removeClassName(ACTIVE);
+      }
+  
+      this.currentTab = sTabId;
+  
+      this.tabs[sTabId].element.addClassName(ACTIVE);
+      
+      this.eventDispatcher.notify(FilterStd.SWITCH_EVENT, [sTabId]);
+      
+      oEvent.stop();
+    }
+  };
+  
 })();

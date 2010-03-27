@@ -5,33 +5,36 @@
  * The client's cache is automatically refreshed because javascript and stylesheet
  * filenames are revved with the file modified timestamp.
  * 
- * In development these files are also run through Juicer for automatic building
- * and copying of assets in the web folder, which saves running the build script
- * while working on those files.
+ * In "dev" environment ONLY -- passes ".juicy" files (naming pattern) through
+ * Juicer for runtime concatenation of javascript/css and copying of asset
+ * dependencies to the web folder. For production/staging the application does
+ * not output ".juicy" urls, so this script will look for ".min" files instead.
+ * In those environments, a shell script must be run to compile the .juicy files
+ * with Juicer and then pass the output through YUI Compressor.
  * 
  * Query parameters (set by htaccess redirection):
  * 
+ *   path   Absolute path from the web root to resource file (starts with leading slash)
+ * 
+ * Note!
+ *   Currently .htaccess is hardcoded to use 'dev' env and the primary application
+ *   name. The web response of secondary apps (eg. Core documentation) should output
+ *   only plain urls with this script name and required variables below:
+ *  
  *   env    Is required to point at the correct root folder location,
  *          because relative path from public_html (web root) may be different in production.
  *          
- *   app    Application name under /apps/ folder, to find the juicer config file
+ *   app    Application name under /apps/ folder, to find the Juicer config file
  *   
- *   path   Absolute path from the web root to resource file (starts with leading slash)
- * 
- * 
- * To do:
- * - the prevention against going up the web folder is not safe, it should use realpath
- *   and make sure realpath of dest file contains the web realpath base
- * 
- * @package Core
  * @author  Fabrice Denis
  */
 
 class CacheResource
 {
   const
-    RELATIVE_PATH_TO_WEB = '../.',
-    USE_GZIP_ENCODING    = true;
+    RELATIVE_PATH_TO_WEB  = '../.',
+    RELATIVE_PATH_TO_ROOT = '../..',
+    USE_GZIP_ENCODING     = true;
   
   function __construct()
   {
@@ -87,7 +90,7 @@ class CacheResource
     else
       ob_start();
 
-    // handle dynamic "juicing" of files here
+    // handle dynamic "juicing" of files here (dev environment only)
     if (false !== strstr($filepath, '.juicy.'))
     {
       $webPath = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_TO_WEB);
@@ -119,11 +122,9 @@ class CacheResource
   
   private function getJuicerConfig()
   {
-    // include Juicer from here, do not include in production to speedup things
-    $local = ($this->getParameter('env') === 'dev');
-    $CORE_ROOT_DIR = realpath(dirname(__FILE__) . ($local ? '/../..' : '/../../../sites/revtk'));
-  //echo $CORE_ROOT_DIR;exit;
-    require_once($CORE_ROOT_DIR.'/lib/Juicer/Juicer.php');
+    // include Juicer from here only as needed to speedup things
+    $CORE_ROOT_DIR = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_TO_ROOT);
+    require_once($CORE_ROOT_DIR.'/lib/juicer/Juicer.php');
 
     $appName = $this->getParameter('app');
     $configFile = $CORE_ROOT_DIR . '/apps/' . $appName . '/config/juicer.config.php';

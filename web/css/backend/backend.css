@@ -22,12 +22,12 @@ div.clear { clear:both; overflow:hidden; height:0; }
 /* BASE STYLES */
 
 /* links */
-a 		{ text-decoration:underline; color:#003ACC; }
+a     { text-decoration:underline; color:#003ACC; }
 a:hover { color:#001AAC; }
 
 /* images */
-a img 	{ border:0; vertical-align:middle; }
-p img 	{ display: inline; }
+a img   { border:0; vertical-align:middle; }
+p img   { display: inline; }
 
 /* type */
 p { font-size:11px; line-height:1.2em; margin:0 0 1em; }
@@ -51,10 +51,10 @@ ol li { margin:0 0 5px; padding:0; color:#757F8E; }
 
 /* form fields */
 input.text, textarea {
-	border-color:#b8babd; border-style:solid; border-width:1px; border-bottom:1px solid #e3e5e6;
-	/*background:#fff url(/images/backend/inputarea_bg.gif) repeat-x left top;*/
-	padding:2px 4px;
-	color:#000;	font-size:15px; line-height:1.4em;
+  border-color:#b8babd; border-style:solid; border-width:1px; border-bottom:1px solid #e3e5e6;
+  /*background:#fff url(/images/backend/inputarea_bg.gif) repeat-x left top;*/
+  padding:2px 4px;
+  color:#000;  font-size:15px; line-height:1.4em;
 }
 
 
@@ -75,9 +75,9 @@ input.text, textarea {
 
 #header { background:#36557D; padding:0 0 0 16px; }
 #header h1 {
-	float:left; margin:16px 0 0; padding:0 0 0 25px;
-	font:bold 19px/1.2em Arial, sans-serif;  color:#849DBE;
-	background:url(/images/backend/icons/brick_go.png) no-repeat 0 3px;
+  float:left; margin:16px 0 0; padding:0 0 0 25px;
+  font:bold 19px/1.2em Arial, sans-serif;  color:#849DBE;
+  background:url(/images/backend/icons/brick_go.png) no-repeat 0 3px;
 }
 
 #toplinks { float:right; margin:13px 0 0; font:11px/1.2em Verdana, sans-serif; color:#A9C8E1; }
@@ -154,7 +154,7 @@ input.text, textarea {
 /* ----- */
 
 /* global server feedback message */
-div.form-global-message { padding-left:8px;	font-weight:bold; line-height:1.2em; }
+div.form-global-message { padding-left:8px;  font-weight:bold; line-height:1.2em; }
 
 /* the message color can be set based on the icon type */
 div.form-global-message p.ico-error { color:red; font-size:11px; font-weight:bold; background-position:0 2px; }

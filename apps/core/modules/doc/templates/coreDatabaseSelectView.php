@@ -3,7 +3,7 @@
 <p> Using coreDatabaseSelect is helpful if you need to assemble a SELECT query procedurally,
     or based on conditional logic in your application.
 
-<p>	After you build a query, you can execute the query as if you had written it as a string.
+<p>  After you build a query, you can execute the query as if you had written it as a string.
 
 <?php pre_start() ?>
 // constants to use with reset() method
@@ -199,8 +199,8 @@ $db->select()->from('products')->where('price > ?', 100);
 
 <p> You can invoke the where() method <b>multiple times</b> on the same coreDatabaseSelect object.
     The resulting query combines the multiple terms together using AND between them.
-	Because coreDatabaseSelect puts <b>parentheses</b> around each where() expression, there
-	is no unexpected results from operator precedence:
+  Because coreDatabaseSelect puts <b>parentheses</b> around each where() expression, there
+  is no unexpected results from operator precedence:
 
 <?php pre_start() ?>
 // => SELECT * FROM products WHERE (price < 100 OR price > 500) AND (category = 'books')
@@ -219,20 +219,20 @@ $db->select(array('box', new coreDbExpr('COUNT(*)')))
    ->from('reviews')
    ->where('userid = 15')
    ->group('box');
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 <h2>Adding an ORDER BY Clause</h2>
 
 <p> The <b>order()</b> method works similarly to the group() method.
     To change the sorting order, simply add the ASC or DESC keyword next to the column name, separated
-	by a space:
+  by a space:
 
 <?php pre_start() ?>
 // => SELECT name,age FROM users ORDER BY age DESC,name
 $db->select(array('name', 'age'))
    ->from('users')
    ->order(array('age DESC', 'name'));
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 <h2>Adding a LIMIT Clause</h2>
 
@@ -244,7 +244,7 @@ $select = $db->select()
              ->from(array('p' => 'products'),
                     array('product_id', 'product_name'))
              ->limit(10, 20);
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 <p> The <b>limitPage()</b> method provides an alternative way to specify row count and offset:
 
@@ -254,7 +254,7 @@ $select = $db->select()
              ->from(array('p' => 'products'),
                     array('product_id', 'product_name'))
              ->limitPage(2, 10);
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 <h2>Converting the Select object to a String</h2>
 
@@ -264,7 +264,7 @@ $select = $db->select()
 // Note that this is usually not required as passing a coreDatabaseSelect object as an
 // argument to  a function taking a string will do the conversion automatically.
 $db->select(array('name', 'age'))->from('users')->__toString();
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 
 <h2>Resetting Parts of the Query</h2>
@@ -277,12 +277,12 @@ $select->reset( coreDatabaseSelect::ORDER );
 
 // Reset the whole Select
 $select->reset();
-<?php pre_end() ?>	
+<?php pre_end() ?>  
 
 <h2>Running the Select Query</h2>
 
 <p> The <b>query()</b> method provides a shortcut to coreDatabase query(). To retrieve rows
-	from this query you can use coreDatabase's <b>fetch()</b> and <b>fetchObject()</b> methods:
+  from this query you can use coreDatabase's <b>fetch()</b> and <b>fetchObject()</b> methods:
 
 <?php pre_start() ?>
 $data = array();
@@ -294,9 +294,9 @@ while ($row = $db->fetch()) {
 
 
 <!--php
-	$db = coreContext::getInstance()->getDatabase();
+  $db = coreContext::getInstance()->getDatabase();
 
-	echo "<p><samp>" . $db->select('firstname')->where('userid = ?', 5)->query();
+  echo "<p><samp>" . $db->select('firstname')->where('userid = ?', 5)->query();
     echo "</samp>";
 
 -->

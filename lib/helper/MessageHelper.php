@@ -18,15 +18,15 @@
  */
 function form_errors()
 {
-	$request = coreContext::getInstance()->getRequest();
-	$s = '';
-	if ($request->hasErrors())
-	{
-		$s = implode("<br/>\n", array_values($request->getErrors()));
-		$s = content_tag('p', $s, array('class' => 'ico ico-error'));
-		$s = content_tag('div', $s, array('class' => 'form-global-message'));
-	}
-	return $s;
+  $request = coreContext::getInstance()->getRequest();
+  $s = '';
+  if ($request->hasErrors())
+  {
+    $s = implode("<br/>\n", array_values($request->getErrors()));
+    $s = content_tag('p', $s, array('class' => 'ico ico-error'));
+    $s = content_tag('div', $s, array('class' => 'form-global-message'));
+  }
+  return $s;
 }
 
 
@@ -38,14 +38,14 @@ function form_errors()
  */
 function form_confirmations()
 {
-	$request = coreContext::getInstance()->getRequest();
-	$s = '';
-	if ($request->hasConfirmations())
-	{
-		$s = implode("<br/>\n", array_values($request->getConfirmations()));
-		$s = content_tag('p', $s);
-		$s = content_tag('div', $s, array('class' => 'messagebox msgbox-success'));
-		$s .= '<div class="clear"></div>';
-	}
-	return $s;
+  $request = coreContext::getInstance()->getRequest();
+  $s = '';
+  if ($request->hasConfirmations())
+  {
+    $s = implode("<br/>\n", array_values($request->getConfirmations()));
+    $s = content_tag('p', $s);
+    $s = content_tag('div', $s, array('class' => 'messagebox msgbox-success'));
+    $s .= '<div class="clear"></div>';
+  }
+  return $s;
 }

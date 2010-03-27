@@ -17,15 +17,15 @@
 
 return array
 (
-	'fields' => array
-	(
-		'txtStory' => array
-		(
-			'StringValidator' 	=> array
-			(
-				'max' 			=> 512,
-				'max_error' 	=> 'Story is too long (max. 512 characters).'
-			)
-		)
-	)
+  'fields' => array
+  (
+    'txtStory' => array
+    (
+      'StringValidator'   => array
+      (
+        'max'       => 512,
+        'max_error'   => 'Story is too long (max. 512 characters).'
+      )
+    )
+  )
 );

@@ -18,20 +18,20 @@
 
 class externActions extends coreActions
 {
-	public function executeIndex()
-	{
-	}
+  public function executeIndex()
+  {
+  }
 
-	/**
-	 * Fontpicker is a page using a flash file (SWF) to get a listing of all fonts
-	 * on a user's computer, and allow one of the Greasemonkey Scripts to let the
-	 * user pick a font and change the fonts used by the flashcards and on other
-	 * places.
-	 * 
-	 * @see   Woelpad's scripts 
-	 *        http://forum.koohii.com/viewtopic.php?id=518
-	 */
-	public function executeFontpicker()
-	{
-	}
+  /**
+   * Fontpicker is a page using a flash file (SWF) to get a listing of all fonts
+   * on a user's computer, and allow one of the Greasemonkey Scripts to let the
+   * user pick a font and change the fonts used by the flashcards and on other
+   * places.
+   * 
+   * @see   Woelpad's scripts 
+   *        http://forum.koohii.com/viewtopic.php?id=518
+   */
+  public function executeFontpicker()
+  {
+  }
 }

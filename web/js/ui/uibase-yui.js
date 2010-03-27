@@ -326,8 +326,8 @@ if (!App.Ui) {
       }
 
       this.listeners[name].push({
-      	fn:    fn,
-      	scope: context || window
+        fn:    fn,
+        scope: context || window
       });
     },
     
@@ -351,17 +351,17 @@ if (!App.Ui) {
   
       // if listener is undefined, delete all listeners
       if (!fn) {
-      	fn = true;
+        fn = true;
       }
   
       callables = this.listeners[name];
       l = callables.length;
       
       for (i = l - 1; i > -1; i--) {
-      	s = callables[i];
+        s = callables[i];
         if (true === fn || s.fn === fn) {
-        	delete s.fn;
-        	delete s.scope; 
+          delete s.fn;
+          delete s.scope; 
           callables.splice(i, 1); // unset array item
         }
       }
@@ -381,24 +381,24 @@ if (!App.Ui) {
      */
     notify:function()
     {
-    	var args = Array.prototype.slice.call(arguments, 0),
-    	    name = args.shift(),
-    	    callables = this.listeners[name] ? this.listeners[name] : [],
-    	    i, ret, subscriber;
+      var args = Array.prototype.slice.call(arguments, 0),
+          name = args.shift(),
+          callables = this.listeners[name] ? this.listeners[name] : [],
+          i, ret, subscriber;
 
       if (args.length===1 && Y.lang.isArray(args[0])) {
-      	alert('EventDispatcher()  using obsolete notify() signature?');
+        alert('EventDispatcher()  using obsolete notify() signature?');
       }
   
       if (!callables.length) {
-      	return;
+        return;
       }
   
       for (i = 0; i < callables.length; i++) {
-      	subscriber = callables[i]; 
+        subscriber = callables[i]; 
         ret = subscriber.fn.apply(subscriber.scope, args.length ? args : []);
         if (false === ret) {
-        	break;
+          break;
         }
       }
       
@@ -521,7 +521,7 @@ if (!App.Ui) {
 (function() {
 
   App.Ui.AjaxIndicator = function() {
-  	this.init.apply(this, arguments);
+    this.init.apply(this, arguments);
   };
 
   var Y = YAHOO,
@@ -533,65 +533,65 @@ if (!App.Ui) {
 
   AjaxIndicator.prototype = {
 
-	  init:function(options)
-	  {
-	    this.container = options && options.container ? Dom.get(options.container) : document.body;
-	    this.message = options.message ? options.message : DEFAULT_MESSAGE;
-	    this.indicator = null;
-	  },
-	  
-	  destroy:function()
-	  {
-	    // remove from DOM and clear reference
-	    if (this.indicator && this.indicator.parentNode) {
-	      document.body.removeChild(this.indicator);
-	    }
-	    this.indicator = null;
-	  },
-	
-	  show:function()
-	  {
-	    // create the element
-	    if (!this.indicator) {
-	      
-	      var pos = Dom.getXY(this.container);
-	
-	      this.indicator = document.createElement('span');
-	      Dom.setStyles(this.indicator, {
-	        padding:    '2px 10px',
-	        background: 'red',
-	        color:      '#fff',
-	        font:       '13px/18px Arial, sans-serif',
-	        position:   'absolute',
-	        left:       pos[0] + 'px',
-	        top:        pos[1] + 'px',
-	        zIndex:     DEFAULT_ZINDEX,
-	        display:    'block'
-	      });
-	      this.indicator.innerHTML = this.message;
-	      document.body.insertBefore(this.indicator, document.body.firstChild);
-	    }
-	
-	    this.indicator.style.display = 'block';
-	  },
-	  
-	  hide:function()
-	  {
-	    if (this.indicator) {
-	      this.indicator.style.display = 'none';
-	    }
-	  },
-	  
-	  /**
-	   * Return the html element used by the ajax indicator.
-	   * 
-	   * @return HTMLElement   Html element or null
-	   */
-	  getElement:function()
-	  {
-	    return this.indicator;
-	  }
-	};
+    init:function(options)
+    {
+      this.container = options && options.container ? Dom.get(options.container) : document.body;
+      this.message = options.message ? options.message : DEFAULT_MESSAGE;
+      this.indicator = null;
+    },
+    
+    destroy:function()
+    {
+      // remove from DOM and clear reference
+      if (this.indicator && this.indicator.parentNode) {
+        document.body.removeChild(this.indicator);
+      }
+      this.indicator = null;
+    },
+  
+    show:function()
+    {
+      // create the element
+      if (!this.indicator) {
+        
+        var pos = Dom.getXY(this.container);
+  
+        this.indicator = document.createElement('span');
+        Dom.setStyles(this.indicator, {
+          padding:    '2px 10px',
+          background: 'red',
+          color:      '#fff',
+          font:       '13px/18px Arial, sans-serif',
+          position:   'absolute',
+          left:       pos[0] + 'px',
+          top:        pos[1] + 'px',
+          zIndex:     DEFAULT_ZINDEX,
+          display:    'block'
+        });
+        this.indicator.innerHTML = this.message;
+        document.body.insertBefore(this.indicator, document.body.firstChild);
+      }
+  
+      this.indicator.style.display = 'block';
+    },
+    
+    hide:function()
+    {
+      if (this.indicator) {
+        this.indicator.style.display = 'none';
+      }
+    },
+    
+    /**
+     * Return the html element used by the ajax indicator.
+     * 
+     * @return HTMLElement   Html element or null
+     */
+    getElement:function()
+    {
+      return this.indicator;
+    }
+  };
 })();
 
 
@@ -988,8 +988,8 @@ console.log('poo'+eventName);
      */
     submitFormEvent:function(e)
     {
-    	var form, skipSubmit = false;
-    	
+      var form, skipSubmit = false;
+      
       App.log('AjaxPanel.submitFormEvent(%o) Form %o', e, Event.getTarget(e));
 
       // if listener exists, and it returns false, do not auto-submit
@@ -1269,171 +1269,171 @@ console.log('poo'+eventName);
  * 
  */
 (function(){
-	
-	App.Ui.ShadeLayer = function() {
+  
+  App.Ui.ShadeLayer = function() {
     this.init.apply(this, arguments);
   };
 
-	var
-		Y = YAHOO,
-		Dom = Y.util.Dom,
-		Event = Y.util.Event,
-		ShadeLayer = App.Ui.ShadeLayer,
+  var
+    Y = YAHOO,
+    Dom = Y.util.Dom,
+    Event = Y.util.Event,
+    ShadeLayer = App.Ui.ShadeLayer,
 
-		/**
-		 * Default settings
-		 */
-		DEFAULT_COLOR = '#000',
-		DEFAULT_OPACITY = 20,
-	
-		/**
-		 * Currently assumed to be lower value than App.Ui.AjaxIndicator DEFAULT_ZINDEX
-		 */
-		DEFAULT_ZINDEX = 90;
+    /**
+     * Default settings
+     */
+    DEFAULT_COLOR = '#000',
+    DEFAULT_OPACITY = 20,
+  
+    /**
+     * Currently assumed to be lower value than App.Ui.AjaxIndicator DEFAULT_ZINDEX
+     */
+    DEFAULT_ZINDEX = 90;
 
-	ShadeLayer.prototype = {
-	
-		init:function(options)
-		{
-			this.color = options.color || DEFAULT_COLOR;
-	
-			this.opacity = typeof(options.opacity)!=='undefined' ? options.opacity : DEFAULT_OPACITY;
-			this.opacity = Math.max(Math.min(this.opacity, 100), 0);
-	
-			// look for conditional comment div
-			this.isIE = !!Dom.get('ie');
-	
-			if (options.element)
-			{
-				var offsets = Dom.getXY(options.element);
-				this.pos  = {
-					left: offsets[0],
-					top:  offsets[1]
-				};
-				
-				this.size = this.getDimensions(options.element);
+  ShadeLayer.prototype = {
+  
+    init:function(options)
+    {
+      this.color = options.color || DEFAULT_COLOR;
+  
+      this.opacity = typeof(options.opacity)!=='undefined' ? options.opacity : DEFAULT_OPACITY;
+      this.opacity = Math.max(Math.min(this.opacity, 100), 0);
+  
+      // look for conditional comment div
+      this.isIE = !!Dom.get('ie');
+  
+      if (options.element)
+      {
+        var offsets = Dom.getXY(options.element);
+        this.pos  = {
+          left: offsets[0],
+          top:  offsets[1]
+        };
+        
+        this.size = this.getDimensions(options.element);
 
-				this.element = options.element;
-			}
-			else
-			{
-				this.pos  = options.pos;
-				this.size = options.size;
-			}
+        this.element = options.element;
+      }
+      else
+      {
+        this.pos  = options.pos;
+        this.size = options.size;
+      }
 
-			var elLayer = document.createElement("div");
-			var layerStyles = {
-				display:  'none',
-				position: 'absolute',
-				top:      this.pos.top+'px',
-				left:     this.pos.left+'px',
-				zIndex:   DEFAULT_ZINDEX,
-			 	width:    /%$/.test(this.size.width) ? this.size.width : this.size.width+'px',
-				height:   /%$/.test(this.size.height) ? this.size.height : this.size.height+'px'
-			};
-			
-			// set shading
-			if (!options.glass_mode) {
-		    	// ex: background:#85a5d2; opacity:0.5; filter:alpha(opacity=50);
-				layerStyles.background = this.color;
-			 	layerStyles.opacity = Math.round(this.opacity)/100;
-			}
-	
-			Dom.setStyles(elLayer, layerStyles);
-		 	if (this.isIE){
-		 		// IE6 opacity filter
-				elLayer.style.filter = 'alpha(opacity=' + this.opacity + ')';
-			}
+      var elLayer = document.createElement("div");
+      var layerStyles = {
+        display:  'none',
+        position: 'absolute',
+        top:      this.pos.top+'px',
+        left:     this.pos.left+'px',
+        zIndex:   DEFAULT_ZINDEX,
+         width:    /%$/.test(this.size.width) ? this.size.width : this.size.width+'px',
+        height:   /%$/.test(this.size.height) ? this.size.height : this.size.height+'px'
+      };
+      
+      // set shading
+      if (!options.glass_mode) {
+          // ex: background:#85a5d2; opacity:0.5; filter:alpha(opacity=50);
+        layerStyles.background = this.color;
+         layerStyles.opacity = Math.round(this.opacity)/100;
+      }
+  
+      Dom.setStyles(elLayer, layerStyles);
+       if (this.isIE){
+         // IE6 opacity filter
+        elLayer.style.filter = 'alpha(opacity=' + this.opacity + ')';
+      }
 
-	//console.log('x %o', elLayer);
+  //console.log('x %o', elLayer);
 
-			this.elBody = document.getElementsByTagName("body")[0];
-			this.elBody.insertBefore(elLayer, this.elBody.firstChild);
-			this.elLayer = elLayer;
-		},
-		
-		show:function()
-		{
-			// update dimensions (if repeating show/hide and the container content changes)
-			if (this.element) {
-				this.resize();
-			}
-			Dom.setStyle(this.elLayer, "display", "block");
-		},
-		
-		hide:function()
-		{
-			Dom.setStyle(this.elLayer, "display", "none");
-		},
-	
-		resize:function()
-		{
-			if (!this.element) {
-				throw new Error('uiShadeLayer.resize() cannot resize without element');
-			}
-			
-			var newSize = this.getDimensions(this.element);
-	
-			// try to fix small gap caused by Firefox
-	//		var elementSize = 
-	
-			if (newSize.width != this.size.width || newSize.height != this.size.height) 
-			{
-				this.size = newSize;
-				//	uiConsole.log('resize to %o', this.size);
-				Dom.setStyles(this.elLayer,
-				{
-					width: this.size.width + 'px',
-					height: this.size.height + 'px'
-				});
-			}
-		},
-		
-		visible:function()
-		{
-			return this.elLayer.style.display !== "none";
-		},
-	
-		destroy:function()
-		{
-			if (this.elLayer) {
-				var elBody = document.getElementsByTagName("body")[0];
-				this.elBody.removeChild(this.elLayer);
-			}
-			this.elLayer = null;
-		},
-		
-		getLayer:function()
-		{
-			return this.elLayer;
-		},
-	
-		/**
-		 * Wrapper that returns the dimensions of the entire viewport if element is the
-		 * document body, or the dimensions of a specific element, calls the appropriate
-		 * Prototype function.
-		 * 
-		 * @param {HTMLElement}  element
-		 */
-		getDimensions:function(element)
-		{
-			if (element === document.body)
-			{
-				return {
-					width: Dom.getViewportWidth(),
-					height: Dom.getViewportHeight() 
-				};
-			}
-			else
-			{
-				var region = Dom.getRegion(element);
-				return {
-					width: region.width,
-					height: region.height
-				};
-			}
-		}
-	};
+      this.elBody = document.getElementsByTagName("body")[0];
+      this.elBody.insertBefore(elLayer, this.elBody.firstChild);
+      this.elLayer = elLayer;
+    },
+    
+    show:function()
+    {
+      // update dimensions (if repeating show/hide and the container content changes)
+      if (this.element) {
+        this.resize();
+      }
+      Dom.setStyle(this.elLayer, "display", "block");
+    },
+    
+    hide:function()
+    {
+      Dom.setStyle(this.elLayer, "display", "none");
+    },
+  
+    resize:function()
+    {
+      if (!this.element) {
+        throw new Error('uiShadeLayer.resize() cannot resize without element');
+      }
+      
+      var newSize = this.getDimensions(this.element);
+  
+      // try to fix small gap caused by Firefox
+  //    var elementSize = 
+  
+      if (newSize.width != this.size.width || newSize.height != this.size.height) 
+      {
+        this.size = newSize;
+        //  uiConsole.log('resize to %o', this.size);
+        Dom.setStyles(this.elLayer,
+        {
+          width: this.size.width + 'px',
+          height: this.size.height + 'px'
+        });
+      }
+    },
+    
+    visible:function()
+    {
+      return this.elLayer.style.display !== "none";
+    },
+  
+    destroy:function()
+    {
+      if (this.elLayer) {
+        var elBody = document.getElementsByTagName("body")[0];
+        this.elBody.removeChild(this.elLayer);
+      }
+      this.elLayer = null;
+    },
+    
+    getLayer:function()
+    {
+      return this.elLayer;
+    },
+  
+    /**
+     * Wrapper that returns the dimensions of the entire viewport if element is the
+     * document body, or the dimensions of a specific element, calls the appropriate
+     * Prototype function.
+     * 
+     * @param {HTMLElement}  element
+     */
+    getDimensions:function(element)
+    {
+      if (element === document.body)
+      {
+        return {
+          width: Dom.getViewportWidth(),
+          height: Dom.getViewportHeight() 
+        };
+      }
+      else
+      {
+        var region = Dom.getRegion(element);
+        return {
+          width: region.width,
+          height: region.height
+        };
+      }
+    }
+  };
 
 })();
 
@@ -1457,12 +1457,12 @@ console.log('poo'+eventName);
  */
 (function() {
 
-	/**
-	 * It does something, yo.
-	 * 
-	 * @param {String} s  Name of the looney
-	 * @return {Boolean}
-	 */
+  /**
+   * It does something, yo.
+   * 
+   * @param {String} s  Name of the looney
+   * @return {Boolean}
+   */
   App.Ui.ModalLayer = function() {
     this.init.apply(this, arguments);
   };
@@ -1478,17 +1478,17 @@ console.log('poo'+eventName);
     
     init:function(options)
     {
-	    // set defaults
-	    options.use_shading = !(options.use_shading===false);
+      // set defaults
+      options.use_shading = !(options.use_shading===false);
 
       var elPanel = Dom.get(options.element);
 
       this.oPanel = new Y.widget.Panel(elPanel, {
-      	fixedcenter: true,
-      	constraintoviewport: true,
-      	underlay: options.use_shading ? "shadow" : "none",
-      	modal: true,
-      	draggable: false
+        fixedcenter: true,
+        constraintoviewport: true,
+        underlay: options.use_shading ? "shadow" : "none",
+        modal: true,
+        draggable: false
       });
 
       this.oPanel.render();
@@ -1497,10 +1497,10 @@ console.log('poo'+eventName);
     
     destroy:function()
     {
-    	this.oPanel.hide();
-    	this.oPanel.destroy();
+      this.oPanel.hide();
+      this.oPanel.destroy();
     }
   };
- 	
+   
 })();
 

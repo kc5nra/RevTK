@@ -22,7 +22,11 @@
 *.log
 error_log*
 
-# assets copied to web root (Juicer)
+# Temporary output from Juicer (frontend build tool)
+*.juiced.js
+*.juiced.css
+*.min.js
+*.min.css
 /web/corejs
 
 # only include zip archives for data

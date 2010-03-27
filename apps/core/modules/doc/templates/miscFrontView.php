@@ -21,16 +21,16 @@ coreContext::getInstance()->getController()->dispatch();
 
 <p>How the bootstrap works:
 <ul>
-	<li>The front controller is called (/web/index.php, /web/backend.php, etc)
-	<li>The front controller defines some constants:<br/>
-	    <samp>CORE_ROOT_DIR</samp> : Project root directory.<br/>
-		<samp>CORE_APP</samp> : Application name in the project. Necessary to compute file paths.<br/>
-		<samp>CORE_ENVIRONMENT</samp> : Determines the application configuration, see
-		<?php echo link_to('application settings', 'doc/misc?page_id=settings') ?>.
-	<li>The front controller includes /apps/myapp/config/config.php which includes core.php, and creates an instance of coreApplicationConfiguration
-	<li>The coreProjectConfiguration instantiation sets up the application configuration and environment
-	    (error handling, class autoloading, ...)
-	<li>The web front calls ->dispatch() on the controller
+  <li>The front controller is called (/web/index.php, /web/backend.php, etc)
+  <li>The front controller defines some constants:<br/>
+      <samp>CORE_ROOT_DIR</samp> : Project root directory.<br/>
+    <samp>CORE_APP</samp> : Application name in the project. Necessary to compute file paths.<br/>
+    <samp>CORE_ENVIRONMENT</samp> : Determines the application configuration, see
+    <?php echo link_to('application settings', 'doc/misc?page_id=settings') ?>.
+  <li>The front controller includes /apps/myapp/config/config.php which includes core.php, and creates an instance of coreApplicationConfiguration
+  <li>The coreProjectConfiguration instantiation sets up the application configuration and environment
+      (error handling, class autoloading, ...)
+  <li>The web front calls ->dispatch() on the controller
 </ul>
 
 <h2>Web Server Configuration</h2>

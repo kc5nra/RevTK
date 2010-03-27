@@ -1,0 +1,34 @@
+/**
+ * Review Dashboard
+ * 
+ * Juicer build:
+ *  php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/revtk/review-home.juicy.css
+ * 
+ * Minification:
+ *  java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/review-home.juiced.css -o web/revtk/review-home.min.css
+ *   
+ * @author  Fabrice Denis
+ * @date    March 2010
+ */
+
+/* =require from "%WEB%" */
+/* =require "/revtk/bundles/flashcardreview-1.0.juicy.css" */
+/* =require from "%WEB%" */
+/* =require "/css/2.0/widgets.css" */
+
+/**
+ * Base SVG/VML styles
+ * 
+ * The outer div allow positionings of HTML elements on top of the SVG graph.
+ * The inner div takes the SVG element out of the flow, so that HTML elements
+ * appear on top of it, instead of after it.
+ * 
+ * <div class="svg-outer-div">
+ *  <div class="svg-inner-div"> ...Raphael/SVG holder instanced in this div ... </div>
+ *  ... here elements appear on top of the SVG ...
+ * </div>
+ * 
+ */
+.svg-outer-div { position:relative;  }
+.svg-inner-div { position:absolute; width:100%; } /* move SVG outta the positioning way! */
+

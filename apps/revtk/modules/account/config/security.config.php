@@ -9,16 +9,16 @@
 
 return array
 (
-	// Edit Account
-	'edit' => array
-	(
-		'is_secure'    => true
-	),
-	
-	// Change Password
-	'password' => array
-	(
-		'is_secure'    => true
-	)
+  // Edit Account
+  'edit' => array
+  (
+    'is_secure'    => true
+  ),
+  
+  // Change Password
+  'password' => array
+  (
+    'is_secure'    => true
+  )
 
 );

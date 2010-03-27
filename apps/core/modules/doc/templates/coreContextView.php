@@ -48,10 +48,10 @@ coreContext::getInstance()->getDatabase()
 
 <p> The application configuration instance gives access to the running <em>application name</em>
     and the <em>environment name</em>.</p>
-		
+    
 <p> It also gives access to custom methods and properties of the application configuration
-	  object in the <samp>apps/config/config.php</samp> file, which extends <strong>coreApplicationConfiguration</strong>.</p>
-		
+    object in the <samp>apps/config/config.php</samp> file, which extends <strong>coreApplicationConfiguration</strong>.</p>
+    
 <?php pre_start() ?>
 // Get the application name
 $appName = coreContext::getInstance()->getConfiguration()->getApplication();

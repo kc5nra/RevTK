@@ -157,7 +157,6 @@
 "ugly","soul","witch","fascination","clod","attack","menacing/upbraid","majestic plural","atmosphere","item","tempering",
 "abide by","quit","barracks","moreover","seaweed","slave","healing","rust-colored/cinnabar","lagoon","sign of the cow",
 "sign of the hare","sign of the snake",
-
 "this here","brushwood","fort","whit","beard","crystal","fowl","apple","sympathize with","phosphorus","camelopard","scaled",
 "encompassing","hermitage","shrouded","myself","make amends","steed","steep","complete a job","mortar","father-in-law","mouse",
 "bore","break","small craft","rhinoceros","lunar month","spinal column","rice-field footpath","mend","let it be","imperial seal",

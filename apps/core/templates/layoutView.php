@@ -22,26 +22,26 @@
 
 <!--[if IE]><div id="ie"><![endif]--> 
 
-	<h1><?php echo link_to('Core', '@homepage', array('title'=>'Go to homepage')).$subtitle ?> framework</h1>
+  <h1><?php echo link_to('Core', '@homepage', array('title'=>'Go to homepage')).$subtitle ?> framework</h1>
 
-	<div id="body">
-	  <div class="padding">
+  <div id="body">
+    <div class="padding">
 <?php echo $core_content ?>
-	  </div>
-	  <div id="footer">
-		  <p>Page generated in <span style="color:#ccc"><?php echo coreContext::getInstance()->getConfiguration()->timeEnd() ?></span> secs</p>
-	  </div>
-	</div>
+    </div>
+    <div id="footer">
+      <p>Page generated in <span style="color:#ccc"><?php echo coreContext::getInstance()->getConfiguration()->timeEnd() ?></span> secs</p>
+    </div>
+  </div>
 
-	<div id="leftcolumn">
-	  <?php if (has_slot('sidebar')): ?>
+  <div id="leftcolumn">
+    <?php if (has_slot('sidebar')): ?>
       <?php include_slot('sidebar') ?>
     <?php else: ?>
       <!-- default sidebar code -->
       <?php include_partial('global/mainMenu') ?>
     <?php endif; ?>
-	</div>
-	<div class="clear"></div>
+  </div>
+  <div class="clear"></div>
 
 <!--[if IE]></div><![endif]-->
 

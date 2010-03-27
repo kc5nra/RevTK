@@ -8,9 +8,9 @@
 
 return array
 (
-	'progress' => array
-	(
-		'title'	      => 'Progress Chart'
-	)
-	
+  'progress' => array
+  (
+    'title'        => 'Progress Chart'
+  )
+  
 );

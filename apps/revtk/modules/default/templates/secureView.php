@@ -3,7 +3,7 @@
 <?php include_partial('home/homeSide') ?>
 
   <div class="col-main">
-  	<div class="col-box col-box-top">
+    <div class="col-box col-box-top">
 
 
 <h2>Credentials Required</h2>
@@ -13,7 +13,7 @@
 <p> The user is logged in, but does not have sufficient credentials.
 
 
-	</div>
+  </div>
 
   </div>
 

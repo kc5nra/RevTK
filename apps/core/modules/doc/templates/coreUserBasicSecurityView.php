@@ -35,15 +35,15 @@ function setAuthenticated($authenticated)
 
 <p> Before being executed, every action passes by a special filter that checks if the
     current user has the privileges to access the requested action.
-	The privileges are composed of two parts:
+  The privileges are composed of two parts:
 <ul>
-	<li>Secure actions require users to be authenticated.
-	<li>Credentials are named security privileges that allow organizing security by group.
+  <li>Secure actions require users to be authenticated.
+  <li>Credentials are named security privileges that allow organizing security by group.
 </ul>
 
 <p> Restricting access to an action is simply made by creating and editing a configuration
     file called <var>security.config.php</var> in the module <var>config/</var> directory.
-	
+  
 <p> Here is a sample security config file. The keys are action names, and the <b>all</b>
     key applies to all actions in the module:
 
@@ -79,10 +79,10 @@ return array
 <p> What happens when a user tries to access a restricted action depends on his credentials:
 
 <ul>
-	<li>If the user is authenticated and has the proper credentials, the action is executed.
-	<li>If the user is not identified, he will be redirected to the default <b>login action</b>.
-	<li>If the user is identified but doesn't have the proper credentials,
-	    he will be redirected to the default <b>secure action</b>.
+  <li>If the user is authenticated and has the proper credentials, the action is executed.
+  <li>If the user is not identified, he will be redirected to the default <b>login action</b>.
+  <li>If the user is identified but doesn't have the proper credentials,
+      he will be redirected to the default <b>secure action</b>.
 </ul>
 
 <p> The default security actions are defined in the <?php echo link_to('settings.php', 'doc/misc?page_id=settings') ?> file:
@@ -102,7 +102,7 @@ return array
 
 <p> The authenticated status of the user is set by the <b>setAuthenticated()</b> method
     and can be checked with <b>isAuthenticated()</b>:
-	
+  
 <?php pre_start() ?>
 class myAccountActions extends coreActions
 {

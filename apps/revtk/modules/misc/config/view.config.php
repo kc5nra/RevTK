@@ -8,13 +8,13 @@
 
 return array
 (
-	'reading' => array
-	(
-		'title'	      => 'Sight Reading',
-		'javascripts' => array
-		(
-			'/js/1.0/toolbox.js',
-			'/js/1.0/reading.js'
-	    )
-	)
+  'reading' => array
+  (
+    'title'        => 'Sight Reading',
+    'javascripts' => array
+    (
+      '/js/1.0/toolbox.js',
+      '/js/1.0/reading.js'
+      )
+  )
 );

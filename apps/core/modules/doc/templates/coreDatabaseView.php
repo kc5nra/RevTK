@@ -81,7 +81,7 @@ function dumpResultSet($resultset)
 
 <p> The actual database connection only happens when the coreDatabase object is
     retrieved the first time through coreContext, so no connection is made unless
-	it is needed:
+  it is needed:
 
 <?php pre_start() ?>
   $db = coreContext::getInstance()->getDatabase();
@@ -108,7 +108,7 @@ function dumpResultSet($resultset)
 
 <p> All methods that accept a query, or a where clause also accept binding parameters.
     The question marks in the query string are substituted with the parameters.
-	The $bind argument must be a single value, or an array:
+  The $bind argument must be a single value, or an array:
 
 <?php pre_start() ?>
 // One parameter
@@ -172,7 +172,7 @@ $row_id = $db->lastInsertId();
 
 <p> The <b>update()</b> method takes data in the same way, plus an optional criteria
     to select which rows to update. The criteria can also use bound parameters:
-	
+  
 <?php pre_start() ?>
 /*
 UPDATE bugs SET updated_on='2007-03-23',bug_status='FIXED' WHERE bug_id = 4

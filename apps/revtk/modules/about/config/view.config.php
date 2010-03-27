@@ -8,26 +8,26 @@
 
 return array
 (
-	'about' => array
-	(
-		'title'	      	   => 'About Reviewing the Kanji',
-		'metas'            => array(
-			'robots' => 'noindex,follow'
-		)
-	),
-	'acknowledgments' => array
-	(
-		'title'	      	   => 'Acknowledgments - Reviewing the Kanji',
-		'metas'            => array(
-			'robots' => 'noindex,follow'
-		)
-	),
-	'learnmore' => array
-	(
-		'title'	      	   => 'Learn more - Reviewing the Kanji'
-	),
-	'support' => array
-	(
-		'title'	      	   => 'Make a Donation - Reviewing the Kanji'
-	)
+  'about' => array
+  (
+    'title'             => 'About Reviewing the Kanji',
+    'metas'            => array(
+      'robots' => 'noindex,follow'
+    )
+  ),
+  'acknowledgments' => array
+  (
+    'title'             => 'Acknowledgments - Reviewing the Kanji',
+    'metas'            => array(
+      'robots' => 'noindex,follow'
+    )
+  ),
+  'learnmore' => array
+  (
+    'title'             => 'Learn more - Reviewing the Kanji'
+  ),
+  'support' => array
+  (
+    'title'             => 'Make a Donation - Reviewing the Kanji'
+  )
 );

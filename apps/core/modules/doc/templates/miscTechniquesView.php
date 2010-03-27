@@ -35,23 +35,23 @@
 <p> coreAutoload attempts to load files in this order :
 
 <ul>
-	<li>If the filename starts with <var>core</var> it looks in the <samp>lib/core</samp> directory.
-	<li>If the filename matches <var>sf[A-Z]</var> it looks in the <samp>lib/core/lib/sf/</samp> directory.
-	<li>If it is defined in settings.php 'autoload_classes', then it looks in the defined directory.
-	<li>If the filename ends in <var>Peer</var>, coreAutoload looks for a data model first in
-	    the application's model directory <samp>apps/[myapp]/lib/model/</samp> and then in the project
-		model directory <samp>lib/model/</samp>.
+  <li>If the filename starts with <var>core</var> it looks in the <samp>lib/core</samp> directory.
+  <li>If the filename matches <var>sf[A-Z]</var> it looks in the <samp>lib/core/lib/sf/</samp> directory.
+  <li>If it is defined in settings.php 'autoload_classes', then it looks in the defined directory.
+  <li>If the filename ends in <var>Peer</var>, coreAutoload looks for a data model first in
+      the application's model directory <samp>apps/[myapp]/lib/model/</samp> and then in the project
+    model directory <samp>lib/model/</samp>.
 </ul>
 
 <h2>Integrating with Other Framework Components</h2>
 
 <p> Extending the autoloading system to enable third party components
     is done simply by registering the autoload classes of those components
-	in the application configuration class.
-	
+  in the application configuration class.
+  
 <p> The callback methods registered by spl_autoload_register() calls will
-	be called one after the other in the same order that they were registered.
-	
+  be called one after the other in the same order that they were registered.
+  
 <p> For example to enable autoloading of Zend classes:
 
 <?php pre_start() ?>
@@ -74,7 +74,7 @@ if ($zend_lib_dir = coreConfig::get('app_zend_lib_dir'))
 
 <p> The <b>CORE_APP</b> constant should designate which existing application
     from which the settings should be used, as this determines database connection
-	parameters etc.
+  parameters etc.
 
 <?php pre_start() ?>
 &lt;?php

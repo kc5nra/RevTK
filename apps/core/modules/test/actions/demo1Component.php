@@ -9,10 +9,10 @@
 
 class demo1Component extends coreComponent
 {
-	public function execute($request)
-	{
-		$this->var1 = "Received param1 = " . $this->param1;
+  public function execute($request)
+  {
+    $this->var1 = "Received param1 = " . $this->param1;
 
-		return coreView::SUCCESS;
-	}
+    return coreView::SUCCESS;
+  }
 }

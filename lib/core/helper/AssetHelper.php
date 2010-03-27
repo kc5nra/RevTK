@@ -16,30 +16,30 @@
  *
  * <b>Examples:</b>
  * <code>
- *	echo javascript_include_tag('xmlhr');
- *		=> <script language="JavaScript" type="text/javascript" src="/js/xmlhr.js"></script>
- *	echo javascript_include_tag('common.javascript', '/elsewhere/cools');
- *		=> <script language="JavaScript" type="text/javascript" src="/js/common.javascript"></script>
- *			 <script language="JavaScript" type="text/javascript" src="/elsewhere/cools.js"></script>
+ *  echo javascript_include_tag('xmlhr');
+ *    => <script language="JavaScript" type="text/javascript" src="/js/xmlhr.js"></script>
+ *  echo javascript_include_tag('common.javascript', '/elsewhere/cools');
+ *    => <script language="JavaScript" type="text/javascript" src="/js/common.javascript"></script>
+ *       <script language="JavaScript" type="text/javascript" src="/elsewhere/cools.js"></script>
  * </code>
  *
- * @param	string asset names
+ * @param  string asset names
  * @return  string XHTML compliant <script> tag(s)
- * @see		javascript_path 
+ * @see    javascript_path 
  */
 function javascript_include_tag()
 {
-	$sources = func_get_args();
-	$sourceOptions = (func_num_args() > 1 && is_array($sources[func_num_args() - 1])) ? array_pop($sources) : array();
+  $sources = func_get_args();
+  $sourceOptions = (func_num_args() > 1 && is_array($sources[func_num_args() - 1])) ? array_pop($sources) : array();
 
-	$html = '';
-	foreach ($sources as $source)
-	{
-		$options = array_merge(array('type' => 'text/javascript', 'src' => $source), $sourceOptions);
-		$html .= '  '.content_tag('script', '', $options)."\n";
-	}
+  $html = '';
+  foreach ($sources as $source)
+  {
+    $options = array_merge(array('type' => 'text/javascript', 'src' => $source), $sourceOptions);
+    $html .= '  '.content_tag('script', '', $options)."\n";
+  }
 
-	return $html;	
+  return $html;  
 }
 
 /**
@@ -53,37 +53,37 @@ function javascript_include_tag()
  *
  * <b>Examples:</b>
  * <code>
- *	echo stylesheet_tag('style');
- *		=> <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
- *	echo stylesheet_tag('style', array('media' => 'all'));
- *		=> <link href="/stylesheets/style.css" media="all" rel="stylesheet" type="text/css" />
- *	echo stylesheet_tag('style', array('raw_name' => true));
- *		=> <link href="style" media="all" rel="stylesheet" type="text/css" />
- *	echo stylesheet_tag('random.styles', '/css/stylish');
- *		=> <link href="/stylesheets/random.styles" media="screen" rel="stylesheet" type="text/css" />
- *			 <link href="/css/stylish.css" media="screen" rel="stylesheet" type="text/css" />
+ *  echo stylesheet_tag('style');
+ *    => <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+ *  echo stylesheet_tag('style', array('media' => 'all'));
+ *    => <link href="/stylesheets/style.css" media="all" rel="stylesheet" type="text/css" />
+ *  echo stylesheet_tag('style', array('raw_name' => true));
+ *    => <link href="style" media="all" rel="stylesheet" type="text/css" />
+ *  echo stylesheet_tag('random.styles', '/css/stylish');
+ *    => <link href="/stylesheets/random.styles" media="screen" rel="stylesheet" type="text/css" />
+ *       <link href="/css/stylish.css" media="screen" rel="stylesheet" type="text/css" />
  * </code>
  *
- * @param	string asset names
- * @param	array additional HTML compliant <link> tag parameters
+ * @param  string asset names
+ * @param  array additional HTML compliant <link> tag parameters
  * @return string XHTML compliant <link> tag(s)
- * @see		stylesheet_path 
+ * @see    stylesheet_path 
  */
 function stylesheet_tag()
 {
-	$sources = func_get_args();
-	$sourceOptions = (func_num_args() > 1 && is_array($sources[func_num_args() - 1])) ? array_pop($sources) : array();
+  $sources = func_get_args();
+  $sourceOptions = (func_num_args() > 1 && is_array($sources[func_num_args() - 1])) ? array_pop($sources) : array();
 
-	$html = '';
-	foreach ($sources as $source)
-	{
-		//$source = stylesheet_path($source, $absolute);
-		$options = array_merge(array('rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'screen', 'href' => $source), $sourceOptions);
+  $html = '';
+  foreach ($sources as $source)
+  {
+    //$source = stylesheet_path($source, $absolute);
+    $options = array_merge(array('rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'screen', 'href' => $source), $sourceOptions);
 
-		$html .= '  '.tag('link', $options)."\n";
-	}
+    $html .= '  '.tag('link', $options)."\n";
+  }
 
-	return $html;
+  return $html;
 }
 
 /**
@@ -108,12 +108,12 @@ function stylesheet_tag()
  */
 function include_metas()
 {
-	$context = coreContext::getInstance();
-	
-	foreach ($context->getResponse()->getMetas() as $name => $content)
-	{
-		echo '  <meta name="'.$name.'" content="'.$content.'" />'."\n";
-	}
+  $context = coreContext::getInstance();
+  
+  foreach ($context->getResponse()->getMetas() as $name => $content)
+  {
+    echo '  <meta name="'.$name.'" content="'.$content.'" />'."\n";
+  }
 }
 
 /**
@@ -134,10 +134,10 @@ function include_metas()
  */
 function include_http_metas()
 {
-	foreach (coreContext::getInstance()->getResponse()->getHttpMetas() as $httpequiv => $value)
-	{
-		echo '  <meta http-equiv="'.$httpequiv.'" content="'.$value.'" />'."\n";
-	}
+  foreach (coreContext::getInstance()->getResponse()->getHttpMetas() as $httpequiv => $value)
+  {
+    echo '  <meta http-equiv="'.$httpequiv.'" content="'.$value.'" />'."\n";
+  }
 }
 
 /**
@@ -150,9 +150,9 @@ function include_http_metas()
  */
 function include_title()
 {
-	$title = coreContext::getInstance()->getResponse()->getTitle();
-	
-	echo '  <title>'.$title.'</title>'."\n";
+  $title = coreContext::getInstance()->getResponse()->getTitle();
+  
+  echo '  <title>'.$title.'</title>'."\n";
 }
 
 /**
@@ -162,31 +162,31 @@ function include_title()
  */
 function include_javascripts()
 {
-	$response = coreContext::getInstance()->getResponse();
+  $response = coreContext::getInstance()->getResponse();
 
-	$already_seen = array();
-	$html = '';
+  $already_seen = array();
+  $html = '';
 
-	foreach ($response->getPositions() as $position)
-	{
-		foreach ($response->getJavascripts($position) as $files => $options)
-		{
-			if (!is_array($files))
-			{
-				$files = array($files);
-			}
+  foreach ($response->getPositions() as $position)
+  {
+    foreach ($response->getJavascripts($position) as $files => $options)
+    {
+      if (!is_array($files))
+      {
+        $files = array($files);
+      }
 
-			foreach ($files as $file)
-			{
-				if (isset($already_seen[$file])) continue;
+      foreach ($files as $file)
+      {
+        if (isset($already_seen[$file])) continue;
 
-				$already_seen[$file] = 1;
-				$html .= javascript_include_tag($file, $options);
-			}
-		}
-	}
+        $already_seen[$file] = 1;
+        $html .= javascript_include_tag($file, $options);
+      }
+    }
+  }
 
-	echo $html;
+  echo $html;
 }
 
 /**
@@ -196,7 +196,7 @@ function include_javascripts()
  */
 function use_stylesheet($css, $position = '', $options = array())
 {
-	coreContext::getInstance()->getResponse()->addStylesheet($css, $position, $options);
+  coreContext::getInstance()->getResponse()->addStylesheet($css, $position, $options);
 }
 
 /**
@@ -206,7 +206,7 @@ function use_stylesheet($css, $position = '', $options = array())
  */
 function use_javascript($js, $position = '', $options = array())
 {
-	coreContext::getInstance()->getResponse()->addJavascript($js, $position, $options);
+  coreContext::getInstance()->getResponse()->addJavascript($js, $position, $options);
 }
 
 /**
@@ -216,82 +216,82 @@ function use_javascript($js, $position = '', $options = array())
  */
 function include_stylesheets()
 {
-	$response = coreContext::getInstance()->getResponse();
+  $response = coreContext::getInstance()->getResponse();
 
-	$already_seen = array();
-	$html = '';
+  $already_seen = array();
+  $html = '';
 
-	foreach ($response->getPositions() as $position)
-	{
-		foreach ($response->getStylesheets($position) as $files => $options)
-		{
-			//DBG::out('POSITION '.$position.' FILES '.$files.' OPTIONS '.print_r($options,true));
+  foreach ($response->getPositions() as $position)
+  {
+    foreach ($response->getStylesheets($position) as $files => $options)
+    {
+      //DBG::out('POSITION '.$position.' FILES '.$files.' OPTIONS '.print_r($options,true));
 
-			if (!is_array($files))
-			{
-				$files = array($files);
-			}
+      if (!is_array($files))
+      {
+        $files = array($files);
+      }
 
-			foreach ($files as $file)
-			{
-				if (isset($already_seen[$file])) continue;
+      foreach ($files as $file)
+      {
+        if (isset($already_seen[$file])) continue;
 
-				$already_seen[$file] = 1;
-				$html .= stylesheet_tag($file, $options);
-			}
-		}
-	}
-	
-	echo $html;
+        $already_seen[$file] = 1;
+        $html .= stylesheet_tag($file, $options);
+      }
+    }
+  }
+  
+  echo $html;
 }
 
 /**
  * Returns an <img> image tag for the asset given as argument.
  *
  * <b>Options:</b>
- * - 'alt'	- defaults to the file name part of the asset (capitalized and without the extension)
+ * - 'alt'  - defaults to the file name part of the asset (capitalized and without the extension)
  * - 'size' - Supplied as "XxY", so "30x45" becomes width="30" and height="45"
  *
  * <b>Examples:</b>
  * <code>
- *	echo image_tag('foobar.gif');
- *		=> <img src="foobar.gif" alt="Foobar" />
- *	echo image_tag('/my_images/image.gif', array('alt' => 'Alternative text', 'size' => '100x200'));
- *		=> <img src="/my_images/image.gif" alt="Alternative text" width="100" height="200" />
+ *  echo image_tag('foobar.gif');
+ *    => <img src="foobar.gif" alt="Foobar" />
+ *  echo image_tag('/my_images/image.gif', array('alt' => 'Alternative text', 'size' => '100x200'));
+ *    => <img src="/my_images/image.gif" alt="Alternative text" width="100" height="200" />
  * </code>
  *
- * @param	string image asset name
- * @param	array additional HTML compliant <img> tag parameters
+ * @param  string image asset name
+ * @param  array additional HTML compliant <img> tag parameters
  * @return  string XHTML compliant <img> tag
  */
 function image_tag($source, $options = array())
 {
-	if (!$source)
-	{
-		return '';
-	}
+  if (!$source)
+  {
+    return '';
+  }
 
-	$options = _parse_attributes($options);
+  $options = _parse_attributes($options);
 
-	// removed Symfony's 'absolute' option
+  // removed Symfony's 'absolute' option
 
-	// removed Symfony's compute path
-	$options['src'] = $source;
+  // removed Symfony's compute path
+  $options['src'] = $source;
 
-	if (!isset($options['alt']))
-	{
-		$path_pos = strrpos($source, '/');
-		$dot_pos = strrpos($source, '.');
-		$begin = $path_pos ? $path_pos + 1 : 0;
-		$nb_str = ($dot_pos ? $dot_pos : strlen($source)) - $begin;
-		$options['alt'] = ucfirst(substr($source, $begin, $nb_str));
-	}
+  if (!isset($options['alt']))
+  {
+    $path_pos = strrpos($source, '/');
+    $dot_pos = strrpos($source, '.');
+    $begin = $path_pos ? $path_pos + 1 : 0;
+    $nb_str = ($dot_pos ? $dot_pos : strlen($source)) - $begin;
+    $options['alt'] = ucfirst(substr($source, $begin, $nb_str));
+  }
 
-	if (isset($options['size']))
-	{
-		list($options['width'], $options['height']) = explode('x', $options['size'], 2);
-		unset($options['size']);
-	}
+  if (isset($options['size']))
+  {
+    list($options['width'], $options['height']) = explode('x', $options['size'], 2);
+    unset($options['size']);
+  }
 
-	return tag('img', $options);
+  return tag('img', $options);
 }

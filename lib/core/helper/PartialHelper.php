@@ -27,7 +27,7 @@
  */
 function include_partial($templateName, $vars = array())
 {
-	echo get_partial($templateName, $vars);
+  echo get_partial($templateName, $vars);
 }
 
 /**
@@ -44,26 +44,26 @@ function include_partial($templateName, $vars = array())
  */
 function get_partial($templateName, $vars = array())
 {
-	$context = coreContext::getInstance();
+  $context = coreContext::getInstance();
 
-	// partial is in another module?
-	if (false !== $sep = strpos($templateName, '/'))
-	{
-		$moduleName   = substr($templateName, 0, $sep);
-		$templateName = substr($templateName, $sep + 1);
-	}
-	else
-	{
-		$moduleName = $context->getController()->getModuleName();
-	}
-	$actionName = '_'.$templateName;
-	
-	$view = new coreView($context, $moduleName, $actionName, '');
+  // partial is in another module?
+  if (false !== $sep = strpos($templateName, '/'))
+  {
+    $moduleName   = substr($templateName, 0, $sep);
+    $templateName = substr($templateName, $sep + 1);
+  }
+  else
+  {
+    $moduleName = $context->getController()->getModuleName();
+  }
+  $actionName = '_'.$templateName;
+  
+  $view = new coreView($context, $moduleName, $actionName, '');
 
     // pass attributes to the view and render
     $view->getParameterHolder()->add($vars);
 
-	return $view->render();
+  return $view->render();
 }
 
 /**
@@ -84,7 +84,7 @@ function get_partial($templateName, $vars = array())
  */
 function include_component($moduleName, $componentName, $vars = array())
 {
-	echo get_component($moduleName, $componentName, $vars);
+  echo get_component($moduleName, $componentName, $vars);
 }
 
 /**
@@ -104,90 +104,90 @@ function include_component($moduleName, $componentName, $vars = array())
  */
 function get_component($moduleName, $componentName, $vars = array())
 {
-	$context = coreContext::getInstance();
-	$actionName = '_'.$componentName;
+  $context = coreContext::getInstance();
+  $actionName = '_'.$componentName;
 
-	$allVars = _call_component($moduleName, $componentName, $vars);
+  $allVars = _call_component($moduleName, $componentName, $vars);
 
-	if (!is_null($allVars))
-	{
-		// render
-		$view = new coreView($context, $moduleName, $actionName, '');
-//    	$view->getParameterHolder()->add($vars);
-		$view->getParameterHolder()->add($allVars);
-		
-		return $view->render();
-	}
+  if (!is_null($allVars))
+  {
+    // render
+    $view = new coreView($context, $moduleName, $actionName, '');
+//      $view->getParameterHolder()->add($vars);
+    $view->getParameterHolder()->add($allVars);
+    
+    return $view->render();
+  }
 }
 
 /**
  * Begins the capturing of the slot.
  *
- * @param	string $name	 slot name
- * @param	string $value	The slot content
+ * @param  string $name   slot name
+ * @param  string $value  The slot content
  *
- * @see		end_slot
+ * @see    end_slot
  */
 function slot($name, $value = null)
 {
-	$context = coreContext::getInstance();
-	$response = $context->getResponse();
+  $context = coreContext::getInstance();
+  $response = $context->getResponse();
 
-	$slot_names = coreConfig::get('core.view.slot_names', array());
-	if (in_array($name, $slot_names))
-	{
-		throw new coreException(sprintf('A slot named "%s" is already started.', $name));
-	}
+  $slot_names = coreConfig::get('core.view.slot_names', array());
+  if (in_array($name, $slot_names))
+  {
+    throw new coreException(sprintf('A slot named "%s" is already started.', $name));
+  }
 
-	if (!is_null($value))
-	{
-		$response->setSlot($name, $value);
+  if (!is_null($value))
+  {
+    $response->setSlot($name, $value);
 
-		return;
-	}
+    return;
+  }
 
-	$slot_names[] = $name;
+  $slot_names[] = $name;
 
-	$response->setSlot($name, '');
-	coreConfig::set('core.view.slot_names', $slot_names);
+  $response->setSlot($name, '');
+  coreConfig::set('core.view.slot_names', $slot_names);
 
-	ob_start();
-	ob_implicit_flush(0);
+  ob_start();
+  ob_implicit_flush(0);
 }
 
 /**
  * Stops the content capture and save the content in the slot.
  *
- * @see		slot
+ * @see    slot
  */
 function end_slot()
 {
-	$content = ob_get_clean();
+  $content = ob_get_clean();
 
-	$response = coreContext::getInstance()->getResponse();
-	$slot_names = coreConfig::get('core.view.slot_names', array());
-	if (!$slot_names)
-	{
-		throw new coreException('No slot started.');
-	}
+  $response = coreContext::getInstance()->getResponse();
+  $slot_names = coreConfig::get('core.view.slot_names', array());
+  if (!$slot_names)
+  {
+    throw new coreException('No slot started.');
+  }
 
-	$name = array_pop($slot_names);
+  $name = array_pop($slot_names);
 
-	$response->setSlot($name, $content);
-	coreConfig::set('core.view.slot_names', $slot_names);
+  $response->setSlot($name, $content);
+  coreConfig::set('core.view.slot_names', $slot_names);
 }
 
 /**
  * Returns true if the slot exists.
  *
- * @param	string $name	slot name
+ * @param  string $name  slot name
  *
  * @return bool true, if the slot exists
- * @see		get_slot, include_slot
+ * @see    get_slot, include_slot
  */
 function has_slot($name)
 {
-	return array_key_exists($name, coreContext::getInstance()->getResponse()->getSlots());
+  return array_key_exists($name, coreContext::getInstance()->getResponse()->getSlots());
 }
 
 /**
@@ -195,16 +195,16 @@ function has_slot($name)
  *
  * <b>Example:</b>
  * <code>
- *	include_slot('navigation');
+ *  include_slot('navigation');
  * </code>
  *
- * @param	string $name	slot name
+ * @param  string $name  slot name
  *
- * @see		has_slot, get_slot
+ * @see    has_slot, get_slot
  */
 function include_slot($name)
 {
-	return ($v = get_slot($name)) ? print $v : false;
+  return ($v = get_slot($name)) ? print $v : false;
 }
 
 /**
@@ -212,55 +212,55 @@ function include_slot($name)
  *
  * <b>Example:</b>
  * <code>
- *	echo get_slot('navigation');
+ *  echo get_slot('navigation');
  * </code>
  *
- * @param	string $name	slot name
+ * @param  string $name  slot name
  *
  * @return string content of the slot
- * @see		has_slot, include_slot
+ * @see    has_slot, include_slot
  */
 function get_slot($name)
 {
-	$context = coreContext::getInstance();
-	$slots = $context->getResponse()->getSlots();
+  $context = coreContext::getInstance();
+  $slots = $context->getResponse()->getSlots();
 
-	return isset($slots[$name]) ? $slots[$name] : '';
+  return isset($slots[$name]) ? $slots[$name] : '';
 }
 
 function _call_component($moduleName, $componentName, $vars)
 {
-	$context = coreContext::getInstance();
+  $context = coreContext::getInstance();
 
-	$controller = $context->getController();
+  $controller = $context->getController();
 
-	if (!$controller->componentExists($moduleName, $componentName))
-	{
-		// cannot find component
-		throw new coreException(sprintf('The component does not exist: "%s", "%s".', $moduleName, $componentName));
-	}
+  if (!$controller->componentExists($moduleName, $componentName))
+  {
+    // cannot find component
+    throw new coreException(sprintf('The component does not exist: "%s", "%s".', $moduleName, $componentName));
+  }
 
-	// create an instance of the action
-	$componentInstance = $controller->getComponent($moduleName, $componentName);
+  // create an instance of the action
+  $componentInstance = $controller->getComponent($moduleName, $componentName);
 
-	$componentInstance->getVarHolder()->add($vars);
+  $componentInstance->getVarHolder()->add($vars);
 
-	// dispatch component
-	$componentToRun = 'execute'.ucfirst($componentName);
-	if (!method_exists($componentInstance, $componentToRun))
-	{
-		if (!method_exists($componentInstance, 'execute'))
-		{
-			// component not found
-			throw new coreException(sprintf('coreComponent initialization failed for module "%s", component "%s".', $moduleName, $componentName));
-		}
+  // dispatch component
+  $componentToRun = 'execute'.ucfirst($componentName);
+  if (!method_exists($componentInstance, $componentToRun))
+  {
+    if (!method_exists($componentInstance, 'execute'))
+    {
+      // component not found
+      throw new coreException(sprintf('coreComponent initialization failed for module "%s", component "%s".', $moduleName, $componentName));
+    }
 
-		$componentToRun = 'execute';
-	}
+    $componentToRun = 'execute';
+  }
 
-	// run component
+  // run component
 
-	$retval = $componentInstance->$componentToRun($context->getRequest());
+  $retval = $componentInstance->$componentToRun($context->getRequest());
 
-	return coreView::NONE == $retval ? null : $componentInstance->getVarHolder()->getAll();
+  return coreView::NONE == $retval ? null : $componentInstance->getVarHolder()->getAll();
 }

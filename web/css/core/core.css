@@ -99,8 +99,8 @@ div.form-errors, div.form-errors p { color:#fff; }
 
 /* example form styles */
 input.textfield, textarea.textfield { 
-	font-size:14px; line-height:15px; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; 
-	padding:10px; background:#fff; border:none; width:400px;
+  font-size:14px; line-height:15px; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; 
+  padding:10px; background:#fff; border:none; width:400px;
 }
 
 table.form {  margin:0 0 1em; }

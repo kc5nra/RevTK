@@ -18,18 +18,18 @@
 
 class memberActions extends coreActions
 {
-	public function executeIndex()
-	{
-	}
+  public function executeIndex()
+  {
+  }
 
-	public function executeProgress()
-	{
-		// determine active lesson if the user has added cards in order,
-		//  otherwise set to FALSE
-		$cur_frame = ReviewsPeer::getHeisigProgressCount($this->getUser()->getUserId());
-		$this->currentLesson = $cur_frame ? rtkBook::getLessonForFramenum($cur_frame + 1) : false;
-		
-		// find the success/fail flashcard count per lesson
+  public function executeProgress()
+  {
+    // determine active lesson if the user has added cards in order,
+    //  otherwise set to FALSE
+    $cur_frame = ReviewsPeer::getHeisigProgressCount($this->getUser()->getUserId());
+    $this->currentLesson = $cur_frame ? rtkBook::getLessonForFramenum($cur_frame + 1) : false;
+    
+    // find the success/fail flashcard count per lesson
     $progress = ReviewsPeer::getProgressStatus($this->getUser()->getUserId());
 
     // rtk lesson data
@@ -53,26 +53,26 @@ class memberActions extends coreActions
     
     foreach ($progress as $p)
     {
-    	if ($p->lessonId <= 0) {
-    		throw new coreException('Bad lesson id');
-    	}
-    	// fixme: only RtK1 for now
-    	if ($p->lessonId > 56) {
-    		break;
-    	}
-    	$lessons[$p->lessonId] =  array(
+      if ($p->lessonId <= 0) {
+        throw new coreException('Bad lesson id');
+      }
+      // fixme: only RtK1 for now
+      if ($p->lessonId > 56) {
+        break;
+      }
+      $lessons[$p->lessonId] =  array(
         'label'      => 'Lesson '.$p->lessonId,
         'passValue'  => $p->pass,
-    	  'failValue'  => $p->fail,
-    	  'testedCards'=> $p->pass + $p->fail,
-    	  'totalCards' => $p->total,
+        'failValue'  => $p->fail,
+        'testedCards'=> $p->pass + $p->fail,
+        'totalCards' => $p->total,
         'maxValue'   => $rtkLessons[$p->lessonId]
       );
       $this->activeLessons++;
     }
 
     $this->lessons = $lessons;    
-	}
+  }
 
   /**
    * Export a Trinity(alpha) user's vocab/sentence flashcards.
@@ -88,8 +88,8 @@ class memberActions extends coreActions
   {
     $exportMode = $this->getRequestParameter('mode'); 
     if (!in_array($exportMode, array('vocab', 'sentences'))) {
-    	throw new coreException("error");
-    }  	
+      throw new coreException("error");
+    }    
 
     $throttler = new RequestThrottler($this->getUser(), 'trinity.export');
     if (!$throttler->isValid()) {
@@ -102,20 +102,20 @@ class memberActions extends coreActions
     // We build the select here, Trinity is no longer supported, no need for extra peer classes.
     if ($exportMode === 'vocab')
     { 
-	    $select = $db->select(array(
-	      'compound', 'reading', 'glossary',
-	      'itemid', 'dateadded', 'lastreview', 'leitnerbox', 'failurecount', 'successcount'
-	      ))
-	      ->from(array('r' => 'vocabreviews'))
-	      ->join(array('d' => 'jdict'), 'r.itemid = d.dictid')
-	      ->where('userid = ?', $this->getUser()->getUserId());
-	
-	    $csvText = $csv->export($select, array(
-	      'compound', 'reading', 'definition',
-	      'dictid', 'dateadded', 'lastreview', 'leitnerbox', 'failcount', 'passcount'
-	    ), array('col_escape' => array(1, 1, 1, 0,0,0,0,0,0), 'column_heads' => false));
-	    
-	    $downloadName = 'trinity_vocab.csv'; 
+      $select = $db->select(array(
+        'compound', 'reading', 'glossary',
+        'itemid', 'dateadded', 'lastreview', 'leitnerbox', 'failurecount', 'successcount'
+        ))
+        ->from(array('r' => 'vocabreviews'))
+        ->join(array('d' => 'jdict'), 'r.itemid = d.dictid')
+        ->where('userid = ?', $this->getUser()->getUserId());
+  
+      $csvText = $csv->export($select, array(
+        'compound', 'reading', 'definition',
+        'dictid', 'dateadded', 'lastreview', 'leitnerbox', 'failcount', 'passcount'
+      ), array('col_escape' => array(1, 1, 1, 0,0,0,0,0,0), 'column_heads' => false));
+      
+      $downloadName = 'trinity_vocab.csv'; 
     }
     else if ($exportMode === 'sentences')
     {
@@ -144,6 +144,6 @@ class memberActions extends coreActions
 
     return $this->renderText($csvText);
   }
-	
+  
 
 }

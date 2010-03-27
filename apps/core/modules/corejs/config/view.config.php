@@ -10,10 +10,10 @@ return array
   'all' => array
   (
     'stylesheets' => array(
-      '/core/core-ui.juicy.css'
+//      '/core/core-ui.juicy.css'
     ),
     'javascripts' => array(
-      '/core/core-ui.juicy.js'
+      '/core/corejs.juicy.js'
     )
   )
 );

@@ -22,8 +22,8 @@ static public function stringToArray($string)
 <h2>Using helpers outside a template</h2>
 
 <p> If you ever need to use a helper outside a template, you can still load 
-		a helper group from anywhere by calling <em>coreToolkit::loadHelpers($helpers)</em>
-		where $helpers is a helper group name or an array of helper group names.
+    a helper group from anywhere by calling <em>coreToolkit::loadHelpers($helpers)</em>
+    where $helpers is a helper group name or an array of helper group names.
 
 <p> For instance, if you want to use truncate_text() in an action, you need to call:
 <?php pre_start() ?>

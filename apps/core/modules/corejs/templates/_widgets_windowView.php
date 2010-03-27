@@ -5,7 +5,7 @@
 <?php end_slot() ?>
 
 <p> Use Window to create a simple draggable window with a close button.<br/>
-	  <?php echo input_tag('btnOne', 'Open Window', array('type' => 'button', 'id' => 'demo1')) ?>
+    <?php echo input_tag('btnOne', 'Open Window', array('type' => 'button', 'id' => 'demo1')) ?>
 
 <?php echo ui_window('Hello world', array('id' => 'Demo1Window')) ?>
 
@@ -59,7 +59,7 @@ Core.ready(function() {
     Core.log("onWindowClose() called");
   }
 
-  Y.one("#demo1").on("click", onClick);
+  Dom.get("demo1").on("click", onClick);
   
 });
 </script>

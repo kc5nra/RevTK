@@ -1,16 +1,19 @@
 @ECHO off
 REM ************************************************************
-REM Batch actions for website deployment:
+REM Script to run before deployment of the production site.
 REM 
-REM - Minify specified Javascripts
-REM - Compile the resource version include file used by framework
-REM   and mod_rewrite to direct clients always to the up-to-date
-REM   version of the Javascript and CSS files + caching.
-REM
+REM - Build Juicer files (*.juicy.* pattern): concatenate
+REM   css & javascript files, copies required assets to the
+REM   web folder
+REM - Minify css & javascript files with YUI Compressor
+REM - Rebuild the versioning config file which tells the web
+REM   response the version number for css & javascript files,
+REM   which ensures clients always load the latest version.
+REM 
 REM ************************************************************
 REM
-REM Example using YUICompressor
-REM java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/js/1.0/autocomplete.js -o web/js/1.0/autocomplete.min.js
+REM NOTE!! The windows .bat file is no longer maintained, use the
+REM 'build' script for reference.
 REM
 
 SETLOCAL EnableDelayedExpansion
@@ -21,7 +24,7 @@ SET php_cmd=php.exe
 
 REM EXIT /B
 
-ECHO Minifying Javascripts with YuiCompressor...
+ECHO Minifying with YuiCompressor...
 ECHO ""
 
 %yui_cmd% %web_dir%/js/1.0/autocomplete.js      -o %web_dir%/js/1.0/autocomplete.min.js
@@ -38,14 +41,18 @@ ECHO ""
 %yui_cmd% %web_dir%/js/ui/uibase.js             -o %web_dir%/js/ui/uibase.min.js
 %yui_cmd% %web_dir%/js/ui/widgets.js            -o %web_dir%/js/ui/widgets.min.js
 %yui_cmd% %web_dir%/js/ui/uiFlashcardReview.js  -o %web_dir%/js/ui/uiFlashcardReview.min.js
-REM %yui_cmd% %web_dir%/js/ui/uiform.js         -o %web_dir%/js/ui/uiform.min.js
-REM %yui_cmd% %web_dir%/js/ui/uiview.js         -o %web_dir%/js/ui/uiview.min.js
 
+ECHO Building files with Juicer...
+ECHO ""
+
+REM php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/js/2.0/review.juicy.js
+REM php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/js/2.0/study.juicy.js
+php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.config.php --infile web/js/2.0/labs/alpha.juicy.js
 
 ECHO Updating Versioning File (/config/versioning.inc.php) ...
 ECHO ""
 
-MOVE /Y .\config\versioning.inc.php .\config\_versioning.inc.php.last
+MOVE /Y .\config\versioning.inc.php .\config\.versioning.inc.php
 %php_cmd% batch/build_app.php --webroot web --out config/versioning.inc.php
 
 ECHO DONE!
