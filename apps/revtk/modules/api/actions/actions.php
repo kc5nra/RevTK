@@ -2,7 +2,7 @@
 
 /*
  * This file is part of the Reviewing the Kanji package.
- * Copyright (c) 2005-2010  Fabrice Denis
+ * Copyright (c) 2005-2010	Fabrice Denis
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,13 +11,19 @@
 /**
  * 
  * 
- * @package    RevTK
+ * @package	   RevTK
  * @subpackage api
- * @author     John Bradley
+ * @author	   John Bradley
  */
 
 class apiActions extends coreActions
 {
+	// GET user/:id
+	public function executeUserInfo() {
+		if ($this->getRequest()->getMethod() == coreRequest::GET) {
+			$user = UsersPeer::getUser($request->getParameter('id'));
+		}
+	}
 	
 	public function executeTest() {
 		if (!$this->getUser()->isAuthenticated()) {
@@ -31,14 +37,14 @@ class apiActions extends coreActions
 	public function executeLogin()
 	{
 		if (isset($_SERVER['PHP_AUTH_USER']))
-	    {
+		{
 
 			// check that user exists and password matches
 			$user = UsersPeer::getUser($_SERVER['PHP_AUTH_USER']);
 			if (!$user || ($this->getUser()->getSaltyHashedPassword($_SERVER['PHP_AUTH_PW']) != $user['password']) )
 			{
-		    	$this->error_code = 1;
-      			$this->error_message = 'login failed';
+				$this->error_code = 1;
+				$this->error_message = 'login failed';
 				return $this->forward('api', 'error');
 			}
 
@@ -48,13 +54,13 @@ class apiActions extends coreActions
 			$this->session_id = session_id();
 			$this->getResponse()->setContentType('text/xml');
 
-  			return coreView::SUCCESS;
+			return coreView::SUCCESS;
 		} else {
 			$this->getRequest()->setError('error_code', '1');
 			$this->getRequest()->setError('error_message', 'login failed');
 			return $this->forward('api', 'error');
 		}
-  		
+		
 	}
 	
 	public function executeLogout()
