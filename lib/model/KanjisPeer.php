@@ -19,6 +19,13 @@ class KanjisPeer extends coreDatabaseTable
       'lessonnum',
       'strokecount'
     );
+  
+  /**
+   * Kanji count for Remembering the Kanji Volume 1 + 3
+   * (Copied from rtkBook.php)
+   */
+  const MAXKANJI_VOL3 = 3007;
+  const MAX_KANJI = KanjisPeer::MAXKANJI_VOL3;
 
   /**
    * This function must be copied in each peer class.
@@ -123,6 +130,37 @@ class KanjisPeer extends coreDatabaseTable
     coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
     $cardData->keyword = link_to_keyword($cardData->keyword, $cardData->framenum, 
       array('title' => 'Go to the Study page', 'target' => '_blank'));
+
+    return $cardData;
+  }
+
+  /**
+   * This should be called only by REST Services.
+   *
+   * @param
+   * 
+   * @return mixed   Object with flashcard data, or null
+   */
+  public static function getFlashcardRestData($id)
+  {
+    $id = (int)$id;
+
+    // note: zero is not a valid kanji id
+		// we use a local KanjisPeer::MAX_KANJI constant
+		// to avoid loading rtkBook.php
+    if ($id < 1 || $id > KanjisPeer::MAX_KANJI) {
+      return null;
+    }
+
+    $cardData = self::getKanjiById($id);
+
+    if (!$cardData) {
+      return null;
+    }
+
+    // set properties for the flashcard
+    $cardData->id = $cardData->framenum;
+    $cardData->keyword = $cardData->keyword;
 
     return $cardData;
   }

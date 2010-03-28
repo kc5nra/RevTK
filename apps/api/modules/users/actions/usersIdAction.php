@@ -36,7 +36,7 @@ class usersIdAction extends apiAction
 			case coreRequest::POST:
 			case coreRequest::PUT:
 			case coreRequest::DELETE: {
-				$e = new apiRestException('POST, PUT and DELETE are currently not implemented for users/{userID}.');
+				$e = new apiRestException('POST, PUT and DELETE are currently not implemented for users/{userId}.');
 				$e->setStatusCode(501);
 				throw $e;
 			}
