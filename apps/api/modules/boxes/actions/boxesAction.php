@@ -51,7 +51,7 @@ class boxesAction extends apiAction
 	private function executeGetBoxes() {
 	
 		$boxes = ReviewsPeer::getLeitnerBoxCounts();
-		// get count of untested cards for special <box id="untested"/>
+		// get count of untested cards for special attribute 'untestedCount' on <boxes/> element
 		$untestedCardsTotal = ReviewsPeer::getCountUntested($this->getUser()->getUserId());
 		
 		// set variables
