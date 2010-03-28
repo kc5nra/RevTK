@@ -15,7 +15,7 @@
  * @version 1
  * @copyright Turret Technology, LLC., 27 March, 2010
  * @package api
- * @subpackage Exception
+ * @subpackage lib
  **/
 
 class apiRestException extends coreException

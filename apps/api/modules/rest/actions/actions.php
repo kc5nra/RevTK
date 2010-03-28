@@ -18,7 +18,6 @@
  * @subpackage rest
  **/
 
-
 class restActions extends coreActions
 {
 	/**

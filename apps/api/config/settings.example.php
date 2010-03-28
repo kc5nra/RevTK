@@ -8,7 +8,7 @@
  * @author John Bradley
  * @version 1
  * @copyright Turret Technology, LLC., 27 March, 2010
- * @package Config
+ * @package api
  **/
 
 return array

@@ -15,13 +15,13 @@
  * @version 1
  * @copyright Turret Technology, LLC., 27 March, 2010
  * @package api
- * @subpackage users
+ * @subpackage boxes
  **/
 
 class boxesAction extends apiAction
 {
 	/**
-	 * Handles the boxes action and chooses the correct hanndler.
+	 * Handles the boxes action and chooses the correct handler.
 	 *
 	 * @return coreView status
 	 **/
