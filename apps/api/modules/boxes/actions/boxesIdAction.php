@@ -25,13 +25,13 @@ class boxesIdAction extends apiAction
 	 *
 	 * @return coreView status
 	 **/
-  public function execute($request)
-  {
+	public function execute($request)
+	{
 		$this->validateRequestAndSetUser();
 	
 		$boxId = $request->getParameter('boxId');
 	
-		if (!is_null($boxId)) {	
+		if (!is_null($boxId)) { 
 			switch($request->getMethod()) {
 				case coreRequest::GET: {
 					return $this->executeGetBoxesId($boxId);
@@ -60,10 +60,10 @@ class boxesIdAction extends apiAction
 		// TODO: make sure this is a valid integer
 		$request = $this->getRequest();
 		
-		$reviewBox  = $boxId;
-    $reviewType = $request->getParameter('type', 'expired');
-    $reviewFilt = $request->getParameter('filt', '');
-    $reviewMerge= $request->getParameter('merge') ? true : false;
+		$reviewBox	= $boxId;
+		$reviewType = $request->getParameter('type', 'expired');
+		$reviewFilt = $request->getParameter('filt', '');
+		$reviewMerge= $request->getParameter('merge') ? true : false;
 		
 		$flashcards = ReviewsPeer::getFlashcards($reviewBox, $reviewType, $reviewFilt, $reviewMerge);
 		
