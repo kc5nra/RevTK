@@ -32,7 +32,6 @@ class apiRestException extends coreException
 	 *	 This action handles the actual rendering of the error with a exceptionView.
 	 *
 	 * @return void
-	 * @author John Bradley
 	 **/
 	public function printStackTrace()
 	{
