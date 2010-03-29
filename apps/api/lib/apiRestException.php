@@ -50,37 +50,9 @@ class apiRestException extends coreException
 		while (@ob_end_clean());
 		
 		ob_start(coreConfig::get('sf_compressed') ? 'ob_gzhandler' : '');
-		header('Content-Type: text/xml');
+		header('Content-Type: application/json');
 	
-		// MAJOR HACK ALERT!!!!
-		// This creates a internal route to a action/view
-		// I'm sure there is a better way of doing this :(
-	
-		// add the error to request
-		$request = $context->getRequest();
-		$request->setError('message', $message);
-
-		$controller = $context->getController();
-		$moduleName = coreConfig::get('api_exception_module');
-		$actionName = coreConfig::get('api_exception_action');
-
-		// create an instance of the action
-		$actionInstance = $controller->getAction($moduleName, $actionName);
-		
-		// execute the action with our request, response will always be successful
-		$actionInstance->execute($request);
-		
-		// create a new view instance for rendering our REST xml error
-		$viewInstance = new coreView(
-			coreContext::getInstance(), 
-			$moduleName,
-			$actionName);
-		
-		// copy the variables
-		$viewAttributes = $actionInstance->getVarHolder()->getAll();
-		$viewInstance->getParameterHolder()->add($viewAttributes);
-		
-		echo $viewInstance->render();
+		echo coreJson::encode(apiRenderer::restException($message, $this->getStatusCode()));
 		
 		exit(1);
 	}

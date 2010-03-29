@@ -89,8 +89,8 @@ return array
 		 *		 user		[coreBasicUserSecurity]
 		 */
 		'core_factories'	=> array(
-			'action'				=> array('class' => 'apiAction'),
-			'user'					=> array('class' => 'apiUser'),
+			'action'       	=> array('class' => 'apiAction'),
+			'user'       		=> array('class' => 'apiUser'),
 		),
 	
 		/**
@@ -118,10 +118,10 @@ return array
 		 */
 		'default_view_configuration' => array
 		(
-			'layout'							=> 'xml',
+			'layout'							=> 'false',
 			'metas' => array
 			(
-				'content-type'		=> 'text/xml',
+				'content-type'		=> 'application/json',
 				'Content-Language'	=> 'en-us'
 			)
 		),
@@ -147,6 +147,16 @@ return array
 				'boxes'						=> array(
 					'url'						=> '/boxes',
 					'param'					=> array('module' => 'boxes', 'action' => 'boxes')
+				),
+				
+				'boxesId'					=> array(
+					'url'						=> '/boxes/:boxId',
+					'param'					=> array('module' => 'boxes', 'action' => 'boxesId', 'boxId' => 0)
+				),
+				
+				'restApiKey'			=> array(
+					'url'						=> '/rest/apiKey',
+					'param'					=> array('module' => 'rest', 'action' => 'apiKey')
 				),
 				
 				'default'					=> array(

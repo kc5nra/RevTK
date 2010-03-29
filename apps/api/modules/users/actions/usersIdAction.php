@@ -27,7 +27,17 @@ class usersIdAction extends apiAction
 	 **/
   public function execute($request)
   {
+		$this->validateRequestAndSetUser();
+		
 		$userId = $request->getParameter('userId');
+		
+		// TODO: make sure this is a valid integer
+		if (is_null($userId)) {
+			$e = new apiRestException('Invalid user specified.');
+			$e->setStatusCode(400);
+			throw $e;
+		}
+		
 		switch($request->getMethod()) {
 			case coreRequest::GET: {
 				return $this->executeGetUsersId($userId);
@@ -37,7 +47,7 @@ class usersIdAction extends apiAction
 			case coreRequest::PUT:
 			case coreRequest::DELETE: {
 				$e = new apiRestException('POST, PUT and DELETE are currently not implemented for users/{userId}.');
-				$e->setStatusCode(501);
+				$e->setStatusCode(405);
 				throw $e;
 			}
 			default: break;
@@ -48,19 +58,16 @@ class usersIdAction extends apiAction
 	 * Handles the GET user/{userId}
 	 */
 	private function executeGetUsersId($userId) {
-		// TODO: make sure this is a valid integer
-		if ($userId != null) {
-			$user = UsersPeer::getUserById($userId);
 
-			if ($user != null) {
-				$this->user = $user;
-				return $this->renderPartial('usersIdGet');
-			} 
+		$user = UsersPeer::getUserById($userId);
+
+		if (is_null($user)) {
+			$e = new apiRestException('The user '.$userId.' was not found.');
+			$e->setStatusCode(404);
+			throw $e;
 		}
 		
-		$e = new apiRestException('The user '.$userId.' was not found.');
-		$e->setStatusCode(404);
-		throw $e;	
+		return $this->renderText(coreJson::encode(apiRenderer::usersIdGet($user)));
 	}
 }
 

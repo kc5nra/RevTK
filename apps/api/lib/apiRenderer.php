@@ -20,7 +20,7 @@
  * 
  *		users/*:
  *			usersGet()																			GET users
- *			usersIdGet()																		GET users/{userId}
+ *			usersIdGet($user)																GET users/{userId}
  *
  *		rest/*:
 *				restApiKeyGet($apiKey)													GET rest/apiKey
@@ -85,7 +85,6 @@ class apiRenderer {
 			// temporary box, avoid value copy
 			$box			= &$boxes[$boxId];
 			
-			var_dump($box);
 			// add what used to be the array index (boxId) as a child of the array
 			// bump up each index by 1 (all sql statements re: boxes are 1 origin)
 			$newBox['id']							= $boxId + 1; 
@@ -152,6 +151,70 @@ class apiRenderer {
 		
 		return $apiResponse;
 	
+	}
+	
+	/**
+	 * GET users/{userId}
+	 * 
+	 * Psuedo Schema:
+	 * 
+	 *	{ 
+	 *		['response'] => { 
+	 *			['id']							=> INTEGER
+	 *			['userName']				=> STRING
+	 *			['joinDate']:				=> STRING
+	 *			['lastLogin']				=> STRING
+	 *			['location']				=> STRING
+	 *			['timeZone']				=> INTEGER
+	 *		}
+	 *	}
+	 *		
+	 * @param $user an array containing a user's information
+	 * @return response 
+	 **/
+	public static function usersIdGet($user)
+	{
+		$apiResponse		= null;
+
+		// copy relevant fields
+		$newUser['id']					= $user['userid'];
+		$newUser['userName']		= $user['username'];
+		$newUser['joinDate']		= $user['joindate'];
+		$newUser['lastLogin']		= $user['lastlogin'];
+		$newUser['location']		= $user['location'];
+		$newUser['timeZone']		= $user['timezone'];
+			
+		// add to the response
+		$apiResponse['response'] = $newUser;
+		
+		return $apiResponse;
+	}
+
+	/**
+	 * Rest Exception, this is not called by anyone except api Exception classes.
+	 * 
+	 * Psuedo Schema:
+	 * 
+	 *	{ 
+	 *		['error'] = {
+	 *			['message']			=> STRING
+	 *			['statusCode']	=> INTEGER
+	 *		}
+	 *	}
+	 *		
+	 * @param $apiKey apiKey
+	 * @return response 
+	 **/
+	public static function restException($message, $statusCode)
+	{
+		$apiResponse					= null;
+		$error['message']			= $message;
+		$error['statusCode']	= $statusCode;
+		
+		// add to the error
+		$apiResponse['error'] = $error;
+		
+		return $apiResponse;
 	}
 
 }
