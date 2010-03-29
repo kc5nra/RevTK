@@ -50,15 +50,12 @@ class boxesAction extends apiAction
 	 */
 	private function executeGetBoxes() {
 	
+		// retrieve an array with all the boxes
 		$boxes = ReviewsPeer::getLeitnerBoxCounts();
 		// get count of untested cards for special attribute 'untestedCount' on <boxes/> element
 		$untestedCardsTotal = ReviewsPeer::getCountUntested($this->getUser()->getUserId());
 		
-		// set variables
-		$this->boxes = $boxes;
-		$this->untestedCardsTotal = $untestedCardsTotal;
-		
-		return $this->renderPartial('boxesGet');
+		return $this->renderText(coreJson::encode(apiRenderer::boxesGet($boxes, $untestedCardsTotal)));
 	}
 }
 

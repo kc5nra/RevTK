@@ -91,10 +91,8 @@ class boxesIdAction extends apiAction
 			$e->setStatusCode(204);
 			throw $e;
 		}
-		
-		$this->flashcardData = $flashcardData;
-		
-		return $this->renderPartial('boxesIdGet');			
+			
+		return $this->renderText(coreJson::encode(apiRenderer::boxesIdGet($flashcardData)));		
 	}
 }
 
