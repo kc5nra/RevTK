@@ -46,6 +46,26 @@ class SitenewsPeer extends coreDatabaseTable
 		}
 		return false;
 	}
+	
+	/**
+	 * Return single formatted post by Id as an assoc array
+	 * 
+	 * @param	 int		 $id		 Id of post
+	 * @param	 boolean $bried	 Cut long post (see formatPost)
+	 * @return object	 Single	 formatted post, or false if Id is not found
+	 */
+	public static function getPostByIdForRest($id, $brief = false)
+	{
+		$select = self::getInstance()->select(array('id', 'date' => 'DATE_FORMAT(created_on,\'%e %M %Y\')', 'subject', 'text'))
+			->where('id = ?', $id)->query();
+		
+		if ($post = self::$db->fetch(coreDatabase::FETCH_ASSOC))
+		{
+			$posts = self::formatRestPostsArray(array($post), $brief);
+			return $posts[0];
+		}
+		return false;
+	}
 
 	/**
 	 * Get array of posts using year, month and day as search criteria.
@@ -80,15 +100,25 @@ class SitenewsPeer extends coreDatabaseTable
 	 * @param	 integer[Optional]	Max number of posts to return
 	 * @return array<Object>			Formatted posts
 	 */
-	public static function getMostRecentPosts($max = 5)
+	public static function getMostRecentPosts($max = 5, $rest = false)
 	{
 		$select = self::getInstance()->select(array('id', 'date' => 'DATE_FORMAT(created_on,\'%e %M %Y\')', 'subject', 'text' ))
 			->order('created_on DESC')
 			->limit($max);
 
-		$fetchMode = self::$db->setFetchMode(coreDatabase::FETCH_OBJ);
-		$result = self::formatPostsArray(self::$db->fetchAll($select), true);
+		$fetchMode = null;
+		$result = null;
+		
+		if (!$rest) {
+			$fetchMode = self::$db->setFetchMode(coreDatabase::FETCH_OBJ);
+			$result = self::formatPostsArray(self::$db->fetchAll($select), true);
+		} else {
+			$fetchMode = self::$db->setFetchMode(coreDatabase::FETCH_ASSOC);
+			$result = self::formatRestPostsArray(self::$db->fetchAll($select), true);
+		}
+		
 		self::$db->setFetchMode($fetchMode);
+		
 		return $result;
 	}
 
@@ -158,6 +188,36 @@ class SitenewsPeer extends coreDatabaseTable
 		{
 			// the post id is used for the "read more..." link when $brief is True
 			$post->text = self::formatPost($post->text, $brief, $post->id);
+		}
+		return $posts;
+	}
+	
+	/**
+	 * Format the text in array of post(s) fetched from database for REST requests.
+	 * 
+	 * @param	 array<Object>	Array of posts
+	 * @param	 boolean				See formatPost()
+	 * @return array<Object>	Array of posts
+	 */
+	public static function formatRestPostsArray(array $posts, $brief = false)
+	{
+		foreach ($posts as &$post)
+		{
+			$text = $post['text'];
+			// search for <more> tag
+			if (($pos = strpos($text, '<more>'))) {
+				// if we are formatting for brief, remove it
+				if ($brief) {
+					$text = substr($text, 0, $pos);
+					$post['brief'] = true;
+				} else {
+					$text = preg_replace('/(\r\n?)*<more>(\r\n?)*/', '<p>', $text);
+				}
+			}
+			// replace linefeeds by XHTML <br />
+			$s = preg_replace('/(\r\n?)*(<\/?\w+>)(\r\n?)*/', '$2', $text);
+			$s = preg_replace('/(\r\n?)+/', '<br /><br />', $s);
+			$post['text'] = $s;
 		}
 		return $posts;
 	}

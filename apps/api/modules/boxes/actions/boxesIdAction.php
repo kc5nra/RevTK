@@ -21,7 +21,7 @@
 class boxesIdAction extends apiAction
 {
 	/**
-	 * Handles the boxes/{boxId} action and chooses the correct hanndler.
+	 * Handles the boxes/{boxId} action and chooses the correct handler.
 	 *
 	 * @return coreView status
 	 **/

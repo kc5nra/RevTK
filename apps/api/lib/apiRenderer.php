@@ -38,7 +38,7 @@ class apiRenderer {
 	/**
 	 * GET rest/apiKey
 	 * 
-	 * Psuedo Schema:
+	 * Pseudo Schema:
 	 * 
 	 *	{ 
 	 *		['response'] => STRING($apiKey)
@@ -60,7 +60,7 @@ class apiRenderer {
 	/**
 	 * GET boxes
 	 * 
-	 * Psuedo Schema:
+	 * Pseudo Schema:
 	 * 
 	 *	{ 
 	 *		['response'] => {
@@ -110,7 +110,7 @@ class apiRenderer {
 	/**
 	 * GET boxes/{boxId}
 	 * 
-	 * Psuedo Schema:
+	 * Pseudo Schema:
 	 * 
 	 *	{ 
 	 *		['response'] => { 
@@ -156,7 +156,7 @@ class apiRenderer {
 	/**
 	 * GET users/{userId}
 	 * 
-	 * Psuedo Schema:
+	 * Pseudo Schema:
 	 * 
 	 *	{ 
 	 *		['response'] => { 
@@ -191,9 +191,93 @@ class apiRenderer {
 	}
 
 	/**
+	 * GET news
+	 * 
+	 * Pseudo Schema:
+	 * 
+	 *	{ 
+	 *		['response'] => { 
+	 *			[0..n] = {
+	 *				['id']						=> INTEGER
+	 *				['subject']				=> STRING
+	 *				['text']:					=> STRING
+	 *				['date']					=> DATE
+	 * 				['brief']					=> BOOLEAN
+	 *		}
+	 *	}
+	 *		
+	 * @param $latestNewsEntries an array of the latest news entries
+	 * @return response 
+	 **/
+	public static function newsGet($latestNewsEntries)
+	{
+		$apiResponse				= null;
+		$newNewsEntryHolder	= null;
+		
+		// loop through and create new news entries
+		// in this case they are all the same
+		foreach($latestNewsEntries as &$newsEntry) {
+			
+			// copy relevant fields and fix typing
+			$newNewsEntry['id']				= (int)	$newsEntry['id'];
+			$newNewsEntry['subject']	= 			$newsEntry['subject'];
+			$newNewsEntry['text']			= 			$newsEntry['text'];
+			$newNewsEntry['date']			= 			$newsEntry['date'];
+			$newNewsEntry['brief']		= (bool)$newsEntry['brief'];
+			
+			// add the news entry to the new news entry holder
+			$newNewsEntryHolder[] = $newNewsEntry;
+		}
+		
+		// add to the response
+		$apiResponse['response'] = $newNewsEntryHolder;
+		
+		return $apiResponse;
+	
+	}
+	
+	/**
+	 * GET news/{newsId}
+	 * 
+	 * Pseudo Schema:
+	 * 
+	 *	{ 
+	 *		['response'] => { 
+	 *			['id']						=> INTEGER
+	 *			['subject']				=> STRING
+	 *			['text']:					=> STRING
+	 *			['date']					=> DATE
+	 *			['brief']					=> BOOLEAN
+	 *		}
+	 *	}
+	 *		
+	 * @param $newsEntry a particular news post
+	 * @return response 
+	 **/
+	public static function newsIdGet($newsEntry)
+	{
+		$apiResponse				= null;
+		$newNewsEntry				= null;
+		
+			
+		// copy relevant fields and fix typing
+		$newNewsEntry['id']				= (int)	$newsEntry['id'];
+		$newNewsEntry['subject']	= 			$newsEntry['subject'];
+		$newNewsEntry['text']			= 			$newsEntry['text'];
+		$newNewsEntry['date']			= 			$newsEntry['date'];
+		$newNewsEntry['brief']		= 			false;
+		
+		// add to the response
+		$apiResponse['response'] = $newNewsEntry;
+		
+		return $apiResponse;
+	
+	}
+
+	/**
 	 * Rest Exception, this is not called by anyone except api Exception classes.
 	 * 
-	 * Psuedo Schema:
+	 * Pseudo Schema:
 	 * 
 	 *	{ 
 	 *		['error'] = {
@@ -202,7 +286,7 @@ class apiRenderer {
 	 *		}
 	 *	}
 	 *		
-	 * @param $apiKey apiKey
+	 * @param $apiKey APIKEY
 	 * @return response 
 	 **/
 	public static function restException($message, $statusCode)
