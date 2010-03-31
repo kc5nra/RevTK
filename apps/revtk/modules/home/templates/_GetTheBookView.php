@@ -2,7 +2,7 @@
   <div id="homebook"<?php echo $isHomepage ? '' : ' style="margin-bottom:1em"' ?>>
     <div class="cover">
       <?php 
-        $img = '<img src="/images/2.0/home/remembering_the_kanji.jpg" width="126" height="190" alt="Remembering the Kanji book cover" />';
+        $img = '<img src="/images/2.0/home/remembering_the_kanji.jpg" width="126" height="190" alt="Remembering the Kanji" />';
         if (coreConfig::get('koohii_build')) {
           use_helper('__Affiliate'); echo link_to_amazon($img, 'amazon.us.rtk1', array('title' => 'See book at Amazon.com'));
         } else {
