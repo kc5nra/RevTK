@@ -58,9 +58,9 @@ function nav_item($nav_id, $text, $internal_uri, $options = array())
 ?>
 
 <div id="header">
-  <h1><img src="/images/2.0/header/header-title.gif" alt="Reviewing the Kanji FORUM" width="194" height="20"></h1>
+  <h1><img src="/images/2.0/header/header-title.gif" alt="Reviewing the Kanji" width="194" height="20" /></h1>
 
-  <?php echo link_to('<img src="/images/2.0/header/header-home.gif" alt="Home">', '@homepage', array('class' => 'header-home')) ?>
+  <?php echo link_to('<img src="/images/2.0/header/header-home.gif" alt="Home" />', '@homepage', array('class' => 'header-home')) ?>
 
   <div class="signin">
     <div class="r"></div>
