@@ -90,6 +90,7 @@ function nav_item($nav_id, $text, $internal_uri, $options = array())
       <?php echo nav_item('misc-reading', 'Reading', 'misc/reading') ?>
       <?php echo nav_item('profile-index', 'Profile', 'profile/index', array('class' => 'profile')) ?>
 <?php endif; ?>
+      <?php echo nav_item('labs-index', 'Labs', 'labs/index') ?>
 <?php if ($_user->hasCredential('admin') && (null !== ($backend_url = coreConfig::get('app_backend_url')))): ?>
       <li><a href="<?php echo $backend_url ?>" style="background:url(/images/backend/icons/brick_go.png) no-repeat 10px 50%;padding-left:32px">Backend</a>
 <?php endif; ?>

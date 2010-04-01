@@ -1,8 +1,5 @@
 <?php use_helper('Form', 'Validation') ?>
 
-<?php slot('inline_styles') ?>
-<?php end_slot() ?>
-
 <div class="layout-home">
 
 <?php include_partial('home/homeSide') ?>
@@ -15,9 +12,7 @@
         <div class="clearboth"></div>
       </div>
       
-      <p> Welcome to the Reviewing the Kanji <strong>Labs</strong>!</p>
-
-<?php if (CORE_ENVIRONMENT !== 'prod'): ?>
+<?php if (0 && CORE_ENVIRONMENT !== 'prod'): ?>
   <div style="-moz-border-radius:10px;padding:10px;background:#0077d4;color:#fff;font-weight:bold;margin:0 0 1em;border-radius:10px;">
     Please note this feature is currently on the TEST website! Sorry for the confusion,
     make sure to go back to <a href="http://kanji.koohii.com" style="color:#fc4">http://kanji.koohii.com</a> to use
@@ -25,11 +20,13 @@
   </div>
 <?php endif; ?>
 
-      <p> This part of the website contains experimental features.</p>
-
-      <p> Here I will "brainstorm" some ideas and with your feedback
+  <div style="-moz-border-radius:10px;padding:10px;background:#0077d4;color:#fff;margin:0 0 1em;border-radius:10px;">
+      <p> <strong>Welcome to the Reviewing the Kanji Labs!</strong></p>
+      
+      <p> Here I will try out some ideas and with your feedback
           I hope eventually some of these features will become permanent
           on the website.</p>
+  </div>
       
       <h3>iVocab Shuffle™</h3>
 
