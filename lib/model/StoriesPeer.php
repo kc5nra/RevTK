@@ -88,6 +88,9 @@ class StoriesPeer extends coreDatabaseTable
    */
   public static function getFormattedStory($story, $keyword, $bSubstituteLinks = true)
   {
+    // Links helper is used by getFormattedKanjiLink() call
+    coreToolkit::loadHelpers(array('Tag', 'Url'));
+
     // minimal punctuation : upper case first beginning of text
     $s = phpToolkit::mb_ucfirst($story);
 
@@ -124,7 +127,6 @@ class StoriesPeer extends coreDatabaseTable
     // escape text before adding html tags, replace the single quotes with another
     // special character because the escaping uses htmlspecialchars() inserts &#039;
     // and then the '#' character is matched by another regexp as the #keyword# marker
-    coreToolkit::loadHelpers('Tag');
     $s = str_replace('\'', '`', $s);
     $s = escape_once($s);
 
