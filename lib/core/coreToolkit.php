@@ -10,6 +10,9 @@
 
 class coreToolkit
 {
+  static protected
+    $loadedHelpers = array();
+
   /**
    * Load helpers.
    * 
@@ -19,22 +22,28 @@ class coreToolkit
    */
   static public function loadHelpers($helpers)
   {
-    static $loaded = array();
-
-    // directories
-    $dirs = array();
-    $dirs[] = coreConfig::get('app_lib_dir').'/helper';
-    $dirs[] = coreConfig::get('lib_dir').'/helper';
-    $dirs[] = coreConfig::get('core_dir').'/helper';
+    // common mistake, can't use func_get_args() because possible future sf port
+    if (func_num_args() > 1) {
+      throw new coreException('Use array() to pass multiple helpers.');
+    }
 
     foreach((array)$helpers as $helperName)
     {
-      if (isset($loaded[$helperName]))
+      if (isset(self::$loadedHelpers[$helperName]))
       {
         continue;
       }
       
       $fileName = $helperName.'Helper.php';
+
+      if (!isset($dirs))
+      {
+        $dirs = array();
+        $dirs[] = coreConfig::get('app_lib_dir').'/helper';
+        $dirs[] = coreConfig::get('lib_dir').'/helper';
+        $dirs[] = coreConfig::get('core_dir').'/helper';
+      }
+
       foreach ($dirs as $dir)
       {
         $included = false;
@@ -51,7 +60,7 @@ class coreToolkit
         throw new coreException(sprintf('Unable to load "%sHelper.php" helper in: %s.', $helperName, implode(', ', $dirs)));
       }
 
-      $loaded[$helperName] = true;
+      self::$loadedHelpers[$helperName] = true;
     }
   }
   

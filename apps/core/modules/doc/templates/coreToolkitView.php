@@ -29,3 +29,10 @@ static public function stringToArray($string)
 <?php pre_start() ?>
 coreToolkit::loadHelpers('Text');
 <?php pre_end() ?>
+
+<p>Often you'll need to use more than one helper file, multiple helper groups must be specified
+   <strong>as an array</strong>:</p>
+<?php pre_start() ?>
+coreToolkit::loadHelpers(array('Tag', 'Url'));
+<?php pre_end() ?>
+
