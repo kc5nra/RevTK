@@ -1,9 +1,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Redirect everyone but the admin's IP to the maintenance page: the admin can test the live site
-  #RewriteCond %{REMOTE_ADDR} !xxx.xxx.xxx.xxx [NC]
-  #RewriteRule ^/*(.*)$ http://www.koohii.com/maintenance.html [R=301,L]
+  # Website maintenance: redirect everyone but the admin to the maintenance page
+  #RewriteCond %{REQUEST_URI} !^/maintenance.html$
+  #RewriteCond %{REMOTE_ADDR} !^xxx.xxx.xxx.xxx$
+  #RewriteRule $ /maintenance.html [R=302,L]
 
   # Permanent redirection (delete after search engine updated,today is 10 Nov 2009) 
   RewriteRule ^/*(.*)viewmembers\.php$ /members [R=301,L]
@@ -16,8 +17,6 @@
   RewriteCond %{QUERY_STRING} ^(search|framenum)=(.*)$
   RewriteRule ^study$ /study/kanji/%2? [L,R=301]
 
-  # redirect versioned css and js resources to php handler
-  #RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cached-resource.php?path=$1.$2 [L]
   # php handler for versioning of front end assets and css/js concatenation
   RewriteRule ^(.*)_v[0-9.]+(css|js)$   /version/cache.php?env=dev&app=revtk&path=$1.$2 [L]
 
