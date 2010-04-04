@@ -148,7 +148,8 @@ return array
   
         'study_edit' => array(
           'url'          => '/study/kanji/:id',
-          'param'        => array( 'module' => 'study', 'action' => 'edit', 'id' => '')
+          'param'        => array( 'module' => 'study', 'action' => 'edit', 'id' => ''),
+          'requirements' => array( 'id' => '[^/]+' ) // matches dots in keywords
         ),
       
         'review_summary' => array(
