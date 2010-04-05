@@ -128,10 +128,15 @@ class KanjisPeer extends coreDatabaseTable
   }
 
   /**
-   * Search for a kanji by keyword. The search term is an exact keyword,
-   * or part of a keyword. Multiple edition keywords with slashes should
-   * replace the slash with underscore first (cf MySQL LIKE operator).
-   * 
+   * Search for a kanji by keyword.
+   *
+   * The search term should be an exact keyword or match the beginning of a keyword.
+   *
+   * The mutliple edition keyword separator (/) should be replaced with a wildcard (%) beforehand.
+   *
+   * The wildcard (%) can be used one or more times. A wildcard (%) is always added at the end
+   * of the search term.
+   *
    * @return  mixed   Frame number, or FALSE if no results.
    */
   public static function getFramenumForSearch($sSearch)
@@ -173,7 +178,7 @@ class KanjisPeer extends coreDatabaseTable
       // otherwise just pick the first match
       else
       {
-        self::getInstance()->select('framenum')->where('keyword LIKE ?', '%'.$s.'%')->query();
+        self::getInstance()->select('framenum')->where('keyword LIKE ?', $s.'%')->query();
         return ($row = self::$db->fetchObject()) ? $row->framenum : false;
       }
     }

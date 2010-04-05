@@ -1,9 +1,9 @@
 <?php use_helper('CJK', 'Form', 'Validation') ?>
 
-<?php echo form_tag('study/edit?id='.$framenum, array('name' => 'EditStory')) ?>
+<?php echo form_tag('study/edit?id='.$kanjiData->framenum, array('name' => 'EditStory')) ?>
 
   <?php # state variables ?>
-  <?php echo input_hidden_tag('framenum', $framenum) ?>
+  <?php echo input_hidden_tag('framenum', $kanjiData->framenum) ?>
   <?php if ($reviewMode): ?>
     <input type="hidden" name="reviewMode" value="1" />
   <?php endif ?>

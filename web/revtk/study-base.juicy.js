@@ -91,9 +91,7 @@ var StudyPage =
   {
     if (text.length > 0)
     {
-      // Replace slash with underscore for URL routing
-      text = text.replace(/\//, '_');
-      window.location.href = this.options.URL_SEARCH + '/' + encodeURIComponent(text);
+      window.location.href = this.options.URL_SEARCH + '/' + this.anesthetizeThisBloodyUri(text);
       return true;
     }
   },
@@ -106,8 +104,21 @@ var StudyPage =
   quicksearchEnterCallback:function(text)
   {
     this.quicksearchOnChangeCallback(text);
+  },
+
+  /**
+   * Replaces problematic characters in the url which cause trouble
+   * either with parsing the route (slash) or some kind of filter on the
+   * web host's side which returns a 404 for urls with uncommon dot patterns
+   * (eg. "/study/kanji/made in...").
+   *
+   * On the backend side, the dashes become wildcards.
+   */
+  anesthetizeThisBloodyUri: function(annoyingUri)
+  {
+    var s = annoyingUri.replace(/[\/\.]/g, '-');
+    return encodeURIComponent(s);
   }
-  
 };
 
 /**
