@@ -20,6 +20,13 @@ class StoriesPeer extends coreDatabaseTable
     );
 
   /**
+   * Separator between multiple edition keywords (as stored in KanjisPeer table)
+   * eg. 'village/town'
+   * Copied from rtkBook.php
+   */
+  const EDITION_SEPARATOR = '/';
+
+  /**
    * This function must be copied in each peer class.
    */
   public static function getInstance()
@@ -103,7 +110,7 @@ class StoriesPeer extends coreDatabaseTable
     $s = preg_replace('/\s\s+/u', ' ', $s);
 
     // format mnemonic keyword if keyword is found within text
-    $keywords = explode(rtkBook::EDITION_SEPARATOR, $keyword);
+    $keywords = explode(StoriesPeer::EDITION_SEPARATOR, $keyword);
     if (count($keywords) > 1)
     {
       // use 4th edition keyword if multiple edition keyword
@@ -184,10 +191,11 @@ class StoriesPeer extends coreDatabaseTable
    * 
    * @return array<array>
    */
-  public static function getPublicStories($framenum, $keyword, $bNewest)
+  public static function getPublicStories($framenum, $keyword, $bNewest, $rest = false)
   {
-    coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
-
+		if (!$rest) {
+    	coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
+		}
     $select = self::getInstance()
       ->select(array(
         'stories.userid', 'username', 'stories.framenum',
@@ -200,18 +208,16 @@ class StoriesPeer extends coreDatabaseTable
     if ($bNewest) {
       $select->where('updated_on >= DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
       $select->order('updated_on DESC');
-    }
+    } 
     else {
-      $select->where('updated_on < DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
+			if (!$rest) {
+				$select->where('updated_on < DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
+			}
       $select->order(array('stars DESC', 'updated_on DESC'));
     }
-//if (!$bNewest) { 
-//  echo $select;exit;
-//}
-
-
+		
     $rows = self::$db->fetchAll($select);
-
+		
     foreach ($rows as &$R)
     {
       // do not show 0's
@@ -219,8 +225,10 @@ class StoriesPeer extends coreDatabaseTable
       if (!$R['kicks']) { $R['kicks']=''; }
 
       $R['text']   = StoriesPeer::getFormattedStory($R['text'], $keyword);
-      $R['author'] = link_to_member($R['username']);
-    }
+  		if (!$rest) {
+				$R['author'] = link_to_member($R['username']);
+  		}
+		}
     
     return $rows;
   }

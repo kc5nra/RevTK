@@ -25,7 +25,7 @@ class homeActions extends coreActions
   public function executeIndex()
   {
     if ($this->getUser()->isAuthenticated())
-    {
+    {                                                                                                                                                                                                                                         
 //echo $this->getUser()->sqlLocalTime(); exit;
       
       // get member stats for quick summary

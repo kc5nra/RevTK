@@ -22,8 +22,11 @@
  *			usersGet()																			GET users
  *			usersIdGet($user)																GET users/{userId}
  *
+ *		cards/*:
+ *			cardsIdStoriesGet()															GET cards/{cardId}/stories
+ *
  *		rest/*:
-*				restApiKeyGet($apiKey)													GET rest/apiKey
+ *			restApiKeyGet($apiKey)													GET rest/apiKey
  *
  *
  * @author John Bradley
@@ -154,6 +157,54 @@ class apiRenderer {
 	}
 	
 	/**
+	 * GET cards/{cardId}/stories
+	 * 
+	 * Pseudo Schema:
+	 * 
+	 *	{ 
+	 *		['response'] => { 
+	 *			[0..n] = {
+	 *				['userId']				=> INTEGER
+	 *				['userName']			=> STRING
+	 *				['heisigNumber']: => INTEGER
+	 *				['lastModified']	=> DATE
+	 *				['text']					=> STRING
+	 *				['stars']					=> INTEGER
+	 *				['kicks']					=> INTEGER
+	 *		}
+	 *	}
+	 *		
+	 * @param $stories an array of stories for a card
+	 * @return response
+	 **/
+	public static function cardsIdStoriesGet($stories)
+	{
+		$apiResponse						= null;
+		$newStoriesEntryHolder	= null;
+		
+		// loop through and create new news entries
+		// in this case they are all the same
+		foreach($stories as &$story) {
+			// copy relevant fields and fix typing
+			$newStoryEntry['userId']				= (int) $story['userid'];
+			$newStoryEntry['userName']			=				$story['username'];
+			$newStoryEntry['heisigNumber']	= (int) $story['framenum'];
+			$newStoryEntry['lastModified']	=				$story['lastmodified'];
+			$newStoryEntry['text']					=				$story['text'];
+			$newStoryEntry['stars']					= (int) $story['stars'];
+			$newStoryEntry['kicks']					= (int) $story['kicks'];
+			// add the news entry to the new news entry holder
+			$newStoriesEntryHolder[] = $newStoryEntry;
+		}
+		
+		// add to the response
+		$apiResponse['response'] = $newStoriesEntryHolder;
+		
+		return $apiResponse;
+		
+	}
+	
+	/**
 	 * GET users/{userId}
 	 * 
 	 * Pseudo Schema:
@@ -202,7 +253,7 @@ class apiRenderer {
 	 *				['subject']				=> STRING
 	 *				['text']:					=> STRING
 	 *				['date']					=> DATE
-	 * 				['brief']					=> BOOLEAN
+	 *				['brief']					=> BOOLEAN
 	 *		}
 	 *	}
 	 *		
@@ -212,17 +263,17 @@ class apiRenderer {
 	public static function newsGet($latestNewsEntries)
 	{
 		$apiResponse				= null;
-		$newNewsEntryHolder	= null;
+		$newNewsEntryHolder = null;
 		
 		// loop through and create new news entries
 		// in this case they are all the same
 		foreach($latestNewsEntries as &$newsEntry) {
 			
 			// copy relevant fields and fix typing
-			$newNewsEntry['id']				= (int)	$newsEntry['id'];
-			$newNewsEntry['subject']	= 			$newsEntry['subject'];
-			$newNewsEntry['text']			= 			$newsEntry['text'];
-			$newNewsEntry['date']			= 			$newsEntry['date'];
+			$newNewsEntry['id']				= (int) $newsEntry['id'];
+			$newNewsEntry['subject']	=				$newsEntry['subject'];
+			$newNewsEntry['text']			=				$newsEntry['text'];
+			$newNewsEntry['date']			=				$newsEntry['date'];
 			$newNewsEntry['brief']		= (bool)$newsEntry['brief'];
 			
 			// add the news entry to the new news entry holder
@@ -261,11 +312,11 @@ class apiRenderer {
 		
 			
 		// copy relevant fields and fix typing
-		$newNewsEntry['id']				= (int)	$newsEntry['id'];
-		$newNewsEntry['subject']	= 			$newsEntry['subject'];
-		$newNewsEntry['text']			= 			$newsEntry['text'];
-		$newNewsEntry['date']			= 			$newsEntry['date'];
-		$newNewsEntry['brief']		= 			false;
+		$newNewsEntry['id']				= (int) $newsEntry['id'];
+		$newNewsEntry['subject']	=				$newsEntry['subject'];
+		$newNewsEntry['text']			=				$newsEntry['text'];
+		$newNewsEntry['date']			=				$newsEntry['date'];
+		$newNewsEntry['brief']		=				false;
 		
 		// add to the response
 		$apiResponse['response'] = $newNewsEntry;

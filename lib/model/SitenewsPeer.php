@@ -212,7 +212,10 @@ class SitenewsPeer extends coreDatabaseTable
 					$post['brief'] = true;
 				} else {
 					$text = preg_replace('/(\r\n?)*<more>(\r\n?)*/', '<p>', $text);
+					$post['brief'] = false;
 				}
+			} else {
+				$post['brief'] = false;
 			}
 			// replace linefeeds by XHTML <br />
 			$s = preg_replace('/(\r\n?)*(<\/?\w+>)(\r\n?)*/', '$2', $text);

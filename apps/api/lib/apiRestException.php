@@ -39,7 +39,10 @@ class apiRestException extends coreException
 		$message	 = $exception->getMessage();
 
 		$response = coreContext::getInstance()->getResponse();
-		$response->setStatusCode($this->getStatusCode());
+		
+		// handle this differently, there should be certain status codes that behave differently...
+		// truncate the status code to it's root generic code e.g. 405 to 400 , 501 to 500, 204 to 200
+		$response->setStatusCode(((int)($this->getStatusCode() / 100)) * 100);
 
 		// this sends a cookie unnecessarily
 		$response->sendHttpHeaders(); 

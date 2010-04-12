@@ -34,7 +34,7 @@ class restActions extends coreActions
 			// TODO: 405 status codes MUST return an 'Allow:' header with a comma
 			// separated list of allowed methods.
 			$e = new apiRestException('Only the GET method is allowed for rest/apiKey');
-			$e->setStatusCode(405);
+			$e->setStatusCode(400);
 			throw $e;
 		}
 		
@@ -42,7 +42,7 @@ class restActions extends coreActions
 		{
 			// if the request had no HTTP Auth headers, throw a 401 Unauthroized
 			$e = new apiRestException('Not authentication headers found.');
-			$e->setStatusCode(401);
+			$e->setStatusCode(400);
 			throw $e;
 		}
 			
@@ -53,7 +53,7 @@ class restActions extends coreActions
 		if (!$user || ($this->getUser()->getSaltyHashedPassword($_SERVER['PHP_AUTH_PW']) != $user['password']))
 		{
 			$e = new apiRestException('Authentication failed.');
-			$e->setStatusCode(401);
+			$e->setStatusCode(400);
 			throw $e;
 		}
 		
