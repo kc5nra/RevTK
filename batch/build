@@ -55,5 +55,6 @@ php lib/juicer/JuicerCLI.php -v --webroot web --config apps/revtk/config/juicer.
 java -jar batch/tools/yuicompressor/yuicompressor-2.4.2.jar web/revtk/review-home.juiced.css -o web/revtk/review-home.min.css
 
 # build version file for revisioning css & js assets
+mv config/versioning.inc.php config/.versioning.inc.php
 php batch/build_app.php --webroot web --out config/versioning.inc.php
 

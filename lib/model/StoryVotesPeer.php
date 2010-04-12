@@ -1,7 +1,7 @@
 <?php
 /**
  * StoryVotes Peer.
- * 
+ *
  * @package RevTK
  * @author  Fabrice Denis
  */
@@ -25,14 +25,14 @@ class StoryVotesPeer extends coreDatabaseTable
   {
     return coreDatabaseTable::_getInstance(__CLASS__);
   }
-  
+
   /**
    * OLD CODE NOT REFACTORED BECAUSE NEW VOTING SYSTEM TO-DO.
-   * 
+   *
    * @param  int  $userId    User id
    * @param  int  $authorId  Id of the author of the story
    * @param  int  $storyId
-   * 
+   *
    * @return object  Object for JSON response (OLD CODE!!)
    */
   public static function starStory($userId, $authorId, $storyId)
@@ -64,7 +64,7 @@ class StoryVotesPeer extends coreDatabaseTable
     $UPD_KICKS = array('+0','+0','-1');
     $stars_inc = $UPD_STARS[$lastvote];
     $kicks_inc = $UPD_KICKS[$lastvote];
-    
+
     // one vote per story per person
     $q = sprintf('REPLACE INTO storyvotes (authorid,framenum,userid,vote) VALUES (%d,%d,%d,%d)',
         intval($authorId),
@@ -100,11 +100,11 @@ class StoryVotesPeer extends coreDatabaseTable
 
   /**
    * OLD CODE NOT REFACTORED BECAUSE NEW VOTING SYSTEM TO-DO.
-   * 
+   *
    * @param  int  $userId    User id
    * @param  int  $authorId  Id of the author of the story
    * @param  int  $storyId
-   * 
+   *
    * @return object
    */
   public static function reportStory($userId, $authorId, $storyId)
@@ -142,7 +142,7 @@ class StoryVotesPeer extends coreDatabaseTable
         $userId,
         $cur_vote);
     self::$db->query($q);
-    
+
     // count total stars and reports in another table... (>_<) !!
     $q = sprintf('SELECT COUNT(*) FROM storiesscores WHERE framenum=%d AND authorid=%d LIMIT 1',
         intval($storyId), intval($authorId));
@@ -153,7 +153,7 @@ class StoryVotesPeer extends coreDatabaseTable
           intval($authorId));
       self::$db->query($q);
     }
-    
+
     $q = sprintf('UPDATE storiesscores SET stars=stars%s,kicks=kicks%s WHERE framenum=%d AND authorid=%d',
         $stars_inc, $kicks_inc, intval($storyId), intval($authorId) );
     self::$db->query($q);

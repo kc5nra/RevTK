@@ -50,6 +50,47 @@ http://www.example.com/articles/finance/2006/activity-breakdown.html
 <?php pre_end() ?>
 
 
+<h2>Pattern constraints</h2>
+
+<p> When a URL can match more than one rule, you must refine the rules by adding constraints (requirements), to the pattern.
+    A <em>requirement</em> is a set of regular expressions that must be matched by the wildcards for the rule to match.</p>
+
+<?php pre_start('info') ?>
+  'article_by_id' => array(
+    'url'          => '/article/:id',
+    'param'        => array( 'module' => 'article', 'action' => 'read' ),
+    'requirements' => array( 'id' => '\d+' )
+  ),
+  'article_by_slug' => array(
+    'url'          => '/article/:slug',
+    'param'        => array( 'module' => 'article', 'action' => 'permalink' )
+  ),
+<?php pre_end() ?>
+
+<p> The corresponding template calls: </p>
+
+<?php pre_start() ?>
+&lt;?php echo link_to('my article', 'article/permalink?slug='.$article->getSlug()) ?&gt;
+<?php pre_end() ?>
+
+
+<h2>Cookbook</h2>
+
+<p> The requirements parameter can be used to match dots. This avoids a problem where sfRouting::parse() uses dot
+    and slash characters by default to split the route parts (cf. "segment_separators" configuration of sfPatternRouting):
+
+<?php pre_start('info') ?>
+// This url would cause a dispatch error  
+http://www.domain.com/user/john.doe
+
+// The requirements pattern allows the rule to match
+'user_profile' => array(
+  'url'          => '/user/:name',
+  'param'        => array( 'module' => 'user', 'action' => 'profile' ),
+  'requirements' => array( 'name' => '[\w\.]+' )
+)
+<?php pre_end() ?>
+
 <h2>Getting Information about the current Route</h2>
 
 <p> The following methods from <b>sfPatternRouting</b> can be used to deal with routes in actions:

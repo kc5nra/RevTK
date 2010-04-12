@@ -30,7 +30,6 @@ class EditStoryComponent extends coreComponent
    * Return EditStory component based on GET or POST request.
    * 
    * PARAMS
-   *   framenum       Valid kanji id (frame number)
    *   kanjiData      Kanji data for kanji id
    *   reviewMode     True if called from the Review page
    *   
@@ -49,7 +48,7 @@ class EditStoryComponent extends coreComponent
     if ($request->getMethod() !== coreRequest::POST)
     {
       // get user's story
-      $story = StoriesPeer::getStory($this->getUser()->getUserId(), $this->framenum);
+      $story = StoriesPeer::getStory($this->getUser()->getUserId(), $this->kanjiData->framenum);
       if ($story)
       {
         $request->getParameterHolder()->add(array(
@@ -72,11 +71,11 @@ class EditStoryComponent extends coreComponent
           // delete empty story
           if (empty($txtStory))
           {
-            StoriesPeer::deleteStory($this->getUser()->getUserId(), $this->framenum);
+            StoriesPeer::deleteStory($this->getUser()->getUserId(), $this->kanjiData->framenum);
           }
           else
           {
-            StoriesPeer::updateStory($this->getUser()->getUserId(), $this->framenum, array
+            StoriesPeer::updateStory($this->getUser()->getUserId(), $this->kanjiData->framenum, array
             (
               'text'     => $txtStory,
               'public'   => $request->hasParameter('chkPublic') ? 1 : 0
@@ -88,13 +87,10 @@ class EditStoryComponent extends coreComponent
       }
     }
 
-    // set state
-    $request->setParameter('framenum', $this->framenum);
-
     if (!$request->hasParameter('reviewMode'))
     {
-      $this->isRestudyKanji = ReviewsPeer::isRestudyKanji($this->getUser()->getUserId(), $this->framenum);
-      $this->isRelearnedKanji = LearnedKanjiPeer::hasKanji($this->getUser()->getUserId(), $this->framenum);
+      $this->isRestudyKanji = ReviewsPeer::isRestudyKanji($this->getUser()->getUserId(), $this->kanjiData->framenum);
+      $this->isRelearnedKanji = LearnedKanjiPeer::hasKanji($this->getUser()->getUserId(), $this->kanjiData->framenum);
     }
 
     $this->formatted_story = StoriesPeer::getFormattedStory($request->getParameter('txtStory', ''), $this->kanjiData->keyword, true);

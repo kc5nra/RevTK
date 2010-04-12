@@ -1,10 +1,10 @@
 <?php
 /**
  * StoryScores Peer.
- * 
+ *
  * This table collects the total scores from StoryVotesPeer,
  * to speed up selects in the Study page, Shared Stories component.
- * 
+ *
  * @package RevTK
  * @author  Fabrice Denis
  */

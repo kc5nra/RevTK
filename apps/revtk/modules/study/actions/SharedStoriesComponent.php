@@ -21,14 +21,13 @@ class SharedStoriesComponent extends coreComponent
    * Show publicly shared stories
    * 
    * PARAMS
-   *   framenum       Valid kanji id
-   *   kanjiData      Kanji data for valid framenum
+   *   kanjiData      Kanji data for currently viewed kanji
    * 
    */
   public function execute($request)
   {
-    $this->new_stories = StoriesPeer::getPublicStories($this->framenum, $this->kanjiData->keyword, true);
-    $this->old_stories = StoriesPeer::getPublicStories($this->framenum, $this->kanjiData->keyword, false);
+    $this->new_stories = StoriesPeer::getPublicStories($this->kanjiData->framenum, $this->kanjiData->keyword, true);
+    $this->old_stories = StoriesPeer::getPublicStories($this->kanjiData->framenum, $this->kanjiData->keyword, false);
 
     return coreView::SUCCESS;
   }

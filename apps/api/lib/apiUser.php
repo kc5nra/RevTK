@@ -10,17 +10,17 @@
 
 /**
  * rtkUser adds utility methods to the Core user class.
- * 
+ *
  * Methods
  *   getUserId()
  *   getUserName()
  *   getUserTimeZone()
  *   getUserDetails()     UsersPeer record
  *   getLocalPrefs()      LocalPrefs instance
- *   
+ *
  *   redirectToLogin($options = array())      Redirect unauthenticated user to login page
  *   sqlLocalTime($localTimezone = null)      Returns SQL statement for user's local date+time
- * 
+ *
  * @author     Fabrice Denis
  */
 
@@ -28,7 +28,7 @@ class apiUser extends coreUserBasicSecurity
 {
   protected
     $localPrefs = null;
-  
+
   /**
    * The "Remember me" cookie name and lifetime in seconds.
    */
@@ -36,7 +36,7 @@ class apiUser extends coreUserBasicSecurity
   const COOKIE_EXPIRE = 1296000; // 60*60*24*15
 
   /**
-   * 
+   *
    */
   public function initialize(coreSessionStorage $storage, $options = array())
   {
@@ -50,7 +50,7 @@ class apiUser extends coreUserBasicSecurity
         $value = unserialize(base64_decode($cookieData));
         $username = $value[0];
         $saltyPassword = $value[1];
-        
+
         // sign in user if user is valid and password from cookie matches the one in database
         $user = UsersPeer::getUser($username);
         if ($user && ($saltyPassword == $user['password']) )
@@ -59,14 +59,14 @@ class apiUser extends coreUserBasicSecurity
         }
       }
     }
-    
+
     // session duration preferences
     $this->localPrefs = new LocalPrefs($this);
   }
 
   /**
    * Getter method for user session attribute.
-   * 
+   *
    */
   public function getUserName()
   {
@@ -75,7 +75,7 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Getter method for user session attribute.
-   * 
+   *
    */
   public function getUserId()
   {
@@ -84,7 +84,7 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Getter method for user session attribute.
-   * 
+   *
    */
   public function getUserTimeZone()
   {
@@ -93,7 +93,7 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Return UsersPeer row data for authenticated user.
-   * 
+   *
    */
   public function getUserDetails()
   {
@@ -102,8 +102,8 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Return the LocalPrefs instance.
-   * 
-   * @return 
+   *
+   * @return
    */
   public function getLocalPrefs()
   {
@@ -112,13 +112,13 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Sign In the user.
-   * 
+   *
    * Also sign in user on the PunBB forum, by way of the forum cookie.
    * The "remember me" option applies similarly to the forum cookie.
-   * 
+   *
    * @param  array  $user  UsersPeer row
-   * @return 
-   */  
+   * @return
+   */
   public function signIn($user)
   {
     $this->setAttribute('userid', $user['userid']);
@@ -142,11 +142,11 @@ class apiUser extends coreUserBasicSecurity
     // update user's last login timestamp
     UsersPeer::setLastlogin($user['userid']);
   }
-  
+
   /**
    * Sign Out the user, sets user as "Guest"
-   * 
-   * @return 
+   *
+   * @return
    */
   public function signOut()
   {
@@ -154,10 +154,10 @@ class apiUser extends coreUserBasicSecurity
     $this->clearCredentials();
     $this->setAuthenticated(false);
   }
-  
+
   /**
    * Sets the persistent session cookie.
-   * 
+   *
    */
   public function setRememberMeCookie($username, $saltyPassword)
   {
@@ -167,17 +167,17 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Clears the persistent session cookie.
-   * 
-   * @return 
+   *
+   * @return
    */
   public function clearRememberMeCookie()
   {
     coreContext::getInstance()->getResponse()->setCookie(self::COOKIE_NAME, '', time() - 3600, '/');
   }
-  
+
   /**
    * Update the user password in the main site and forum databases.
-   * 
+   *
    * @param object $user
    * @param object $raw_password
    */
@@ -189,7 +189,7 @@ class apiUser extends coreUserBasicSecurity
     // set new user password
     $user_id = UsersPeer::getUserId($username);
     UsersPeer::setPassword($user_id, $hashedPassword);
-    
+
     // set new password on forum account (not in staging)
     if (coreContext::getInstance()->getConfiguration()->getEnvironment() !== 'staging')
     {
@@ -203,29 +203,29 @@ class apiUser extends coreUserBasicSecurity
 
   /**
    * Returns hashed password.
-   * 
+   *
    * We use sha1() like PunBB to store passwords.
-   * 
+   *
    * Ideally could store a random salt with each user, eg:
-   * 
+   *
    *   salt VARCHAR(32)      =>  md5(rand(100000, 999999).$this->getNickname().$this->getEmail());
    *   password VARCHAR(40)  =>  sha1($salt.$raw_password)
-   * 
+   *
    * @param string  $password  Non-encrypted password.
    */
   public function getSaltyHashedPassword($raw_password)
   {
     return sha1($raw_password);
   }
-  
+
   /**
    * Redirect unauthenticated user to login action.
-   * 
+   *
    * Options:
-   * 
+   *
    *   username => Fill in the user name of the login form
    *   referer  => Page to return the user to after signing in
-   * 
+   *
    * @param array $params  Options to pass to the login page
    */
   public function redirectToLogin($options = array())
@@ -234,7 +234,7 @@ class apiUser extends coreUserBasicSecurity
     {
       $this->setAttribute('login_referer', $options['referer']);
     }
-    
+
     if (isset($options['username']))
     {
       $this->setAttribute('login_username', $options['username']);
@@ -243,14 +243,14 @@ class apiUser extends coreUserBasicSecurity
     $login_url = coreConfig::get('login_module') . '/' . coreConfig::get('login_action');
     coreContext::getInstance()->getActionInstance()->redirect($login_url);
   }
-  
+
   /**
    * Returns a SQL statement which returns a date+time adjusted to the
    * timezone of the user. The date returned by
    * this statement will switch at midnight time of the user's timezone
    * (assuming the user set the timezone properly).
    * (the user's timezone range is -12...+14)
-   * 
+   *
    * @return String   MySQL ADDDATE() expression that evaluates to the user's localized time
    */
   public function sqlLocalTime()

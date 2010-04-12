@@ -1,7 +1,7 @@
 <?php
 /**
  * mysqlMetadataTable provides useful methods to get metadata from a MySQL database table.
- * 
+ *
  * array<object>  getColumnsInfo()
  * array<string>  getColumnNames()
  * object         getColumnDescription($colName)
@@ -11,8 +11,8 @@
  * array      getPrimaryKeysFromArray(array $colData)
  * boolean      isNumeric($colName)
  * boolean      isDateTime($colName)
- * 
- * 
+ *
+ *
  * @author  Fabrice Denis
  */
 
@@ -20,10 +20,10 @@ class mysqlMetadataTable
 {
   protected
     $columns = null;
-  
+
   /**
-   * 
-   * @return 
+   *
+   * @return
    * @param object $db  coreDatabase
    * @param object $tableName
    */
@@ -32,12 +32,12 @@ class mysqlMetadataTable
     $this->db = $db;
     $this->tableName = $tableName;
   }
-  
+
   /**
    * Return the DESCRIBE query information from a MySQL table, as an array of objects.
-   * 
+   *
    * Each objet in the array contain the properties:
-   * 
+   *
    *   Field   : column name
    *   Type    : column data type
    *   Null    : "YES" if NULL values can be stored in the column or "NO" (or "" prior to MySQL 5.0.3, equivalent to "NO")
@@ -47,7 +47,7 @@ class mysqlMetadataTable
    *                   index that can contain NULL values.
    *   Default : indicates the default value that is assigned to the column.
    *   Extra   : "auto_increment" if the column was created with the AUTO_INCREMENT keyword and empty otherwise.
-   * 
+   *
    * @see    http://dev.mysql.com/doc/refman/5.0/en/show-columns.html
    * @return array Array of objects, one for each column
    */
@@ -65,8 +65,8 @@ class mysqlMetadataTable
 
   /**
    * Return array of column names from this table.
-   * 
-   * @return 
+   *
+   * @return
    */
   public function getColumnNames()
   {
@@ -80,18 +80,18 @@ class mysqlMetadataTable
 
   /**
    * Return DESCRIBE data for one named column as an object.
-   * 
+   *
    * Properties of returned object:
-   * 
+   *
    *   Field
    *   Type
    *   Null
    *   Key
    *   Default
    *   Extra
-   *   
+   *
    * @see    getColumnsInfo()
-   * @return object 
+   * @return object
    */
   public function getColumnDescription($colName)
   {
@@ -108,7 +108,7 @@ class mysqlMetadataTable
   /**
    * Return DESCRIBE data for the auto_increment column if present,
    * otherwise returns null.
-   * 
+   *
    * @return mixed  Describe object (see getColumnDescription()), or null
    */
   public function getAutoIncrementColumn()
@@ -125,7 +125,7 @@ class mysqlMetadataTable
 
   /**
    * Returns mysql DESCRIBE 'Type' as object with ->type and ->length properties
-   * 
+   *
    * @return object
    */
   public function getColumnTypeInfo($colName)
@@ -136,13 +136,13 @@ class mysqlMetadataTable
 
   /**
    * Parse mysql DESCRIBE 'Type' into base type and length.
-   * 
-   * eg.  'char(32)' 
-   * 
+   *
+   * eg.  'char(32)'
+   *
    * Returns object with ->type and ->length properties.
    * Float length eg 'float(3,4)' returns only the integer part.
-   * 
-   * @return object 
+   *
+   * @return object
    * @param string $col_type  MySQL column Type eg. varchar(32)
    */
   public function parseColumnType($col_type)
@@ -159,7 +159,7 @@ class mysqlMetadataTable
     }
     else
     {
-      
+
       $typeInfo['type'] = $col_type;
       $typeInfo['length'] = null;
     }
@@ -169,7 +169,7 @@ class mysqlMetadataTable
 
   /**
    * Returns array of one or more primary keys.
-   * 
+   *
    * @return array   Name of columns that are primary keys
    */
   public function getPrimaryKeys()
@@ -184,10 +184,10 @@ class mysqlMetadataTable
     }
     return $primaryKeys;
   }
-  
+
   /**
    * Returns array of primary keys and values obtained from given array of column data.
-   * 
+   *
    * Throws an exception if one of the primary key doesn't exist in given array.
    *
    * @param  array  Associative array of colmun data
@@ -202,16 +202,16 @@ class mysqlMetadataTable
       {
         throw new coreException(__METHOD__.' Primary key "'.$keyName.'" not present in given array.');
       }
-      
+
       $primaryKeyValues[$keyName] = $colData[$keyName];
     }
     return $primaryKeyValues;
   }
 
-  
+
   /**
    * Checks if the column data type is one of the MySQL numeric data types.
-   * 
+   *
    * @return boolean  True if the column data type is numeric
    * @param  string $colName
    */
@@ -235,7 +235,7 @@ class mysqlMetadataTable
 
   /**
    * Checks if the column data type is one of the MySQL date and time types.
-   * 
+   *
    * @return boolean  True if the column data type is one of the date and time types
    * @param  string $colName
    */

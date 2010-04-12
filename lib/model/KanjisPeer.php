@@ -1,7 +1,7 @@
 <?php
 /**
  * Kanjis Peer.
- * 
+ *
  * @package RevTK
  * @author  Fabrice Denis
  */
@@ -19,7 +19,7 @@ class KanjisPeer extends coreDatabaseTable
       'lessonnum',
       'strokecount'
     );
-  
+
   /**
    * Kanji count for Remembering the Kanji Volume 1 + 3
    * (Copied from rtkBook.php)
@@ -37,9 +37,9 @@ class KanjisPeer extends coreDatabaseTable
 
   /**
    * Return kanji data for given id (frame number).
-   * 
+   *
    * Must sanitize kanji id.
-   * 
+   *
    * @param   Integer  $id      Frame number (in the future will be unicode)
    * @return  Object   Kanji rowdata as object, or FALSE
    */
@@ -54,7 +54,7 @@ class KanjisPeer extends coreDatabaseTable
 
   /**
    * Return kanji data for given kanji as utf8 character.
-   * 
+   *
    * @param   String   $utf8    Kanji character in utf8
    * @return  Object   Kanji rowdata as object, or FALSE
    */
@@ -69,12 +69,12 @@ class KanjisPeer extends coreDatabaseTable
 
   /**
    * Return keyword only for given character.
-   * 
+   *
    * Assumes framenum is already sanitized!
-   * 
+   *
    * @todo   This is used in every story using the link feature.
    *         Could be optimized with an include file with array with all keywords.
-   * 
+   *
    * @param
    * @return
    */
@@ -87,7 +87,7 @@ class KanjisPeer extends coreDatabaseTable
 
   /**
    * Returns formatted keyword if multiple editions, otherwise keyword as is
-   * 
+   *
    * @param   String   $keyword   Single or multiple edition keyword as stored in the database
    * @return  String
    */
@@ -97,7 +97,7 @@ class KanjisPeer extends coreDatabaseTable
      {
       return $keyword.'<br /><span class="edition">(multiple editions)</span>';
     }
-    
+
     return $keyword;
   }
 
@@ -106,7 +106,7 @@ class KanjisPeer extends coreDatabaseTable
    * This is a uiFlashcardReview callback, the data ($id) must be sanitized!
    *
    * @param
-   * 
+   *
    * @return mixed   Object with flashcard data, or null
    */
   public static function getFlashcardData($id)
@@ -128,7 +128,7 @@ class KanjisPeer extends coreDatabaseTable
     $cardData->id = $cardData->framenum;
 
     coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
-    $cardData->keyword = link_to_keyword($cardData->keyword, $cardData->framenum, 
+    $cardData->keyword = link_to_keyword($cardData->keyword, $cardData->framenum,
       array('title' => 'Go to the Study page', 'target' => '_blank'));
 
     return $cardData;
@@ -138,7 +138,7 @@ class KanjisPeer extends coreDatabaseTable
    * This should be called only by REST Services.
    *
    * @param
-   * 
+   *
    * @return mixed   Object with flashcard data, or null
    */
   public static function getFlashcardRestData($id)
@@ -146,8 +146,8 @@ class KanjisPeer extends coreDatabaseTable
     $id = (int)$id;
 
     // note: zero is not a valid kanji id
-		// we use a local KanjisPeer::MAX_KANJI constant
-		// to avoid loading rtkBook.php
+    // we use a local KanjisPeer::MAX_KANJI constant
+    // to avoid loading rtkBook.php
     if ($id < 1 || $id > KanjisPeer::MAX_KANJI) {
       return null;
     }
@@ -166,24 +166,29 @@ class KanjisPeer extends coreDatabaseTable
   }
 
   /**
-   * Search for a kanji by keyword. The search term is an exact keyword,
-   * or part of a keyword. Multiple edition keywords with slashes should
-   * replace the slash with underscore first (cf MySQL LIKE operator).
-   * 
+   * Search for a kanji by keyword.
+   *
+   * The search term should be an exact keyword or match the beginning of a keyword.
+   *
+   * The mutliple edition keyword separator (/) should be replaced with a wildcard (%) beforehand.
+   *
+   * The wildcard (%) can be used one or more times. A wildcard (%) is always added at the end
+   * of the search term.
+   *
    * @return  mixed   Frame number, or FALSE if no results.
    */
   public static function getFramenumForSearch($sSearch)
   {
     $s = trim($sSearch);
     //$s = preg_replace('/[^0-9a-zA-Z-\.\' \[\]\(\)]/', '', $s);
-  
+
     if (CJK::hasKanji($s))
     {
       // it's not a western character..
       /* 0x3000 http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml */
-      
+
       self::getInstance()->select('framenum')->where('kanji = ?', $s)->query();
-      
+
       return ($row = self::$db->fetchObject()) ? $row->framenum : false;
     }
     elseif (preg_match('/^[0-9]+$/', $s))
@@ -196,7 +201,7 @@ class KanjisPeer extends coreDatabaseTable
     {
       // search on keyword
       // acount for multiple edition keyword
-      
+
       // try to find an exact match
       self::getInstance()->select('framenum')->where('keyword = ? OR keyword LIKE ? OR keyword LIKE ?', array($s, $s.'/%', '%/'.$s))->query();
       if ($row = self::$db->fetchObject())
@@ -211,7 +216,7 @@ class KanjisPeer extends coreDatabaseTable
       // otherwise just pick the first match
       else
       {
-        self::getInstance()->select('framenum')->where('keyword LIKE ?', '%'.$s.'%')->query();
+        self::getInstance()->select('framenum')->where('keyword LIKE ?', $s.'%')->query();
         return ($row = self::$db->fetchObject()) ? $row->framenum : false;
       }
     }

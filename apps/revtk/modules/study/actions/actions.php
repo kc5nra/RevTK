@@ -37,19 +37,28 @@ class studyActions extends coreActions
    */
   public function executeEdit($request)
   {
-    $search = trim($request->getParameter('id', ''));
-    if (!empty($search))
+    // searching or browsing (previous, next buttons)
+    if ($request->getMethod()===coreRequest::GET)
     {
-      $search = CJK::normalizeFullWidthRomanCharacters($search);
-  
-      // update search box with cleaned up search term
-      $request->setParameter('search', str_replace('_', '/', $search));
+      // get search term from url
+      $search = trim($request->getParameter('id', ''));
       
-      $framenum = KanjisPeer::getFramenumForSearch($search);
-    }
+      if (!empty($search))
+      {
+        $search = CJK::normalizeFullWidthRomanCharacters($search);
 
-    if ($request->getMethod()===coreRequest::POST)
+        // replace characters that caused problems (dashes) with wildcard for SQL
+        $search = str_replace('-', '%', $search);
+
+        $framenum = KanjisPeer::getFramenumForSearch($search); 
+      }
+    }
+    else
     {
+      // POST handled by EditStoryComponent, LearnedKanji handled here
+
+      $framenum = $request->getParameter('framenum', false);
+
       // Handle POST request from EditStory component.
       $this->forward404Unless(BaseValidators::validateInteger($framenum) && intval($framenum));
       
@@ -67,18 +76,19 @@ class studyActions extends coreActions
       }
     }
 
-    $request->setParameter('framenum', $framenum);
-
     if ($framenum)
     {
-      $this->framenum = $framenum;
-      $this->kanjiData = (object) KanjisPeer::getKanjiById($this->framenum);
+      $this->kanjiData = (object) KanjisPeer::getKanjiById($framenum);
 
       $this->getResponse()->setTitle('Study: '.$this->kanjiData->kanji.' "'.$this->kanjiData->keyword.'"');
+        
+      // replace search term with frame number in search box
+      $request->setParameter('search', $this->kanjiData->framenum);
     }
     else
     {
-      $this->framenum = false;
+      // search gave no results
+      $this->kanjiData = false;
     }
   }
 
@@ -207,14 +217,17 @@ class studyActions extends coreActions
    * EditStoryComponent ajax handler.
    * 
    * Request parameters:
-   * 
+   *   framenum     Should be an integer (RTK and someday unicode code point)
    *   reviewMode   True if used from the Review page EditStory window
    * 
+   * @see  rkEditStoryWindow.js
+   *
    * @return 
    */
   public function executeEditstory($request)
   {
     $framenum = $request->getParameter('framenum', false);
+
     if (!BaseValidators::validateInteger($framenum)) {
       throw new rtkAjaxException('Bad request.');
     }
@@ -223,7 +236,7 @@ class studyActions extends coreActions
 
     $kanjiData = (object) KanjisPeer::getKanjiById($framenum);
 
-    return $this->renderComponent('study', 'EditStory', array('framenum' => $framenum, 'kanjiData' => $kanjiData, 'reviewMode' => $reviewMode));
+    return $this->renderComponent('study', 'EditStory', array('kanjiData' => $kanjiData, 'reviewMode' => $reviewMode));
   }
 
   /**

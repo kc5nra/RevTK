@@ -1,7 +1,7 @@
 <?php
 /**
  * Stories Peer.
- * 
+ *
  * @package RevTK
  * @author  Fabrice Denis
  */
@@ -36,7 +36,7 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Returns story and story settings for given user.
-   * 
+   *
    * @param
    * @return object  Object row data or false
    */
@@ -51,7 +51,7 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Create/Update story and story settings for user.
-   * 
+   *
    * @param  int    $user_id   User id
    * @param  int    $framenum  Kanji id
    * @param  array  $options   Table data
@@ -63,15 +63,15 @@ class StoriesPeer extends coreDatabaseTable
     {
       return self::getInstance()->update($data, 'userid = ? AND framenum = ?', array($user_id, $framenum));
     }
-    
+
     $data['userid'] = $user_id;
     $data['framenum'] = $framenum;
     return self::getInstance()->insert($data);
   }
-  
+
   /**
    * Delete a story.
-   * 
+   *
    * @param  int    $user_id   User id
    * @param  int    $framenum  Kanji id
    * @return
@@ -83,11 +83,11 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Return a story formatted for display.
-   * 
+   *
    * The input story is ESCAPED before html tags are inserted for the formatting.
    * It is assumed strip_tags() was used previously. The returned string should not be escaped
    * again in the view template.
-   * 
+   *
    * @param  String   $story
    * @param  String   $keyword
    * @param  Boolean  $bSubstituteLinks    True to show frame number references as links otherwise plain text.
@@ -95,6 +95,9 @@ class StoriesPeer extends coreDatabaseTable
    */
   public static function getFormattedStory($story, $keyword, $bSubstituteLinks = true)
   {
+    // Links helper is used by getFormattedKanjiLink() call
+    coreToolkit::loadHelpers(array('Tag', 'Url'));
+
     // minimal punctuation : upper case first beginning of text
     $s = phpToolkit::mb_ucfirst($story);
 
@@ -116,7 +119,7 @@ class StoriesPeer extends coreDatabaseTable
       // use 4th edition keyword if multiple edition keyword
       $keyword = $keywords[1];
     }
-    
+
     // remove trailing '?' or '...'
     $keyword = preg_replace('/\s*\.\.\.$|\s*\?$/', '', $keyword);
     // fixes highlighting keywords like "lead (metal)" or "abyss [old]"
@@ -131,7 +134,6 @@ class StoriesPeer extends coreDatabaseTable
     // escape text before adding html tags, replace the single quotes with another
     // special character because the escaping uses htmlspecialchars() inserts &#039;
     // and then the '#' character is matched by another regexp as the #keyword# marker
-    coreToolkit::loadHelpers('Tag');
     $s = str_replace('\'', '`', $s);
     $s = escape_once($s);
 
@@ -141,7 +143,7 @@ class StoriesPeer extends coreDatabaseTable
     $s = preg_replace('/#([^#]+)#/ui', '<strong>$1</strong>', $s);
     // format mnemonic *primitives*
     $s = preg_replace('/\*([^\*]+)\*/ui', '<em>$1</em>', $s);
-    
+
 //    $s = preg_replace("/{([0-9]+)}/", "<a href=\"?framenum=$1\">frame $1</a>", $s);
     if ($bSubstituteLinks)
     {
@@ -166,9 +168,9 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Returns a frame number link as used in stories, for RTK index number.
-   * 
+   *
    * @param  array    $matches  Reg exp matches, $matches[1] is the kanji id
-   * 
+   *
    * @return string
    */
   public static function getFormattedKanjiLink($matches)
@@ -178,24 +180,24 @@ class StoriesPeer extends coreDatabaseTable
     $link = link_to($keyword, 'study/edit?id='.$id);
     return sprintf('%s <span class="index">(#%d)</span>', $link, $id);
   }
-  
+
 
   /**
    * Return array of public stories for SharedStories component.
-   * 
+   *
    * Third parameter indicates which part of the shared stories selection to return:
    * - newest
    * - old (sorted by stars)
-   * 
+   *
    * @see    study/SharedStoriesComponent
-   * 
+   *
    * @return array<array>
    */
   public static function getPublicStories($framenum, $keyword, $bNewest, $rest = false)
   {
-		if (!$rest) {
-    	coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
-		}
+    if (!$rest) {
+      coreToolkit::loadHelpers(array('Tag', 'Url', 'Links'));
+    }
     $select = self::getInstance()
       ->select(array(
         'stories.userid', 'username', 'stories.framenum',
@@ -208,16 +210,16 @@ class StoriesPeer extends coreDatabaseTable
     if ($bNewest) {
       $select->where('updated_on >= DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
       $select->order('updated_on DESC');
-    } 
+    }
     else {
-			if (!$rest) {
-				$select->where('updated_on < DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
-			}
+      if (!$rest) {
+        $select->where('updated_on < DATE_ADD(CURDATE(),INTERVAL -1 MONTH)');
+      }
       $select->order(array('stars DESC', 'updated_on DESC'));
     }
-		
+
     $rows = self::$db->fetchAll($select);
-		
+
     foreach ($rows as &$R)
     {
       // do not show 0's
@@ -225,17 +227,17 @@ class StoriesPeer extends coreDatabaseTable
       if (!$R['kicks']) { $R['kicks']=''; }
 
       $R['text']   = StoriesPeer::getFormattedStory($R['text'], $keyword);
-  		if (!$rest) {
-				$R['author'] = link_to_member($R['username']);
-  		}
-		}
-    
+      if (!$rest) {
+        $R['author'] = link_to_member($R['username']);
+      }
+    }
+
     return $rows;
   }
 
   /**
    * Returns count of shared and private stories for given user.
-   * 
+   *
    * @param  int  $user_id   User's id.
    * @return object          Object with properties 'private' 'public' and 'total'
    */
@@ -244,7 +246,7 @@ class StoriesPeer extends coreDatabaseTable
     $num_stories = new stdClass;
     $num_stories->private = 0;
     $num_stories->public  = 0;
-    
+
     self::getInstance()->select(array('public', 'count' => 'COUNT(*)'))
       ->where('userid = ?', $user_id)
       ->group('public')
@@ -265,7 +267,7 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Returns Select object for My Stories component.
-   * 
+   *
    * @param
    * @return
    */
@@ -281,7 +283,7 @@ class StoriesPeer extends coreDatabaseTable
 
   /**
    * Returns select for export to CSV.
-   * 
+   *
    * @return coreDatabaseSelect
    */
   public static function getSelectForExport($user_id)

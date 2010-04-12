@@ -10,7 +10,7 @@
 
 /**
  * Application Configuration.
- * 
+ *
  * @package    RevTK
  * @author     Fabrice Denis
  */
@@ -31,7 +31,7 @@ class revtkConfiguration extends coreApplicationConfiguration
   {
     // profile php execution time
     $this->profileStart();
-    
+
     // Application configuration settings
     coreConfig::set('app_zend_lib_dir', coreConfig::get('lib_dir'));
 
@@ -42,14 +42,14 @@ class revtkConfiguration extends coreApplicationConfiguration
       require_once($sf_zend_lib_dir.'/Zend/Loader.php');
       spl_autoload_register(array('Zend_Loader', 'autoload'));
     }
-    
-    // set default timezone setting, fixes php error 'date(): It is not safe to rely on the system's timezone settings' 
+
+    // set default timezone setting, fixes php error 'date(): It is not safe to rely on the system's timezone settings'
     date_default_timezone_set('UTC');
   }
-  
+
   /**
    * Record the start time (will be used to calculate the generation time for the page)
-   * 
+   *
    */
   public function profileStart()
   {
@@ -59,7 +59,7 @@ class revtkConfiguration extends coreApplicationConfiguration
 
   /**
    * Return elapsed time since execution of core.php
-   * 
+   *
    */
   public function profileEnd()
   {
@@ -67,5 +67,5 @@ class revtkConfiguration extends coreApplicationConfiguration
     $time_diff = ((float)$usec + (float)$sec) - $this->profile_time;
     return sprintf('%.3f', $time_diff);
   }
-  
+
 }

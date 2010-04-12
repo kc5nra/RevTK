@@ -690,9 +690,9 @@ ul.stories-list li a.wrapper:hover .bookstyle { color:#000; }
 #homescreens table { width:100%; border:0; margin:0; }
 #homescreens td    { width:180px; text-align:center; color:#272618; font:12px/1.3em Arial, sans-serif; vertical-align:top; text-align:center; padding:0; border:0; }
 #homescreens .screen { width:176px; height:113px; margin:0 0 9px; }
-#homescreens .s1 { background:url(/images/2.0/home/reviewing_kanji.gif) no-repeat 0 0; }
-#homescreens .s2 { background:url(/images/2.0/home/reviewing_kanji.gif) no-repeat 0 -113px; }
-#homescreens .s3 { background:url(/images/2.0/home/reviewing_kanji.gif) no-repeat 0 -226px; }
+#homescreens .s1 { background:url(/images/2.0/home/reviewing_kanji_2.gif) no-repeat 0 0; }
+#homescreens .s2 { background:url(/images/2.0/home/reviewing_kanji_2.gif) no-repeat 0 -113px; }
+#homescreens .s3 { background:url(/images/2.0/home/reviewing_kanji_2.gif) no-repeat 0 -226px; }
 #homescreens p { font:11px/15px Verdana, sans-serif; margin:0; }
 #homescreens span  { font:bold 12px/16px Arial, sans-serif; text-transform:uppercase; display:block; }
 
