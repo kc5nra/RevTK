@@ -154,6 +154,21 @@ return array
           'param'          => array('module' => 'boxes', 'action' => 'boxesId', 'boxId' => 0)
         ),
 
+        'cardsIdStories'  => array(
+          'url'            => '/cards/:cardId/stories',
+          'param'          => array('module' => 'cards', 'action' => 'cardsIdStories', 'cardId' => 0)
+        ),
+
+        'news'            => array(
+          'url'            => '/news',
+          'param'          => array('module' => 'news', 'action' => 'news')
+        ),
+
+        'newsId'          => array(
+          'url'            => '/news/:newsId',
+          'param'          => array('module' => 'news', 'action' => 'newsId', 'newsId' => 0)
+        ),
+
         'restApiKey'      => array(
           'url'            => '/rest/apiKey',
           'param'          => array('module' => 'rest', 'action' => 'apiKey')

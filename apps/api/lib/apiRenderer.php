@@ -119,11 +119,11 @@ class apiRenderer {
    *    ['response'] => {
    *      [0..n] = {
    *        ['id']            => INTEGER
-   *        ['keyword']        => STRING
+   *        ['keyword']       => STRING
    *        ['kanji']:        => STRING
    *        ['onyomi']        => STRING
    *        ['lessonNumber']  => INTEGER
-   *        ['strokeCount']    => INTEGER
+   *        ['strokeCount']   => INTEGER
    *    }
    *  }
    *
@@ -140,10 +140,10 @@ class apiRenderer {
 
       // copy relevant fields
       $newCard['id']            = $card['id'];
-      $newCard['kanji']          = $card['kanji'];
+      $newCard['kanji']         = $card['kanji'];
       $newCard['onyomi']        = $card['onyomi'];
       $newCard['lessonNumber']  = $card['lessonnum'];
-      $newCard['strokeCount']    = $card['strokecount'];
+      $newCard['strokeCount']   = $card['strokecount'];
 
       // add the card to the card holder
       $newCardHolder[] = $newCard;
@@ -169,8 +169,8 @@ class apiRenderer {
    *        ['heisigNumber']: => INTEGER
    *        ['lastModified']  => DATE
    *        ['text']          => STRING
-   *        ['stars']          => INTEGER
-   *        ['kicks']          => INTEGER
+   *        ['stars']         => INTEGER
+   *        ['kicks']         => INTEGER
    *    }
    *  }
    *
@@ -187,12 +187,12 @@ class apiRenderer {
     foreach($stories as &$story) {
       // copy relevant fields and fix typing
       $newStoryEntry['userId']        = (int) $story['userid'];
-      $newStoryEntry['userName']      =        $story['username'];
+      $newStoryEntry['userName']      =       $story['username'];
       $newStoryEntry['heisigNumber']  = (int) $story['framenum'];
-      $newStoryEntry['lastModified']  =        $story['lastmodified'];
-      $newStoryEntry['text']          =        $story['text'];
-      $newStoryEntry['stars']          = (int) $story['stars'];
-      $newStoryEntry['kicks']          = (int) $story['kicks'];
+      $newStoryEntry['lastModified']  =       $story['lastmodified'];
+      $newStoryEntry['text']          =       $story['text'];
+      $newStoryEntry['stars']         = (int) $story['stars'];
+      $newStoryEntry['kicks']         = (int) $story['kicks'];
       // add the news entry to the new news entry holder
       $newStoriesEntryHolder[] = $newStoryEntry;
     }
@@ -213,8 +213,8 @@ class apiRenderer {
    *    ['response'] => {
    *      ['id']              => INTEGER
    *      ['userName']        => STRING
-   *      ['joinDate']:        => STRING
-   *      ['lastLogin']        => STRING
+   *      ['joinDate']:       => STRING
+   *      ['lastLogin']       => STRING
    *      ['location']        => STRING
    *      ['timeZone']        => INTEGER
    *    }
@@ -231,7 +231,7 @@ class apiRenderer {
     $newUser['id']          = $user['userid'];
     $newUser['userName']    = $user['username'];
     $newUser['joinDate']    = $user['joindate'];
-    $newUser['lastLogin']    = $user['lastlogin'];
+    $newUser['lastLogin']   = $user['lastlogin'];
     $newUser['location']    = $user['location'];
     $newUser['timeZone']    = $user['timezone'];
 
@@ -250,10 +250,10 @@ class apiRenderer {
    *    ['response'] => {
    *      [0..n] = {
    *        ['id']            => INTEGER
-   *        ['subject']        => STRING
-   *        ['text']:          => STRING
+   *        ['subject']       => STRING
+   *        ['text']:         => STRING
    *        ['date']          => DATE
-   *        ['brief']          => BOOLEAN
+   *        ['brief']         => BOOLEAN
    *    }
    *  }
    *
@@ -270,10 +270,10 @@ class apiRenderer {
     foreach($latestNewsEntries as &$newsEntry) {
 
       // copy relevant fields and fix typing
-      $newNewsEntry['id']        = (int) $newsEntry['id'];
-      $newNewsEntry['subject']  =        $newsEntry['subject'];
-      $newNewsEntry['text']      =        $newsEntry['text'];
-      $newNewsEntry['date']      =        $newsEntry['date'];
+      $newNewsEntry['id']       = (int) $newsEntry['id'];
+      $newNewsEntry['subject']  =       $newsEntry['subject'];
+      $newNewsEntry['text']     =       $newsEntry['text'];
+      $newNewsEntry['date']     =       $newsEntry['date'];
       $newNewsEntry['brief']    = (bool)$newsEntry['brief'];
 
       // add the news entry to the new news entry holder
@@ -295,10 +295,10 @@ class apiRenderer {
    *  {
    *    ['response'] => {
    *      ['id']            => INTEGER
-   *      ['subject']        => STRING
-   *      ['text']:          => STRING
+   *      ['subject']       => STRING
+   *      ['text']:         => STRING
    *      ['date']          => DATE
-   *      ['brief']          => BOOLEAN
+   *      ['brief']         => BOOLEAN
    *    }
    *  }
    *
@@ -312,11 +312,11 @@ class apiRenderer {
 
 
     // copy relevant fields and fix typing
-    $newNewsEntry['id']        = (int) $newsEntry['id'];
-    $newNewsEntry['subject']  =        $newsEntry['subject'];
-    $newNewsEntry['text']      =        $newsEntry['text'];
-    $newNewsEntry['date']      =        $newsEntry['date'];
-    $newNewsEntry['brief']    =        false;
+    $newNewsEntry['id']       = (int) $newsEntry['id'];
+    $newNewsEntry['subject']  =       $newsEntry['subject'];
+    $newNewsEntry['text']     =       $newsEntry['text'];
+    $newNewsEntry['date']     =       $newsEntry['date'];
+    $newNewsEntry['brief']    =       false;
 
     // add to the response
     $apiResponse['response'] = $newNewsEntry;
@@ -332,7 +332,7 @@ class apiRenderer {
    *
    *  {
    *    ['error'] = {
-   *      ['message']      => STRING
+   *      ['message']     => STRING
    *      ['statusCode']  => INTEGER
    *    }
    *  }
@@ -343,7 +343,7 @@ class apiRenderer {
   public static function restException($message, $statusCode)
   {
     $apiResponse          = null;
-    $error['message']      = $message;
+    $error['message']     = $message;
     $error['statusCode']  = $statusCode;
 
     // add to the error
